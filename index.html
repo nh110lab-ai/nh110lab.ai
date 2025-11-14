@@ -1,504 +1,665 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8" />
   <title>NH110LAB.AI — Luxury Neural Intelligence Laboratory</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description"
-    content="NH110LAB.AI — Laboratoire d'intelligence neuronale premium. Agents IA haut de gamme, automatisation de luxe, intelligence cognitive appliquée." />
+    content="NH110LAB.AI — Laboratoire d'intelligence neuronale premium. Agents IA haut de gamme, automatisation de luxe et intelligence cognitive avancée." />
 
-  <!-- GSAP Animations -->
+  <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/SplitText.min.js"></script>
 
   <style>
+
+    /* PALETTE */
     :root {
-      --dark: #040309;
-      --darker: #020106;
-      --accent: #8a63ff;
-      --accent-soft: #b8a4ff;
-      --silver: #d7d7df;
-      --text: #f5f5f7;
-      --text-muted: #9e9fb4;
-      --glass: rgba(255, 255, 255, 0.06);
-      --radius-xl: 32px;
-      --radius-lg: 22px;
-      --radius-md: 14px;
+      --black: #05050a;
+      --black-soft: #0b0b14;
+      --white: #fafafa;
+      --white-soft: #f2f2f7;
+
+      --text-dark: #111;
+      --text-light: #f5f5f7;
+      --muted-dark: #555;
+      --muted-light: #b5b5c7;
+
+      --accent: #845bff;
+      --accent-light: #cab8ff;
+
+      --radius-xl: 40px;
+      --radius-lg: 26px;
+      --radius-md: 16px;
+
+      --shadow-xl: 0 30px 80px rgba(0,0,0,0.12);
+      --shadow-dark: 0 30px 90px rgba(0,0,0,0.5);
     }
 
     * {
-      margin: 0;
       padding: 0;
+      margin: 0;
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      background: radial-gradient(circle at top, #0a0a15 0%, #03030a 60%, #000 100%);
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-      color: var(--text);
+      color: var(--text-dark);
+      background: var(--white-soft);
       overflow-x: hidden;
     }
 
-    /* HEADER */
+    /* HEADER ULTRA PREMIUM */
     header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      padding: 22px 50px;
+      padding: 26px 60px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      backdrop-filter: blur(18px);
-      background: rgba(0, 0, 0, 0.35);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      z-index: 999;
-    }
-
-    .nav-links a {
-      margin-left: 30px;
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 15px;
-      transition: 0.2s ease;
-    }
-
-    .nav-links a:hover {
-      color: white;
+      backdrop-filter: blur(22px);
+      background: rgba(255,255,255,0.55);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      z-index: 2000;
     }
 
     .brand-logo {
-      width: 46px;
-      height: 46px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
-      background: radial-gradient(circle at 20% 0, #ffffff, #b8a4ff, #8a63ff);
-      box-shadow: 0 0 22px #8a63ff;
+      background: radial-gradient(circle at 20% 0, #fff, #cab8ff, #845bff);
+      box-shadow: 0 0 30px rgba(132,91,255,0.4);
     }
 
-    /* SECTION STANDARD */
+    .nav-links a {
+      text-decoration: none;
+      margin-left: 36px;
+      font-size: 17px;
+      color: #222;
+      transition: 0.25s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-4px;
+      width:0%;
+      height:2px;
+      background: var(--accent);
+      transition:0.25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-links a:hover::after {
+      width:100%;
+    }
+
+    /* SECTIONS STANDARD (blanc) */
     section {
-      padding: 180px 80px;
+      padding: 200px 80px;
+      max-width: 1400px;
+      margin: auto;
     }
 
+    /* TITRES */
     h2.section-title {
-      font-size: 52px;
+      font-size: 66px;
       font-weight: 700;
-      margin-bottom: 20px;
-      background: linear-gradient(120deg, #ffffff, #dcd5ff, #8a63ff);
-      -webkit-background-clip: text;
-      color: transparent;
+      margin-bottom: 22px;
+      letter-spacing: -1px;
     }
 
     p.section-sub {
-      max-width: 700px;
-      font-size: 20px;
-      color: var(--text-muted);
-      margin-bottom: 60px;
-    }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-top: 200px;
-    }
-
-    .hero-title {
-      font-size: 70px;
-      font-weight: 700;
-      background: linear-gradient(120deg, #ffffff, #d7d3ff, #8a63ff);
-      -webkit-background-clip: text;
-      color: transparent;
-      max-width: 900px;
-      line-height: 1.1;
-      margin-bottom: 24px;
-    }
-
-    .hero-sub {
-      color: var(--text-muted);
+      max-width: 760px;
       font-size: 22px;
-      max-width: 650px;
-      margin-bottom: 40px;
+      color: var(--muted-dark);
+      margin-bottom: 100px;
+      line-height: 1.55;
     }
 
-    .btn-main {
-      padding: 16px 36px;
-      background: linear-gradient(125deg, #8a63ff, #bba8ff);
-      border-radius: 999px;
-      border: none;
-      font-size: 18px;
-      cursor: pointer;
-      box-shadow: 0px 12px 40px rgba(138, 99, 255, 0.4);
-      transition: 0.2s ease;
+    /* SECTIONS NOIR LUXE */
+    .dark-section {
+      background: var(--black);
+      color: var(--text-light);
+      padding: 240px 80px;
+      border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+      box-shadow: var(--shadow-dark);
     }
 
-    .btn-main:hover {
-      transform: scale(1.05);
+    .dark-section h2.section-title {
+      color: var(--text-light);
+      background: none;
     }
 
-    /* GRID CARDS */
+    .dark-section p.section-sub {
+      color: var(--muted-light);
+    }
+
+    /* GRID */
     .grid-3 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 40px;
     }
 
+    /* CARDS BLANCHES */
     .card {
-      background: var(--glass);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 26px;
+      background: white;
+      padding: 40px;
       border-radius: var(--radius-lg);
-      backdrop-filter: blur(20px);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      box-shadow: var(--shadow-xl);
+      border: 1px solid rgba(0,0,0,0.05);
       opacity: 0;
       transform: translateY(60px);
+      transition: 0.3s ease;
     }
 
-    .card h3 {
-      font-size: 22px;
-      margin-bottom: 10px;
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 40px 90px rgba(0,0,0,0.14);
     }
 
-    .card p {
-      font-size: 16px;
-      color: var(--text-muted);
+    /* CARDS NOIR */
+    .card-dark {
+      background: var(--black-soft);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text-light);
+      box-shadow: var(--shadow-dark);
     }
+
   </style>
 </head>
 
 <body>
 
 <header>
-  <div class="brand">
-    <div class="brand-logo"></div>
-  </div>
-
+  <div class="brand-logo"></div>
   <div class="nav-links">
     <a href="#hero">Accueil</a>
     <a href="#agents">Agents IA</a>
     <a href="#services">Services</a>
+    <a href="#about">À propos</a>
     <a href="#pricing">Tarifs</a>
     <a href="#contact">Contact</a>
   </div>
 </header>
+<!-- HERO (NOIR LUXE) -->
+<section id="hero" class="dark-section" style="padding-top:260px; padding-bottom:300px;">
+  <h1 class="hero-title" style="
+      font-size: 86px;
+      font-weight: 800;
+      line-height: 1.05;
+      background: linear-gradient(120deg, #fff, #dad2ff, #845bff);
+      -webkit-background-clip: text;
+      color: transparent;
+      max-width: 1000px;
+      opacity:0;
+    ">
+    Révélez le potentiel de votre intelligence.
+  </h1>
 
-<section id="hero" class="hero">
-  <h1 class="hero-title">Révélez le potentiel de votre intelligence.</h1>
-  <p class="hero-sub">Le laboratoire IA premium qui conçoit des agents intelligents, des systèmes cognitifs raffinés et des automatisations haut-de-gamme.</p>
-  <button class="btn-main" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">
+  <p class="hero-sub" style="
+      color: var(--muted-light);
+      font-size: 26px;
+      max-width: 750px;
+      margin-top: 24px;
+      opacity:0;
+    ">
+    Le laboratoire IA premium qui conçoit des agents sur mesure, des systèmes cognitifs raffinés 
+    et des automatisations haut-de-gamme dignes des maisons de luxe.
+  </p>
+
+  <button class="btn-main" style="margin-top:50px; opacity:0;"
+    onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">
     Discuter de mon projet IA
   </button>
 </section>
-<!-- AGENTS IA -->
+
+
+<!-- AGENTS IA — SECTION BLANCHE -->
 <section id="agents">
   <h2 class="section-title">Agents IA d’exception</h2>
   <p class="section-sub">
-    Chaque agent est conçu comme un produit de luxe : identité claire, précision
-    scientifique et comportement ultra-fiable. Des outils taillés pour les
-    entrepreneurs modernes, créateurs, garages, PME, indépendants.
+    Nos agents sont conçus comme des collections Hermès&nbsp;: identité claire, 
+    comportement cohérent, précision technologique et élégance fonctionnelle.
   </p>
 
   <div class="grid-3">
 
     <div class="card">
       <h3>Prospector+</h3>
-      <p>
-        L’agent conçu pour transformer votre prospection. Recherche automatique
-        de leads, analyse des sites web, préparation de messages personnalisés,
-        scoring intelligent. Votre SDR IA personnel.
-      </p>
+      <p>Recherche automatique de prospects, scoring intelligent et messages ultra-personnalisés.</p>
     </div>
 
     <div class="card">
       <h3>DocReader</h3>
-      <p>
-        Capable d’analyser vos documents : contrats, PDFs, factures, rapports,
-        mails, et d’en extraire résumés, risques, délais, incohérences. Le
-        lecteur intelligent qui ne se trompe pas.
-      </p>
+      <p>Analyse de documents, extraction intelligente, synthèse, alertes et recommandations.</p>
     </div>
 
     <div class="card">
       <h3>CRM Sync</h3>
-      <p>
-        Connecte automatiquement vos CRM (HubSpot, Notion, Sheets, Airtable…),
-        met à jour les fiches clients, crée les suivis et classe vos prospects.
-        Une organisation parfaite, sans effort.
-      </p>
+      <p>Synchronisation automatique des contacts, relances, pipelines, et automatisation CRM.</p>
     </div>
 
     <div class="card">
       <h3>SupportFlow</h3>
-      <p>
-        Agent support client premium : réponses automatiques, priorisation des
-        tickets, escalade intelligente, ton adapté. Comme un service client de
-        grande maison de luxe.
-      </p>
+      <p>Agent support client ton Hermès : réponses premium, tri des demandes, escalade intelligente.</p>
     </div>
 
     <div class="card">
       <h3>AutoTech IA</h3>
-      <p>
-        Analyse symptômes, codes défauts et historique véhicule pour émettre un
-        diagnostic prévisionnel. Conçu pour garages, préparateurs et passionnés
-        automobile.
-      </p>
+      <p>Analyse des symptômes, codes défauts et historique véhicule → diagnostic prédictif.</p>
     </div>
 
     <div class="card">
       <h3>Data Analyst Mini</h3>
-      <p>
-        Ingère vos données, génère des dashboards, détecte des anomalies,
-        prépare des rapports intelligents. Votre analyste IA personnel.
-      </p>
+      <p>Votre analyste IA personnel : dashboards, anomalies, insights et reporting.</p>
     </div>
 
   </div>
 </section>
 
 
-<!-- SERVICES -->
+<!-- SERVICES (BLANC LUXE) -->
 <section id="services">
-  <h2 class="section-title">Services sur mesure</h2>
+  <h2 class="section-title">Services haute précision</h2>
   <p class="section-sub">
-    NH110LAB.AI intervient sur toute la chaîne IA : conception, automatisation,
-    intégration et optimisation continue. Une approche artisanale mêlée à une
-    précision technologique.
+    Une approche artisanale, inspirée des grandes maisons, appliquée à la science des systèmes
+    intelligents et de l’automatisation.
   </p>
 
   <div class="grid-3">
 
     <div class="card">
       <h3>Conception d’agents IA</h3>
-      <p>
-        Définition du rôle, design de la personnalité, règles décisionnelles,
-        données d’entrée, comportements intelligents, tests. L’agent parfait
-        pour votre activité.
-      </p>
+      <p>Définition du rôle, personnalité IA, règles décisionnelles, comportements raffinés.</p>
     </div>
 
     <div class="card">
       <h3>Automatisation & intégration</h3>
-      <p>
-        Connexions API, workflows via n8n, Make, Zapier. Automatisation des
-        tâches répétitives. Vos process deviennent autonomes et fiables.
-      </p>
+      <p>Workflows n8n/Make, API, CRM, pipelines intelligents, tâches autonomes.</p>
     </div>
 
     <div class="card">
       <h3>IA Builder & Consulting</h3>
-      <p>
-        Audit IA complet, stratégie IA, accompagnement, formations,
-        optimisation de vos workflows, création d’architectures intelligentes.
-      </p>
+      <p>Audit, stratégie IA, optimisation, création d’architectures sur mesure.</p>
     </div>
 
     <div class="card">
       <h3>Déploiement & pipelines</h3>
-      <p>
-        Mise en place d’environnements IA, agents multi-étapes, pipelines
-        neuronaux complets, systèmes de décision complexes.
-      </p>
+      <p>Environnements IA, agents multi-étapes, systèmes cognitifs complets.</p>
     </div>
 
     <div class="card">
       <h3>Monitoring & optimisation</h3>
-      <p>
-        Amélioration continue, analyse d’usage, optimisation des prompts,
-        amélioration des réponses, réglages fins et calibrage.
-      </p>
+      <p>Amélioration continue, analyse d’usage, tuning des réponses et comportements.</p>
     </div>
 
     <div class="card">
       <h3>Solutions Entreprise</h3>
+      <p>Intégrations profondes, agents spécialisés, automatisations globales.</p>
+    </div>
+
+  </div>
+</section>
+<!-- À PROPOS — SECTION BLANCHE APPLE -->
+<section id="about">
+  <h2 class="section-title">À propos de NH110LAB.AI</h2>
+  <p class="section-sub">
+    NH110LAB.AI est un laboratoire d’intelligence neuronale hybride, mêlant recherche,
+    design et ingénierie cognitive. Nous créons des agents IA raffinés, élégants,
+    puissants et parfaitement adaptés à chaque activité.
+  </p>
+
+  <div class="grid-3">
+    <div class="card">
+      <h3>Une vision</h3>
       <p>
-        Des solutions totalement sur mesure pour équipes, startups et PME :
-        agents spécialisés, automatisations complètes, intégrations profondes,
-        architecture IA premium.
+        Rendre l’intelligence artificielle accessible, élégante et utile sans jamais
+        sacrifier la précision ni l’expérience utilisateur.
       </p>
+    </div>
+
+    <div class="card">
+      <h3>Une approche</h3>
+      <p>
+        Chaque agent est pensé comme un produit de luxe : matériaux numériques nobles,
+        comportements cohérents, performances constantes.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Une exigence</h3>
+      <p>
+        Aucun compromis. Le travail est méticuleux, calibré au millimètre, jusqu’à obtenir
+        un agent IA fiable, intelligent et agréable à utiliser.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- PHILOSOPHIE — SECTION NOIRE HERMÈS -->
+<section class="dark-section">
+  <h2 class="section-title">Philosophie NH110LAB</h2>
+  <p class="section-sub">
+    Nous croyons que la technologie doit être belle, fluide, presque invisible.  
+    Elle doit sublimer l’humain, pas le remplacer.  
+    Cette philosophie guide chaque ligne de code que nous écrivons.
+  </p>
+
+  <div class="grid-3">
+
+    <div class="card card-dark">
+      <h3>Élégance fonctionnelle</h3>
+      <p>L’IA doit être simple, intuitive et agréable à utiliser.</p>
+    </div>
+
+    <div class="card card-dark">
+      <h3>Précision scientifique</h3>
+      <p>Chaque agent est calibré, entraîné et testé pour garantir ses décisions.</p>
+    </div>
+
+    <div class="card card-dark">
+      <h3>Humanité augmentée</h3>
+      <p>L’IA accompagne, améliore, soutient : elle ne remplace jamais la personne.</p>
     </div>
 
   </div>
 </section>
 
 
-<!-- TARIFS -->
-<section id="pricing">
-  <h2 class="section-title">Tarifs clairs & élégants</h2>
+
+<!-- VALEURS — SECTION BLANCHE -->
+<section id="values">
+  <h2 class="section-title">Nos valeurs</h2>
   <p class="section-sub">
-    Trois formules pensées pour vous permettre d’avancer vite, d’expérimenter,
-    et de déployer une vraie stratégie IA, sans surprise.
+    Le cœur de NH110LAB repose sur une obsession : l’excellence.
+  </p>
+
+  <div class="grid-3">
+    <div class="card">
+      <h3>Excellence</h3>
+      <p>Un niveau d’exigence digne des maisons de haute couture et des géants tech.</p>
+    </div>
+
+    <div class="card">
+      <h3>Confidentialité</h3>
+      <p>Vos données restent vos données. Sécurité et confidentialité sont prioritaires.</p>
+    </div>
+
+    <div class="card">
+      <h3>Innovation continue</h3>
+      <p>Nous repoussons les limites des agents IA à chaque mise à jour.</p>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- TECHNOLOGIES — SECTION BLANC LUXE APPLE -->
+<section id="tech">
+  <h2 class="section-title">Technologies utilisées</h2>
+  <p class="section-sub">
+    Nous combinons les meilleurs modèles, frameworks et outils du marché pour vous 
+    garantir une IA fiable, rapide et précise.
   </p>
 
   <div class="grid-3">
 
     <div class="card">
-      <h3>Starter — 399€</h3>
-      <p>
-        • 1 agent IA simple<br>
-        • 2 automatisations<br>
-        • 1h consulting<br>
-        • Support basique
-      </p>
-    </div>
-
-    <div class="card" style="border-color: var(--accent-soft); box-shadow: 0 0 25px rgba(138,99,255,0.45);">
-      <h3>Pro — 799€</h3>
-      <p>
-        • 1 agent IA intermédiaire<br>
-        • 5 automatisations complètes<br>
-        • 3h consulting<br>
-        • Support avancé<br>
-        <strong style="color: var(--accent-soft);">Le meilleur choix</strong>
-      </p>
+      <h3>OpenAI GPT-4.1 / GPT-5</h3>
+      <p>Agents intelligents, conversationnels, analytiques, décisionnels.</p>
     </div>
 
     <div class="card">
-      <h3>Entreprise — 1499€</h3>
-      <p>
-        • Agent IA avancé complet<br>
-        • 10 automatisations<br>
-        • 5h consulting<br>
-        • Support premium<br>
-        • Intégration profonde
-      </p>
+      <h3>Anthropic Claude</h3>
+      <p>Raisonnement, sécurité, précision linguistique.</p>
+    </div>
+
+    <div class="card">
+      <h3>n8n / Make / Zapier</h3>
+      <p>Automatisation avancée, intégrations API, pipelines complexes.</p>
+    </div>
+
+    <div class="card">
+      <h3>Python / NodeJS</h3>
+      <p>Scripts, agents sur mesure, architecture backend IA.</p>
+    </div>
+
+    <div class="card">
+      <h3>OpenRouter / Gemini</h3>
+      <p>Modèles alternatifs, multi-LLM, optimisation du coût d’inférence.</p>
+    </div>
+
+    <div class="card">
+      <h3>Notion / Airtable / CRM</h3>
+      <p>Connexion de vos outils métier et centralisation de l'information.</p>
     </div>
 
   </div>
 </section>
-<!-- CONTACT -->
-<section id="contact">
-  <h2 class="section-title">Contact & Collaboration</h2>
+
+
+
+<!-- COLLECTIONS — STYLE HERMÈS -->
+<section id="collections" class="dark-section">
+  <h2 class="section-title">Collections d’agents IA</h2>
   <p class="section-sub">
-    Une idée, un besoin, un projet&nbsp;? Parlons-en.  
-    NH110LAB.AI répond avec précision, transparence et élégance.
+    Inspirées des grandes maisons, nos collections évoluent avec les besoins 
+    du monde moderne.
   </p>
 
-  <div style="
-      background: var(--glass);
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 50px;
-      border-radius: var(--radius-xl);
-      backdrop-filter: blur(18px);
-      max-width: 900px;
-      margin: auto;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-    ">
+  <div class="grid-3">
 
-    <h3 style="font-size: 28px; margin-bottom: 20px;">
-      Parlons de votre projet IA
-    </h3>
+    <div class="card card-dark">
+      <h3>Collection Opale</h3>
+      <p>Agents analytiques, dédiés à la data, à l’analyse fine et à la rigueur cognitive.</p>
+    </div>
 
-    <form style="display: grid; gap: 22px;">
-      <input type="text" placeholder="Votre nom ou entreprise"
-        style="padding: 16px; border-radius: var(--radius-md); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white;">
+    <div class="card card-dark">
+      <h3>Collection Saphir</h3>
+      <p>Agents orientés business : prospection, CRM, email, croissance.</p>
+    </div>
 
-      <input type="email" placeholder="Votre email"
-        style="padding: 16px; border-radius: var(--radius-md); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white;">
-
-      <textarea placeholder="Décrivez votre idée, vos besoins, ou votre problématique"
-        style="padding: 16px; border-radius: var(--radius-lg); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; min-height: 150px;"></textarea>
-
-      <button type="button"
-        style="padding: 16px 30px; background: linear-gradient(120deg, #8a63ff, #b8a4ff); border-radius: 999px; border: none; font-size: 18px; cursor: pointer; color: white; box-shadow: 0 15px 40px rgba(138,99,255,0.4);">
-        Envoyer le message
-      </button>
-    </form>
-
-    <p style="text-align:center; margin-top: 25px; color: var(--text-muted); font-size: 16px;">
-      ou écrivez directement : 
-      <br>
-      <strong style="color: var(--accent-soft); font-size: 18px;">
-        nh110lab.ai@gmail.com
-      </strong>
-    </p>
+    <div class="card card-dark">
+      <h3>Collection Graphite</h3>
+      <p>Agents autonomes : monitoring, automatisation profonde, workflows intelligents.</p>
+    </div>
 
   </div>
 </section>
 
 
-<!-- FOOTER -->
-<footer style="padding: 60px 0; text-align: center; color: var(--text-muted); font-size: 15px;">
-  © 2025 NH110LAB.AI — Luxury Neural Intelligence Laboratory  
-  <br>Design & Engineering by Nassim Hafidi
-</footer>
 
+<!-- FAQ — SECTION BLANCHE -->
+<section id="faq">
+  <h2 class="section-title">FAQ</h2>
+  <p class="section-sub">Les questions que l’on nous pose le plus souvent.</p>
 
-<!-- GSAP ANIMATIONS -->
+  <div class="grid-3">
+
+    <div class="card">
+      <h3>Combien de temps faut-il pour créer un agent IA ?</h3>
+      <p>Entre 2 et 7 jours selon la complexité et les intégrations nécessaires.</p>
+    </div>
+
+    <div class="card">
+      <h3>Les agents IA sont-ils personnalisables ?</h3>
+      <p>100% personnalisés : ton, comportement, règles, objectifs, intégrations.</p>
+    </div>
+
+    <div class="card">
+      <h3>Est-ce que vous travaillez avec toutes les entreprises ?</h3>
+      <p>Oui : PME, artisans, garages, startups, créateurs, indépendants.</p>
+    </div>
+
+  </div>
+</section>
+<!-- ANIMATIONS GSAP PREMIUM -->
 <script>
   gsap.registerPlugin(ScrollTrigger);
 
-  /* HERO ANIMATIONS */
-  gsap.from(".hero-title", {
+  /* -----------------------------------------------------------
+     SMOOTH SCROLL EFFECT (façon Apple)
+  ----------------------------------------------------------- */
+  gsap.to("html", {
+    scrollBehavior: "smooth",
+  });
+
+  /* -----------------------------------------------------------
+     HERO — TEXT REVEAL (SplitText simulation sans plugin)
+  ----------------------------------------------------------- */
+  const heroTitle = document.querySelector(".hero-title");
+  const heroSub = document.querySelector(".hero-sub");
+  const heroBtn = document.querySelector(".btn-main");
+
+  gsap.from(heroTitle, {
+    opacity: 0,
+    y: 50,
+    duration: 1.4,
+    ease: "power3.out",
+  });
+
+  gsap.from(heroSub, {
     opacity: 0,
     y: 40,
-    duration: 1.4,
-    ease: "power3.out"
+    delay: 0.25,
+    duration: 1.3,
+    ease: "power3.out",
   });
 
-  gsap.from(".hero-sub", {
+  gsap.from(heroBtn, {
     opacity: 0,
     y: 30,
-    delay: 0.3,
-    duration: 1.3,
-    ease: "power3.out"
+    delay: 0.55,
+    duration: 1.25,
+    ease: "power3.out",
   });
 
-  gsap.from(".btn-main", {
-    opacity: 0,
-    y: 20,
-    delay: 0.6,
-    duration: 1.2,
-    ease: "power3.out"
+  /* -----------------------------------------------------------
+     HERO PARALLAX (façon Apple Vision Pro)
+  ----------------------------------------------------------- */
+  gsap.to(".hero-title", {
+    y: -40,
+    scrollTrigger: {
+      trigger: "#hero",
+      start: "top top",
+      end: "bottom center",
+      scrub: true,
+    }
   });
 
-  /* SECTION TITLES */
-  gsap.utils.toArray(".section-title").forEach(title => {
+  gsap.to(".hero-sub", {
+    y: -20,
+    scrollTrigger: {
+      trigger: "#hero",
+      start: "top top",
+      end: "bottom center",
+      scrub: true,
+    }
+  });
+
+  /* -----------------------------------------------------------
+     ANIMATION DES SECTIONS — TITRES & PARAGRAPHES
+  ----------------------------------------------------------- */
+  gsap.utils.toArray(".section-title").forEach((title) => {
     gsap.from(title, {
       scrollTrigger: {
         trigger: title,
         start: "top 85%",
       },
       opacity: 0,
-      y: 40,
+      y: 60,
       duration: 1.2,
       ease: "power3.out"
     });
   });
 
-  /* SECTION SUBTITLES */
-  gsap.utils.toArray(".section-sub").forEach(sub => {
+  gsap.utils.toArray(".section-sub").forEach((sub) => {
     gsap.from(sub, {
       scrollTrigger: {
         trigger: sub,
-        start: "top 85%",
-      },
-      opacity: 0,
-      y: 20,
-      duration: 1.2,
-      ease: "power3.out",
-      delay: 0.2
-    });
-  });
-
-  /* CARD ANIMATIONS */
-  gsap.utils.toArray(".card").forEach(card => {
-    gsap.from(card, {
-      scrollTrigger: {
-        trigger: card,
         start: "top 90%",
       },
       opacity: 0,
-      y: 60,
-      duration: 1.3,
-      ease: "power3.out"
+      y: 40,
+      duration: 1.2,
+      ease: "power3.out",
+      delay: 0.15
     });
   });
+
+  /* -----------------------------------------------------------
+     ANIMATION DES CARDS — apparition + stagger
+  ----------------------------------------------------------- */
+  gsap.utils.toArray(".card").forEach((card, index) => {
+    gsap.from(card, {
+      scrollTrigger: {
+        trigger: card,
+        start: "top 92%",
+      },
+      opacity: 0,
+      y: 80,
+      duration: 1.2,
+      ease: "power3.out",
+      delay: index * 0.08,
+    });
+  });
+
+  /* -----------------------------------------------------------
+     HOVER MAGNÉTIQUE DES CARDS (très Apple)
+  ----------------------------------------------------------- */
+  document.querySelectorAll(".card").forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+
+      gsap.to(card, {
+        x: x * 0.04,
+        y: y * 0.04,
+        duration: 0.25,
+        ease: "power3.out"
+      });
+    });
+
+    card.addEventListener("mouseleave", () => {
+      gsap.to(card, {
+        x: 0,
+        y: 0,
+        duration: 0.3,
+        ease: "power3.out"
+      });
+    });
+  });
+
+  /* -----------------------------------------------------------
+     HEADER ANIMATION (fade + blur)
+  ----------------------------------------------------------- */
+  gsap.from("header", {
+    opacity: 0,
+    y: -50,
+    duration: 1.2,
+    ease: "power2.out",
+  });
+
+  ScrollTrigger.create({
+    start: "top -80",
+    end: 99999,
+    toggleClass: { targets: "header", className: "header-scrolled" }
+  });
 </script>
-
-</body>
-</html>
-
