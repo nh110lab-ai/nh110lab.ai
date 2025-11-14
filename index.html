@@ -1,665 +1,170 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>NH110LAB.AI — Luxury Neural Intelligence Laboratory</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description"
-    content="NH110LAB.AI — Laboratoire d'intelligence neuronale premium. Agents IA haut de gamme, automatisation de luxe et intelligence cognitive avancée." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="NH110LAB.AI — Laboratoire d'intelligence neuronale premium. Agents IA haut de gamme, automatisation de luxe et intelligence cognitive avancée." />
+<title>NH110LAB.AI — Luxury Neural Intelligence Laboratory</title>
 
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/SplitText.min.js"></script>
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/SplitText.min.js"></script>
 
-  <style>
-
-    /* PALETTE */
-    :root {
-      --black: #05050a;
-      --black-soft: #0b0b14;
-      --white: #fafafa;
-      --white-soft: #f2f2f7;
-
-      --text-dark: #111;
-      --text-light: #f5f5f7;
-      --muted-dark: #555;
-      --muted-light: #b5b5c7;
-
-      --accent: #845bff;
-      --accent-light: #cab8ff;
-
-      --radius-xl: 40px;
-      --radius-lg: 26px;
-      --radius-md: 16px;
-
-      --shadow-xl: 0 30px 80px rgba(0,0,0,0.12);
-      --shadow-dark: 0 30px 90px rgba(0,0,0,0.5);
-    }
-
-    * {
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-      color: var(--text-dark);
-      background: var(--white-soft);
-      overflow-x: hidden;
-    }
-
-    /* HEADER ULTRA PREMIUM */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 26px 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      backdrop-filter: blur(22px);
-      background: rgba(255,255,255,0.55);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-      z-index: 2000;
-    }
-
-    .brand-logo {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 20% 0, #fff, #cab8ff, #845bff);
-      box-shadow: 0 0 30px rgba(132,91,255,0.4);
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      margin-left: 36px;
-      font-size: 17px;
-      color: #222;
-      transition: 0.25s ease;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content:"";
-      position:absolute;
-      left:0;
-      bottom:-4px;
-      width:0%;
-      height:2px;
-      background: var(--accent);
-      transition:0.25s;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent);
-    }
-
-    .nav-links a:hover::after {
-      width:100%;
-    }
-
-    /* SECTIONS STANDARD (blanc) */
-    section {
-      padding: 200px 80px;
-      max-width: 1400px;
-      margin: auto;
-    }
-
-    /* TITRES */
-    h2.section-title {
-      font-size: 66px;
-      font-weight: 700;
-      margin-bottom: 22px;
-      letter-spacing: -1px;
-    }
-
-    p.section-sub {
-      max-width: 760px;
-      font-size: 22px;
-      color: var(--muted-dark);
-      margin-bottom: 100px;
-      line-height: 1.55;
-    }
-
-    /* SECTIONS NOIR LUXE */
-    .dark-section {
-      background: var(--black);
-      color: var(--text-light);
-      padding: 240px 80px;
-      border-radius: 0 0 var(--radius-xl) var(--radius-xl);
-      box-shadow: var(--shadow-dark);
-    }
-
-    .dark-section h2.section-title {
-      color: var(--text-light);
-      background: none;
-    }
-
-    .dark-section p.section-sub {
-      color: var(--muted-light);
-    }
-
-    /* GRID */
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-      gap: 40px;
-    }
-
-    /* CARDS BLANCHES */
-    .card {
-      background: white;
-      padding: 40px;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-xl);
-      border: 1px solid rgba(0,0,0,0.05);
-      opacity: 0;
-      transform: translateY(60px);
-      transition: 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 40px 90px rgba(0,0,0,0.14);
-    }
-
-    /* CARDS NOIR */
-    .card-dark {
-      background: var(--black-soft);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: var(--text-light);
-      box-shadow: var(--shadow-dark);
-    }
-
-  </style>
+<style>
+:root {
+--black: #05050a;
+--black-soft: #0b0b14;
+--white: #fafafa;
+--white-soft: #f2f2f7;
+--text-dark: #111;
+--text-light: #f5f5f7;
+--muted-dark: #555;
+--muted-light: #b5b5c7;
+--accent: #845bff;
+--accent-light: #cab8ff;
+--shadow-xl: 0 15px 30px rgba(0,0,0,0.08);
+--white: #ffffff;
+}
+/* header styling from improved code */
+.header { position: fixed; top: 0; width: 100%; padding: 22px 60px; display:flex; justify-content:space-between; align-items:center; backdrop-filter: blur(22px); background: rgba(255,255,255,0.55); border-bottom: 1px solid rgba(0,0,0,0.06); z-index:2000; transition:0.35s ease; }
+.header-scrolled { padding:14px 60px; background: rgba(255,255,255,0.85); }
+.brand-logo { width:52px; height:52px; border-radius:50%; display:block; background: radial-gradient(circle at 20% 0, #fff, #cab8ff, #845bff); box-shadow:0 0 30px rgba(132,91,255,0.4); }
+.nav-links { list-style:none; display:flex; gap:36px; }
+.nav-links a { text-decoration:none; font-size:17px; color:#222; position:relative; transition:0.25s ease; }
+.nav-links a::after { content:""; position:absolute; left:0; bottom:-4px; width:0%; height:2px; background: var(--accent); transition:0.3s ease; }
+.nav-links a:hover { color: var(--accent); }
+.nav-links a:hover::after { width:100%; }
+.nav-toggle { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; }
+.nav-toggle span { width:28px; height:3px; background:#222; transition:0.3s ease; }
+@media (max-width: 900px) {
+    .nav-links { position:fixed; top:0; right:-100%; height:100vh; width:70%; flex-direction:column; justify-content:center; align-items:center; background: var(--white); box-shadow: var(--shadow-xl); transition:0.4s ease; }
+    .nav-links.open { right:0; }
+    .nav-toggle { display:flex; }
+    .nav-links a { font-size:26px; margin:14px 0; }
+}
+/* Additional base body styling for readability */
+body { margin:0; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: var(--white-soft); color: var(--text-dark); padding-top:100px; }
+section { padding:80px 40px; }
+.section-title { font-size:2.5rem; font-weight:700; margin-bottom:20px; text-align:center; }
+.section-sub { font-size:1.2rem; margin-bottom:40px; text-align:center; max-width:800px; margin-left:auto; margin-right:auto; color: var(--muted-dark); }
+.cards { display:flex; flex-wrap:wrap; justify-content:center; gap:30px; }
+.card { background: var(--white); padding:30px; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.05); width:300px; transition: transform 0.3s ease; }
+.card:hover { transform: translateY(-10px); }
+</style>
 </head>
-
 <body>
 
-<header>
-  <div class="brand-logo"></div>
-  <div class="nav-links">
-    <a href="#hero">Accueil</a>
-    <a href="#agents">Agents IA</a>
-    <a href="#services">Services</a>
-    <a href="#about">À propos</a>
-    <a href="#pricing">Tarifs</a>
-    <a href="#contact">Contact</a>
-  </div>
+<header class="header">
+  <a href="#hero" class="brand-logo"></a>
+  <nav class="nav">
+    <ul class="nav-links">
+      <li><a href="#hero">Accueil</a></li>
+      <li><a href="#agents">Agents IA</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#pricing">Tarifs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
 </header>
-<!-- HERO (NOIR LUXE) -->
-<section id="hero" class="dark-section" style="padding-top:260px; padding-bottom:300px;">
-  <h1 class="hero-title" style="
-      font-size: 86px;
-      font-weight: 800;
-      line-height: 1.05;
-      background: linear-gradient(120deg, #fff, #dad2ff, #845bff);
-      -webkit-background-clip: text;
-      color: transparent;
-      max-width: 1000px;
-      opacity:0;
-    ">
-    Révélez le potentiel de votre intelligence.
-  </h1>
 
-  <p class="hero-sub" style="
-      color: var(--muted-light);
-      font-size: 26px;
-      max-width: 750px;
-      margin-top: 24px;
-      opacity:0;
-    ">
-    Le laboratoire IA premium qui conçoit des agents sur mesure, des systèmes cognitifs raffinés 
-    et des automatisations haut-de-gamme dignes des maisons de luxe.
-  </p>
-
-  <button class="btn-main" style="margin-top:50px; opacity:0;"
-    onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">
-    Discuter de mon projet IA
-  </button>
+<!-- hero section -->
+<section id="hero">
+  <h1 class="section-title">Bienvenue chez NH110LAB.AI</h1>
+  <p class="section-sub">Laboratoire d'intelligence neuronale premium. Agents IA haut de gamme, automatisation de luxe et intelligence cognitive avancée.</p>
 </section>
-
-
-<!-- AGENTS IA — SECTION BLANCHE -->
+<!-- Agents section -->
 <section id="agents">
-  <h2 class="section-title">Agents IA d’exception</h2>
-  <p class="section-sub">
-    Nos agents sont conçus comme des collections Hermès&nbsp;: identité claire, 
-    comportement cohérent, précision technologique et élégance fonctionnelle.
-  </p>
-
-  <div class="grid-3">
-
+  <h2 class="section-title">Agents IA</h2>
+  <p class="section-sub">Découvrez nos agents IA haut de gamme conçus pour optimiser vos processus.</p>
+  <div class="cards">
     <div class="card">
-      <h3>Prospector+</h3>
-      <p>Recherche automatique de prospects, scoring intelligent et messages ultra-personnalisés.</p>
+      <h3>Agent 1</h3>
+      <p class="section-sub">Description de l'agent 1.</p>
     </div>
-
     <div class="card">
-      <h3>DocReader</h3>
-      <p>Analyse de documents, extraction intelligente, synthèse, alertes et recommandations.</p>
+      <h3>Agent 2</h3>
+      <p class="section-sub">Description de l'agent 2.</p>
     </div>
-
     <div class="card">
-      <h3>CRM Sync</h3>
-      <p>Synchronisation automatique des contacts, relances, pipelines, et automatisation CRM.</p>
+      <h3>Agent 3</h3>
+      <p class="section-sub">Description de l'agent 3.</p>
     </div>
-
-    <div class="card">
-      <h3>SupportFlow</h3>
-      <p>Agent support client ton Hermès : réponses premium, tri des demandes, escalade intelligente.</p>
-    </div>
-
-    <div class="card">
-      <h3>AutoTech IA</h3>
-      <p>Analyse des symptômes, codes défauts et historique véhicule → diagnostic prédictif.</p>
-    </div>
-
-    <div class="card">
-      <h3>Data Analyst Mini</h3>
-      <p>Votre analyste IA personnel : dashboards, anomalies, insights et reporting.</p>
-    </div>
-
   </div>
 </section>
 
-
-<!-- SERVICES (BLANC LUXE) -->
+<!-- Services section -->
 <section id="services">
-  <h2 class="section-title">Services haute précision</h2>
-  <p class="section-sub">
-    Une approche artisanale, inspirée des grandes maisons, appliquée à la science des systèmes
-    intelligents et de l’automatisation.
-  </p>
-
-  <div class="grid-3">
-
-    <div class="card">
-      <h3>Conception d’agents IA</h3>
-      <p>Définition du rôle, personnalité IA, règles décisionnelles, comportements raffinés.</p>
-    </div>
-
-    <div class="card">
-      <h3>Automatisation & intégration</h3>
-      <p>Workflows n8n/Make, API, CRM, pipelines intelligents, tâches autonomes.</p>
-    </div>
-
-    <div class="card">
-      <h3>IA Builder & Consulting</h3>
-      <p>Audit, stratégie IA, optimisation, création d’architectures sur mesure.</p>
-    </div>
-
-    <div class="card">
-      <h3>Déploiement & pipelines</h3>
-      <p>Environnements IA, agents multi-étapes, systèmes cognitifs complets.</p>
-    </div>
-
-    <div class="card">
-      <h3>Monitoring & optimisation</h3>
-      <p>Amélioration continue, analyse d’usage, tuning des réponses et comportements.</p>
-    </div>
-
-    <div class="card">
-      <h3>Solutions Entreprise</h3>
-      <p>Intégrations profondes, agents spécialisés, automatisations globales.</p>
-    </div>
-
-  </div>
+  <h2 class="section-title">Services</h2>
+  <p class="section-sub">Nos services d'automatisation de luxe et de conseil en intelligence artificielle.</p>
 </section>
-<!-- À PROPOS — SECTION BLANCHE APPLE -->
+<!-- About section -->
 <section id="about">
-  <h2 class="section-title">À propos de NH110LAB.AI</h2>
-  <p class="section-sub">
-    NH110LAB.AI est un laboratoire d’intelligence neuronale hybride, mêlant recherche,
-    design et ingénierie cognitive. Nous créons des agents IA raffinés, élégants,
-    puissants et parfaitement adaptés à chaque activité.
-  </p>
-
-  <div class="grid-3">
-    <div class="card">
-      <h3>Une vision</h3>
-      <p>
-        Rendre l’intelligence artificielle accessible, élégante et utile sans jamais
-        sacrifier la précision ni l’expérience utilisateur.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Une approche</h3>
-      <p>
-        Chaque agent est pensé comme un produit de luxe : matériaux numériques nobles,
-        comportements cohérents, performances constantes.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Une exigence</h3>
-      <p>
-        Aucun compromis. Le travail est méticuleux, calibré au millimètre, jusqu’à obtenir
-        un agent IA fiable, intelligent et agréable à utiliser.
-      </p>
-    </div>
-  </div>
+  <h2 class="section-title">À propos</h2>
+  <p class="section-sub">NH110LAB.AI est un laboratoire d'intelligence neuronale premium dédié à l'innovation.</p>
+</section>
+<!-- Pricing section -->
+<section id="pricing">
+  <h2 class="section-title">Tarifs</h2>
+  <p class="section-sub">Choisissez le plan qui vous convient.</p>
+</section>
+<!-- Contact section -->
+<section id="contact">
+  <h2 class="section-title">Contact</h2>
+  <p class="section-sub">Prenez contact avec nous pour découvrir comment nos solutions peuvent vous aider.</p>
 </section>
 
-
-
-<!-- PHILOSOPHIE — SECTION NOIRE HERMÈS -->
-<section class="dark-section">
-  <h2 class="section-title">Philosophie NH110LAB</h2>
-  <p class="section-sub">
-    Nous croyons que la technologie doit être belle, fluide, presque invisible.  
-    Elle doit sublimer l’humain, pas le remplacer.  
-    Cette philosophie guide chaque ligne de code que nous écrivons.
-  </p>
-
-  <div class="grid-3">
-
-    <div class="card card-dark">
-      <h3>Élégance fonctionnelle</h3>
-      <p>L’IA doit être simple, intuitive et agréable à utiliser.</p>
-    </div>
-
-    <div class="card card-dark">
-      <h3>Précision scientifique</h3>
-      <p>Chaque agent est calibré, entraîné et testé pour garantir ses décisions.</p>
-    </div>
-
-    <div class="card card-dark">
-      <h3>Humanité augmentée</h3>
-      <p>L’IA accompagne, améliore, soutient : elle ne remplace jamais la personne.</p>
-    </div>
-
-  </div>
-</section>
-
-
-
-<!-- VALEURS — SECTION BLANCHE -->
-<section id="values">
-  <h2 class="section-title">Nos valeurs</h2>
-  <p class="section-sub">
-    Le cœur de NH110LAB repose sur une obsession : l’excellence.
-  </p>
-
-  <div class="grid-3">
-    <div class="card">
-      <h3>Excellence</h3>
-      <p>Un niveau d’exigence digne des maisons de haute couture et des géants tech.</p>
-    </div>
-
-    <div class="card">
-      <h3>Confidentialité</h3>
-      <p>Vos données restent vos données. Sécurité et confidentialité sont prioritaires.</p>
-    </div>
-
-    <div class="card">
-      <h3>Innovation continue</h3>
-      <p>Nous repoussons les limites des agents IA à chaque mise à jour.</p>
-    </div>
-  </div>
-</section>
-
-
-
-<!-- TECHNOLOGIES — SECTION BLANC LUXE APPLE -->
-<section id="tech">
-  <h2 class="section-title">Technologies utilisées</h2>
-  <p class="section-sub">
-    Nous combinons les meilleurs modèles, frameworks et outils du marché pour vous 
-    garantir une IA fiable, rapide et précise.
-  </p>
-
-  <div class="grid-3">
-
-    <div class="card">
-      <h3>OpenAI GPT-4.1 / GPT-5</h3>
-      <p>Agents intelligents, conversationnels, analytiques, décisionnels.</p>
-    </div>
-
-    <div class="card">
-      <h3>Anthropic Claude</h3>
-      <p>Raisonnement, sécurité, précision linguistique.</p>
-    </div>
-
-    <div class="card">
-      <h3>n8n / Make / Zapier</h3>
-      <p>Automatisation avancée, intégrations API, pipelines complexes.</p>
-    </div>
-
-    <div class="card">
-      <h3>Python / NodeJS</h3>
-      <p>Scripts, agents sur mesure, architecture backend IA.</p>
-    </div>
-
-    <div class="card">
-      <h3>OpenRouter / Gemini</h3>
-      <p>Modèles alternatifs, multi-LLM, optimisation du coût d’inférence.</p>
-    </div>
-
-    <div class="card">
-      <h3>Notion / Airtable / CRM</h3>
-      <p>Connexion de vos outils métier et centralisation de l'information.</p>
-    </div>
-
-  </div>
-</section>
-
-
-
-<!-- COLLECTIONS — STYLE HERMÈS -->
-<section id="collections" class="dark-section">
-  <h2 class="section-title">Collections d’agents IA</h2>
-  <p class="section-sub">
-    Inspirées des grandes maisons, nos collections évoluent avec les besoins 
-    du monde moderne.
-  </p>
-
-  <div class="grid-3">
-
-    <div class="card card-dark">
-      <h3>Collection Opale</h3>
-      <p>Agents analytiques, dédiés à la data, à l’analyse fine et à la rigueur cognitive.</p>
-    </div>
-
-    <div class="card card-dark">
-      <h3>Collection Saphir</h3>
-      <p>Agents orientés business : prospection, CRM, email, croissance.</p>
-    </div>
-
-    <div class="card card-dark">
-      <h3>Collection Graphite</h3>
-      <p>Agents autonomes : monitoring, automatisation profonde, workflows intelligents.</p>
-    </div>
-
-  </div>
-</section>
-
-
-
-<!-- FAQ — SECTION BLANCHE -->
-<section id="faq">
-  <h2 class="section-title">FAQ</h2>
-  <p class="section-sub">Les questions que l’on nous pose le plus souvent.</p>
-
-  <div class="grid-3">
-
-    <div class="card">
-      <h3>Combien de temps faut-il pour créer un agent IA ?</h3>
-      <p>Entre 2 et 7 jours selon la complexité et les intégrations nécessaires.</p>
-    </div>
-
-    <div class="card">
-      <h3>Les agents IA sont-ils personnalisables ?</h3>
-      <p>100% personnalisés : ton, comportement, règles, objectifs, intégrations.</p>
-    </div>
-
-    <div class="card">
-      <h3>Est-ce que vous travaillez avec toutes les entreprises ?</h3>
-      <p>Oui : PME, artisans, garages, startups, créateurs, indépendants.</p>
-    </div>
-
-  </div>
-</section>
-<!-- ANIMATIONS GSAP PREMIUM -->
 <script>
-  gsap.registerPlugin(ScrollTrigger);
+// MENU MOBILE
+const toggleBtn = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
+toggleBtn.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+  toggleBtn.classList.toggle('open');
+});
 
-  /* -----------------------------------------------------------
-     SMOOTH SCROLL EFFECT (façon Apple)
-  ----------------------------------------------------------- */
-  gsap.to("html", {
-    scrollBehavior: "smooth",
-  });
+// HEADER SCROLL EFFECT
+ScrollTrigger.create({
+  start: 'top -80',
+  end: 99999,
+  toggleClass: { targets: '.header', className: 'header-scrolled' }
+});
 
-  /* -----------------------------------------------------------
-     HERO — TEXT REVEAL (SplitText simulation sans plugin)
-  ----------------------------------------------------------- */
-  const heroTitle = document.querySelector(".hero-title");
-  const heroSub = document.querySelector(".hero-sub");
-  const heroBtn = document.querySelector(".btn-main");
-
-  gsap.from(heroTitle, {
+// TITRES – ANIMATION GSAP
+gsap.utils.toArray('.section-title').forEach((title) => {
+  gsap.from(title, {
+    scrollTrigger: { trigger: title, start: 'top 85%' },
     opacity: 0,
     y: 50,
-    duration: 1.4,
-    ease: "power3.out",
+    duration: 1.1,
+    ease: 'power3.out'
   });
+});
 
-  gsap.from(heroSub, {
-    opacity: 0,
-    y: 40,
-    delay: 0.25,
-    duration: 1.3,
-    ease: "power3.out",
-  });
-
-  gsap.from(heroBtn, {
+// PARAGRAPHES – ANIMATION
+gsap.utils.toArray('.section-sub').forEach((sub) => {
+  gsap.from(sub, {
+    scrollTrigger: { trigger: sub, start: 'top 90%' },
     opacity: 0,
     y: 30,
-    delay: 0.55,
-    duration: 1.25,
-    ease: "power3.out",
+    duration: 1.1,
+    ease: 'power3.out'
   });
+});
 
-  /* -----------------------------------------------------------
-     HERO PARALLAX (façon Apple Vision Pro)
-  ----------------------------------------------------------- */
-  gsap.to(".hero-title", {
-    y: -40,
-    scrollTrigger: {
-      trigger: "#hero",
-      start: "top top",
-      end: "bottom center",
-      scrub: true,
-    }
-  });
-
-  gsap.to(".hero-sub", {
-    y: -20,
-    scrollTrigger: {
-      trigger: "#hero",
-      start: "top top",
-      end: "bottom center",
-      scrub: true,
-    }
-  });
-
-  /* -----------------------------------------------------------
-     ANIMATION DES SECTIONS — TITRES & PARAGRAPHES
-  ----------------------------------------------------------- */
-  gsap.utils.toArray(".section-title").forEach((title) => {
-    gsap.from(title, {
-      scrollTrigger: {
-        trigger: title,
-        start: "top 85%",
-      },
-      opacity: 0,
-      y: 60,
-      duration: 1.2,
-      ease: "power3.out"
-    });
-  });
-
-  gsap.utils.toArray(".section-sub").forEach((sub) => {
-    gsap.from(sub, {
-      scrollTrigger: {
-        trigger: sub,
-        start: "top 90%",
-      },
-      opacity: 0,
-      y: 40,
-      duration: 1.2,
-      ease: "power3.out",
-      delay: 0.15
-    });
-  });
-
-  /* -----------------------------------------------------------
-     ANIMATION DES CARDS — apparition + stagger
-  ----------------------------------------------------------- */
-  gsap.utils.toArray(".card").forEach((card, index) => {
-    gsap.from(card, {
-      scrollTrigger: {
-        trigger: card,
-        start: "top 92%",
-      },
-      opacity: 0,
-      y: 80,
-      duration: 1.2,
-      ease: "power3.out",
-      delay: index * 0.08,
-    });
-  });
-
-  /* -----------------------------------------------------------
-     HOVER MAGNÉTIQUE DES CARDS (très Apple)
-  ----------------------------------------------------------- */
-  document.querySelectorAll(".card").forEach((card) => {
-    card.addEventListener("mousemove", (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-
-      gsap.to(card, {
-        x: x * 0.04,
-        y: y * 0.04,
-        duration: 0.25,
-        ease: "power3.out"
-      });
-    });
-
-    card.addEventListener("mouseleave", () => {
-      gsap.to(card, {
-        x: 0,
-        y: 0,
-        duration: 0.3,
-        ease: "power3.out"
-      });
-    });
-  });
-
-  /* -----------------------------------------------------------
-     HEADER ANIMATION (fade + blur)
-  ----------------------------------------------------------- */
-  gsap.from("header", {
+// CARDS – stagger premium
+gsap.utils.toArray('.card').forEach((card, i) => {
+  gsap.from(card, {
+    scrollTrigger: { trigger: card, start: 'top 92%' },
     opacity: 0,
-    y: -50,
-    duration: 1.2,
-    ease: "power2.out",
+    y: 60,
+    duration: 1.15,
+    delay: i * 0.06,
+    ease: 'power3.out'
   });
-
-  ScrollTrigger.create({
-    start: "top -80",
-    end: 99999,
-    toggleClass: { targets: "header", className: "header-scrolled" }
-  });
+});
 </script>
+</body>
+</html>
