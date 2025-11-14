@@ -360,33 +360,131 @@ nav a:hover{
 
 
 <!-- ============================
-     SERVICES — High-End VisionOS Panels
+SERVICES — Apple Intelligence Liquid Panels
 ============================ -->
-<section id="services">
+<section id="services" style="padding:180px 0; position:relative;">
 
-  <h2 class="section-title">Services premium</h2>
-  <p class="section-desc">
+  <!-- Halo VisionOS -->
+  <div style="
+    position:absolute; inset:0;
+    background:radial-gradient(900px circle at 75% 20%,
+      rgba(76,126,255,0.18),
+      rgba(139,92,255,0.18),
+      rgba(255,106,213,0.15),
+      transparent 70%
+    );
+    filter:blur(65px);
+    z-index:-1;
+  "></div>
+
+  <h2 class="section-title" style="text-align:center;">
+    Services premium
+  </h2>
+
+  <p class="section-desc" style="text-align:center; max-width:830px; margin:auto;">
     Architecture IA, automatisation, intégrations API, optimisation continue.
   </p>
 
-  <div class="grid-3">
-    <div class="card">
+  <!-- GRID APPLE FIX -->
+  <div class="services-grid">
+    
+    <div class="service-card ai-card">
       <h3>Conception IA</h3>
-      <p>Agents autonomes + pipelines cognitifs complet.</p>
+      <p>Agents autonomes + pipelines cognitifs complets.</p>
     </div>
 
-    <div class="card">
+    <div class="service-card ai-card">
       <h3>Automations & API</h3>
       <p>CRM, WhatsApp, e-commerce, back-office, API custom.</p>
     </div>
 
-    <div class="card">
+    <div class="service-card ai-card">
       <h3>Conseil Expert IA</h3>
       <p>Audit, stratégie, optimisation, migration automatisée.</p>
     </div>
+
   </div>
 
 </section>
+
+<!-- STYLE SERVICES -->
+<style>
+.services-grid{
+  margin-top:80px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(320px,1fr));
+  gap:45px;
+  width:90%;
+  max-width:1400px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.service-card{
+  padding:45px;
+  border-radius:34px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.14);
+  backdrop-filter:blur(22px) saturate(1.4);
+  transition:.65s cubic-bezier(0.25,0.6,0.3,1);
+  box-shadow:0 30px 90px rgba(0,0,0,0.25);
+  transform-style:preserve-3d;
+}
+
+.service-card h3{
+  font-size:26px;
+  margin-bottom:12px;
+  font-weight:700;
+}
+
+.service-card p{
+  opacity:0.85;
+  font-size:18px;
+}
+
+/* Entry animation */
+.ai-card{
+  opacity:0;
+  transform:translateY(60px);
+}
+</style>
+
+<!-- SCRIPT ANIMATION -->
+<script>
+// Reveal animation
+document.querySelectorAll(".ai-card").forEach((card, i) => {
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        setTimeout(() => {
+          card.style.opacity = "1";
+          card.style.transform = "translateY(0)";
+        }, i * 150);
+      }
+    });
+  }, { threshold:0.25 });
+
+  obs.observe(card);
+});
+
+// Liquid hover 3D
+document.querySelectorAll(".service-card").forEach(card => {
+  card.addEventListener("mousemove", e => {
+    let r = card.getBoundingClientRect();
+    let x = e.clientX - (r.left + r.width/2);
+    let y = e.clientY - (r.top + r.height/2);
+
+    card.style.transform =
+      `translateY(-16px) rotateX(${y/35}deg) rotateY(${x/35}deg) scale(1.02)`;
+  });
+
+  card.addEventListener("mouseleave", ()=>{
+    card.style.transform = "translateY(0)";
+  });
+});
+</script>
+
 
 
 <!-- ============================
