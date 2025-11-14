@@ -1,283 +1,243 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>NH110LAB.AI — Luxury Neural Intelligence Laboratory</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NH110LAB – Apple Intelligence Ultra</title>
 
-  <!-- Fonts Apple-style -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter/4.0.0/inter.css">
-  <style>
-    :root {
-      --black: #05050A;
-      --black-soft: #0B0B14;
-      --white: #FAFAFA;
-      --white-soft: #F2F2F7;
+<!-- Font Apple-like -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter/4.0.0/inter.css">
 
-      --text-dark: #111;
-      --text-light: #f5f5f7;
+<style>
+/* ---------------------------------------------------
+   COLORS / VARIABLES
+--------------------------------------------------- */
+:root{
+  --violet:#845bff;
+  --violet-light:#cdb8ff;
+  --white:#fafafa;
+  --black:#0a0a0f;
+  --shadow:0 30px 80px rgba(0,0,0,0.2);
+  --radius-xl:40px;
+  --radius-lg:26px;
+  --radius-md:16px;
+}
 
-      --muted-dark: #666;
-      --muted-light: #b5b5c7;
+/* ---------------------------------------------------
+    RESET
+--------------------------------------------------- */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:"Inter",-apple-system,"SF Pro Display",sans-serif;
+  background:var(--white);
+  overflow-x:hidden;
+  color:#111;
+}
 
-      --accent: #845bff;
-      --accent-light: #cab8ff;
+/* ---------------------------------------------------
+    BACKGROUND : FLUID WHITE + SIRI MESH ULTRA
+--------------------------------------------------- */
 
-      --radius-xl: 40px;
-      --radius-lg: 26px;
-      --radius-md: 16px;
+#ai-fluid-bg{
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  height:100%;
+  z-index:-3;
+  background:radial-gradient(circle at 30% 20%, #ffffff 0%, #f1ecff 30%, #e7daff 60%, #ffffff 100%);
+  filter:blur(50px);
+}
 
-      --shadow-xl: 0 30px 80px rgba(0,0,0,0.12);
-      --shadow-dark: 0 30px 90px rgba(0,0,0,0.5);
-    }
+canvas#siriMesh{
+  position:fixed;
+  top:0;left:0;
+  width:100vw;
+  height:100vh;
+  z-index:-2;
+  pointer-events:none;
+}
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+/* floating orbs */
+.orb{
+  position:fixed;
+  width:500px;height:500px;
+  border-radius:50%;
+  filter:blur(140px);
+  z-index:-1;
+  animation:moveOrb 18s infinite alternate ease-in-out;
+}
+.orb.v1{background:#845bff66;top:10%;left:10%;}
+.orb.v2{background:#ff66ee66;top:60%;left:70%;animation-duration:22s;}
+.orb.v3{background:#66ccff66;top:30%;left:50%;animation-duration:25s;}
 
-    body {
-      font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-      background: var(--white-soft);
-      color: var(--text-dark);
-      overflow-x: hidden;
-    }
+@keyframes moveOrb{
+  0%{transform:translate(0,0) scale(1);}
+  100%{transform:translate(80px,-90px) scale(1.2);}
+}
 
-    /* HEADER */
-    header {
-      position: fixed;
-      width: 100%;
-      padding: 26px 60px;
-      display: flex; justify-content: space-between; align-items: center;
-      backdrop-filter: blur(22px);
-      background: rgba(255,255,255,0.55);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-      z-index: 9999;
-      transition: .3s ease;
-    }
+/* ---------------------------------------------------
+    HEADER
+--------------------------------------------------- */
+header{
+  position:fixed;
+  top:0;width:100%;
+  padding:26px 60px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  backdrop-filter:blur(25px);
+  background:rgba(255,255,255,0.4);
+  border-bottom:1px solid rgba(255,255,255,0.3);
+  z-index:999;
+  transition:.3s;
+}
 
-    .brand-logo {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 20% 0, #fff, #dad2ff, #845bff);
-      box-shadow: 0 0 30px rgba(132,91,255,0.4);
-    }
+.brand-logo{
+  width:55px;height:55px;
+  border-radius:50%;
+  background:radial-gradient(circle at 25% 0%, #fff, #d8caff, #845bff);
+  box-shadow:0 0 35px rgba(132,91,255,0.55);
+}
 
-    .nav-links {
-      display: flex;
-      gap: 36px;
-      list-style: none;
-    }
+.nav-links{
+  display:flex;gap:34px;list-style:none;
+}
+.nav-links a{
+  font-size:17px;
+  text-decoration:none;
+  color:#222;
+  position:relative;
+  transition:.25s;
+}
+.nav-links a:hover{color:var(--violet);}
+.nav-links a:after{
+  content:"";
+  position:absolute;
+  left:0;bottom:-4px;
+  width:0;height:2px;
+  background:var(--violet);
+  transition:0.25s;
+}
+.nav-links a:hover:after{width:100%;}
 
-    .nav-links a {
-      text-decoration: none;
-      color: #222;
-      font-size: 17px;
-      position: relative;
-      transition: .25s ease;
-    }
+/* ---------------------------------------------------
+    HERO
+--------------------------------------------------- */
+#hero{
+  padding:260px 80px;
+  color:#fff;
+  position:relative;
+  z-index:10;
+  backdrop-filter:blur(20px);
+}
+.hero-title{
+  font-size:88px;
+  font-weight:800;
+  line-height:1.05;
+  max-width:950px;
+  background:linear-gradient(120deg,#fff,#eae4ff,#845bff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.hero-sub{
+  font-size:26px;
+  max-width:750px;
+  margin-top:22px;
+  opacity:0.85;
+}
+.btn-main{
+  margin-top:40px;
+  padding:18px 40px;
+  border-radius:14px;
+  background:var(--violet);
+  border:none;
+  color:white;
+  font-size:20px;
+  cursor:pointer;
+  box-shadow:0 10px 30px rgba(132,91,255,0.4);
+  transition:.3s;
+}
+.btn-main:hover{background:var(--violet-light);}
 
-    .nav-links a:hover { color: var(--accent); }
+/* ---------------------------------------------------
+    SECTIONS
+--------------------------------------------------- */
+section{padding:180px 80px;max-width:1400px;margin:auto;}
+.section-title{font-size:64px;margin-bottom:20px;background:linear-gradient(#111,#222);-webkit-background-clip:text;color:transparent;}
+.section-sub{font-size:22px;max-width:760px;color:#666;margin-bottom:90px;line-height:1.55;}
 
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -4px;
-      width: 0; height: 2px;
-      background: var(--accent);
-      transition: .25s;
-    }
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+  gap:40px;
+}
 
-    .nav-links a:hover::after { width: 100%; }
+.card{
+  padding:40px;
+  background:white;
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow);
+  border:1px solid rgba(0,0,0,0.05);
+  transition:.3s;
+}
+.card:hover{transform:translateY(-12px);box-shadow:0 40px 90px rgba(0,0,0,0.14);}
 
-    /* MOBILE */
-    .nav-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      border: none;
-      background: none;
-      cursor: pointer;
-    }
+/* DARK SECTION */
+.dark-section{
+  background:var(--black);
+  border-radius:var(--radius-xl);
+  color:white;
+  box-shadow:var(--shadow);
+}
+.dark-section .section-title{color:white;background:none;}
+.dark-section .section-sub{color:#aaa;}
 
-    .nav-toggle span {
-      width: 26px;
-      height: 3px;
-      background: #222;
-      transition: .25s ease;
-    }
+.card-dark{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.1);
+  color:white;
+}
 
-    /* HERO */
-    #hero {
-      padding: 280px 80px 260px;
-      background: var(--black);
-      color: var(--text-light);
-      border-radius: 0 0 var(--radius-xl) var(--radius-xl);
-      box-shadow: var(--shadow-dark);
-    }
+/* PRICING */
+.price{font-size:54px;font-weight:700;margin:26px 0;}
+.btn-pricing{
+  padding:14px 32px;
+  background:var(--violet);
+  border-radius:12px;
+  text-decoration:none;
+  color:white;
+  font-size:18px;transition:.3s;
+}
+.btn-pricing:hover{background:var(--violet-light);}
 
-    .hero-title {
-      font-size: 86px;
-      font-weight: 800;
-      line-height: 1.05;
-      background: linear-gradient(120deg, #fff, #e8e2ff, #845bff);
-      -webkit-background-clip: text;
-      color: transparent;
-      max-width: 950px;
-    }
+/* CONTACT */
+.contact-form{
+  display:grid;gap:20px;max-width:600px;
+}
+.contact-form input,.contact-form textarea{
+  padding:18px;border-radius:14px;
+  border:1px solid rgba(0,0,0,0.1);
+}
 
-    .hero-sub {
-      font-size: 26px;
-      max-width: 750px;
-      margin-top: 24px;
-      color: var(--muted-light);
-    }
-
-    .btn-main {
-      margin-top: 50px;
-      padding: 18px 40px;
-      background: var(--accent);
-      color: white;
-      font-size: 20px;
-      border-radius: 14px;
-      border: none;
-      cursor: pointer;
-      transition: .25s ease;
-      box-shadow: 0 14px 30px rgba(132,91,255,0.3);
-    }
-
-    .btn-main:hover { background: var(--accent-light); }
-
-    /* STANDARD SECTIONS */
-    section {
-      padding: 200px 80px;
-      max-width: 1400px;
-      margin: auto;
-    }
-
-    h2.section-title {
-      font-size: 66px;
-      font-weight: 700;
-      margin-bottom: 22px;
-      letter-spacing: -1px;
-      background: linear-gradient(120deg,#111,#333);
-      -webkit-background-clip:text;
-      color:transparent;
-    }
-
-    p.section-sub {
-      max-width: 760px;
-      font-size: 22px;
-      color: var(--muted-dark);
-      line-height: 1.55;
-      margin-bottom: 100px;
-    }
-
-    .dark-section {
-      background: var(--black);
-      color: var(--text-light);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-dark);
-    }
-
-    .dark-section h2 { color: white; background: none; }
-    .dark-section p { color: var(--muted-light); }
-
-    /* GRID */
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-      gap: 40px;
-    }
-
-    .card {
-      padding: 40px;
-      background: white;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-xl);
-      border: 1px solid rgba(0,0,0,0.05);
-      transition: .3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 40px 90px rgba(0,0,0,0.14);
-    }
-
-    .card-dark {
-      background: var(--black-soft);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: var(--text-light);
-    }
-
-    /* TARIFS */
-    .pricing-card {
-      text-align: center;
-      padding: 50px;
-    }
-
-    .pricing-card h3 { font-size: 32px; margin-bottom: 14px; }
-    .price { font-size: 54px; font-weight: 700; margin: 26px 0; }
-
-    .pricing-card ul {
-      list-style:none;
-      padding:0;
-      margin:0 0 40px;
-      color:var(--muted-dark);
-      line-height:1.7;
-    }
-
-    .btn-pricing {
-      padding: 16px 32px;
-      background: var(--accent);
-      border-radius: 10px;
-      color: white;
-      text-decoration: none;
-      font-size: 18px;
-      display: inline-block;
-      transition: .25s ease;
-    }
-
-    .btn-pricing:hover { background: var(--accent-light); }
-
-    /* CONTACT */
-    .contact-form {
-      display: grid;
-      gap: 20px;
-      max-width: 600px;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-      padding: 18px;
-      border-radius: 14px;
-      border: 1px solid rgba(0,0,0,0.1);
-      font-size: 17px;
-      background: white;
-    }
-
-    .contact-form button {
-      background: var(--accent);
-      color: white;
-      padding: 18px;
-      font-size: 20px;
-      border-radius: 14px;
-      cursor: pointer;
-      transition: .25s;
-      border: none;
-    }
-
-    .contact-form button:hover { background: var(--accent-light); }
-
-  </style>
-
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
+/* RESPONSIVE */
+@media(max-width:900px){
+  header{padding:20px 30px;}
+  .hero-title{font-size:58px;}
+  section{padding:140px 30px;}
+}
+</style>
 </head>
 
 <body>
 
+<!-- BACKGROUNDS -->
+<div id="ai-fluid-bg"></div>
+<canvas id="siriMesh"></canvas>
+<div class="orb v1"></div>
+<div class="orb v2"></div>
+<div class="orb v3"></div>
+
+<!-- HEADER -->
 <header>
   <div class="brand-logo"></div>
   <ul class="nav-links">
@@ -295,23 +255,21 @@
 <section id="hero">
   <h1 class="hero-title">Révélez votre intelligence. Supérieure. Naturelle. Augmentée.</h1>
   <p class="hero-sub">NH110LAB.AI crée des agents IA premium, conçus comme des pièces uniques : élégance, précision, performance.</p>
-  <button class="btn-main" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })">
-    Discuter de mon projet IA
-  </button>
+  <button class="btn-main" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Discuter de mon projet IA</button>
 </section>
 
-<!-- AGENTS IA -->
+<!-- AGENTS -->
 <section id="agents">
   <h2 class="section-title">Agents IA d’exception</h2>
-  <p class="section-sub">Conçus comme des collections Hermès : identité, cohérence, finesse, excellence technique.</p>
+  <p class="section-sub">Inspirés par Apple Intelligence, conçus comme des collections Hermès.</p>
 
   <div class="grid-3">
-    <div class="card"><h3>Prospector+</h3><p>Prospection automatisée, scoring intelligent, messages ultra-personnalisés.</p></div>
-    <div class="card"><h3>DocReader</h3><p>Analyse, extraction, synthèse, alertes intelligentes.</p></div>
-    <div class="card"><h3>CRM Sync</h3><p>Pipelines, relances, CRM autonome.</p></div>
-    <div class="card"><h3>SupportFlow</h3><p>Support client premium façon Hermès.</p></div>
-    <div class="card"><h3>AutoTech IA</h3><p>Diagnostic prédictif automobile.</p></div>
-    <div class="card"><h3>Data Analyst Mini</h3><p>Dashboards, insights, anomalies, rapports.</p></div>
+    <div class="card"><h3>Prospector+</h3><p>Prospection autonome multicanale.</p></div>
+    <div class="card"><h3>DocReader</h3><p>Extraction & analyse IA instantanée.</p></div>
+    <div class="card"><h3>CRM Sync</h3><p>Votre CRM devient intelligent et autonome.</p></div>
+    <div class="card"><h3>SupportFlow</h3><p>Support client premium assisté IA.</p></div>
+    <div class="card"><h3>AutoTech IA</h3><p>Diagnostic automobile intelligent.</p></div>
+    <div class="card"><h3>Data Analyst Mini</h3><p>Insights automatiques + dashboards.</p></div>
   </div>
 </section>
 
@@ -321,60 +279,46 @@
   <p class="section-sub">Une approche artisanale inspirée des maisons de luxe.</p>
 
   <div class="grid-3">
-    <div class="card"><h3>Conception d’agents IA</h3><p>Rôle, comportement, personnalité, règles, cohérence.</p></div>
-    <div class="card"><h3>Automatisation & intégration</h3><p>Workflows, API, CRM, tâches autonomes.</p></div>
-    <div class="card"><h3>Audit & Consulting</h3><p>Stratégie IA, optimisation, architecture.</p></div>
+    <div class="card"><h3>Conception IA</h3><p>Agents intelligents personnalisés.</p></div>
+    <div class="card"><h3>Intégration & Automatisation</h3><p>API, CRM, Workflows, tâches autonomes.</p></div>
+    <div class="card"><h3>Consulting IA</h3><p>Stratégie, audit, amélioration continue.</p></div>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
   <h2 class="section-title">À propos</h2>
-  <p class="section-sub">Un laboratoire d’intelligence neuronale hybride mêlant recherche, design & ingénierie cognitive.</p>
+  <p class="section-sub">Un laboratoire d’ingénierie cognitive et de design algorithmique.</p>
 
   <div class="grid-3">
-    <div class="card"><h3>Vision</h3><p>IA élégante, utile et humaine.</p></div>
-    <div class="card"><h3>Approche</h3><p>Matières numériques nobles, cohérence & performance.</p></div>
-    <div class="card"><h3>Exigence</h3><p>Aucun compromis. Jamais.</p></div>
+    <div class="card"><h3>Vision</h3><p>IA élégante, naturelle, intuitive.</p></div>
+    <div class="card"><h3>Approche</h3><p>Design Apple-like, précision extrême.</p></div>
+    <div class="card"><h3>Exigence</h3><p>Zéro compromis, qualité maximale.</p></div>
   </div>
 </section>
 
 <!-- PRICING -->
 <section id="pricing" class="dark-section">
   <h2 class="section-title">Tarifs</h2>
-  <p class="section-sub">Des offres pensées pour vous permettre d’aller plus loin.</p>
+  <p class="section-sub">Des offres pensées pour vous permettre d'aller plus loin.</p>
 
   <div class="grid-3">
-    <div class="card card-dark pricing-card">
+    <div class="card card-dark">
       <h3>Essentiel</h3>
       <p class="price">199€</p>
-      <ul>
-        <li>1 Agent IA simple</li>
-        <li>Automatisation basique</li>
-        <li>Configuration dédiée</li>
-      </ul>
+      <p>1 agent IA + automatisation simple</p>
       <a href="#contact" class="btn-pricing">Commencer</a>
     </div>
-
-    <div class="card card-dark pricing-card" style="border:2px solid var(--accent);">
-      <h3>Professionnel</h3>
+    <div class="card card-dark" style="border:2px solid var(--violet);">
+      <h3>Pro</h3>
       <p class="price">499€</p>
-      <ul>
-        <li>Agent IA avancé</li>
-        <li>Automatisation complète</li>
-        <li>Pipelines intelligents</li>
-      </ul>
+      <p>Agent IA avancé + intégrations</p>
       <a href="#contact" class="btn-pricing">Choisir</a>
     </div>
-
-    <div class="card card-dark pricing-card">
+    <div class="card card-dark">
       <h3>Entreprise</h3>
       <p class="price">1290€</p>
-      <ul>
-        <li>Écosystème IA sur mesure</li>
-        <li>Intégration CRM / API avancée</li>
-        <li>Monitoring & optimisation</li>
-      </ul>
+      <p>Système complet IA + CRM + API</p>
       <a href="#contact" class="btn-pricing">Sur devis</a>
     </div>
   </div>
@@ -383,53 +327,87 @@
 <!-- FAQ -->
 <section id="faq">
   <h2 class="section-title">FAQ</h2>
-  <p class="section-sub">Les questions les plus fréquentes.</p>
+  <p class="section-sub">Vos questions fréquentes.</p>
 
   <div class="grid-3">
-    <div class="card"><h3>Délai de création ?</h3><p>2 à 7 jours selon complexité.</p></div>
-    <div class="card"><h3>Personnalisation ?</h3><p>100% adaptable à votre activité.</p></div>
-    <div class="card"><h3>Pour qui ?</h3><p>Toutes entreprises : PME, artisans, garages, startups, etc.</p></div>
+    <div class="card"><h3>Délai ?</h3><p>2 à 7 jours selon complexité.</p></div>
+    <div class="card"><h3>Personnalisation ?</h3><p>100% selon votre activité.</p></div>
+    <div class="card"><h3>Pour qui ?</h3><p>PME, artisans, startups, garages…</p></div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
   <h2 class="section-title">Contact</h2>
-  <p class="section-sub">Expliquez votre projet et nous revenons vers vous.</p>
+  <p class="section-sub">Décrivez votre projet IA.</p>
 
   <form class="contact-form">
     <input type="text" placeholder="Nom complet" required>
-    <input type="email" placeholder="Adresse email" required>
-    <input type="text" placeholder="Entreprise">
-    <textarea rows="6" placeholder="Votre projet IA..." required></textarea>
-    <button type="submit">Envoyer</button>
+    <input type="email" placeholder="Email" required>
+    <textarea rows="5" placeholder="Votre projet..." required></textarea>
+    <button class="btn-main">Envoyer</button>
   </form>
 </section>
 
-<!-- GSAP -->
+<!-- SIRI MESH CANVAS SCRIPT -->
 <script>
-  gsap.registerPlugin(ScrollTrigger);
-
-  gsap.utils.toArray(".section-title").forEach(title => {
-    gsap.from(title, {
-      scrollTrigger: { trigger: title, start: "top 85%" },
-      opacity: 0,
-      y: 60,
-      duration: 1.2,
-      ease: "power3.out"
-    });
+/* Siri Mesh Ultra – Optimisé GPU */
+const canvas=document.getElementById("siriMesh");
+const ctx=canvas.getContext("2d");
+let w,h;function resize(){w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight}
+resize();window.onresize=resize;
+let dots=[];
+for(let i=0;i<80;i++){
+  dots.push({
+    x:Math.random()*w,
+    y:Math.random()*h,
+    vx:(Math.random()-.5)*1.2,
+    vy:(Math.random()-.5)*1.2,
+    c:`hsla(${Math.random()*360},90%,70%,0.8)`
   });
+}
+function animate(){
+  ctx.clearRect(0,0,w,h);
+  for(let d of dots){
+    d.x+=d.vx;d.y+=d.vy;
+    if(d.x<0||d.x>w)d.vx*=-1;
+    if(d.y<0||d.y>h)d.vy*=-1;
 
-  gsap.utils.toArray(".card").forEach((card, i) => {
-    gsap.from(card, {
-      scrollTrigger: { trigger: card, start: "top 92%" },
-      opacity: 0,
-      y: 80,
-      duration: 1.2,
-      delay: i * 0.05,
-      ease: "power3.out"
-    });
-  });
+    ctx.beginPath();
+    ctx.fillStyle=d.c;
+    ctx.arc(d.x,d.y,3,0,Math.PI*2);
+    ctx.fill();
+
+    for(let d2 of dots){
+      let dx=d.x-d2.x, dy=d.y-d2.y;
+      let dist=dx*dx+dy*dy;
+      if(dist<18000){
+        ctx.strokeStyle=d.c;
+        ctx.globalAlpha=0.15;
+        ctx.beginPath();
+        ctx.moveTo(d.x,d.y);
+        ctx.lineTo(d2.x,d2.y);
+        ctx.stroke();
+        ctx.globalAlpha=1;
+      }
+    }
+  }
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+gsap.utils.toArray(".section-title").forEach(t=>{
+  gsap.from(t,{scrollTrigger:{trigger:t,start:"top 85%"},opacity:0,y:80,duration:1.3});
+});
+gsap.utils.toArray(".card").forEach((c,i)=>{
+  gsap.from(c,{scrollTrigger:{trigger:c,start:"top 90%"},opacity:0,y:60,duration:1.2,delay:i*0.05});
+});
 </script>
 
 </body>
