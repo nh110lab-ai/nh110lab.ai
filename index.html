@@ -1,567 +1,503 @@
-<!-- =====================================
-PRICING — Section premium
-===================================== -->
-<section id="pricing" class="section white-section">
-  <div class="section-inner">
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <h2 class="section-title">Tarifs</h2>
-    <p class="section-desc">Des offres pensées pour chaque niveau de performance.</p>
+<title>NH110LAB — Agents IA & Automations</title>
 
-    <div class="pricing-grid">
+<!-- Font Inter / Apple-like -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css">
 
-      <div class="pricing-card">
-        <h3>Essentiel</h3>
-        <p class="price">199€</p>
-        <ul>
-          <li>1 Agent IA</li>
-          <li>Installation complète</li>
-          <li>Support de base</li>
-        </ul>
-        <button class="btn-main">Commencer</button>
-      </div>
+<style>
 
-      <div class="pricing-card highlight">
-        <h3>Pro</h3>
-        <p class="price">499€</p>
-        <ul>
-          <li>Agent IA avancé</li>
-          <li>CRM + API</li>
-          <li>Personnalisation totale</li>
-        </ul>
-        <button class="btn-main">Choisir Pro</button>
-      </div>
+/* ===========================================
+   ROOT VARIABLES — Apple Clean
+=========================================== */
+:root{
+  --white: #ffffff;
+  --light-bg: #f5f7fa;
+  --soft-grey: #e9ecf1;
 
-      <div class="pricing-card">
-        <h3>Entreprise</h3>
-        <p class="price">1290€</p>
-        <ul>
-          <li>Automations complètes</li>
-          <li>Support prioritaire</li>
-          <li>Intégration dédiée</li>
-        </ul>
-        <button class="btn-main">Sur devis</button>
-      </div>
+  --blue: #007aff;
+  --blue-soft: #2f8bff33;
 
-    </div>
-  </div>
-</section>
+  --text-dark: #0d0d0f;
+  --text-soft: #555;
+  
+  --radius-lg: 22px;
+  --radius-md: 16px;
 
-
-<!-- =====================================
-CONTACT — Section claire premium
-===================================== -->
-<section id="contact" class="section white-section">
-  <div class="section-inner">
-
-    <h2 class="section-title">Contact</h2>
-    <p class="section-desc">Réponse rapide — moins d’une heure en général.</p>
-
-    <form class="contact-form clean-form">
-      <input type="text" placeholder="Nom complet" required>
-      <input type="email" placeholder="Email" required>
-      <textarea rows="6" placeholder="Décrivez votre projet…" required></textarea>
-      <button class="btn-main">Envoyer</button>
-    </form>
-
-  </div>
-</section>
-
-
-<!-- =====================================
-FAQ — Clean & simple (Apple style)
-===================================== -->
-<section id="faq" class="section white-section">
-  <div class="section-inner">
-
-    <h2 class="section-title">FAQ</h2>
-
-    <div class="faq-list">
-
-      <div class="faq-item">
-        <h3>Délai de livraison ?</h3>
-        <p>En moyenne 2 à 7 jours selon la complexité du projet.</p>
-      </div>
-
-      <div class="faq-item">
-        <h3>L’agent est-il personnalisable ?</h3>
-        <p>Oui, chaque agent est 100% optimisé pour votre activité.</p>
-      </div>
-
-      <div class="faq-item">
-        <h3>Compatibilité ?</h3>
-        <p>Compatible CRM, WhatsApp, API, sites web, et systèmes d’entreprise.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- =====================================
-FOOTER — Simple, premium, aligné
-===================================== -->
-<footer class="footer">
-  <div class="footer-inner">
-    <p>© 2025 – NH110LAB.ai</p>
-    <p class="footer-small">Intelligence • Automations • Agents professionnels</p>
-  </div>
-</footer>
-/* =====================================================
-   PRICING — structure propre
-===================================================== */
-.pricing-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
-  gap:40px;
-  margin-top:80px;
+  --shadow-soft: 0 20px 50px rgba(0,0,0,0.08);
 }
 
-.pricing-card{
-  background:white;
-  border-radius:22px;
-  padding:40px;
-  box-shadow:0 20px 50px rgba(0,0,0,0.08);
-  transition:0.3s;
+/* ===========================================
+   GLOBAL RESET
+=========================================== */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family: "Inter",-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;
+  background: var(--white);
+  color: var(--text-dark);
+  overflow-x:hidden;
 }
 
-.pricing-card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 25px 60px rgba(0,0,0,0.12);
-}
-
-.pricing-card ul{
-  list-style:none;
-  margin:25px 0;
-  padding:0;
-}
-.pricing-card li{
-  margin-bottom:10px;
-  opacity:.7;
-}
-
-.pricing-card.highlight{
-  border:2px solid var(--ai-blue);
-  transform:scale(1.05);
-}
-
-
-/* =====================================================
-   CONTACT — clean form
-===================================================== */
-.clean-form{
-  max-width:600px;
-  margin:auto;
-  display:flex;
-  flex-direction:column;
-  gap:22px;
-}
-.clean-form input,
-.clean-form textarea{
+/* ===========================================
+   HEADER (Apple minimal)
+=========================================== */
+header{
   width:100%;
-  padding:18px 22px;
-  border-radius:18px;
-  border:1px solid rgba(0,0,0,0.1);
-  font-size:18px;
-}
-.clean-form button{
-  width:100%;
-}
-
-
-/* =====================================================
-   FAQ — Apple style
-===================================================== */
-.faq-list{
+  padding:26px 40px;
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:999;
   display:flex;
-  flex-direction:column;
-  gap:35px;
-  margin-top:60px;
+  justify-content:space-between;
+  align-items:center;
+  backdrop-filter:blur(18px);
+  background:rgba(255,255,255,0.75);
+  border-bottom:1px solid rgba(0,0,0,0.05);
 }
 
-.faq-item h3{
+.logo{
   font-size:24px;
-  margin-bottom:10px;
+  font-weight:800;
+  letter-spacing:-1px;
 }
 
-.faq-item p{
-  opacity:.7;
-  font-size:18px;
+nav ul{
+  display:flex;
+  gap:34px;
+  list-style:none;
 }
 
+nav a{
+  text-decoration:none;
+  font-weight:500;
+  color:var(--text-dark);
+  transition:0.2s;
+}
+nav a:hover{
+  color:var(--blue);
+}
 
-/* =====================================================
-   Footer
-===================================================== */
-.footer{
-  padding:60px 0;
+/* ===========================================
+   HERO SECTION
+=========================================== */
+.hero{
+  padding-top:180px;
+  padding-bottom:160px;
   text-align:center;
-  opacity:.8;
+  max-width:1100px;
+  margin:auto;
 }
 
-.footer-small{
-  margin-top:8px;
-  font-size:15px;
-  opacity:.6;
+.hero h1{
+  font-size:64px;
+  font-weight:800;
+  letter-spacing:-1px;
+  line-height:1.1;
+  margin-bottom:20px;
 }
-<!-- =====================================
-SECTION: AGENTS (Ultra clean)
-===================================== -->
-<section id="agents" class="section white-section reveal-section">
+
+.hero p{
+  font-size:22px;
+  opacity:0.65;
+  max-width:760px;
+  margin:auto;
+  line-height:1.55;
+  margin-bottom:45px;
+}
+
+.btn-main{
+  padding:16px 34px;
+  font-size:20px;
+  background:var(--blue);
+  color:white;
+  border-radius:var(--radius-md);
+  border:none;
+  cursor:pointer;
+  transition:0.25s;
+}
+.btn-main:hover{
+  background:#0062d6;
+  transform:translateY(-3px);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ========================= HEADER ========================= -->
+<header>
+  <div class="logo">NH110LAB.ai</div>
+  <nav>
+    <ul>
+      <li><a href="#agents">Agents</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#pricing">Tarifs</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ========================= HERO ========================= -->
+<section class="hero">
+  <h1>Des Agents IA<br>modernes & intelligents</h1>
+  <p>
+    Création d’agents autonomes, fluides et hautement optimisés pour booster votre activité.
+  </p>
+
+  <button class="btn-main" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+    Créer mon agent IA
+  </button>
+</section>
+<!-- ========================= AGENTS IA ========================= -->
+<section id="agents" class="section-block reveal">
   <div class="section-inner">
 
     <h2 class="section-title">Agents IA Premium</h2>
-    <p class="section-sub">
-      Une suite d’agents autonomes créés pour booster votre activité avec précision.
+    <p class="section-desc">
+      Une suite d’agents autonomes conçus pour simplifier, accélérer et automatiser votre activité.
     </p>
 
-    <div class="grid-3">
-      <div class="card white-card">
+    <div class="cards-grid">
+      
+      <div class="card">
         <h3>Prospector+</h3>
-        <p>Prospection automatique + scoring intelligent.</p>
+        <p>Prospection automatique, scoring et priorisation intelligente.</p>
       </div>
 
-      <div class="card white-card">
+      <div class="card">
         <h3>DocReader IA</h3>
-        <p>Analyse, extraction et synthèse automatique.</p>
+        <p>Analyse de documents, extraction de données, résumés automatiques.</p>
       </div>
 
-      <div class="card white-card">
+      <div class="card">
         <h3>CRM Sync</h3>
-        <p>Connexion CRM + relances intelligentes.</p>
+        <p>Connexion CRM, relances autonomes, suivi client intelligent.</p>
       </div>
 
-      <div class="card white-card">
+      <div class="card">
         <h3>SupportFlow</h3>
-        <p>Support client 24/7 avec réponses naturelles.</p>
+        <p>Support client IA 24/7 avec réponses naturelles basées sur vos données.</p>
       </div>
 
-      <div class="card white-card">
+      <div class="card">
         <h3>AutoTech IA</h3>
-        <p>Diagnostic automobile OBD + prédiction des pannes.</p>
+        <p>Diagnostic automobile OBD + prédiction de pannes.</p>
       </div>
 
-      <div class="card white-card">
+      <div class="card">
         <h3>Data Insight</h3>
-        <p>Dashboards autonomes + analyses stratégiques.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-
-<!-- =====================================
-SECTION: SERVICES (Clean & aligné)
-===================================== -->
-<section id="services" class="section white-section reveal-section">
-  <div class="section-inner">
-
-    <h2 class="section-title">Services Premium</h2>
-    <p class="section-sub">
-      Développement IA, automatisation complète, intégrations API et architecture technique.
-    </p>
-
-    <div class="grid-3">
-      <div class="card white-card">
-        <h3>Conception IA</h3>
-        <p>Agents sur mesure adaptés à votre activité.</p>
-      </div>
-
-      <div class="card white-card">
-        <h3>Automations & API</h3>
-        <p>Automatisation CRM, WhatsApp, sites web et back-office.</p>
-      </div>
-
-      <div class="card white-card">
-        <h3>Expertise IA</h3>
-        <p>Audit, stratégie & optimisation métier.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-
-<!-- =====================================
-SECTION: PRICING (Version propre)
-===================================== -->
-<section id="pricing" class="section white-section reveal-section">
-  <div class="section-inner">
-
-    <h2 class="section-title">Tarifs</h2>
-    <p class="section-sub">Des offres claires, simples et performantes.</p>
-
-    <div class="grid-3">
-
-      <div class="card price-card">
-        <h3>Essentiel</h3>
-        <p class="price">199€</p>
-        <p>1 agent IA + installation complète.</p>
-        <button class="btn-main">Commencer</button>
-      </div>
-
-      <div class="card price-card highlight">
-        <h3>Pro</h3>
-        <p class="price">499€</p>
-        <p>Agent avancé + intégrations CRM/API.</p>
-        <button class="btn-main">Choisir Pro</button>
-      </div>
-
-      <div class="card price-card">
-        <h3>Entreprise</h3>
-        <p class="price">1290€</p>
-        <p>Automations complètes + support dédié.</p>
-        <button class="btn-main">Sur devis</button>
+        <p>Dashboards autonomes, analyses solides et insights stratégiques.</p>
       </div>
 
     </div>
 
   </div>
 </section>
-
-
-
-
-<!-- =====================================
-SECTION: FAQ (alignée & minimaliste)
-===================================== -->
-<section id="faq" class="section white-section reveal-section">
-  <div class="section-inner">
-
-    <h2 class="section-title">FAQ</h2>
-
-    <div class="faq-grid">
-      <div class="faq-item">
-        <h3>Délai ?</h3>
-        <p>2 à 7 jours selon la complexité.</p>
-      </div>
-
-      <div class="faq-item">
-        <h3>Personnalisation ?</h3>
-        <p>Chaque agent est conçu sur mesure.</p>
-      </div>
-
-      <div class="faq-item">
-        <h3>Compatibilité ?</h3>
-        <p>CRM, API, WhatsApp Business & sites web.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-
-<!-- =====================================
-SECTION: CONTACT (Clean form)
-===================================== -->
-<section id="contact" class="section white-section reveal-section">
-  <div class="section-inner">
-
-    <h2 class="section-title">Contact</h2>
-    <p class="section-sub">Réponse rapide — moins d’1h en général.</p>
-
-    <form class="clean-form">
-      <input type="text" placeholder="Nom complet" />
-      <input type="email" placeholder="Email" />
-      <textarea rows="6" placeholder="Décrivez votre projet..."></textarea>
-      <button class="btn-main">Envoyer</button>
-    </form>
-
-  </div>
-</section>
-
-
-
-<!-- =====================================
-FOOTER — Ultra clean Apple style
-===================================== -->
-<footer class="footer">
-  <p>© 2025 — NH110LAB.ai</p>
-  <p class="footer-small">Agents IA • Automations • API • Solutions professionnelles</p>
-</footer>
-/* ===========================================================
-   APPLE CLEAN — STRUCTURE BASSE (SECTIONS CLAIRES)
-=========================================================== */
-
-/* ====== SECTION GLOBALE BLANCHE ====== */
-.white-section {
-  background: var(--light-bg);
-  padding: 140px 0;
-  width: 100%;
-  position: relative;
-  z-index: 2;
+/* ================= AGENTS BLOCK ================= */
+.section-block{
+  width:100%;
+  padding:140px 0;
+  background:white;
 }
 
-.section-inner {
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 40px;
+.section-inner{
+  max-width:1200px;
+  margin:auto;
+  padding:0 40px;
 }
 
-/* ====== TITRES ====== */
-.section-title {
-  font-size: 54px;
-  font-weight: 800;
-  letter-spacing: -1px;
-  margin-bottom: 20px;
-  text-align: center;
+.section-title{
+  font-size:54px;
+  font-weight:800;
+  text-align:center;
+  margin-bottom:15px;
 }
 
-.section-desc,
-.section-sub {
-  text-align: center;
-  font-size: 20px;
-  opacity: 0.65;
-  max-width: 780px;
-  margin: 0 auto 60px auto;
+.section-desc{
+  text-align:center;
+  font-size:20px;
+  opacity:0.65;
+  max-width:780px;
+  margin:0 auto 60px auto;
 }
 
-/* ====== GRILLE ====== */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 36px;
+/* grid */
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:36px;
 }
 
-@media (max-width: 950px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
+@media(max-width:950px){
+  .cards-grid{
+    grid-template-columns:repeat(2,1fr);
   }
 }
-@media (max-width: 650px) {
-  .grid {
-    grid-template-columns: 1fr;
+@media(max-width:650px){
+  .cards-grid{
+    grid-template-columns:1fr;
   }
 }
 
-/* ====== CARDS ====== */
-.white-card {
-  background: rgba(255,255,255,0.75);
-  backdrop-filter: blur(18px);
-  border-radius: 22px;
-  padding: 38px;
-  border: 1px solid rgba(0,0,0,0.06);
-  transition: 0.25s;
+/* cards */
+.card{
+  background:rgba(255,255,255,0.75);
+  backdrop-filter:blur(18px);
+  border-radius:20px;
+  padding:36px;
+  border:1px solid rgba(0,0,0,0.06);
+  transition:0.25s;
+}
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 40px rgba(0,0,0,0.09);
+}
+.card h3{
+  font-size:22px;
+  margin-bottom:10px;
+  font-weight:700;
+}
+.card p{
+  opacity:0.7;
 }
 
-.white-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 42px rgba(0,0,0,0.08);
+/* Reveal animation */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.7s ease;
 }
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+<script>
+const revealBlocks = document.querySelectorAll('.reveal');
+function revealOnScroll(){
+  revealBlocks.forEach(b=>{
+    const pos = b.getBoundingClientRect().top;
+    if(pos < window.innerHeight - 80){
+      b.classList.add('visible');
+    }
+  });
+}
+window.addEventListener('scroll', revealOnScroll);
+revealOnScroll();
+</script>
+<!-- ============================
+ANIMATIONS PREMIUM (bloc 3)
+============================ -->
 
-.white-card h3 {
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 12px;
-}
+<script>
+// ======================
+// 1. SCROLL REVEAL (Apple smooth)
+// ======================
+const revealBlocks = document.querySelectorAll('.reveal, .white-card, .pricing-card, .faq-item');
 
-.white-card p {
-  font-size: 17px;
-  opacity: 0.75;
+function revealOnScroll() {
+  revealBlocks.forEach(block => {
+    const top = block.getBoundingClientRect().top;
+    if (top < window.innerHeight - 80) {
+      block.classList.add('visible');
+    }
+  });
 }
+window.addEventListener('scroll', revealOnScroll);
+revealOnScroll();
 
-/* ====== PRICING ====== */
-.pricing .price {
-  font-size: 42px;
-  margin: 14px 0 20px 0;
-  font-weight: 700;
-  color: var(--ai-blue);
-}
 
-/* Highlighted middle plan */
-.pricing.highlight {
-  border: 2px solid var(--ai-blue);
-  background: rgba(255,255,255,0.95);
-  transform: scale(1.05);
-  box-shadow: 0 0 55px rgba(76, 126, 255, 0.25);
-}
+// ======================
+// 2. PARALLAX LIGHT (effet Apple)
+// ======================
+window.addEventListener("scroll", () => {
+  const scroll = window.scrollY * 0.1;
+  document.body.style.setProperty("--parallax", `${scroll}px`);
+});
 
-/* ====== FAQ ====== */
-.faq-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 34px;
-}
 
-@media (max-width: 950px) {
-  .faq-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-@media (max-width: 650px) {
-  .faq-grid {
-    grid-template-columns: 1fr;
-  }
-}
+// ======================
+// 3. HOVER FLUID (carte)
+// ======================
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("mousemove", e => {
+    const r = card.getBoundingClientRect();
+    const x = e.clientX - r.left;
+    const y = e.clientY - r.top;
+    card.style.setProperty("--x", `${x}px`);
+    card.style.setProperty("--y", `${y}px`);
+  });
+});
 
-.faq-item {
-  background: rgba(255,255,255,0.7);
-  border-radius: 18px;
-  padding: 32px;
-  border: 1px solid rgba(0,0,0,0.05);
-  backdrop-filter: blur(14px);
-  transition: 0.25s;
-}
 
-.faq-item:hover {
-  transform: translateY(-5px);
-}
+// ======================
+// 4. BUTTON HOVER (Apple Intelligence)
+// ======================
+document.querySelectorAll(".btn-main").forEach(btn => {
+  btn.addEventListener("mouseenter", () => {
+    btn.style.transform = "scale(1.04)";
+    btn.style.filter = "brightness(1.18)";
+  });
+  btn.addEventListener("mouseleave", () => {
+    btn.style.transform = "scale(1)";
+    btn.style.filter = "brightness(1)";
+  });
+});
 
-.faq-item h3 {
-  margin-bottom: 10px;
-  font-size: 20px;
-}
 
-/* ====== CONTACT FORM ====== */
-.clean-form {
-  max-width: 640px;
-  margin: 60px auto 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-}
+// ======================
+// 5. SOFT FADE TITLES
+// ======================
+document.querySelectorAll(".section-title").forEach(title => {
+  title.style.opacity = "0";
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        title.animate(
+          [
+            { opacity: 0, letterSpacing: "4px", filter: "blur(10px)" },
+            { opacity: 1, letterSpacing: "0px", filter: "blur(0)" }
+          ],
+          { duration: 850, easing: "ease-out", fill: "forwards" }
+        );
+        obs.disconnect();
+      }
+    });
+  });
+  obs.observe(title);
+});
+</script>
+// ======================
+// 4. SMOOTH REVEAL (Apple Section Fade In)
+// ======================
 
-.clean-form input,
-.clean-form textarea {
-  width: 100%;
-  padding: 18px;
-  border-radius: 14px;
-  border: 1px solid rgba(0,0,0,0.1);
-  background: rgba(255,255,255,0.65);
-  font-size: 18px;
-  backdrop-filter: blur(10px);
-  transition: 0.2s;
-}
+const revealSections = document.querySelectorAll(".reveal-section");
 
-.clean-form input:focus,
-.clean-form textarea:focus {
-  outline: none;
-  border-color: var(--ai-blue);
-  background: rgba(255,255,255,0.95);
-  box-shadow: 0 0 0 4px rgba(76, 126, 255, 0.15);
-}
+revealSections.forEach(section => {
+  section.style.opacity = "0";
+  section.style.transform = "translateY(40px)";
 
-.clean-form button {
-  width: 200px;
-  align-self: center;
-  padding: 16px 32px;
-  border-radius: 16px;
-  font-size: 20px;
-}
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
 
-/* ====== FOOTER ====== */
-.footer {
-  padding: 80px 20px;
-  text-align: center;
-  font-size: 15px;
-  opacity: 0.7;
-}
+        section.animate(
+          [
+            { opacity: 0, transform: "translateY(40px) blur(10px)" },
+            { opacity: 1, transform: "translateY(0) blur(0)" }
+          ],
+          {
+            duration: 900,
+            easing: "cubic-bezier(0.25, 0.6, 0.3, 1)",
+            fill: "forwards"
+          }
+        );
 
-.footer-small {
-  margin-top: 6px;
-  opacity: 0.6;
-  font-size: 14px;
-}
+        observer.disconnect();
+      }
+    });
+  });
+
+  observer.observe(section);
+});
+</script>
+
+<script>
+// ======================
+// 1. PARALLAX SOFT SCROLL
+// ======================
+window.addEventListener("scroll", () => {
+  const scroll = window.scrollY * 0.1;
+  document.body.style.setProperty("--parallax", `${scroll}px`);
+});
+
+// ======================
+// 2. CARD FLUID HOVER
+// ======================
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("mousemove", e => {
+    const r = card.getBoundingClientRect();
+    const x = e.clientX - r.left;
+    const y = e.clientY - r.top;
+    card.style.setProperty("--x", `${x}px`);
+    card.style.setProperty("--y", `${y}px`);
+  });
+});
+
+// ======================
+// 3. BUTTON HOVER — Apple Style
+// ======================
+document.querySelectorAll(".btn-main").forEach(btn => {
+  btn.addEventListener("mouseenter", () => {
+    btn.style.transform = "scale(1.04)";
+    btn.style.filter = "brightness(1.18)";
+  });
+  btn.addEventListener("mouseleave", () => {
+    btn.style.transform = "scale(1)";
+    btn.style.filter = "brightness(1)";
+  });
+});
+
+// ======================
+// 4. SOFT REVEAL SECTION (fade + blur)
+// ======================
+document.querySelectorAll(".reveal-section").forEach(section => {
+  section.style.opacity = "0";
+  section.style.transform = "translateY(40px)";
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        section.animate(
+          [
+            { opacity: 0, transform: "translateY(40px) blur(10px)" },
+            { opacity: 1, transform: "translateY(0) blur(0)" }
+          ],
+          {
+            duration: 900,
+            easing: "cubic-bezier(0.25, 0.6, 0.3, 1)",
+            fill: "forwards"
+          }
+        );
+        observer.disconnect();
+      }
+    });
+  });
+
+  observer.observe(section);
+});
+
+// ======================
+// 5. TITLE FADE + SPREAD (Apple style)
+// ======================
+document.querySelectorAll(".section-title").forEach(title => {
+  title.style.opacity = "0";
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        title.animate(
+          [
+            { opacity: 0, letterSpacing: "6px", filter: "blur(10px)" },
+            { opacity: 1, letterSpacing: "0px", filter: "blur(0)" }
+          ],
+          {
+            duration: 800,
+            easing: "ease-out",
+            fill: "forwards"
+          }
+        );
+        obs.disconnect();
+      }
+    });
+  });
+
+  obs.observe(title);
+});
+</script>
