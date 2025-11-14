@@ -260,6 +260,7 @@ section{
 </style>
 </head>
 <body>
+
 <!-- LOADER -->
 <div id="loader">
   <div class="loader-orb"></div>
@@ -286,6 +287,27 @@ section{
   </ul>
 </header>
 
+<!-- MOBILE MENU + DARK MODE -->
+<div class="mobile-controls">
+  <button id="menuToggle" class="menu-btn">
+    <div class="menu-line"></div>
+    <div class="menu-line"></div>
+    <div class="menu-line"></div>
+  </button>
+
+  <button id="modeToggle" class="mode-btn">🌙</button>
+</div>
+
+<div id="mobileMenu" class="mobile-menu-panel">
+  <a href="#hero">Accueil</a>
+  <a href="#agents">Agents IA</a>
+  <a href="#services">Services</a>
+  <a href="#about">À propos</a>
+  <a href="#pricing">Tarifs</a>
+  <a href="#faq">FAQ</a>
+  <a href="#contact">Contact</a>
+</div>
+
 <!-- HERO -->
 <section id="hero">
   <h1 class="section-title hero-title">
@@ -310,35 +332,12 @@ section{
   <p class="section-sub">Des modèles premium construits sur mesure, comme des pièces uniques.</p>
 
   <div class="grid-3">
-    <div class="card">
-      <h3>Prospector+</h3>
-      <p>Prospection automatique, scoring intelligent, suivi client complet.</p>
-    </div>
-
-    <div class="card">
-      <h3>DocReader AI</h3>
-      <p>Analyse et extraction contextuelle en temps réel. PDF, factures, contrats.</p>
-    </div>
-
-    <div class="card">
-      <h3>CRM Sync</h3>
-      <p>Votre CRM devient autonome : leads, relances, rapports automatiques.</p>
-    </div>
-
-    <div class="card">
-      <h3>SupportFlow</h3>
-      <p>Support client intelligent, 24/7, ton naturel + analyse d’intention.</p>
-    </div>
-
-    <div class="card">
-      <h3>AutoTech IA</h3>
-      <p>Diagnostic automobile intelligent : codes défauts, recommandations, prévisions.</p>
-    </div>
-
-    <div class="card">
-      <h3>Data Analyst Mini</h3>
-      <p>Dashboards autonomes, insights automatiques, rapports prêts à l’envoi.</p>
-    </div>
+    <div class="card"><h3>Prospector+</h3><p>Prospection automatique, scoring intelligent, suivi client complet.</p></div>
+    <div class="card"><h3>DocReader AI</h3><p>Analyse et extraction contextuelle en temps réel. PDF, factures, contrats.</p></div>
+    <div class="card"><h3>CRM Sync</h3><p>CRM autonome : leads, relances, rapports automatiques.</p></div>
+    <div class="card"><h3>SupportFlow</h3><p>Support client intelligent, 24/7, analyse d’intention.</p></div>
+    <div class="card"><h3>AutoTech IA</h3><p>Diagnostic automobile intelligent : OBD, recommandations, prévisions.</p></div>
+    <div class="card"><h3>Data Analyst Mini</h3><p>Dashboards autonomes, insights automatiques.</p></div>
   </div>
 </section>
 
@@ -348,20 +347,9 @@ section{
   <p class="section-sub">Une expertise hybride : IA, automation, design cognitif.</p>
 
   <div class="grid-3">
-    <div class="card">
-      <h3>Conception IA</h3>
-      <p>Agents IA sur-mesure, workflows intelligents, pipelines autonomes.</p>
-    </div>
-
-    <div class="card">
-      <h3>Automation & API</h3>
-      <p>Intégration CRM, API, n8n, Zapier, WhatsApp Business, Google Workspace.</p>
-    </div>
-
-    <div class="card">
-      <h3>Consulting</h3>
-      <p>Audit, stratégie IA, optimisation, architecture intelligente.</p>
-    </div>
+    <div class="card"><h3>Conception IA</h3><p>Agents IA sur-mesure, workflows intelligents, pipelines autonomes.</p></div>
+    <div class="card"><h3>Automation & API</h3><p>Intégration CRM, API, n8n, Zapier, WhatsApp Business.</p></div>
+    <div class="card"><h3>Consulting</h3><p>Audit, stratégie IA, optimisation, architecture intelligente.</p></div>
   </div>
 </section>
 
@@ -369,25 +357,14 @@ section{
 <section id="about">
   <h2 class="section-title">À propos</h2>
   <p class="section-sub">
-    Un laboratoire indépendant dédié aux interfaces cognitives, aux agents autonomes et
-    aux systèmes augmentés inspirés des standards Apple.
+    Un laboratoire indépendant dédié aux systèmes cognitifs, agents autonomes et 
+    expériences futuristes inspirées par Apple Intelligence + VisionOS.
   </p>
 
   <div class="grid-3">
-    <div class="card">
-      <h3>Vision</h3>
-      <p>Créer une IA naturelle, fluide, compréhensible, centrée utilisateur.</p>
-    </div>
-
-    <div class="card">
-      <h3>Approche</h3>
-      <p>Équilibre entre performance, design, UX premium et transparence.</p>
-    </div>
-
-    <div class="card">
-      <h3>Exigence</h3>
-      <p>Qualité maximale, rapidité, précision, optimisation continue.</p>
-    </div>
+    <div class="card"><h3>Vision</h3><p>Créer une IA naturelle, fluide, compréhensible.</p></div>
+    <div class="card"><h3>Approche</h3><p>Équilibre entre performance, design et transparence.</p></div>
+    <div class="card"><h3>Exigence</h3><p>Qualité maximale, précision, optimisation continue.</p></div>
   </div>
 </section>
 <!-- PRICING — VisionOS Dark Panel -->
@@ -478,7 +455,7 @@ function resizeMesh(){
 resizeMesh();
 window.addEventListener("resize", resizeMesh);
 
-// Création des points Siri (plus organiques, Apple Intelligence style)
+// Points Siri style Apple Intelligence
 let nodes = [];
 for(let i=0;i<90;i++){
   nodes.push({
@@ -520,13 +497,12 @@ function meshLoop(){
       }
     }
   }
-
   requestAnimationFrame(meshLoop);
 }
 meshLoop();
 </script>
 
-<!-- ORBS interaction -->
+<!-- ORBS INTERACTION -->
 <script>
 const orbs = document.querySelectorAll('.orb');
 
@@ -547,7 +523,7 @@ window.addEventListener('touchmove', (e)=>{
   }
 });
 
-// Parallax scroll
+// Parallax Apple
 window.addEventListener('scroll', ()=>{
   const sc = window.scrollY;
   orbs.forEach((o,i)=>{
@@ -556,7 +532,34 @@ window.addEventListener('scroll', ()=>{
 });
 </script>
 
-<!-- GSAP Scripts -->
+<!-- MENU MOBILE + MODE SOMBRE -->
+<script>
+// MOBILE MENU
+const menuBtn = document.getElementById("menuToggle");
+const mobileMenu = document.getElementById("mobileMenu");
+
+menuBtn.addEventListener("click", ()=>{
+  menuBtn.classList.toggle("active");
+  mobileMenu.classList.toggle("open");
+});
+
+document.querySelectorAll('.mobile-menu-panel a').forEach(link=>{
+  link.addEventListener("click", ()=>{
+    mobileMenu.classList.remove("open");
+    menuBtn.classList.remove("active");
+  });
+});
+
+// DARK MODE
+const modeBtn = document.getElementById("modeToggle");
+modeBtn.addEventListener("click", ()=>{
+  document.documentElement.classList.toggle("dark-mode");
+  modeBtn.textContent = document.documentElement.classList.contains("dark-mode")
+    ? "☀️" : "🌙";
+});
+</script>
+
+<!-- GSAP ANIMATIONS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script src="https://assets.codepen.io/16327/SplitText.min.js"></script>
@@ -570,7 +573,7 @@ window.addEventListener("load", ()=>{
   document.getElementById("loader").classList.add("hidden");
 });
 
-// Animations Section Cards
+// Cards animation
 gsap.utils.toArray(".card").forEach((card, i)=>{
   gsap.from(card,{
     scrollTrigger:{ trigger: card, start:"top 90%" },
@@ -582,7 +585,7 @@ gsap.utils.toArray(".card").forEach((card, i)=>{
   });
 });
 
-// Anim premium pour les titres
+// Titles animation
 function animateTitles(){
   const titles = document.querySelectorAll(".section-title");
   titles.forEach((title)=>{
