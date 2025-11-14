@@ -563,3 +563,135 @@ document.querySelectorAll(".btn").forEach(btn => {
     color:#ddd;
   }
 }
+<!-- === VISIONOS THEME SWITCH (Auto / Light / Dark) === -->
+<div id="theme-switch">
+  <button data-theme="auto">Auto</button>
+  <button data-theme="light">Clair</button>
+  <button data-theme="dark">Sombre</button>
+</div>
+<style>
+/* ===========================
+   SWITCH VISIONOS FLOATING
+   =========================== */
+#theme-switch{
+  position:fixed;
+  bottom:40px;
+  right:40px;
+  display:flex;
+  gap:10px;
+  padding:12px 18px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:18px;
+  backdrop-filter:blur(20px) saturate(1.6);
+  z-index:9999;
+}
+
+#theme-switch button{
+  padding:10px 18px;
+  border:none;
+  border-radius:12px;
+  background:rgba(255,255,255,0.10);
+  color:white;
+  font-size:14px;
+  cursor:pointer;
+  transition:.25s;
+}
+
+#theme-switch button:hover{
+  background:rgba(255,255,255,0.22);
+  transform:translateY(-2px);
+}
+
+#theme-switch button.active{
+  background:linear-gradient(135deg,#4C7EFF,#8B5CFF);
+  box-shadow:0 10px 25px rgba(80,80,255,0.35);
+}
+</style>
+
+
+<script>
+/* ===========================
+   MODE 3 THEMES (Auto/Light/Dark)
+   =========================== */
+
+const root = document.documentElement;
+const saved = localStorage.getItem("theme-mode");
+
+function applyTheme(mode){
+  document.querySelectorAll("#theme-switch button")
+    .forEach(b => b.classList.remove("active"));
+
+  document.querySelector(`#theme-switch button[data-theme="${mode}"]`)
+    .classList.add("active");
+
+  if(mode === "auto"){
+    root.removeAttribute("data-theme");
+  }else{
+    root.setAttribute("data-theme", mode);
+  }
+
+  localStorage.setItem("theme-mode", mode);
+}
+
+// Initialisation
+applyTheme(saved || "auto");
+
+// Click handler
+document.querySelectorAll("#theme-switch button").forEach(btn =>
+  btn.addEventListener("click", () => applyTheme(btn.dataset.theme))
+);
+</script>
+/* ===========================
+   CUSTOM THEMES
+   =========================== */
+
+/* —— Mode clair —— */
+:root[data-theme="light"]{
+  background:#F7F8FA;
+  color:#0A0A0C;
+}
+:root[data-theme="light"] header{
+  background:rgba(255,255,255,0.65);
+  border-color:rgba(0,0,0,0.08);
+}
+:root[data-theme="light"] .card{
+  background:rgba(255,255,255,0.4);
+  border-color:rgba(0,0,0,0.07);
+  color:#0A0A0C;
+}
+:root[data-theme="light"] nav a{
+  color:#0A0A0C;
+}
+
+/* —— Mode sombre —— */
+:root[data-theme="dark"]{
+  background:#0A0A0C;
+  color:white;
+}
+:root[data-theme="dark"] header{
+  background:rgba(0,0,0,0.35);
+  border-color:rgba(255,255,255,0.06);
+}
+:root[data-theme="dark"] .card{
+  background:rgba(255,255,255,0.04);
+  border-color:rgba(255,255,255,0.06);
+  color:white;
+}
+:root[data-theme="dark"] nav a{
+  color:white;
+}
+
+/* —— Mode Auto —— */
+@media (prefers-color-scheme: light){
+  :root:not([data-theme]){
+    background:#F7F8FA;
+    color:#0A0A0C;
+  }
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme]){
+    background:#0A0A0C;
+    color:white;
+  }
+}
