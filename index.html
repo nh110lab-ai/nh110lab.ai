@@ -1,389 +1,436 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NH110Lab – Agents IA & Services</title>
-  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
-  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <meta charset="UTF-8" />
+  <title>NH110LAB.AI — Luxury Neural Intelligence Laboratory</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Fonts Apple-style -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter/4.0.0/inter.css">
   <style>
     :root {
+      --black: #05050A;
+      --black-soft: #0B0B14;
+      --white: #FAFAFA;
+      --white-soft: #F2F2F7;
+
+      --text-dark: #111;
+      --text-light: #f5f5f7;
+
+      --muted-dark: #666;
+      --muted-light: #b5b5c7;
+
       --accent: #845bff;
-      --primary: #222;
-      --white: #ffffff;
-      --bg: #f5f5f9;
-      --shadow-xl: 0 30px 60px rgba(0,0,0,0.1);
+      --accent-light: #cab8ff;
+
+      --radius-xl: 40px;
+      --radius-lg: 26px;
+      --radius-md: 16px;
+
+      --shadow-xl: 0 30px 80px rgba(0,0,0,0.12);
+      --shadow-dark: 0 30px 90px rgba(0,0,0,0.5);
     }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      font-family: Arial, sans-serif;
-      background: var(--bg);
-      color: var(--primary);
-      line-height: 1.6;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+      background: var(--white-soft);
+      color: var(--text-dark);
+      overflow-x: hidden;
     }
-    /* header premium */
-    .header {
+
+    /* HEADER */
+    header {
       position: fixed;
-      top: 0;
       width: 100%;
-      padding: 22px 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      padding: 26px 60px;
+      display: flex; justify-content: space-between; align-items: center;
       backdrop-filter: blur(22px);
       background: rgba(255,255,255,0.55);
       border-bottom: 1px solid rgba(0,0,0,0.06);
-      z-index: 2000;
-      transition: 0.35s ease;
+      z-index: 9999;
+      transition: .3s ease;
     }
-    .header-scrolled {
-      padding: 14px 60px;
-      background: rgba(255,255,255,0.85);
-    }
+
     .brand-logo {
       width: 52px;
       height: 52px;
       border-radius: 50%;
-      display: block;
-      background: radial-gradient(circle at 20% 0, #fff, #cab8ff, #845bff);
+      background: radial-gradient(circle at 20% 0, #fff, #dad2ff, #845bff);
       box-shadow: 0 0 30px rgba(132,91,255,0.4);
     }
+
     .nav-links {
-      list-style: none;
       display: flex;
       gap: 36px;
+      list-style: none;
     }
+
     .nav-links a {
       text-decoration: none;
+      color: #222;
       font-size: 17px;
-      color: var(--primary);
       position: relative;
-      transition: 0.25s ease;
+      transition: .25s ease;
     }
+
+    .nav-links a:hover { color: var(--accent); }
+
     .nav-links a::after {
       content: "";
       position: absolute;
       left: 0;
       bottom: -4px;
-      width: 0%;
-      height: 2px;
+      width: 0; height: 2px;
       background: var(--accent);
-      transition: 0.3s ease;
+      transition: .25s;
     }
-    .nav-links a:hover {
-      color: var(--accent);
-    }
-    .nav-links a:hover::after {
-      width: 100%;
-    }
+
+    .nav-links a:hover::after { width: 100%; }
+
+    /* MOBILE */
     .nav-toggle {
       display: none;
       flex-direction: column;
       gap: 5px;
-      background: none;
       border: none;
+      background: none;
       cursor: pointer;
     }
+
     .nav-toggle span {
-      width: 28px;
+      width: 26px;
       height: 3px;
-      background: var(--primary);
-      transition: 0.3s ease;
+      background: #222;
+      transition: .25s ease;
     }
-    @media (max-width: 900px) {
-      .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        height: 100vh;
-        width: 70%;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background: var(--white);
-        box-shadow: var(--shadow-xl);
-        transition: 0.4s ease;
-      }
-      .nav-links.open {
-        right: 0;
-      }
-      .nav-toggle {
-        display: flex;
-      }
-      .nav-links a {
-        font-size: 26px;
-        margin: 14px 0;
-      }
+
+    /* HERO */
+    #hero {
+      padding: 280px 80px 260px;
+      background: var(--black);
+      color: var(--text-light);
+      border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+      box-shadow: var(--shadow-dark);
     }
-    /* Section styles */
+
+    .hero-title {
+      font-size: 86px;
+      font-weight: 800;
+      line-height: 1.05;
+      background: linear-gradient(120deg, #fff, #e8e2ff, #845bff);
+      -webkit-background-clip: text;
+      color: transparent;
+      max-width: 950px;
+    }
+
+    .hero-sub {
+      font-size: 26px;
+      max-width: 750px;
+      margin-top: 24px;
+      color: var(--muted-light);
+    }
+
+    .btn-main {
+      margin-top: 50px;
+      padding: 18px 40px;
+      background: var(--accent);
+      color: white;
+      font-size: 20px;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      transition: .25s ease;
+      box-shadow: 0 14px 30px rgba(132,91,255,0.3);
+    }
+
+    .btn-main:hover { background: var(--accent-light); }
+
+    /* STANDARD SECTIONS */
     section {
-      padding: 120px 60px;
-      max-width: 1200px;
+      padding: 200px 80px;
+      max-width: 1400px;
       margin: auto;
     }
-    .section-title {
-      font-size: 36px;
-      margin-bottom: 10px;
-      text-align: center;
+
+    h2.section-title {
+      font-size: 66px;
+      font-weight: 700;
+      margin-bottom: 22px;
+      letter-spacing: -1px;
+      background: linear-gradient(120deg,#111,#333);
+      -webkit-background-clip:text;
+      color:transparent;
     }
-    .section-sub {
-      font-size: 20px;
-      margin-bottom: 60px;
-      text-align: center;
-      color: #666;
+
+    p.section-sub {
+      max-width: 760px;
+      font-size: 22px;
+      color: var(--muted-dark);
+      line-height: 1.55;
+      margin-bottom: 100px;
     }
-    /* Cards generic */
-    .card {
-      background: var(--white);
-      border-radius: 16px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-      padding: 30px;
-      transition: transform 0.3s ease;
+
+    .dark-section {
+      background: var(--black);
+      color: var(--text-light);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-dark);
     }
-    .card:hover {
-      transform: translateY(-6px);
-    }
-    .cards-grid {
+
+    .dark-section h2 { color: white; background: none; }
+    .dark-section p { color: var(--muted-light); }
+
+    /* GRID */
+    .grid-3 {
       display: grid;
-      gap: 30px;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 40px;
     }
-    /* Pricing specific styles */
+
+    .card {
+      padding: 40px;
+      background: white;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-xl);
+      border: 1px solid rgba(0,0,0,0.05);
+      transition: .3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 40px 90px rgba(0,0,0,0.14);
+    }
+
+    .card-dark {
+      background: var(--black-soft);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text-light);
+    }
+
+    /* TARIFS */
     .pricing-card {
       text-align: center;
+      padding: 50px;
     }
-    .pricing-card h3 {
-      font-size: 28px;
-      margin-bottom: 10px;
+
+    .pricing-card h3 { font-size: 32px; margin-bottom: 14px; }
+    .price { font-size: 54px; font-weight: 700; margin: 26px 0; }
+
+    .pricing-card ul {
+      list-style:none;
+      padding:0;
+      margin:0 0 40px;
+      color:var(--muted-dark);
+      line-height:1.7;
     }
-    .pricing-card .price {
-      font-size: 48px;
-      color: var(--accent);
-      margin: 20px 0;
-    }
-    .pricing-features {
-      list-style: none;
-      margin-bottom: 20px;
-    }
-    .pricing-features li {
-      margin: 8px 0;
-    }
-    .pricing-card button {
+
+    .btn-pricing {
+      padding: 16px 32px;
       background: var(--accent);
-      color: var(--white);
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s ease;
+      border-radius: 10px;
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      display: inline-block;
+      transition: .25s ease;
     }
-    .pricing-card button:hover {
-      background: #6b49cc;
-    }
-    /* Contact section */
+
+    .btn-pricing:hover { background: var(--accent-light); }
+
+    /* CONTACT */
     .contact-form {
-      max-width: 600px;
-      margin: auto;
-      display: flex;
-      flex-direction: column;
+      display: grid;
       gap: 20px;
+      max-width: 600px;
     }
+
     .contact-form input,
     .contact-form textarea {
-      padding: 14px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 16px;
-      width: 100%;
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,0.1);
+      font-size: 17px;
+      background: white;
     }
+
     .contact-form button {
-      align-self: flex-start;
       background: var(--accent);
-      color: var(--white);
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
+      color: white;
+      padding: 18px;
+      font-size: 20px;
+      border-radius: 14px;
       cursor: pointer;
+      transition: .25s;
+      border: none;
     }
-    .contact-form button:hover {
-      background: #6b49cc;
-    }
+
+    .contact-form button:hover { background: var(--accent-light); }
+
   </style>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
 </head>
+
 <body>
-  <header class="header">
-    <a href="#hero" class="brand-logo"></a>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="#hero">Accueil</a></li>
-        <li><a href="#agents">Agents IA</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#about">À propos</a></li>
-        <li><a href="#pricing">Tarifs</a></li>
-        <li><a href="#contact">Contact</a></li>
+
+<header>
+  <div class="brand-logo"></div>
+  <ul class="nav-links">
+    <li><a href="#hero">Accueil</a></li>
+    <li><a href="#agents">Agents IA</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#pricing">Tarifs</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <h1 class="hero-title">Révélez votre intelligence. Supérieure. Naturelle. Augmentée.</h1>
+  <p class="hero-sub">NH110LAB.AI crée des agents IA premium, conçus comme des pièces uniques : élégance, précision, performance.</p>
+  <button class="btn-main" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })">
+    Discuter de mon projet IA
+  </button>
+</section>
+
+<!-- AGENTS IA -->
+<section id="agents">
+  <h2 class="section-title">Agents IA d’exception</h2>
+  <p class="section-sub">Conçus comme des collections Hermès : identité, cohérence, finesse, excellence technique.</p>
+
+  <div class="grid-3">
+    <div class="card"><h3>Prospector+</h3><p>Prospection automatisée, scoring intelligent, messages ultra-personnalisés.</p></div>
+    <div class="card"><h3>DocReader</h3><p>Analyse, extraction, synthèse, alertes intelligentes.</p></div>
+    <div class="card"><h3>CRM Sync</h3><p>Pipelines, relances, CRM autonome.</p></div>
+    <div class="card"><h3>SupportFlow</h3><p>Support client premium façon Hermès.</p></div>
+    <div class="card"><h3>AutoTech IA</h3><p>Diagnostic prédictif automobile.</p></div>
+    <div class="card"><h3>Data Analyst Mini</h3><p>Dashboards, insights, anomalies, rapports.</p></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <h2 class="section-title">Services haute précision</h2>
+  <p class="section-sub">Une approche artisanale inspirée des maisons de luxe.</p>
+
+  <div class="grid-3">
+    <div class="card"><h3>Conception d’agents IA</h3><p>Rôle, comportement, personnalité, règles, cohérence.</p></div>
+    <div class="card"><h3>Automatisation & intégration</h3><p>Workflows, API, CRM, tâches autonomes.</p></div>
+    <div class="card"><h3>Audit & Consulting</h3><p>Stratégie IA, optimisation, architecture.</p></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2 class="section-title">À propos</h2>
+  <p class="section-sub">Un laboratoire d’intelligence neuronale hybride mêlant recherche, design & ingénierie cognitive.</p>
+
+  <div class="grid-3">
+    <div class="card"><h3>Vision</h3><p>IA élégante, utile et humaine.</p></div>
+    <div class="card"><h3>Approche</h3><p>Matières numériques nobles, cohérence & performance.</p></div>
+    <div class="card"><h3>Exigence</h3><p>Aucun compromis. Jamais.</p></div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="dark-section">
+  <h2 class="section-title">Tarifs</h2>
+  <p class="section-sub">Des offres pensées pour vous permettre d’aller plus loin.</p>
+
+  <div class="grid-3">
+    <div class="card card-dark pricing-card">
+      <h3>Essentiel</h3>
+      <p class="price">199€</p>
+      <ul>
+        <li>1 Agent IA simple</li>
+        <li>Automatisation basique</li>
+        <li>Configuration dédiée</li>
       </ul>
-      <button class="nav-toggle" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
-  </header>
-
-  <!-- Hero section -->
-  <section id="hero">
-    <h1 class="section-title">Bienvenue chez NH110Lab</h1>
-    <p class="section-sub">Des agents IA sur mesure pour transformer votre entreprise.</p>
-  </section>
-
-  <!-- Agents IA section -->
-  <section id="agents">
-    <h2 class="section-title">Nos Agents IA</h2>
-    <p class="section-sub">Découvrez nos solutions d'intelligence artificielle.</p>
-    <div class="cards-grid">
-      <div class="card">
-        <h3>Agent Conversationnel</h3>
-        <p>Support client automatisé 24/7 avec un langage naturel.</p>
-      </div>
-      <div class="card">
-        <h3>Agent d'Analyse</h3>
-        <p>Analyse de données avancée et rapports personnalisés.</p>
-      </div>
-      <div class="card">
-        <h3>Agent de Prévision</h3>
-        <p>Prédictions précises pour prendre des décisions éclairées.</p>
-      </div>
+      <a href="#contact" class="btn-pricing">Commencer</a>
     </div>
-  </section>
 
-  <!-- Services section -->
-  <section id="services">
-    <h2 class="section-title">Services</h2>
-    <p class="section-sub">Nos services complets pour la réussite de votre projet IA.</p>
-    <div class="cards-grid">
-      <div class="card">
-        <h3>Intégration sur mesure</h3>
-        <p>Intégration transparente de nos agents IA dans votre infrastructure.</p>
-      </div>
-      <div class="card">
-        <h3>Formation & Support</h3>
-        <p>Accompagnement complet et formation de vos équipes.</p>
-      </div>
-      <div class="card">
-        <h3>Consulting IA</h3>
-        <p>Conseil stratégique pour maximiser vos investissements en IA.</p>
-      </div>
+    <div class="card card-dark pricing-card" style="border:2px solid var(--accent);">
+      <h3>Professionnel</h3>
+      <p class="price">499€</p>
+      <ul>
+        <li>Agent IA avancé</li>
+        <li>Automatisation complète</li>
+        <li>Pipelines intelligents</li>
+      </ul>
+      <a href="#contact" class="btn-pricing">Choisir</a>
     </div>
-  </section>
 
-  <!-- About section -->
-  <section id="about">
-    <h2 class="section-title">À propos</h2>
-    <p class="section-sub">Nous sommes passionnés par l'innovation et la technologie.</p>
-    <p>NH110Lab est une équipe d'experts en intelligence artificielle qui conçoit des solutions élégantes et performantes pour aider les entreprises à atteindre de nouveaux sommets. Nous combinons technologie de pointe et design haut de gamme pour une expérience unique.</p>
-  </section>
-
-  <!-- Pricing section -->
-  <section id="pricing">
-    <h2 class="section-title">Tarifs</h2>
-    <p class="section-sub">Choisissez le plan qui correspond à vos besoins.</p>
-    <div class="cards-grid">
-      <div class="card pricing-card">
-        <h3>Essentiel</h3>
-        <div class="price">€29/mois</div>
-        <ul class="pricing-features">
-          <li>Accès à un agent IA</li>
-          <li>Support par email</li>
-          <li>Mises à jour mensuelles</li>
-        </ul>
-        <button>Souscrire</button>
-      </div>
-      <div class="card pricing-card">
-        <h3>Professionnel</h3>
-        <div class="price">€79/mois</div>
-        <ul class="pricing-features">
-          <li>Tous les avantages Essentiel</li>
-          <li>Agents multiples</li>
-          <li>Support prioritaire</li>
-        </ul>
-        <button>Souscrire</button>
-      </div>
-      <div class="card pricing-card">
-        <h3>Entreprise</h3>
-        <div class="price">€149/mois</div>
-        <ul class="pricing-features">
-          <li>Solutions personnalisées</li>
-          <li>Formation dédiée</li>
-          <li>Support 24/7</li>
-        </ul>
-        <button>Souscrire</button>
-      </div>
+    <div class="card card-dark pricing-card">
+      <h3>Entreprise</h3>
+      <p class="price">1290€</p>
+      <ul>
+        <li>Écosystème IA sur mesure</li>
+        <li>Intégration CRM / API avancée</li>
+        <li>Monitoring & optimisation</li>
+      </ul>
+      <a href="#contact" class="btn-pricing">Sur devis</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Contact section -->
-  <section id="contact">
-    <h2 class="section-title">Contact</h2>
-    <p class="section-sub">Discutons de votre projet.</p>
-    <form class="contact-form">
-      <input type="text" placeholder="Votre nom" required>
-      <input type="email" placeholder="Votre email" required>
-      <textarea rows="5" placeholder="Votre message" required></textarea>
-      <button type="submit">Envoyer</button>
-    </form>
-  </section>
+<!-- FAQ -->
+<section id="faq">
+  <h2 class="section-title">FAQ</h2>
+  <p class="section-sub">Les questions les plus fréquentes.</p>
 
-  <script>
-    // Mobile menu toggle
-    const toggleBtn = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    toggleBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-      toggleBtn.classList.toggle('open');
+  <div class="grid-3">
+    <div class="card"><h3>Délai de création ?</h3><p>2 à 7 jours selon complexité.</p></div>
+    <div class="card"><h3>Personnalisation ?</h3><p>100% adaptable à votre activité.</p></div>
+    <div class="card"><h3>Pour qui ?</h3><p>Toutes entreprises : PME, artisans, garages, startups, etc.</p></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2 class="section-title">Contact</h2>
+  <p class="section-sub">Expliquez votre projet et nous revenons vers vous.</p>
+
+  <form class="contact-form">
+    <input type="text" placeholder="Nom complet" required>
+    <input type="email" placeholder="Adresse email" required>
+    <input type="text" placeholder="Entreprise">
+    <textarea rows="6" placeholder="Votre projet IA..." required></textarea>
+    <button type="submit">Envoyer</button>
+  </form>
+</section>
+
+<!-- GSAP -->
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.utils.toArray(".section-title").forEach(title => {
+    gsap.from(title, {
+      scrollTrigger: { trigger: title, start: "top 85%" },
+      opacity: 0,
+      y: 60,
+      duration: 1.2,
+      ease: "power3.out"
     });
+  });
 
-    // Header scroll effect
-    ScrollTrigger.create({
-      start: "top -80",
-      end: 99999,
-      toggleClass: { targets: ".header", className: "header-scrolled" }
+  gsap.utils.toArray(".card").forEach((card, i) => {
+    gsap.from(card, {
+      scrollTrigger: { trigger: card, start: "top 92%" },
+      opacity: 0,
+      y: 80,
+      duration: 1.2,
+      delay: i * 0.05,
+      ease: "power3.out"
     });
+  });
+</script>
 
-    // Title animations
-    gsap.utils.toArray(".section-title").forEach((title) => {
-      gsap.from(title, {
-        scrollTrigger: { trigger: title, start: "top 85%" },
-        opacity: 0,
-        y: 50,
-        duration: 1.1,
-        ease: "power3.out"
-      });
-    });
-
-    // Paragraph animations
-    gsap.utils.toArray(".section-sub").forEach((sub) => {
-      gsap.from(sub, {
-        scrollTrigger: { trigger: sub, start: "top 90%" },
-        opacity: 0,
-        y: 30,
-        duration: 1.1,
-        ease: "power3.out"
-      });
-    });
-
-    // Card animations
-    gsap.utils.toArray(".card").forEach((card, i) => {
-      gsap.from(card, {
-        scrollTrigger: { trigger: card, start: "top 92%" },
-        opacity: 0,
-        y: 60,
-        duration: 1.15,
-        delay: i * 0.06,
-        ease: "power3.out"
-      });
-    });
-  </script>
 </body>
 </html>
