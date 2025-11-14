@@ -1,170 +1,389 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="NH110LAB.AI — Laboratoire d'intelligence neuronale premium. Agents IA haut de gamme, automatisation de luxe et intelligence cognitive avancée." />
-<title>NH110LAB.AI — Luxury Neural Intelligence Laboratory</title>
-
-<!-- GSAP -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/SplitText.min.js"></script>
-
-<style>
-:root {
---black: #05050a;
---black-soft: #0b0b14;
---white: #fafafa;
---white-soft: #f2f2f7;
---text-dark: #111;
---text-light: #f5f5f7;
---muted-dark: #555;
---muted-light: #b5b5c7;
---accent: #845bff;
---accent-light: #cab8ff;
---shadow-xl: 0 15px 30px rgba(0,0,0,0.08);
---white: #ffffff;
-}
-/* header styling from improved code */
-.header { position: fixed; top: 0; width: 100%; padding: 22px 60px; display:flex; justify-content:space-between; align-items:center; backdrop-filter: blur(22px); background: rgba(255,255,255,0.55); border-bottom: 1px solid rgba(0,0,0,0.06); z-index:2000; transition:0.35s ease; }
-.header-scrolled { padding:14px 60px; background: rgba(255,255,255,0.85); }
-.brand-logo { width:52px; height:52px; border-radius:50%; display:block; background: radial-gradient(circle at 20% 0, #fff, #cab8ff, #845bff); box-shadow:0 0 30px rgba(132,91,255,0.4); }
-.nav-links { list-style:none; display:flex; gap:36px; }
-.nav-links a { text-decoration:none; font-size:17px; color:#222; position:relative; transition:0.25s ease; }
-.nav-links a::after { content:""; position:absolute; left:0; bottom:-4px; width:0%; height:2px; background: var(--accent); transition:0.3s ease; }
-.nav-links a:hover { color: var(--accent); }
-.nav-links a:hover::after { width:100%; }
-.nav-toggle { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; }
-.nav-toggle span { width:28px; height:3px; background:#222; transition:0.3s ease; }
-@media (max-width: 900px) {
-    .nav-links { position:fixed; top:0; right:-100%; height:100vh; width:70%; flex-direction:column; justify-content:center; align-items:center; background: var(--white); box-shadow: var(--shadow-xl); transition:0.4s ease; }
-    .nav-links.open { right:0; }
-    .nav-toggle { display:flex; }
-    .nav-links a { font-size:26px; margin:14px 0; }
-}
-/* Additional base body styling for readability */
-body { margin:0; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: var(--white-soft); color: var(--text-dark); padding-top:100px; }
-section { padding:80px 40px; }
-.section-title { font-size:2.5rem; font-weight:700; margin-bottom:20px; text-align:center; }
-.section-sub { font-size:1.2rem; margin-bottom:40px; text-align:center; max-width:800px; margin-left:auto; margin-right:auto; color: var(--muted-dark); }
-.cards { display:flex; flex-wrap:wrap; justify-content:center; gap:30px; }
-.card { background: var(--white); padding:30px; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.05); width:300px; transition: transform 0.3s ease; }
-.card:hover { transform: translateY(-10px); }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NH110Lab – Agents IA & Services</title>
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <style>
+    :root {
+      --accent: #845bff;
+      --primary: #222;
+      --white: #ffffff;
+      --bg: #f5f5f9;
+      --shadow-xl: 0 30px 60px rgba(0,0,0,0.1);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--primary);
+      line-height: 1.6;
+    }
+    /* header premium */
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 22px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(22px);
+      background: rgba(255,255,255,0.55);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      z-index: 2000;
+      transition: 0.35s ease;
+    }
+    .header-scrolled {
+      padding: 14px 60px;
+      background: rgba(255,255,255,0.85);
+    }
+    .brand-logo {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: block;
+      background: radial-gradient(circle at 20% 0, #fff, #cab8ff, #845bff);
+      box-shadow: 0 0 30px rgba(132,91,255,0.4);
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 36px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 17px;
+      color: var(--primary);
+      position: relative;
+      transition: 0.25s ease;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      transition: 0.3s ease;
+    }
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .nav-toggle span {
+      width: 28px;
+      height: 3px;
+      background: var(--primary);
+      transition: 0.3s ease;
+    }
+    @media (max-width: 900px) {
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: var(--white);
+        box-shadow: var(--shadow-xl);
+        transition: 0.4s ease;
+      }
+      .nav-links.open {
+        right: 0;
+      }
+      .nav-toggle {
+        display: flex;
+      }
+      .nav-links a {
+        font-size: 26px;
+        margin: 14px 0;
+      }
+    }
+    /* Section styles */
+    section {
+      padding: 120px 60px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .section-title {
+      font-size: 36px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .section-sub {
+      font-size: 20px;
+      margin-bottom: 60px;
+      text-align: center;
+      color: #666;
+    }
+    /* Cards generic */
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      padding: 30px;
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+    }
+    .cards-grid {
+      display: grid;
+      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    /* Pricing specific styles */
+    .pricing-card {
+      text-align: center;
+    }
+    .pricing-card h3 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    .pricing-card .price {
+      font-size: 48px;
+      color: var(--accent);
+      margin: 20px 0;
+    }
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+    .pricing-features li {
+      margin: 8px 0;
+    }
+    .pricing-card button {
+      background: var(--accent);
+      color: var(--white);
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    .pricing-card button:hover {
+      background: #6b49cc;
+    }
+    /* Contact section */
+    .contact-form {
+      max-width: 600px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      padding: 14px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      width: 100%;
+    }
+    .contact-form button {
+      align-self: flex-start;
+      background: var(--accent);
+      color: var(--white);
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .contact-form button:hover {
+      background: #6b49cc;
+    }
+  </style>
 </head>
 <body>
+  <header class="header">
+    <a href="#hero" class="brand-logo"></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#hero">Accueil</a></li>
+        <li><a href="#agents">Agents IA</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#pricing">Tarifs</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
 
-<header class="header">
-  <a href="#hero" class="brand-logo"></a>
-  <nav class="nav">
-    <ul class="nav-links">
-      <li><a href="#hero">Accueil</a></li>
-      <li><a href="#agents">Agents IA</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#about">À propos</a></li>
-      <li><a href="#pricing">Tarifs</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
-  </nav>
-</header>
+  <!-- Hero section -->
+  <section id="hero">
+    <h1 class="section-title">Bienvenue chez NH110Lab</h1>
+    <p class="section-sub">Des agents IA sur mesure pour transformer votre entreprise.</p>
+  </section>
 
-<!-- hero section -->
-<section id="hero">
-  <h1 class="section-title">Bienvenue chez NH110LAB.AI</h1>
-  <p class="section-sub">Laboratoire d'intelligence neuronale premium. Agents IA haut de gamme, automatisation de luxe et intelligence cognitive avancée.</p>
-</section>
-<!-- Agents section -->
-<section id="agents">
-  <h2 class="section-title">Agents IA</h2>
-  <p class="section-sub">Découvrez nos agents IA haut de gamme conçus pour optimiser vos processus.</p>
-  <div class="cards">
-    <div class="card">
-      <h3>Agent 1</h3>
-      <p class="section-sub">Description de l'agent 1.</p>
+  <!-- Agents IA section -->
+  <section id="agents">
+    <h2 class="section-title">Nos Agents IA</h2>
+    <p class="section-sub">Découvrez nos solutions d'intelligence artificielle.</p>
+    <div class="cards-grid">
+      <div class="card">
+        <h3>Agent Conversationnel</h3>
+        <p>Support client automatisé 24/7 avec un langage naturel.</p>
+      </div>
+      <div class="card">
+        <h3>Agent d'Analyse</h3>
+        <p>Analyse de données avancée et rapports personnalisés.</p>
+      </div>
+      <div class="card">
+        <h3>Agent de Prévision</h3>
+        <p>Prédictions précises pour prendre des décisions éclairées.</p>
+      </div>
     </div>
-    <div class="card">
-      <h3>Agent 2</h3>
-      <p class="section-sub">Description de l'agent 2.</p>
+  </section>
+
+  <!-- Services section -->
+  <section id="services">
+    <h2 class="section-title">Services</h2>
+    <p class="section-sub">Nos services complets pour la réussite de votre projet IA.</p>
+    <div class="cards-grid">
+      <div class="card">
+        <h3>Intégration sur mesure</h3>
+        <p>Intégration transparente de nos agents IA dans votre infrastructure.</p>
+      </div>
+      <div class="card">
+        <h3>Formation & Support</h3>
+        <p>Accompagnement complet et formation de vos équipes.</p>
+      </div>
+      <div class="card">
+        <h3>Consulting IA</h3>
+        <p>Conseil stratégique pour maximiser vos investissements en IA.</p>
+      </div>
     </div>
-    <div class="card">
-      <h3>Agent 3</h3>
-      <p class="section-sub">Description de l'agent 3.</p>
+  </section>
+
+  <!-- About section -->
+  <section id="about">
+    <h2 class="section-title">À propos</h2>
+    <p class="section-sub">Nous sommes passionnés par l'innovation et la technologie.</p>
+    <p>NH110Lab est une équipe d'experts en intelligence artificielle qui conçoit des solutions élégantes et performantes pour aider les entreprises à atteindre de nouveaux sommets. Nous combinons technologie de pointe et design haut de gamme pour une expérience unique.</p>
+  </section>
+
+  <!-- Pricing section -->
+  <section id="pricing">
+    <h2 class="section-title">Tarifs</h2>
+    <p class="section-sub">Choisissez le plan qui correspond à vos besoins.</p>
+    <div class="cards-grid">
+      <div class="card pricing-card">
+        <h3>Essentiel</h3>
+        <div class="price">€29/mois</div>
+        <ul class="pricing-features">
+          <li>Accès à un agent IA</li>
+          <li>Support par email</li>
+          <li>Mises à jour mensuelles</li>
+        </ul>
+        <button>Souscrire</button>
+      </div>
+      <div class="card pricing-card">
+        <h3>Professionnel</h3>
+        <div class="price">€79/mois</div>
+        <ul class="pricing-features">
+          <li>Tous les avantages Essentiel</li>
+          <li>Agents multiples</li>
+          <li>Support prioritaire</li>
+        </ul>
+        <button>Souscrire</button>
+      </div>
+      <div class="card pricing-card">
+        <h3>Entreprise</h3>
+        <div class="price">€149/mois</div>
+        <ul class="pricing-features">
+          <li>Solutions personnalisées</li>
+          <li>Formation dédiée</li>
+          <li>Support 24/7</li>
+        </ul>
+        <button>Souscrire</button>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Services section -->
-<section id="services">
-  <h2 class="section-title">Services</h2>
-  <p class="section-sub">Nos services d'automatisation de luxe et de conseil en intelligence artificielle.</p>
-</section>
-<!-- About section -->
-<section id="about">
-  <h2 class="section-title">À propos</h2>
-  <p class="section-sub">NH110LAB.AI est un laboratoire d'intelligence neuronale premium dédié à l'innovation.</p>
-</section>
-<!-- Pricing section -->
-<section id="pricing">
-  <h2 class="section-title">Tarifs</h2>
-  <p class="section-sub">Choisissez le plan qui vous convient.</p>
-</section>
-<!-- Contact section -->
-<section id="contact">
-  <h2 class="section-title">Contact</h2>
-  <p class="section-sub">Prenez contact avec nous pour découvrir comment nos solutions peuvent vous aider.</p>
-</section>
+  <!-- Contact section -->
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+    <p class="section-sub">Discutons de votre projet.</p>
+    <form class="contact-form">
+      <input type="text" placeholder="Votre nom" required>
+      <input type="email" placeholder="Votre email" required>
+      <textarea rows="5" placeholder="Votre message" required></textarea>
+      <button type="submit">Envoyer</button>
+    </form>
+  </section>
 
-<script>
-// MENU MOBILE
-const toggleBtn = document.querySelector('.nav-toggle');
-const navLinks = document.querySelector('.nav-links');
-toggleBtn.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-  toggleBtn.classList.toggle('open');
-});
+  <script>
+    // Mobile menu toggle
+    const toggleBtn = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    toggleBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      toggleBtn.classList.toggle('open');
+    });
 
-// HEADER SCROLL EFFECT
-ScrollTrigger.create({
-  start: 'top -80',
-  end: 99999,
-  toggleClass: { targets: '.header', className: 'header-scrolled' }
-});
+    // Header scroll effect
+    ScrollTrigger.create({
+      start: "top -80",
+      end: 99999,
+      toggleClass: { targets: ".header", className: "header-scrolled" }
+    });
 
-// TITRES – ANIMATION GSAP
-gsap.utils.toArray('.section-title').forEach((title) => {
-  gsap.from(title, {
-    scrollTrigger: { trigger: title, start: 'top 85%' },
-    opacity: 0,
-    y: 50,
-    duration: 1.1,
-    ease: 'power3.out'
-  });
-});
+    // Title animations
+    gsap.utils.toArray(".section-title").forEach((title) => {
+      gsap.from(title, {
+        scrollTrigger: { trigger: title, start: "top 85%" },
+        opacity: 0,
+        y: 50,
+        duration: 1.1,
+        ease: "power3.out"
+      });
+    });
 
-// PARAGRAPHES – ANIMATION
-gsap.utils.toArray('.section-sub').forEach((sub) => {
-  gsap.from(sub, {
-    scrollTrigger: { trigger: sub, start: 'top 90%' },
-    opacity: 0,
-    y: 30,
-    duration: 1.1,
-    ease: 'power3.out'
-  });
-});
+    // Paragraph animations
+    gsap.utils.toArray(".section-sub").forEach((sub) => {
+      gsap.from(sub, {
+        scrollTrigger: { trigger: sub, start: "top 90%" },
+        opacity: 0,
+        y: 30,
+        duration: 1.1,
+        ease: "power3.out"
+      });
+    });
 
-// CARDS – stagger premium
-gsap.utils.toArray('.card').forEach((card, i) => {
-  gsap.from(card, {
-    scrollTrigger: { trigger: card, start: 'top 92%' },
-    opacity: 0,
-    y: 60,
-    duration: 1.15,
-    delay: i * 0.06,
-    ease: 'power3.out'
-  });
-});
-</script>
+    // Card animations
+    gsap.utils.toArray(".card").forEach((card, i) => {
+      gsap.from(card, {
+        scrollTrigger: { trigger: card, start: "top 92%" },
+        opacity: 0,
+        y: 60,
+        duration: 1.15,
+        delay: i * 0.06,
+        ease: "power3.out"
+      });
+    });
+  </script>
 </body>
 </html>
