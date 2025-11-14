@@ -1,714 +1,410 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- ============================
+ABOUT — Clean Apple Section
+============================ -->
+<section id="about" class="section">
+  <div class="section-inner">
 
-<title>NH110LAB.AI – Intelligence autonome premium</title>
+    <h2 class="section-title">Un laboratoire IA nouvelle génération</h2>
 
-<!-- Font Apple-like -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <p class="section-desc">
+      NH110LAB conçoit des agents autonomes hautes performances, pensés pour 
+      la précision, la cohérence, et la fluidité. Chaque solution est optimisée 
+      pour s’adapter parfaitement à votre activité.
+    </p>
 
-<style>
+  </div>
+</section>
+<!-- ============================
+AGENTS — Clean Grid
+============================ -->
+<section id="agents" class="section">
+  <div class="section-inner">
 
+    <h2 class="section-title">Agents IA Premium</h2>
+    <p class="section-desc">
+      Une suite complète d’agents intelligents, conçus comme de véritables produits.
+    </p>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>Prospector+</h3>
+        <p>Prospection autonome + scoring intelligent.</p>
+      </div>
+
+      <div class="card">
+        <h3>DocReader IA</h3>
+        <p>Lecture intelligente + extraction + résumé automatique.</p>
+      </div>
+
+      <div class="card">
+        <h3>CRM Sync</h3>
+        <p>Synchronisation CRM + relances automatiques.</p>
+      </div>
+
+      <div class="card">
+        <h3>SupportFlow</h3>
+        <p>Support client 24/7 naturel & cohérent.</p>
+      </div>
+
+      <div class="card">
+        <h3>AutoTech IA</h3>
+        <p>Diagnostic OBD intelligent + analyse de panne.</p>
+      </div>
+
+      <div class="card">
+        <h3>Data Insight</h3>
+        <p>Dashboards autonomes + décisions pilotées par l’IA.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!-- ============================
+SERVICES — Clean Professional Layout
+============================ -->
+<section id="services" class="section">
+  <div class="section-inner">
+
+    <h2 class="section-title">Services Premium</h2>
+    <p class="section-desc">
+      Intégration IA, automatisation, API, architecture technique complète.
+    </p>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>Conception IA</h3>
+        <p>Agents autonomes + pipelines cognitifs.</p>
+      </div>
+
+      <div class="card">
+        <h3>Automations & API</h3>
+        <p>WhatsApp, CRM, sites web, back-office automatisé.</p>
+      </div>
+
+      <div class="card">
+        <h3>Expertise IA</h3>
+        <p>Audit + stratégie + optimisation IA profonde.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!-- ============================
+PRICING — Light Apple Clean
+============================ -->
+<section id="pricing" class="section">
+  <div class="section-inner">
+
+    <h2 class="section-title">Tarifs</h2>
+    <p class="section-desc">Des offres simples, transparentes et performantes.</p>
+
+    <div class="grid">
+
+      <div class="card pricing">
+        <h3>Essentiel</h3>
+        <p class="price">199€</p>
+        <p>1 agent IA + installation + assistance.</p>
+        <button class="btn-main">Commencer</button>
+      </div>
+
+      <div class="card pricing highlight">
+        <h3>Pro</h3>
+        <p class="price">499€</p>
+        <p>Agent IA avancé + CRM/API + personnalisation totale.</p>
+        <button class="btn-main">Choisir Pro</button>
+      </div>
+
+      <div class="card pricing">
+        <h3>Entreprise</h3>
+        <p class="price">1290€</p>
+        <p>Automations complètes + support continu.</p>
+        <button class="btn-main">Sur devis</button>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================
+CONTACT
+============================ -->
+<section id="contact" class="section">
+  <div class="section-inner">
+
+    <h2 class="section-title">Contact</h2>
+    <p class="section-desc">Réponse en moins d’1 heure.</p>
+
+    <form class="contact-form">
+      <input type="text" placeholder="Nom complet" required>
+      <input type="email" placeholder="Email" required>
+      <textarea rows="6" placeholder="Décrivez votre projet..." required></textarea>
+      <button type="submit" class="btn-main">Envoyer</button>
+    </form>
+
+  </div>
+</section>
+
+
+<!-- ============================
+FAQ
+============================ -->
+<section id="faq" class="section">
+  <div class="section-inner">
+
+    <h2 class="section-title">FAQ</h2>
+
+    <div class="grid">
+      <div class="card"><h3>Délai ?</h3><p>2 à 7 jours selon le projet.</p></div>
+      <div class="card"><h3>Personnalisation ?</h3><p>100% adapté à votre activité.</p></div>
+      <div class="card"><h3>Compatibilité ?</h3><p>CRM, API, WhatsApp, sites, automations.</p></div>
+    </div>
+
+  </div>
+</section>
 /* ===========================================================
-   APPLE INTELLIGENCE : VARIABLES GLOBALES
-   =========================================================== */
+   VARIABLES — Apple Intelligence Auto Light/Dark
+=========================================================== */
 :root{
-    --c-bg-light: #F7F8FA;
-    --c-bg-dark: #0A0A0C;
-    --c-text-light: #0A0A0C;
-    --c-text-dark: #ffffff;
+  --bg-light: #F5F6F8;
+  --bg-dark: #0A0A0C;
 
-    --glass-light: rgba(255,255,255,0.45);
-    --glass-dark: rgba(255,255,255,0.1);
+  --text-light: #0A0A0C;
+  --text-dark: #ffffff;
 
-    --ai-blue: #4C7EFF;
-    --ai-purple: #8B5CFF;
-    --ai-pink: #FF6AD5;
-    --ai-cyan: #4CD8FF;
+  --glass-light: rgba(255,255,255,0.55);
+  --glass-dark: rgba(255,255,255,0.08);
 
-    --radius-lg: 34px;
-    --radius-xl: 60px;
+  --ai-blue: #4C7EFF;
+  --ai-purple: #8B5CFF;
+  --ai-pink: #FF6AD5;
 
-    --shadow-soft: 0 30px 80px rgba(0,0,0,0.22);
-    --shadow-hard: 0 70px 160px rgba(0,0,0,0.40);
+  --radius: 28px;
+  --section-space: 180px;
 
-    --transition: cubic-bezier(0.25, 0.6, 0.3, 1);
+  --transition: cubic-bezier(0.25,0.6,0.3,1);
 }
 
-/* Mode automatique iOS */
+/* Auto mode */
 @media (prefers-color-scheme: light){
-  :root{ background:var(--c-bg-light); color:var(--c-text-light); }
+  body{ background:var(--bg-light); color:var(--text-light); }
 }
 @media (prefers-color-scheme: dark){
-  :root{ background:var(--c-bg-dark); color:var(--c-text-dark); }
+  body{ background:var(--bg-dark); color:var(--text-dark); }
 }
 
 /* ===========================================================
-   RESET + BODY
-   =========================================================== */
-*{margin:0;padding:0;box-sizing:border-box;}
+   RESET
+=========================================================== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 body{
   font-family:"Inter", sans-serif;
   overflow-x:hidden;
-  background:var(--c-bg-dark);
-  color:white;
-  opacity:0;
-  animation:fadeIn 1.2s ease forwards;
-}
-@keyframes fadeIn{
-  from{opacity:0;}
-  to{opacity:1;}
-}
-
-/* ===========================================================
-   LOADER VISIONOS (Liquid Glass + Glow)
-   =========================================================== */
-#loader{
-  position:fixed;
-  inset:0;
-  background:rgba(10,10,12,0.92);
-  backdrop-filter:blur(30px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:99999;
-  animation:loaderFade 2.6s ease forwards;
-}
-@keyframes loaderFade{
-  0%{opacity:1;}
-  80%{opacity:1;}
-  100%{opacity:0; pointer-events:none;}
-}
-
-.loader-orb{
-  width:140px;
-  height:140px;
-  border-radius:50%;
-  filter:blur(25px);
-  background:radial-gradient(circle,
-    var(--ai-blue),
-    var(--ai-purple),
-    var(--ai-pink)
-  );
-  animation:orbPulse 3s infinite alternate ease-in-out;
-}
-@keyframes orbPulse{
-  0%{transform:scale(0.85);}
-  100%{transform:scale(1.25);}
-}
-
-/* ===========================================================
-   NAVIGATION VISIONOS FLOAT
-   =========================================================== */
-header{
-  position:fixed;
-  top:35px;
-  left:50%;
-  transform:translateX(-50%);
-  width:85%;
-  padding:22px 40px;
-  border-radius:var(--radius-xl);
-
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.12);
-  backdrop-filter:blur(40px) saturate(1.4);
-
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  z-index:999;
-  box-shadow:var(--shadow-soft);
-}
-
-.logo{
-  font-size:28px;
-  font-weight:800;
-  letter-spacing:-1px;
-  background:linear-gradient(135deg, var(--ai-pink), var(--ai-purple));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-nav{
-  display:flex;
-  gap:40px;
-}
-nav a{
-  text-decoration:none;
+  line-height:1.5;
   font-size:18px;
-  opacity:0.75;
-  color:white;
-  transition:.3s var(--transition);
-}
-nav a:hover{
-  opacity:1;
-  transform:translateY(-2px);
-}
-
-/* MOBILE */
-#menu-btn{
-  display:none;
-  width:40px;height:40px;
-  background:rgba(255,255,255,0.15);
-  border-radius:14px;
-  border:none;
-  backdrop-filter:blur(15px);
-}
-@media(max-width:900px){
-  nav{display:none;}
-  #menu-btn{display:block;}
 }
 
 /* ===========================================================
-   HERO — SPATIAL APPLE INTELLIGENCE
-   =========================================================== */
-#hero{
-  height:100vh;
-  display:flex;
-  align-items:center;
-  padding-left:140px;
-  padding-right:40px;
-  position:relative;
-  overflow:hidden;
+   STRUCTURE GLOBALE
+=========================================================== */
+.section{
+  padding:var(--section-space) 0;
+  width:100%;
+}
+.section-inner{
+  width:90%;
+  max-width:1400px;
+  margin:auto;
+  text-align:center;
 }
 
-/* Néon IA halo */
-#hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(
-    1200px ellipse at 30% 50%,
-    rgba(76,126,255,0.35),
-    rgba(139,92,255,0.30),
-    rgba(255,106,213,0.25),
-    transparent 70%
-  );
-  filter:blur(55px);
-  animation:heroGlow 14s infinite alternate ease-in-out;
-}
-@keyframes heroGlow{
-  0%{transform:translate(0,0);}
-  100%{transform:translate(80px,-50px) scale(1.15);}
-}
-
-/* TEXT HERO */
-#hero h1{
-  font-size:90px;
-  line-height:1.05;
-  max-width:900px;
+/* Titres */
+.section-title{
+  font-size:64px;
+  font-weight:800;
+  margin-bottom:25px;
+  letter-spacing:-1px;
   opacity:0;
-  animation:heroTitle 1.4s var(--transition) forwards;
+  transform:translateY(30px);
+  transition:0.9s var(--transition);
 }
-@keyframes heroTitle{
-  0%{opacity:0; transform:translateY(40px);}
-  100%{opacity:1; transform:translateY(0);}
-}
-
-#hero p{
-  font-size:28px;
-  max-width:780px;
-  margin-top:25px;
-  opacity:0;
-  animation:heroText 1.6s var(--transition) forwards;
-}
-@keyframes heroText{
-  0%{opacity:0; transform:translateY(40px);}
-  100%{opacity:1; transform:translateY(0);}
+.section-title.appear{
+  opacity:1;
+  transform:translateY(0);
 }
 
-/* BUTTON HERO */
-.btn-main{
-  margin-top:40px;
-  padding:22px 55px;
-  background:linear-gradient(135deg,var(--ai-blue),var(--ai-purple));
-  border:none;
-  border-radius:20px;
-  color:white;
-  cursor:pointer;
+/* Sous-titres */
+.section-desc{
   font-size:22px;
+  opacity:0.7;
+  max-width:850px;
+  margin:auto;
+  margin-bottom:80px;
+}
+
+/* ===========================================================
+   GRID — Propre & homogène
+=========================================================== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(300px,1fr));
+  gap:50px;
+  width:100%;
+}
+
+/* ===========================================================
+   CARDS — Glass Apple Clean
+=========================================================== */
+.card{
+  padding:40px;
+  border-radius:var(--radius);
+  backdrop-filter:blur(18px);
+  background:var(--glass-dark);
+  border:1px solid rgba(255,255,255,0.12);
+  transition:0.35s var(--transition);
+}
+@media (prefers-color-scheme:light){
+  .card{
+    background:var(--glass-light);
+    border:1px solid rgba(0,0,0,0.1);
+  }
+}
+
+/* Hover Apple smooth */
+.card:hover{
+  transform:translateY(-10px);
+}
+
+/* Pricing Highlight */
+.highlight{
+  border:2px solid var(--ai-purple);
+  box-shadow:0 25px 80px rgba(139,92,255,0.35);
+  transform:scale(1.03);
+}
+
+/* Prix */
+.price{
+  font-size:46px;
+  font-weight:800;
+  margin:20px 0;
+  color:var(--ai-blue);
+}
+
+/* ===========================================================
+   BUTTONS — Apple Intelligence
+=========================================================== */
+.btn-main{
+  margin-top:25px;
+  padding:18px 48px;
+  font-size:20px;
   font-weight:600;
-  backdrop-filter:blur(8px);
-  box-shadow:0 20px 60px rgba(80,80,255,0.30);
-  transition:.3s var(--transition);
+  border-radius:16px;
+  border:none;
+  cursor:pointer;
+  color:white;
+  background:linear-gradient(135deg, var(--ai-blue), var(--ai-purple));
+  transition:0.3s var(--transition);
+  box-shadow:0 15px 50px rgba(80,80,255,0.25);
 }
 .btn-main:hover{
-  transform:translateY(-5px) scale(1.03);
+  transform:translateY(-4px) scale(1.02);
   filter:brightness(1.15);
 }
 
-</style>
-</head>
-
-<body>
-
-<!-- LOADER -->
-<div id="loader">
-  <div class="loader-orb"></div>
-</div>
-
-<!-- NAV -->
-<header>
-  <div class="logo">NH110LAB.AI</div>
-
-  <nav>
-    <a href="#hero">Accueil</a>
-    <a href="#about">À propos</a>
-    <a href="#agents">Agents IA</a>
-    <a href="#services">Services</a>
-    <a href="#pricing">Tarifs</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <button id="menu-btn"></button>
-</header>
-
-<!-- HERO -->
-<section id="hero">
-  <div>
-    <h1>
-      Intelligence autonome.<br>
-      Fluide. Adaptative. Visionnaire.
-    </h1>
-
-    <p>
-      Une nouvelle génération d’agents IA premium, conçus avec la précision,
-      la cohérence et la fluidité inspirées des meilleures expériences au monde.
-    </p>
-
-    <button class="btn-main"
-      onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-      Créer mon agent IA
-    </button>
-  </div>
-</section>
-<!-- ============================
-     ABOUT — Liquid Glass Section
-============================ -->
-<section id="about" style="position:relative;">
-  
-  <!-- Halo VisionOS -->
-  <div style="
-    position:absolute; inset:0;
-    background:radial-gradient(900px circle at 20% 10%,
-      rgba(76,126,255,0.18),
-      rgba(139,92,255,0.18),
-      rgba(255,106,213,0.15),
-      transparent 70%
-    );
-    filter:blur(60px);
-    z-index:-1;
-  "></div>
-
-  <h2 class="section-title">Un laboratoire IA nouvelle génération</h2>
-
-  <p class="section-desc">
-    Nous créons des agents IA autonomes, optimisés, performants et élégants.
-    Une approche inspirée des standards les plus élevés du design numérique.
-  </p>
-
-</section>
-
-
-<!-- ============================
-     AGENTS IA — Apple-Level Cards
-============================ -->
-<section id="agents" style="position:relative;">
-
-  <h2 class="section-title">Agents IA d’exception</h2>
-  <p class="section-desc">
-    Conçus comme de véritables produits : précis, élégants, cohérents.
-  </p>
-
-  <div class="grid-3">
-
-    <div class="card">
-      <h3>Prospector+</h3>
-      <p>Prospection autonome, scoring intelligent, relances optimisées.</p>
-    </div>
-
-    <div class="card">
-      <h3>DocReader IA</h3>
-      <p>Lecture intelligente, extraction, résumé, compréhension contextuelle.</p>
-    </div>
-
-    <div class="card">
-      <h3>CRM Sync</h3>
-      <p>Automations CRM + synchronisation intelligente multi-systèmes.</p>
-    </div>
-
-    <div class="card">
-      <h3>SupportFlow</h3>
-      <p>Support client 24/7 : naturel, cohérent, personnalisé.</p>
-    </div>
-
-    <div class="card">
-      <h3>AutoTech IA</h3>
-      <p>Diagnostic OBD, lecture codes défaut, prédiction des pannes.</p>
-    </div>
-
-    <div class="card">
-      <h3>Data Insight</h3>
-      <p>Dashboards autonomes + décisions pilotées par l’IA.</p>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ============================
-SERVICES — Apple Intelligence Liquid Panels
-============================ -->
-<section id="services" style="padding:180px 0; position:relative;">
-
-  <!-- Halo VisionOS -->
-  <div style="
-    position:absolute; inset:0;
-    background:radial-gradient(900px circle at 75% 20%,
-      rgba(76,126,255,0.18),
-      rgba(139,92,255,0.18),
-      rgba(255,106,213,0.15),
-      transparent 70%
-    );
-    filter:blur(65px);
-    z-index:-1;
-  "></div>
-
-  <h2 class="section-title" style="text-align:center;">
-    Services premium
-  </h2>
-
-  <p class="section-desc" style="text-align:center; max-width:830px; margin:auto;">
-    Architecture IA, automatisation, intégrations API, optimisation continue.
-  </p>
-
-  <!-- GRID APPLE FIX -->
-  <div class="services-grid">
-    
-    <div class="service-card ai-card">
-      <h3>Conception IA</h3>
-      <p>Agents autonomes + pipelines cognitifs complets.</p>
-    </div>
-
-    <div class="service-card ai-card">
-      <h3>Automations & API</h3>
-      <p>CRM, WhatsApp, e-commerce, back-office, API custom.</p>
-    </div>
-
-    <div class="service-card ai-card">
-      <h3>Conseil Expert IA</h3>
-      <p>Audit, stratégie, optimisation, migration automatisée.</p>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- STYLE SERVICES -->
-<style>
-.services-grid{
-  margin-top:80px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(320px,1fr));
-  gap:45px;
-  width:90%;
-  max-width:1400px;
-  margin-left:auto;
-  margin-right:auto;
+/* ===========================================================
+   CONTACT FORM
+=========================================================== */
+.contact-form{
+  width:100%;
+  max-width:700px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:25px;
 }
 
-.service-card{
-  padding:45px;
-  border-radius:34px;
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.14);
-  backdrop-filter:blur(22px) saturate(1.4);
-  transition:.65s cubic-bezier(0.25,0.6,0.3,1);
-  box-shadow:0 30px 90px rgba(0,0,0,0.25);
-  transform-style:preserve-3d;
-}
-
-.service-card h3{
-  font-size:26px;
-  margin-bottom:12px;
-  font-weight:700;
-}
-
-.service-card p{
-  opacity:0.85;
+.contact-form input,
+.contact-form textarea{
+  padding:18px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,0.15);
   font-size:18px;
+  background:rgba(255,255,255,0.08);
+}
+@media (prefers-color-scheme:light){
+  .contact-form input,
+  .contact-form textarea{
+    background:white;
+    border:1px solid rgba(0,0,0,0.15);
+  }
 }
 
-/* Entry animation */
-.ai-card{
+/* ===========================================================
+   ANIMATIONS — Apple Smooth
+=========================================================== */
+
+/* Fade on scroll */
+.appear{
+  opacity:1!important;
+  transform:translateY(0)!important;
+}
+
+/* Smooth reveal */
+.reveal{
   opacity:0;
-  transform:translateY(60px);
+  transform:translateY(40px);
+  transition:0.8s var(--transition);
 }
-</style>
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
 
-<!-- SCRIPT ANIMATION -->
+/* ===========================================================
+   RESPONSIVE — iPhone / iPad
+=========================================================== */
+@media(max-width:900px){
+  .section-title{
+    font-size:42px;
+  }
+  .section-desc{
+    font-size:18px;
+  }
+  .btn-main{
+    width:100%;
+  }
+}
 <script>
-// Reveal animation
-document.querySelectorAll(".ai-card").forEach((card, i) => {
-
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        setTimeout(() => {
-          card.style.opacity = "1";
-          card.style.transform = "translateY(0)";
-        }, i * 150);
+/* Apparition TITRES */
+document.querySelectorAll('.section-title').forEach((el)=>{
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        el.classList.add('appear');
       }
     });
-  }, { threshold:0.25 });
-
-  obs.observe(card);
-});
-
-// Liquid hover 3D
-document.querySelectorAll(".service-card").forEach(card => {
-  card.addEventListener("mousemove", e => {
-    let r = card.getBoundingClientRect();
-    let x = e.clientX - (r.left + r.width/2);
-    let y = e.clientY - (r.top + r.height/2);
-
-    card.style.transform =
-      `translateY(-16px) rotateX(${y/35}deg) rotateY(${x/35}deg) scale(1.02)`;
-  });
-
-  card.addEventListener("mouseleave", ()=>{
-    card.style.transform = "translateY(0)";
-  });
-});
-</script>
-
-
-
-<!-- ============================
-     PRICING — Apple Clean Layout
-============================ -->
-<section id="pricing">
-
-  <h2 class="section-title">Tarifs</h2>
-  <p class="section-desc">
-    Des offres claires, performantes, adaptées à votre ambition.
-  </p>
-
-  <div class="grid-3">
-
-    <div class="card">
-      <h3>Essentiel</h3>
-      <p class="price">199€</p>
-      <p>• 1 agent IA<br>• Automatisation légère<br>• Installation incluse</p>
-      <button class="btn-main" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-        Commencer
-      </button>
-    </div>
-
-    <div class="card" style="
-      border:2px solid var(--ai-purple);
-      box-shadow:0 30px 80px rgba(139,92,255,0.35);
-      transform:scale(1.04);
-    ">
-      <h3>Pro</h3>
-      <p class="price">499€</p>
-      <p>• Agent IA avancé<br>• CRM / API intégré<br>• Personnalisation totale</p>
-      <button class="btn-main">
-        Choisir Pro
-      </button>
-    </div>
-
-    <div class="card">
-      <h3>Entreprise</h3>
-      <p class="price">1290€</p>
-      <p>• IA complète<br>• Automations illimitées<br>• Support premium dédié</p>
-      <button class="btn-main">
-        Sur devis
-      </button>
-    </div>
-
-  </div>
-</section>
-<!-- ============================
-FAQ — Motion Smooth + Apple Style
-============================ -->
-<section id="faq">
-  <h2 class="section-title">FAQ</h2>
-
-  <div class="grid-3">
-
-    <div class="card faq-item">
-      <h3>Délai ?</h3>
-      <p>Entre 2 et 7 jours selon la complexité du projet.</p>
-    </div>
-
-    <div class="card faq-item">
-      <h3>Personnalisation ?</h3>
-      <p>100 % conçu pour votre activité, vos outils et vos besoins.</p>
-    </div>
-
-    <div class="card faq-item">
-      <h3>Compatibilité ?</h3>
-      <p>CRM, API, WhatsApp, sites, emails, automations cloud.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- FAQ ANIMATION (liquid hover + reveal) -->
-<script>
-document.querySelectorAll(".faq-item").forEach(card => {
-
-  card.style.transition = "0.6s cubic-bezier(0.25,0.6,0.3,1)";
-  card.style.opacity = "0";
-  card.style.transform = "translateY(40px)";
-
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        card.style.opacity = "1";
-        card.style.transform = "translateY(0)";
-      }
-    })
   },{threshold:0.3});
-
-  obs.observe(card);
-
-  // Liquid hover
-  card.addEventListener("mousemove", e => {
-    const r = card.getBoundingClientRect();
-    const x = e.clientX - (r.left + r.width/2);
-    const y = e.clientY - (r.top + r.height/2);
-    card.style.transform = `translateY(-12px) rotateX(${y/40}deg) rotateY(${x/40}deg)`;
-  });
-
-  card.addEventListener("mouseleave", () => {
-    card.style.transform = "translateY(0)";
-  });
+  obs.observe(el);
 });
-</script>
-<!-- ============================
-PRICING — Apple Intelligence Ultra Clean
-============================ -->
-<section id="pricing">
-  <h2 class="section-title">Tarifs</h2>
-  <p class="section-desc">
-    Des offres claires, performantes et conçues pour refléter votre ambition.
-  </p>
 
-  <div class="grid-3">
-    
-    <div class="card ai-float">
-      <h3>Essentiel</h3>
-      <p class="price">199€</p>
-      <p>
-        • 1 agent IA <br>
-        • Automatisation légère <br>
-        • Installation incluse
-      </p>
-      <button class="btn-main" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-        Commencer
-      </button>
-    </div>
-
-    <div class="card ai-float" style="
-      border:2px solid var(--ai-purple);
-      box-shadow:0 30px 90px rgba(140,92,255,0.45);
-      transform:scale(1.05);
-    ">
-      <h3>Pro</h3>
-      <p class="price">499€</p>
-      <p>
-        • Agent IA avancé <br>
-        • CRM / API intégré <br>
-        • Personnalisation totale
-      </p>
-      <button class="btn-main">
-        Choisir Pro
-      </button>
-    </div>
-
-    <div class="card ai-float">
-      <h3>Entreprise</h3>
-      <p class="price">1290€</p>
-      <p>
-        • IA complète <br>
-        • Automations illimitées <br>
-        • Support premium
-      </p>
-      <button class="btn-main">
-        Sur devis
-      </button>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ============================
-FAQ — Apple Smooth Motion + Liquid Hover
-============================ -->
-<section id="faq">
-  <h2 class="section-title">FAQ</h2>
-
-  <div class="grid-3">
-
-    <div class="card faq-item ai-float">
-      <h3>Délai ?</h3>
-      <p>Entre 2 et 7 jours selon la complexité du projet.</p>
-    </div>
-
-    <div class="card faq-item ai-float">
-      <h3>Personnalisation ?</h3>
-      <p>100 % conçu pour votre activité et votre workflow.</p>
-    </div>
-
-    <div class="card faq-item ai-float">
-      <h3>Compatibilité ?</h3>
-      <p>CRM, WhatsApp, API, sites, automations cloud, dashboards.</p>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ============================
-FAQ ANIMATIONS (Reveal + Liquid Hover)
-============================ -->
-<script>
-document.querySelectorAll(".faq-item, .ai-float").forEach(card => {
-  
-  card.style.opacity = "0";
-  card.style.transform = "translateY(40px)";
-  card.style.transition = "0.8s cubic-bezier(0.25,0.6,0.3,1)";
-
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        card.style.opacity = "1";
-        card.style.transform = "translateY(0)";
+/* Apparition cartes */
+document.querySelectorAll('.reveal').forEach((el)=>{
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        el.classList.add('visible');
       }
-    })
-  }, {threshold:0.25});
-
-  obs.observe(card);
-
-  // Liquid hover
-  card.addEventListener("mousemove", e => {
-    const r = card.getBoundingClientRect();
-    const x = e.clientX - (r.left + r.width/2);
-    const y = e.clientY - (r.top + r.height/2);
-
-    card.style.transform =
-      `translateY(-12px) rotateX(${y/55}deg) rotateY(${x/55}deg)`;
-  });
-
-  card.addEventListener("mouseleave", () => {
-    card.style.transform = "translateY(0)";
-  });
-
+    });
+  },{threshold:0.2});
+  obs.observe(el);
 });
 </script>
