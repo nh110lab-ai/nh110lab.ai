@@ -1,415 +1,66 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>NH110LAB.AI – Intelligence Visionnaire</title>
-
-<!-- Font SF-like -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css">
-
-<style>
-
-/* ===========================================================
-   VARIABLES — Apple Intelligence Auto Light/Dark
-=========================================================== */
-:root{
-  --dark-bg: #050509;
-  --dark-bg-2: #0A0A0F;
-  --light-bg: #F8F9FB;
-
-  --text-light: #0A0A0C;
-  --text-dark: #ffffff;
-
-  --glass-light: rgba(255,255,255,0.55);
-  --glass-dark: rgba(255,255,255,0.08);
-  --glass-nav: rgba(255,255,255,0.09);
-
-  --ai-blue: #4C7EFF;
-  --ai-purple: #9B6BFF;
-  --ai-cyan: #4CD8FF;
-
-  --radius: 28px;
-  --transition: cubic-bezier(0.25,0.6,0.3,1);
-}
-
-@media (prefers-color-scheme: light){
-  body{ background:var(--light-bg); color:var(--text-light); }
-}
-@media (prefers-color-scheme: dark){
-  body{ background:var(--dark-bg); color:var(--text-dark); }
-}
-
-/* ===========================================================
-   GLOBAL RESET
-=========================================================== */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-body{
-  font-family:"Inter", sans-serif;
-  overflow-x:hidden;
-  line-height:1.5;
-  font-size:18px;
-}
-
-/* ===========================================================
-   LOADER VisionOS
-=========================================================== */
-#loader{
-  position:fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background:var(--dark-bg);
-  z-index:9999;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  animation:fadeOut 1s ease forwards;
-  animation-delay:1.9s;
-}
-
-.loader-orb{
-  width:130px;
-  height:130px;
-  border-radius:50%;
-  background:radial-gradient(circle at 35% 25%,
-    var(--ai-blue), var(--ai-purple), var(--ai-cyan)
-  );
-  filter:blur(8px);
-  animation:pulse 2.4s infinite ease-in-out;
-}
-
-@keyframes pulse{
-  0%{ transform:scale(.78); }
-  50%{ transform:scale(1.12); }
-  100%{ transform:scale(.78); }
-}
-
-@keyframes fadeOut{
-  to{ opacity:0; visibility:hidden; }
-}
-
-/* ===========================================================
-   HEADER — VisionOS Glass (C)
-=========================================================== */
-header{
-  position:fixed;
-  top:0; left:0;
-  width:100%;
-  padding:22px 60px;
-  z-index:1000;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  backdrop-filter:blur(32px) saturate(2.2);
-  background:var(--glass-nav);
-  border-bottom:1px solid rgba(255,255,255,0.09);
-}
-
-.brand{
-  font-size:26px;
-  font-weight:700;
-  letter-spacing:-0.5px;
-}
-
-.nav{
-  display:flex;
-  gap:38px;
-}
-
-.nav a{
-  font-size:18px;
-  text-decoration:none;
-  font-weight:500;
-  color:var(--text-dark);
-  opacity:0.85;
-  transition:0.25s;
-}
-@media (prefers-color-scheme:light){
-  .nav a{ color:var(--text-light); }
-}
-
-.nav a:hover{
-  opacity:1;
-  color:var(--ai-blue);
-}
-
-</style>
-</head>
-
-<body>
-
-<!-- LOADER -->
-<div id="loader"><div class="loader-orb"></div></div>
-
-<!-- HEADER -->
-<header>
-  <div class="brand">NH110LAB.AI</div>
-
-  <nav class="nav">
-    <a href="#hero">Accueil</a>
-    <a href="#about">À propos</a>
-    <a href="#agents">Agents</a>
-    <a href="#services">Services</a>
-    <a href="#pricing">Tarifs</a>
-    <a href="#faq">FAQ</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-<!-- ============================
-HERO — Apple Liquid Glass
-============================ -->
-<section id="hero" class="hero">
-
-  <div class="hero-inner">
-
-    <h1 class="hero-title">
-      Intelligence. Fluidité. Automatisation.
-    </h1>
-
-    <p class="hero-subtitle">
-      NH110LAB crée des agents IA puissants, précis et totalement adaptés à votre activité.
-    </p>
-
-    <div class="hero-buttons">
-      <a href="#agents" class="btn-main">Découvrir les agents</a>
-      <a href="#contact" class="btn-secondary">Contact direct</a>
-    </div>
-
-  </div>
-
-  <!-- Effet Apple Liquid Glass -->
-  <div class="hero-glow"></div>
-
-</section>
-
-<style>
-/* HERO */
-.hero{
-  height:100vh;
-  width:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  position:relative;
-  overflow:hidden;
-  padding-top:120px;
-}
-
-.hero-inner{
-  text-align:center;
-  max-width:900px;
-  animation:fadeUp 1.2s ease forwards;
-  opacity:0;
-}
-
-.hero-title{
-  font-size:78px;
-  font-weight:800;
-  letter-spacing:-2px;
-  line-height:1.1;
-  margin-bottom:25px;
-}
-
-.hero-subtitle{
-  font-size:24px;
-  opacity:0.75;
-  max-width:700px;
-  margin:auto;
-  margin-bottom:40px;
-}
-
-/* Apple Buttons */
-.btn-secondary{
-  padding:18px 42px;
-  border-radius:16px;
-  font-size:20px;
-  font-weight:600;
-  border:1px solid rgba(255,255,255,0.4);
-  backdrop-filter:blur(12px);
-  background:rgba(255,255,255,0.15);
-  color:white;
-  transition:.3s cubic-bezier(.25,.6,.3,1);
-  margin-left:10px;
-}
-@media (prefers-color-scheme:light){
-  .btn-secondary{
-    background:rgba(255,255,255,0.5);
-    border:1px solid rgba(0,0,0,0.1);
-    color:#111;
-  }
-}
-.btn-secondary:hover{
-  transform:translateY(-3px);
-  filter:brightness(1.1);
-}
-
-/* HERO GLOW */
-.hero-glow{
-  position:absolute;
-  width:900px;
-  height:900px;
-  background:radial-gradient(circle at 50% 50%, rgba(76,126,255,0.55), rgba(139,92,255,0.35), rgba(255,106,213,0.15), transparent 70%);
-  filter:blur(120px);
-  opacity:0.7;
-  animation:glowMove 12s ease-in-out infinite alternate;
-}
-
-/* ANIMATIONS */
-@keyframes fadeUp{
-  from{opacity:0; transform:translateY(40px);}
-  to{opacity:1; transform:translateY(0);}
-}
-
-@keyframes glowMove{
-  0% {transform:translate(-120px, -80px) scale(1);}
-  50% {transform:translate(90px, 40px) scale(1.15);}
-  100% {transform:translate(-80px, 120px) scale(0.95);}
-}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  .hero-title{font-size:46px;}
-  .hero-subtitle{font-size:18px;}
-}
-</style>
 <!-- =====================================
-AGENTS — Section lumineuse
+PRICING — Section premium
 ===================================== -->
-<section id="agents" class="section white-section reveal">
-  <div class="section-inner">
-
-    <h2 class="section-title">Agents IA Premium</h2>
-    <p class="section-desc">
-      Une suite complète d’agents intelligents conçus comme de véritables produits professionnels.
-    </p>
-
-    <div class="grid">
-
-      <div class="card white-card">
-        <h3>Prospector+</h3>
-        <p>Prospection autonome + scoring intelligent.</p>
-      </div>
-
-      <div class="card white-card">
-        <h3>DocReader IA</h3>
-        <p>Analyse, extraction et synthèse automatique de documents.</p>
-      </div>
-
-      <div class="card white-card">
-        <h3>CRM Sync</h3>
-        <p>Connexion CRM + relances automatiques intelligentes.</p>
-      </div>
-
-      <div class="card white-card">
-        <h3>SupportFlow</h3>
-        <p>Support client 24/7 avec langage naturel cohérent.</p>
-      </div>
-
-      <div class="card white-card">
-        <h3>AutoTech IA</h3>
-        <p>Diagnostic automobile OBD + prédiction de pannes.</p>
-      </div>
-
-      <div class="card white-card">
-        <h3>Data Insight</h3>
-        <p>Dashboards autonomes + pilotage IA des décisions.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- =====================================
-SERVICES — Section lumineuse
-===================================== -->
-<section id="services" class="section white-section reveal">
-  <div class="section-inner">
-
-    <h2 class="section-title">Services Premium</h2>
-    <p class="section-desc">
-      Intégration IA, automatisation, API, WhatsApp, CRM, architecture technique complète.
-    </p>
-
-    <div class="grid">
-
-      <div class="card white-card">
-        <h3>Conception IA</h3>
-        <p>Agents autonomes conçus sur mesure pour votre activité.</p>
-      </div>
-
-      <div class="card white-card">
-        <h3>Automations & API</h3>
-        <p>Automatisation WhatsApp, CRM, sites web, back-office.</p>
-      </div>
-
-      <div class="card white-card">
-        <h3>Expertise IA</h3>
-        <p>Audit, stratégie et optimisation profonde.</p>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-
-<!-- =====================================
-PRICING — Tarifs propres & Apple-like
-===================================== -->
-<section id="pricing" class="section white-section reveal">
+<section id="pricing" class="section white-section">
   <div class="section-inner">
 
     <h2 class="section-title">Tarifs</h2>
-    <p class="section-desc">Des offres simples, transparentes et pensées pour performer.</p>
+    <p class="section-desc">Des offres pensées pour chaque niveau de performance.</p>
 
-    <div class="grid">
+    <div class="pricing-grid">
 
-      <div class="card pricing white-card">
+      <div class="pricing-card">
         <h3>Essentiel</h3>
         <p class="price">199€</p>
-        <p>1 agent IA + installation + assistance.</p>
+        <ul>
+          <li>1 Agent IA</li>
+          <li>Installation complète</li>
+          <li>Support de base</li>
+        </ul>
         <button class="btn-main">Commencer</button>
       </div>
 
-      <div class="card pricing highlight white-card">
+      <div class="pricing-card highlight">
         <h3>Pro</h3>
         <p class="price">499€</p>
-        <p>Agent IA avancé + CRM / API + personnalisation totale.</p>
+        <ul>
+          <li>Agent IA avancé</li>
+          <li>CRM + API</li>
+          <li>Personnalisation totale</li>
+        </ul>
         <button class="btn-main">Choisir Pro</button>
       </div>
 
-      <div class="card pricing white-card">
+      <div class="pricing-card">
         <h3>Entreprise</h3>
         <p class="price">1290€</p>
-        <p>Automations complètes + support continu.</p>
+        <ul>
+          <li>Automations complètes</li>
+          <li>Support prioritaire</li>
+          <li>Intégration dédiée</li>
+        </ul>
         <button class="btn-main">Sur devis</button>
       </div>
 
     </div>
-
   </div>
 </section>
+
+
 <!-- =====================================
-CONTACT — Section claire
+CONTACT — Section claire premium
 ===================================== -->
-<section id="contact" class="section white-section reveal">
+<section id="contact" class="section white-section">
   <div class="section-inner">
 
     <h2 class="section-title">Contact</h2>
-    <p class="section-desc">Réponse rapide — généralement en moins d’1 heure.</p>
+    <p class="section-desc">Réponse rapide — moins d’une heure en général.</p>
 
-    <form class="contact-form">
+    <form class="contact-form clean-form">
       <input type="text" placeholder="Nom complet" required>
       <input type="email" placeholder="Email" required>
-      <textarea rows="6" placeholder="Décrivez votre projet..." required></textarea>
-      <button type="submit" class="btn-main">Envoyer</button>
+      <textarea rows="6" placeholder="Décrivez votre projet…" required></textarea>
+      <button class="btn-main">Envoyer</button>
     </form>
 
   </div>
@@ -417,72 +68,138 @@ CONTACT — Section claire
 
 
 <!-- =====================================
-FAQ — Section lumineuse
+FAQ — Clean & simple (Apple style)
 ===================================== -->
-<section id="faq" class="section white-section reveal">
+<section id="faq" class="section white-section">
   <div class="section-inner">
 
     <h2 class="section-title">FAQ</h2>
 
-    <div class="grid faq-grid">
+    <div class="faq-list">
 
-      <div class="card white-card">
-        <h3>Délai ?</h3>
-        <p>En général entre 2 et 7 jours selon la complexité.</p>
+      <div class="faq-item">
+        <h3>Délai de livraison ?</h3>
+        <p>En moyenne 2 à 7 jours selon la complexité du projet.</p>
       </div>
 
-      <div class="card white-card">
-        <h3>Personnalisation ?</h3>
-        <p>Chaque agent est 100% adapté à votre activité.</p>
+      <div class="faq-item">
+        <h3>L’agent est-il personnalisable ?</h3>
+        <p>Oui, chaque agent est 100% optimisé pour votre activité.</p>
       </div>
 
-      <div class="card white-card">
+      <div class="faq-item">
         <h3>Compatibilité ?</h3>
-        <p>CRM, API, WhatsApp, sites web, automations complètes.</p>
+        <p>Compatible CRM, WhatsApp, API, sites web, et systèmes d’entreprise.</p>
       </div>
 
     </div>
-
   </div>
 </section>
 
 
 <!-- =====================================
-FOOTER — Ultra Clean Apple Style
+FOOTER — Simple, premium, aligné
 ===================================== -->
 <footer class="footer">
   <div class="footer-inner">
-    <p>© 2025 — NH110LAB.ai</p>
-    <p class="footer-small">Agents IA • Automations • API • Solutions professionnelles</p>
+    <p>© 2025 – NH110LAB.ai</p>
+    <p class="footer-small">Intelligence • Automations • Agents professionnels</p>
   </div>
 </footer>
+/* =====================================================
+   PRICING — structure propre
+===================================================== */
+.pricing-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:40px;
+  margin-top:80px;
+}
+
+.pricing-card{
+  background:white;
+  border-radius:22px;
+  padding:40px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.08);
+  transition:0.3s;
+}
+
+.pricing-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 25px 60px rgba(0,0,0,0.12);
+}
+
+.pricing-card ul{
+  list-style:none;
+  margin:25px 0;
+  padding:0;
+}
+.pricing-card li{
+  margin-bottom:10px;
+  opacity:.7;
+}
+
+.pricing-card.highlight{
+  border:2px solid var(--ai-blue);
+  transform:scale(1.05);
+}
 
 
-<!-- =====================================
-SCRIPTS — Animations & Interactions
-===================================== -->
-<script>
-// ----- Fade des titres -----
-document.querySelectorAll('.section-title').forEach((el)=>{
-  const obs = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        el.classList.add('appear');
-      }
-    });
-  }, {threshold:0.3});
-  obs.observe(el);
-});
+/* =====================================================
+   CONTACT — clean form
+===================================================== */
+.clean-form{
+  max-width:600px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
+.clean-form input,
+.clean-form textarea{
+  width:100%;
+  padding:18px 22px;
+  border-radius:18px;
+  border:1px solid rgba(0,0,0,0.1);
+  font-size:18px;
+}
+.clean-form button{
+  width:100%;
+}
 
-// ----- Révélations smooth -----
-document.querySelectorAll('.reveal').forEach((el)=>{
-  const obs = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        el.classList.add('visible');
-      }
-    });
-  }, {threshold:0.2});
-  obs.observe(el);
-});
-</script>
+
+/* =====================================================
+   FAQ — Apple style
+===================================================== */
+.faq-list{
+  display:flex;
+  flex-direction:column;
+  gap:35px;
+  margin-top:60px;
+}
+
+.faq-item h3{
+  font-size:24px;
+  margin-bottom:10px;
+}
+
+.faq-item p{
+  opacity:.7;
+  font-size:18px;
+}
+
+
+/* =====================================================
+   Footer
+===================================================== */
+.footer{
+  padding:60px 0;
+  text-align:center;
+  opacity:.8;
+}
+
+.footer-small{
+  margin-top:8px;
+  font-size:15px;
+  opacity:.6;
+}
