@@ -1,269 +1,280 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NH110LAB – Apple Intelligence Hybrid Ultra</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<!-- Apple Fonts -->
-<link rel="preconnect" href="https://rsms.me/">
-<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+<title>NH110LAB – Apple Intelligence VisionOS</title>
+
+<!-- Apple SF Pro Font -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css">
 
 <style>
 
-/* ================= APPLE ROOT COLORS ================== */
+/* ===========================================================
+   APPLE INTELLIGENCE × VISIONOS — ROOT VARIABLES
+   =========================================================== */
 :root{
-  --apple-white: #f5f5f7;
-  --apple-black: #000000;
-  --apple-dark-bg: #1d1d1f;
+  --ai-white: #f7f7f9;
+  --ai-shadow: rgba(0,0,0,0.12);
 
-  --glass-light: rgba(255,255,255,0.55);
-  --glass-dark: rgba(0,0,0,0.35);
+  --ai-glass-light: rgba(255,255,255,0.55);
+  --ai-glass-dark: rgba(255,255,255,0.08);
 
-  --apple-blue: #0071e3;
-  --apple-blue-dark: #005bb5;
+  --ai-blue: #0a84ff;
+  --ai-purple: #7d56ff;
+  --ai-pink: #ff67d0;
+  --ai-cyan: #4cd5ff;
 
-  --glow-1: #82aaffaa;
-  --glow-2: #b388ffaa;
-  --glow-3: #6ecbffaa;
+  --ai-siri-1: #8ab4ff;
+  --ai-siri-2: #b388ff;
+  --ai-siri-3: #6ecbff;
 
-  --text-dark: #1d1d1f;
-  --text-light: #f5f5f7;
-
-  --muted-dark: #6e6e73;
-  --muted-light: #a1a1a6;
-
-  --radius-xl: 40px;
-  --radius-lg: 28px;
+  --radius-xl: 46px;
+  --radius-lg: 30px;
   --radius-md: 18px;
 
-  --shadow-soft: 0 20px 60px rgba(0,0,0,0.12);
+  --shadow-xl: 0 80px 200px rgba(0,0,0,0.18);
+  --shadow-soft: 0 40px 120px rgba(0,0,0,0.12);
+
+  --text-dark: #0e0e11;
+  --text-light: #fdfdff;
+
+  --muted: #86868b;
 }
 
-/* ================= AUTO DARK MODE ================== */
+/* Dark auto-mode */
 @media (prefers-color-scheme: dark){
   :root{
-    --apple-white: #1d1d1f;
-    --text-dark: #f5f5f7;
-    --muted-dark: #a1a1a6;
+    --ai-white: #111114;
+    --text-dark: #fefefe;
+    --muted: #bbbbbb;
   }
 }
 
-/* ================= GLOBAL RESET ================== */
+/* ===========================================================
+   GLOBAL RESET & BODY STYLE
+   =========================================================== */
 *{margin:0;padding:0;box-sizing:border-box;}
-html,body{overflow-x:hidden;}
-body{
-  font-family:"Inter","SF Pro Display",-apple-system,sans-serif;
-  background:var(--apple-white);
+html,body{
+  overflow-x:hidden;
+  background:var(--ai-white);
   color:var(--text-dark);
-  transition:background .6s ease, color .6s ease;
+  font-family:"Inter","SF Pro Display",-apple-system, BlinkMacSystemFont, sans-serif;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+  transition:background .5s ease, color .5s ease;
 }
 
-/* ================= LOADER APPLE ================== */
-#loader{
+/* ===========================================================
+   VISIONOS BACKGROUND: LIQUID + LIGHT ORBS + DEPTH
+   =========================================================== */
+#vision-bg{
   position:fixed;
-  top:0;left:0;width:100%;height:100%;
-  background:var(--apple-white);
-  display:flex;align-items:center;justify-content:center;
-  backdrop-filter:blur(25px);
-  z-index:9999;
-  transition:opacity .6s, visibility .6s;
-}
-#loader.hidden{
-  opacity:0;
-  visibility:hidden;
-}
-.loader-orb{
-  width:120px;height:120px;
-  border-radius:50%;
-  filter:blur(12px);
-  background:radial-gradient(circle,
-    var(--glow-1),
-    var(--glow-2),
-    var(--glow-3)
-  );
-  animation:pulseOrb 2.4s infinite ease-in-out;
-}
-@keyframes pulseOrb{
-  0%{transform:scale(.8);}
-  50%{transform:scale(1.15);}
-  100%{transform:scale(.8);}
-}
-
-/* ================= BACKGROUND VISIONOS ================== */
-#ai-liquid-bg{
-  position:fixed;
-  top:0;left:0;width:100%;height:100%;
-  z-index:-5;
+  top:0;left:0;
+  width:100%;height:100%;
+  z-index:-10;
   background:
-    radial-gradient(circle at 30% 20%, #ffffff, #f0f0f3 40%, #e5e6eb 70%);
-  filter:blur(60px);
+    radial-gradient(circle at 30% 20%, #ffffff, #f4f4fa 40%, #ececf4 70%);
+  filter:blur(80px);
 }
 
-/* Siri/VisionOS Bloom Orbs */
+/* Siri Color Orbs */
 .orb{
   position:fixed;
-  width:480px;height:480px;
+  width:520px;height:520px;
   border-radius:50%;
-  filter:blur(140px);
+  filter:blur(160px);
   opacity:.75;
   pointer-events:none;
-}
-.orb.o1{
-  top:12%;left:10%;
-  background:radial-gradient(circle, #8ab4ff55, #3c6aff33);
-}
-.orb.o2{
-  top:50%;left:65%;
-  background:radial-gradient(circle, #b388ff55, #6d4aff33);
-}
-.orb.o3{
-  top:28%;left:42%;
-  background:radial-gradient(circle, #6ecbff55, #2196f333);
+  mix-blend-mode:screen;
 }
 
-/* =============== HEADER APPLE GLASS =============== */
+.orb.o1{ top:10%; left:12%; background:var(--ai-siri-1); }
+.orb.o2{ top:52%; left:62%; background:var(--ai-siri-2); }
+.orb.o3{ top:30%; left:42%; background:var(--ai-siri-3); }
+
+/* ===========================================================
+   HEADER – APPLE GLASS (VisionOS)
+   =========================================================== */
 header{
-  position:fixed;top:0;left:0;
-  width:100%;z-index:1000;
-  padding:24px 60px;
-  display:flex;align-items:center;justify-content:space-between;
-  backdrop-filter:blur(40px);
-  background:var(--glass-light);
-  border-bottom:1px solid rgba(255,255,255,0.4);
-  transition:.5s;
-}
-@media(prefers-color-scheme:dark){
-  header{
-    background:var(--glass-dark);
-    border-bottom:1px solid rgba(255,255,255,0.08);
-  }
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  z-index:1000;
+  padding:26px 60px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  backdrop-filter:blur(40px) saturate(2.2);
+  background:var(--ai-glass-light);
+  border-bottom:1px solid rgba(255,255,255,0.35);
+  box-shadow:var(--shadow-soft);
+  transition:.4s ease;
 }
 
 .brand-logo{
-  width:60px;height:60px;
+  width:58px;height:58px;
   border-radius:50%;
-  background:radial-gradient(circle at 30% 0%, #fff, #9dbaff, #7b4fff);
-  box-shadow:0 0 45px rgba(120,120,255,0.45);
+  background:radial-gradient(circle at 30% 0%, #fff, var(--ai-blue), var(--ai-purple));
+  box-shadow:0 0 60px rgba(120,120,255,0.45);
+  transition:.4s;
+}
+.brand-logo:hover{
+  transform:scale(1.05) rotate(8deg);
 }
 
-/* Apple-style nav */
 .nav-links{
-  display:flex;gap:32px;
+  display:flex;
+  gap:38px;
   list-style:none;
 }
-
 .nav-links a{
-  color:var(--text-dark);
   text-decoration:none;
   font-size:18px;
+  color:var(--text-dark);
   font-weight:500;
   transition:.25s;
 }
 .nav-links a:hover{
-  color:var(--apple-blue);
+  color:var(--ai-blue);
 }
 
-/* =============== SECTIONS APPLE =============== */
+/* ===========================================================
+   SECTION STYLING – ULTRA CLEAN APPLE
+   =========================================================== */
 section{
   max-width:1400px;
-  padding:180px 80px;
   margin:auto;
+  padding:180px 80px;
 }
 
 .section-title{
-  font-size:64px;
+  font-size:70px;
   font-weight:800;
-  margin-bottom:18px;
   letter-spacing:-1px;
+  margin-bottom:20px;
 }
 
 .section-sub{
-  font-size:22px;
-  max-width:780px;
-  line-height:1.55;
-  color:var(--muted-dark);
-  margin-bottom:70px;
-}
-@media(prefers-color-scheme:dark){
-  .section-sub{color:var(--muted-light);}
+  font-size:24px;
+  line-height:1.6;
+  max-width:850px;
+  color:var(--muted);
+  margin-bottom:90px;
 }
 
-/* ================= APPLE CARDS ================== */
+/* ===========================================================
+   CARDS – VisionOS Glass Panels
+   =========================================================== */
 .grid-3{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:50px;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:48px;
 }
 
 .card{
-  padding:42px;
+  padding:44px;
   border-radius:var(--radius-lg);
-  background:rgba(255,255,255,0.6);
   backdrop-filter:blur(25px);
-  border:1px solid rgba(255,255,255,0.32);
+  background:rgba(255,255,255,0.55);
+  border:1px solid rgba(255,255,255,0.45);
   box-shadow:var(--shadow-soft);
   transition:.35s;
 }
-.card:hover{transform:translateY(-8px);}
-
-/* dark cards */
-.card-dark{
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.15);
-  color:var(--text-light);
+.card:hover{
+  transform:translateY(-12px);
 }
+
+.card-dark{
+  background:rgba(255,255,255,0.08);
+  color:var(--text-light);
+  border:1px solid rgba(255,255,255,0.2);
+}
+
+</style>
 </head>
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <div class="loader-orb"></div>
-</div>
-
 <!-- BACKGROUND -->
-<div id="ai-liquid-bg"></div>
+<div id="vision-bg"></div>
 <div class="orb o1"></div>
 <div class="orb o2"></div>
 <div class="orb o3"></div>
+<!-- ===================== HERO Apple Intelligence ===================== -->
+<section id="hero" style="position:relative;">
 
-<!-- ================= HEADER ================= -->
-<header>
-  <div class="brand-logo"></div>
+  <div style="
+    position:absolute;
+    top:-120px;
+    left:0;
+    width:100%;
+    height:420px;
+    background:radial-gradient(circle at 50% 0%,
+      rgba(140,180,255,0.35),
+      rgba(179,136,255,0.22),
+      rgba(110,203,255,0.18),
+      transparent 70%
+    );
+    filter:blur(60px);
+    z-index:-1;
+  "></div>
 
-  <ul class="nav-links">
-    <li><a href="#hero">Accueil</a></li>
-    <li><a href="#agents">Agents IA</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#about">À propos</a></li>
-    <li><a href="#pricing">Tarifs</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</header>
-
-<!-- ================= HERO SECTION ================= -->
-<section id="hero">
-  <h1 class="section-title">
+  <h1 class="section-title" style="font-size:82px; line-height:1.05;">
     L’intelligence devient<br>
-    fluide. naturelle. supérieure.
+    <span style="
+      background:linear-gradient(90deg,
+        var(--ai-blue), var(--ai-purple), var(--ai-pink)
+      );
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    ">
+      naturelle.&nbsp;fluide.&nbsp;supérieure.
+    </span>
   </h1>
 
-  <p class="section-sub">
-    Inspiré d’Apple Intelligence & VisionOS, NH110LAB crée des agents autonomes
-    élégants, cohérents, puissants et entièrement personnalisables.
+  <p class="section-sub" style="font-size:26px; max-width:900px;">
+    Inspiré d’Apple Intelligence et du design spatial de VisionOS,
+    NH110LAB crée des agents IA autonomes, précis, élégants et entièrement personnalisés.
   </p>
 
-  <button class="btn-main" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+  <button class="btn-main"
+    style="
+      padding:20px 46px;
+      border-radius:20px;
+      background:linear-gradient(135deg, var(--ai-blue), var(--ai-purple));
+      color:white;
+      font-size:22px;
+      border:none;
+      cursor:pointer;
+      transition:.3s;
+      box-shadow:0 20px 60px rgba(0,80,255,0.22);
+    "
+    onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
     Créer mon agent IA
   </button>
-</section>
 
-<!-- ================= AGENTS IA ================= -->
-<section id="agents">
+</section>
+<!-- ===================== AGENTS IA ===================== -->
+<section id="agents" style="position:relative;">
+
+  <!-- Halo Siri subtil derrière la section -->
+  <div style="
+    position:absolute;
+    top:-80px; left:0;
+    width:100%; height:350px;
+    background:radial-gradient(circle at 50% 0%,
+      rgba(125,86,255,0.20),
+      rgba(76,213,255,0.12),
+      transparent 70%
+    );
+    filter:blur(80px);
+    z-index:-1;
+  "></div>
+
   <h2 class="section-title">Agents IA d’exception</h2>
   <p class="section-sub">
-    Une collection d’agents pensés comme des produits Apple : précision, élégance, cohérence.
+    Des agents conçus comme des produits Apple : précis, élégants, cohérents.
   </p>
 
   <div class="grid-3">
@@ -275,63 +286,99 @@ section{
 
     <div class="card">
       <h3>DocReader AI</h3>
-      <p>Analyse instantanée, compréhension contextuelle, résumés parfaits.</p>
+      <p>Analyse instantanée, compréhension contextuelle, résumés intelligents.</p>
     </div>
 
     <div class="card">
       <h3>CRM Sync</h3>
-      <p>Connexion CRM autonome, relances intelligentes et reporting intégré.</p>
+      <p>Synchronisation CRM autonome, relances intelligentes, reporting intégré.</p>
     </div>
 
     <div class="card">
       <h3>SupportFlow</h3>
-      <p>Support client 24/7. Réponses naturelles fondées sur vos données.</p>
+      <p>Support client 24/7, réponses naturelles selon vos données.</p>
     </div>
 
     <div class="card">
       <h3>AutoTech IA</h3>
-      <p>Diagnostic OBD, analyse de pannes, préconisations intelligentes.</p>
+      <p>Diagnostic OBD intelligent, analyse de pannes et préconisations.</p>
     </div>
 
     <div class="card">
       <h3>Data Analyst Mini</h3>
-      <p>Dashboards autonomes + insights automatisés.</p>
+      <p>Dashboards autonomes + insights automatiques.</p>
     </div>
 
   </div>
+
 </section>
 
-<!-- ================= SERVICES ================= -->
-<section id="services">
+
+
+<!-- ===================== SERVICES ===================== -->
+<section id="services" style="position:relative;">
+
+  <div style="
+    position:absolute;
+    top:-80px; left:0;
+    width:100%; height:350px;
+    background:radial-gradient(circle at 50% 20%,
+      rgba(140,180,255,0.18),
+      rgba(179,136,255,0.14),
+      transparent 70%
+    );
+    filter:blur(80px);
+    z-index:-1;
+  "></div>
+
   <h2 class="section-title">Services premium</h2>
-  <p class="section-sub">Développement IA, automatisation complète, intégrations et consulting.</p>
+  <p class="section-sub">
+    IA, automatisation complète, intégrations pro et architecture technique.
+  </p>
 
   <div class="grid-3">
 
     <div class="card">
       <h3>Conception IA</h3>
-      <p>Agents sur mesure, modèles avancés, pipelines autonomes optimisés.</p>
+      <p>Agents IA personnalisés, modèles avancés, pipelines autonomes.</p>
     </div>
 
     <div class="card">
       <h3>Automation & API</h3>
-      <p>n8n, API, WhatsApp Business, CRM, intégrations pro.</p>
+      <p>n8n, API, WhatsApp Business, CRM, intégrations pro complètes.</p>
     </div>
 
     <div class="card">
       <h3>Consulting IA</h3>
-      <p>Audit, architecture IA, optimisation haute performance.</p>
+      <p>Analyse, architecture IA, optimisation, stratégies d’automatisation.</p>
     </div>
 
   </div>
+
 </section>
 
-<!-- ================= ABOUT ================= -->
-<section id="about">
+
+
+<!-- ===================== ABOUT ===================== -->
+<section id="about" style="position:relative;">
+
+  <div style="
+    position:absolute;
+    top:-80px; left:0;
+    width:100%; height:350px;
+    background:radial-gradient(circle at 60% 10%,
+      rgba(110,203,255,0.20),
+      rgba(179,136,255,0.14),
+      transparent 70%
+    );
+    filter:blur(80px);
+    z-index:-1;
+  "></div>
+
   <h2 class="section-title">À propos</h2>
   <p class="section-sub">
-    NH110LAB est un studio indépendant spécialisé dans la création d’expériences IA
-    Premium inspirées du design Apple et VisionOS. Élégance, performance, excellence.
+    NH110LAB est un studio indépendant inspiré d’Apple Intelligence et de VisionOS,
+    spécialisé dans la création d’expériences IA Premium.
   </p>
 
   <div class="grid-3">
@@ -343,7 +390,7 @@ section{
 
     <div class="card">
       <h3>Approche</h3>
-      <p>Design cognitif + automatisation intelligente + performance.</p>
+      <p>Design cognitif + IA avancée + automatisation intelligente.</p>
     </div>
 
     <div class="card">
@@ -352,54 +399,72 @@ section{
     </div>
 
   </div>
-</section>
-<!-- ================= PRICING ================= -->
-<section id="pricing" class="dark-section" style="
-  background:linear-gradient(145deg,#0f0f11,#1c1c1f 50%, #0f0f11);
-  border-radius:var(--radius-xl);
-  color:white;
-  box-shadow:0 80px 200px rgba(0,0,0,0.55);
-">
 
-  <h2 class="section-title" style="color:white;">
-    Tarifs
-  </h2>
-  <p class="section-sub" style="color:#c7c7cc;">
-    Des offres adaptées à chaque ambition. Design premium, performances réelles.
-  </p>
+</section>
+<!-- ===================== PRICING ===================== -->
+<section id="pricing" style="
+  position:relative;
+  background:linear-gradient(145deg,#ffffff 0%, #f4f6ff 40%, #e8edff 90%);
+  border-radius:40px;
+  padding:160px 80px;
+  margin-top:120px;
+  box-shadow:0 80px 220px rgba(80,110,255,0.22);
+">
+  <div style="
+  position:absolute;top:-120px;left:50%;transform:translateX(-50%);
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,#82aaff55,#b388ff44,#6ecbff33,transparent 70%);
+  filter:blur(120px);z-index:-1;
+  "></div>
+
+  <h2 class="section-title">Tarifs</h2>
+  <p class="section-sub">Des offres claires, puissantes, inspirées du design premium Apple.</p>
 
   <div class="grid-3">
 
-    <div class="card card-dark">
+    <div class="card" style="background:rgba(255,255,255,0.7);backdrop-filter:blur(18px);">
       <h3>Essentiel</h3>
-      <p class="price" style="font-size:40px;font-weight:700;color:white;">199€</p>
-      <p>1 agent IA<br>+ automatisation légère<br>+ installation incluse</p>
-      <a href="#contact" class="btn-pricing">Commencer</a>
+      <p style="font-size:44px;font-weight:700;margin-top:20px;color:#0071e3;">199€</p>
+      <p>• 1 agent IA<br>• Automatisation légère<br>• Installation incluse</p>
+      <a href="#contact" class="btn-main" style="margin-top:18px;">Commencer</a>
     </div>
 
-    <div class="card card-dark" style="border:2px solid var(--apple-blue);box-shadow:0 0 45px #0071e355;">
+    <div class="card" style="
+      background:rgba(255,255,255,0.9);
+      border:2px solid #0071e3;
+      box-shadow:0 0 55px #0071e355;
+      transform:scale(1.04);
+    ">
       <h3>Pro</h3>
-      <p class="price" style="font-size:40px;font-weight:700;color:white;">499€</p>
-      <p>Agent IA avancé<br>+ CRM/API intégré<br>+ personnalisation complète</p>
-      <a href="#contact" class="btn-pricing" style="background:var(--apple-blue);">Choisir</a>
+      <p style="font-size:44px;font-weight:700;margin-top:20px;color:#0071e3;">499€</p>
+      <p>• Agent IA avancé<br>• CRM/API intégré<br>• Personnalisation complète</p>
+      <a href="#contact" class="btn-main" style="margin-top:18px;background:#0071e3;color:white;">Choisir l’offre Pro</a>
     </div>
 
-    <div class="card card-dark">
+    <div class="card" style="background:rgba(255,255,255,0.7);backdrop-filter:blur(18px);">
       <h3>Entreprise</h3>
-      <p class="price" style="font-size:40px;font-weight:700;color:white;">1290€</p>
-      <p>Système IA complet<br>+ Dashboard + Automations<br>+ support premium</p>
-      <a href="#contact" class="btn-pricing">Sur devis</a>
+      <p style="font-size:44px;font-weight:700;margin-top:20px;color:#0071e3;">1290€</p>
+      <p>• IA complète<br>• Automations illimitées<br>• Support premium dédié</p>
+      <a href="#contact" class="btn-main" style="margin-top:18px;">Sur devis</a>
     </div>
 
   </div>
 </section>
 
-<!-- ================= FAQ ================= -->
-<section id="faq">
+
+<!-- ===================== FAQ ===================== -->
+<section id="faq" style="position:relative;margin-top:200px;">
+  <div style="
+    position:absolute;top:-100px;right:0;width:450px;height:350px;
+    background:radial-gradient(circle,#b388ff33,#6ecbff22,transparent 70%);
+    filter:blur(80px);z-index:-1;
+  "></div>
+
   <h2 class="section-title">FAQ</h2>
-  <p class="section-sub">Les réponses aux questions que vous vous posez le plus souvent.</p>
+  <p class="section-sub">Les questions les plus fréquentes de nos clients.</p>
 
   <div class="grid-3">
+
     <div class="card">
       <h3>Délai ?</h3>
       <p>Entre 2 et 7 jours selon la complexité de l’agent IA.</p>
@@ -407,249 +472,408 @@ section{
 
     <div class="card">
       <h3>Personnalisation ?</h3>
-      <p>100% sur mesure. Chaque agent est adapté à votre activité.</p>
+      <p>Chaque agent est 100% adapté à votre activité.</p>
     </div>
 
     <div class="card">
       <h3>Compatibilité ?</h3>
-      <p>Fonctionne avec CRM, API, WhatsApp Business, emails, sites web…</p>
+      <p>Fonctionne avec CRM, API, WhatsApp Business, emails et sites web.</p>
     </div>
+
   </div>
 </section>
 
-<!-- ================= CONTACT ================= -->
-<section id="contact">
-  <h2 class="section-title">Contact</h2>
-  <p class="section-sub">Décrivez votre projet — réponse rapide sous 1h.</p>
 
-  <form class="contact-form">
+<!-- ===================== CONTACT ===================== -->
+<section id="contact" style="margin-top:200px;position:relative;">
+  <div style="
+    position:absolute;top:-120px;left:0;width:480px;height:360px;
+    background:radial-gradient(circle,#6ecbff44,#b388ff33,transparent 70%);
+    filter:blur(90px);z-index:-1;
+  "></div>
+
+  <h2 class="section-title">Contact</h2>
+  <p class="section-sub">Réponse rapide sous 1 heure — service premium garanti.</p>
+
+  <form class="contact-form" style="
+    max-width:780px;margin:auto;display:flex;flex-direction:column;gap:20px;
+  ">
     <input type="text" placeholder="Nom complet" required>
     <input type="email" placeholder="Email" required>
-    <textarea rows="5" placeholder="Expliquez votre besoin..." required></textarea>
-    <button class="btn-main" type="submit">Envoyer</button>
+    <textarea rows="6" placeholder="Parlez-moi de votre projet..." required></textarea>
+    <button type="submit" class="btn-main" style="width:260px;align-self:flex-start;">
+      Envoyer
+    </button>
   </form>
 </section>
 
-<!-- ================= FOOTER ================= -->
-<footer>
-  <p style="color:var(--muted-dark);margin-bottom:20px;">
-    © 2025 NH110LAB.AI — Excellence en intelligence artificielle.
+
+<!-- ===================== FOOTER ===================== -->
+<footer style="
+  text-align:center;padding:80px 20px;margin-top:200px;
+  color:#6e6e73;font-size:16px;
+">
+  <p>© 2025 NH110LAB — Apple Intelligence Experience.</p>
+  <p style="margin-top:10px;">
+    <a href="#contact" class="btn-main">Demander une démo IA</a>
   </p>
-  <a href="#contact" class="btn-main">Demander une démo IA</a>
 </footer>
-<!-- ===================== SIRI MESH LIQUID (Canvas) ===================== -->
+<!-- ===================== BLOC 5 – ANIMATIONS APPLE INTELLIGENCE ===================== -->
 <script>
-const canvas = document.getElementById("aiMesh") || document.createElement("canvas");
-if (!document.getElementById("aiMesh")) {
-  canvas.id = "aiMesh";
-  document.body.appendChild(canvas);
-}
+// ================== 1. HERO “PULSE SIRI” ==================
+function siriPulse(){
+  const hero = document.querySelector("#hero");
+  if (!hero) return;
 
-const ctx = canvas.getContext("2d");
-
-let W, H;
-
-function resizeMesh() {
-  W = canvas.width = window.innerWidth;
-  H = canvas.height = window.innerHeight;
-}
-resizeMesh();
-window.addEventListener("resize", resizeMesh);
-
-// Siri Mesh nodes
-let nodes = [];
-for (let i = 0; i < 90; i++) {
-  nodes.push({
-    x: Math.random() * W,
-    y: Math.random() * H,
-    vx: (Math.random() - 0.5) * 1.2,
-    vy: (Math.random() - 0.5) * 1.2,
-    c: `hsla(${Math.random()*360}, 85%, 65%, 0.8)`
-  });
-}
-
-function meshLoop() {
-  ctx.clearRect(0, 0, W, H);
-
-  for (let n of nodes) {
-    n.x += n.vx;
-    n.y += n.vy;
-
-    if (n.x < 0 || n.x > W) n.vx *= -1;
-    if (n.y < 0 || n.y > H) n.vy *= -1;
-
-    // node
-    ctx.beginPath();
-    ctx.fillStyle = n.c;
-    ctx.arc(n.x, n.y, 2.4, 0, Math.PI * 2);
-    ctx.fill();
-
-    // links
-    for (let n2 of nodes) {
-      let dx = n.x - n2.x;
-      let dy = n.y - n2.y;
-      let dist = dx*dx + dy*dy;
-
-      if (dist < 16000) {
-        ctx.strokeStyle = n.c;
-        ctx.globalAlpha = .08;
-        ctx.beginPath();
-        ctx.moveTo(n.x, n.y);
-        ctx.lineTo(n2.x, n2.y);
-        ctx.stroke();
-        ctx.globalAlpha = 1;
-      }
+  hero.animate(
+    [
+      { transform: "scale(1)", filter: "brightness(1)" },
+      { transform: "scale(1.015)", filter: "brightness(1.15)" },
+      { transform: "scale(1)" }
+    ],
+    {
+      duration: 4200,
+      iterations: Infinity,
+      easing: "ease-in-out"
     }
-  }
-  requestAnimationFrame(meshLoop);
+  );
 }
-meshLoop();
-</script>
+siriPulse();
 
-<!-- ===================== ORBS (VisionOS Style) ===================== -->
-<script>
-const orbs = document.querySelectorAll('.orb');
 
-function orbit(e) {
-  const x = (e.clientX / window.innerWidth) - 0.5;
-  const y = (e.clientY / window.innerHeight) - 0.5;
+// ================== 2. TITRES FLUIDE iOS18 ==================
+document.querySelectorAll(".section-title").forEach(title => {
+  title.style.opacity = "0";
 
-  orbs.forEach((orb, i) => {
-    const power = (i + 1) * 40;
-    orb.style.transform = `translate(${x * power}px, ${y * power}px)`;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        title.animate(
+          [
+            { opacity: 0, letterSpacing: "4px", filter: "blur(12px)" },
+            { opacity: 1, letterSpacing: "0px", filter: "blur(0)" }
+          ],
+          {
+            duration: 1100,
+            fill: "forwards",
+            easing: "cubic-bezier(0.25, 0.9, 0.3, 1)"
+          }
+        );
+        obs.disconnect();
+      }
+    });
   });
-}
 
-window.addEventListener("mousemove", orbit);
-window.addEventListener("touchmove", e => {
-  if (!e.touches[0]) return;
-  orbit({
-    clientX: e.touches[0].clientX,
-    clientY: e.touches[0].clientY
-  });
+  obs.observe(title);
 });
 
-// VisionOS parallax
+
+// ================== 3. CARDS “FLOAT LIQUID” ==================
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("mousemove", e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    card.style.setProperty("--x", `${x}px`);
+    card.style.setProperty("--y", `${y}px`);
+  });
+
+  card.style.position = "relative";
+  card.style.overflow = "hidden";
+
+  const halo = document.createElement("div");
+  halo.className = "liquid-halo";
+  card.appendChild(halo);
+});
+
+const styleHalo = document.createElement("style");
+styleHalo.innerHTML = `
+.liquid-halo{
+  position:absolute;
+  width:220px;height:220px;
+  background:radial-gradient(circle, #82aaff55, #b388ff33, transparent 60%);
+  top:var(--y);left:var(--x);
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  transition:0.15s ease-out;
+  filter:blur(25px);
+}
+.card:hover .liquid-halo{
+  width:260px;height:260px;
+}
+`;
+document.head.appendChild(styleHalo);
+
+
+// ================== 4. PARALLAX Apple.com ==================
 window.addEventListener("scroll", () => {
   const sc = window.scrollY;
-  orbs.forEach((o, i) => {
-    o.style.transform += ` translateY(${sc * 0.03 * (i + 1)}px)`;
-  });
-});
-</script>
 
-<!-- ===================== GSAP ===================== -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-<!-- ===================== TITLE / CARD REVEAL ===================== -->
-<script>
-gsap.registerPlugin(ScrollTrigger);
-
-// Loader hide
-window.addEventListener("load", () => {
-  const l = document.getElementById("loader");
-  if (l) l.classList.add("hidden");
-});
-
-// Cards reveal
-gsap.utils.toArray(".card").forEach((c, i) => {
-  gsap.from(c, {
-    scrollTrigger: { trigger: c, start: "top 90%" },
-    opacity: 0,
-    y: 50,
-    duration: 1.2,
-    ease: "power3.out"
+  document.querySelectorAll("section").forEach((sec, i) => {
+    sec.style.transform = `translateY(${sc * (i * 0.02)}px)`;
   });
 });
 
-// Title per-letter reveal
-function animateTitles() {
-  const titles = document.querySelectorAll(".section-title");
 
-  titles.forEach(title => {
-    const text = title.innerText.trim();
-    title.innerHTML = text
-      .split("")
-      .map(c => `<span class="char">${c === " " ? "&nbsp;" : c}</span>`)
-      .join("");
+// ================== 5. BOUTONS “Apple Intelligence Hover” ==================
+document.querySelectorAll(".btn-main").forEach(btn => {
+  btn.style.position = "relative";
+  btn.style.overflow = "hidden";
 
-    gsap.fromTo(
-      title.querySelectorAll(".char"),
-      { opacity: 0, y: 30 },
-      {
-        scrollTrigger: { trigger: title, start: "top 85%" },
-        opacity: 1,
-        y: 0,
-        duration: 1.2,
-        stagger: 0.02,
-        ease: "power3.out"
-      }
+  btn.addEventListener("mouseenter", () => {
+    btn.animate(
+      [
+        { transform: "scale(1)", filter: "brightness(1)" },
+        { transform: "scale(1.05)", filter: "brightness(1.3)" }
+      ],
+      { duration: 220, fill: "forwards", easing:"ease-out" }
     );
   });
-}
-animateTitles();
-</script>
 
-<!-- ===================== MENU VISIONOS MOBILE ===================== -->
-<script>
-const menuBtn = document.getElementById("menuToggle");
-const visionPanel = document.getElementById("mobileMenu");
-
-if (menuBtn) {
-  menuBtn.addEventListener("click", () => {
-    visionPanel.classList.toggle("open");
-    menuBtn.classList.toggle("active");
-  });
-}
-
-document.querySelectorAll('#mobileMenu a').forEach(link => {
-  link.addEventListener("click", () => {
-    visionPanel.classList.remove("open");
-    menuBtn.classList.remove("active");
+  btn.addEventListener("mouseleave", () => {
+    btn.animate(
+      [
+        { transform: "scale(1.05)", filter: "brightness(1.3)" },
+        { transform: "scale(1)", filter: "brightness(1)" }
+      ],
+      { duration: 220, fill: "forwards", easing:"ease-out" }
+    );
   });
 });
 
-// Dark / Light override toggle
-const modeBtn = document.getElementById("modeToggle");
 
-if (modeBtn) {
-  modeBtn.addEventListener("click", () => {
-    document.documentElement.classList.toggle("dark-mode");
-    modeBtn.textContent =
-      document.documentElement.classList.contains("dark-mode") ? "☀️" : "🌙";
-  });
-}
-</script>
-<!-- ===================== APPLE INTELLIGENCE OPTIMIZATIONS ===================== -->
-<script>
-/*  Smooth scroll (iOS / MacOS style)  */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener("click", function(e){
-    const target = document.querySelector(this.getAttribute("href"));
-    if (!target) return;
-    e.preventDefault();
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
+// ================== 6. BLOOM ORBS REACTIVITY (Siri Lights) ==================
+document.addEventListener("mousemove", e => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 40;
+  const y = (e.clientY / window.innerHeight - 0.5) * 40;
+
+  document.querySelectorAll(".orb").forEach((orb, i) => {
+    orb.style.transform = `translate(${x * (i+1)}px, ${y * (i+1)}px)`;
   });
 });
 
-/*  Auto blur header on scroll (like iOS)  */
-const header = document.querySelector("header");
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 50) {
-    header.style.backdropFilter = "blur(50px) saturate(1.8)";
-    header.style.background = "rgba(255,255,255,0.35)";
-  } else {
-    header.style.backdropFilter = "blur(25px)";
-    header.style.background = "var(--ai-white-glass)";
+
+// ================== 7. SMOOTH-REVEAL DESCRIPTIONS ==================
+document.querySelectorAll(".section-sub").forEach(sub => {
+  sub.style.opacity = "0";
+
+  const obs2 = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        sub.animate(
+          [
+            { opacity: 0, filter:"blur(15px)", transform:"translateY(20px)" },
+            { opacity: 1, filter:"blur(0)", transform:"translateY(0)" }
+          ],
+          {
+            duration: 900,
+            fill: "forwards",
+            easing:"cubic-bezier(0.25, 0.6, 0.3, 1)"
+          }
+        );
+        obs2.disconnect();
+      }
+    });
+  });
+
+  obs2.observe(sub);
+});
+</script>
+/* ===================== APPLE RESPONSIVE SYSTEM ===================== */
+
+/* ======== iPhone SE / Mini ======== */
+@media (max-width: 380px){
+  header{
+    padding: 18px 22px;
   }
-});
 
-/*  Auto Dark Mode Sync (VisionOS style)  */
-if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-  document.documentElement.classList.add("dark-mode");
+  .section-title{
+    font-size: 34px;
+    line-height: 1.15;
+  }
+
+  .section-sub{
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  section{
+    padding: 120px 24px;
+  }
+
+  .grid-3{
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
 }
-</script>
 
-</body>
-</html>
+/* ======== iPhone 13 → 16 Pro Max ======== */
+@media (max-width: 768px){
+  header{
+    padding: 20px 26px;
+  }
+
+  .nav-links{
+    display:none; /* Hide desktop nav */
+  }
+
+  /* Mobile VisionOS-style menu */
+  #mobile-menu-btn{
+    display:block;
+    width:42px;height:42px;
+    border-radius:14px;
+    background:rgba(255,255,255,0.6);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.4);
+  }
+
+  .section-title{
+    font-size: 40px;
+  }
+
+  section{
+    padding: 140px 30px;
+  }
+
+  .grid-3{
+    grid-template-columns: 1fr;
+    gap: 38px;
+  }
+
+  .card{
+    padding:28px;
+    backdrop-filter:blur(12px);
+  }
+
+  /* Reduce orbs intensity on mobile */
+  .orb{
+    width:320px;height:320px;
+    filter:blur(100px);
+  }
+
+  /* Hero button */
+  .btn-main{
+    width:100%;
+    font-size:18px;
+    padding:16px;
+  }
+}
+
+/* ======== iPad / iPad Pro ======== */
+@media (min-width: 769px) and (max-width: 1100px){
+  header{
+    padding: 30px 40px;
+  }
+
+  .section-title{
+    font-size: 50px;
+  }
+
+  section{
+    padding: 160px 60px;
+  }
+
+  .grid-3{
+    grid-template-columns: repeat(2, 1fr);
+    gap:40px;
+  }
+
+  .orb{
+    width:380px;height:380px;
+  }
+}
+
+/* ======== Laptop 13" / 14" ======== */
+@media (min-width: 1101px) and (max-width: 1600px){
+  .section-title{
+    font-size:58px;
+  }
+
+  .orb{
+    width:440px;height:440px;
+  }
+}
+
+/* ======== 4K / Ultra Wide Displays ======== */
+@media (min-width: 1601px){
+  section{
+    max-width: 1600px;
+  }
+
+  .section-title{
+    font-size:70px;
+  }
+
+  .orb{
+    width:600px;height:600px;
+  }
+}
+
+/* ======== VisionOS (spatial layout simulation) ======== */
+@media (min-width: 800px) and (max-height: 900px){
+  body{
+    padding-top:80px; /* More breathing room */
+  }
+
+  section{
+    transform: translateZ(120px);
+    perspective: 1600px;
+  }
+
+  .card{
+    transform: translateZ(60px);
+  }
+}
+/* ======== Apple Intelligence Enhancements (7) ======== */
+
+/* Soft-glow on scroll */
+.section-title {
+  position: relative;
+}
+.section-title::after {
+  content:"";
+  position:absolute;
+  bottom:-8px;
+  left:0;
+  width:0%;
+  height:3px;
+  background:var(--apple-blue);
+  border-radius:10px;
+  transition:width .6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.section-title.visible::after {
+  width:120px;
+}
+
+/* Apple-like hover float */
+.card:hover {
+  transform:translateY(-12px) scale(1.015);
+  box-shadow:0 40px 110px rgba(0,0,0,0.18);
+}
+
+/* Glass morphism improved */
+.card,
+header {
+  backdrop-filter: blur(45px) saturate(1.8);
+}
+
+/* Buttons Apple premium */
+.btn-main {
+  background: var(--apple-blue);
+  border-radius: 18px;
+  font-weight:600;
+  transition:0.25s;
+}
+.btn-main:hover {
+  background: var(--apple-blue-dark);
+  transform:translateY(-3px);
+  box-shadow:0 18px 45px rgba(0,113,227,0.25);
+}
+
+/* Glow Orbs smoother + iOS feel */
+.orb {
+  mix-blend-mode: screen;
+  opacity:.65;
+  transition: transform .4s ease-out;
+}
