@@ -16,14 +16,15 @@
       --bg: #ffffff;
       --text: #0f0f11;
       --sub: #777;
+      --surface-strong: rgba(255,255,255,0.80);
 
       /* Palette IA façon Siri / Apple Intelligence */
       --ai1: #9D6BFF;
       --ai2: #00C6FF;
       --ai3: #FF4DDE;
 
-      /* Glass */
-      --glass1: rgba(255, 255, 255, 0.60);
+      /* Glass (par défaut clair) */
+      --glass1: rgba(255, 255, 255, 0.65);
       --glass2: rgba(255, 255, 255, 0.30);
 
       --radius: 26px;
@@ -39,6 +40,9 @@
       overflow-x:hidden;
       opacity:0;
       animation:bodyFadeIn 1.4s ease forwards;
+      transition:
+        background-color var(--transition),
+        color var(--transition);
     }
 
     @keyframes bodyFadeIn {
@@ -46,6 +50,28 @@
     }
 
     a { color:inherit; text-decoration:none; }
+
+    /* ==========================================================
+       MODE SOMBRE dynamique (via classe body.theme-dark)
+    ========================================================== */
+    body.theme-dark {
+      --bg: #050509;
+      --text: #f5f5f8;
+      --sub: #a4a4b5;
+      --surface-strong: rgba(10,10,15,0.9);
+      --glass1: rgba(20, 20, 32, 0.85);
+      --glass2: rgba(16, 16, 26, 0.65);
+    }
+
+    body.theme-dark .bg-layer {
+      filter:blur(130px) brightness(0.9);
+    }
+
+    body.theme-dark header {
+      background:rgba(8,8,14,0.82);
+      border-bottom-color:rgba(255,255,255,0.08);
+      box-shadow:0 12px 50px rgba(0,0,0,0.65);
+    }
 
     /* ==========================================================
        FOND MULTI-HALO IA (derrière tout)
@@ -57,6 +83,7 @@
       pointer-events:none;
       z-index:-10;
       filter:blur(120px);
+      transition:filter 1.5s ease;
     }
 
     .bg-1 {
@@ -91,13 +118,12 @@
       background:rgba(255,255,255,0.48);
       border-bottom:1px solid rgba(255,255,255,0.55);
       box-shadow:0 10px 40px rgba(0,0,0,0.06);
-      transition:0.4s ease;
+      transition:0.4s ease, background 0.5s ease, box-shadow 0.5s ease;
       z-index:1000;
     }
 
     header.active {
       padding:14px 40px;
-      background:rgba(255,255,255,0.80);
       box-shadow:0 18px 60px rgba(0,0,0,0.12);
     }
 
@@ -122,6 +148,7 @@
     ========================================================== */
     section {
       padding:120px 40px;
+      transition:transform 0.9s ease, opacity 0.9s ease;
     }
 
     .section-inner {
@@ -160,9 +187,10 @@
     .section-desc {
       font-size:18px;
       color:var(--sub);
-      max-width:650px;
+      max-width:700px;
       line-height:1.7;
       margin-bottom:40px;
+      transition:color var(--transition);
     }
 
     .reveal {
@@ -183,7 +211,7 @@
       padding-top:180px;
       padding-bottom:190px;
       text-align:center;
-      max-width:900px;
+      max-width:950px;
       margin:auto;
       position:relative;
       z-index:5;
@@ -192,19 +220,19 @@
     .hero::before {
       content:"";
       position:absolute;
-      top:-200px; left:50%;
+      top:-220px; left:50%;
       transform:translateX(-50%);
-      width:900px; height:900px;
-      background:radial-gradient(circle, rgba(255,255,255,0.95), rgba(255,255,255,0.05));
-      filter:blur(130px);
+      width:950px; height:950px;
+      background:radial-gradient(circle, rgba(255,255,255,0.96), rgba(255,255,255,0.08));
+      filter:blur(140px);
       border-radius:50%;
       z-index:-1;
-      animation:heroOrb 14s infinite alternate ease-in-out;
+      animation:heroOrb 16s infinite alternate ease-in-out;
     }
 
     @keyframes heroOrb {
       0% { transform:translateX(-50%) scale(1); opacity:.7; }
-      100% { transform:translateX(-50%) scale(1.3); opacity:.95; }
+      100% { transform:translateX(-50%) scale(1.35); opacity:.98; }
     }
 
     .hero h1 {
@@ -220,13 +248,22 @@
 
     @keyframes titleGlow {
       0% { filter:drop-shadow(0 0 8px rgba(157,107,255,0.4)); }
-      100% { filter:drop-shadow(0 0 14px rgba(0,198,255,0.6)); }
+      100% { filter:drop-shadow(0 0 14px rgba(0,198,255,0.7)); }
     }
 
     .hero p {
-      font-size:23px;
-      opacity:0.8;
+      font-size:22px;
+      opacity:0.85;
       margin-top:18px;
+      max-width:650px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .hero-sub {
+      font-size:16px;
+      opacity:0.7;
+      margin-top:14px;
     }
 
     .btn-main {
@@ -251,7 +288,7 @@
 
     .btn-main:hover {
       transform:scale(1.08);
-      box-shadow:0 25px 70px rgba(124,77,255,0.65);
+      box-shadow:0 25px 70px rgba(124,77,255,0.7);
     }
 
     /* ==========================================================
@@ -284,6 +321,13 @@
     .card p {
       color:var(--sub);
       line-height:1.6;
+    }
+
+    .card small {
+      display:block;
+      margin-top:10px;
+      font-size:12px;
+      opacity:0.7;
     }
 
     /* light suivant la souris */
@@ -361,6 +405,10 @@
       padding:18px 0;
       border-bottom:1px solid rgba(0,0,0,0.12);
       cursor:pointer;
+    }
+
+    body.theme-dark .faq-item {
+      border-bottom-color:rgba(255,255,255,0.12);
     }
 
     .faq-q {
@@ -450,9 +498,10 @@
   </header>
 
   <!-- HERO -->
-  <section class="hero reveal">
+  <section id="hero" class="hero reveal">
     <h1>Des Agents IA<br>modernes & évolutifs</h1>
-    <p>Expérience inspirée d’Apple Intelligence, VisionOS et iOS 18.</p>
+    <p>Une expérience inspirée d’Apple Intelligence, VisionOS et iOS 18, pensée pour les entreprises qui veulent aller plus vite sans perdre en qualité.</p>
+    <p class="hero-sub">Automatisations, prospection, support client, pilotage… Vos agents IA travaillent en continu pendant que vous vous concentrez sur le reste.</p>
     <button class="btn-main" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
       Créer mon agent IA
     </button>
@@ -463,33 +512,39 @@
     <div class="section-inner">
       <h2 class="section-title">Agents IA Premium</h2>
       <p class="section-desc">
-        Une suite d’agents autonomes conçus pour prospecter, analyser, assister et piloter votre activité.
+        Chaque agent est conçu comme un “membre d’équipe numérique” : spécialisé, autonome, connecté à vos outils, et ajustable en continu selon vos objectifs.
       </p>
 
       <div class="cards-grid">
         <div class="card">
           <h3>Prospector+</h3>
-          <p>Prospection autonome, scoring intelligent, relances multi-canal.</p>
+          <p>Prospection autonome, scoring intelligent, relances multi-canal calibrées selon la chaleur du prospect.</p>
+          <small>Idéal pour : agences, freelances, B2B, SaaS, services locaux.</small>
         </div>
         <div class="card">
           <h3>DocReader IA</h3>
-          <p>Analyse de contrats, factures, PDF, extraction de données structurées.</p>
+          <p>Analyse contrats, factures, devis, PDF, mails. Classe, résume, extrait les infos clés dans un format exploitable.</p>
+          <small>Gagnez des heures par semaine sur la gestion documentaire.</small>
         </div>
         <div class="card">
           <h3>CRM Sync</h3>
-          <p>Connexion à votre CRM, relances automatiques, suivi client continu.</p>
+          <p>Connexion à votre CRM, détection des opportunités dormantes, relances automatiques, mise à jour des fiches clients.</p>
+          <small>Compatible avec les principaux CRM modernes.</small>
         </div>
         <div class="card">
           <h3>SupportFlow</h3>
-          <p>Support client 24/7, IA formée sur votre base de connaissance.</p>
+          <p>Support IA 24/7 formé sur vos propres données (FAQ, docs internes, base de connaissances, historique client).</p>
+          <small>Diminue la charge du support sans sacrifier la qualité.</small>
         </div>
         <div class="card">
           <h3>AutoTech IA</h3>
-          <p>Diagnostic OBD, analyse codes défaut, prévision de pannes.</p>
+          <p>Diagnostic OBD, interprétation des codes défaut, pistes de causes probables, préparation d’un rapport clair pour le client.</p>
+          <small>Pensé pour garages, centres auto, indépendants.</small>
         </div>
         <div class="card">
           <h3>Data Insight</h3>
-          <p>Dashboards temps réel, insights stratégiques, recommandations IA.</p>
+          <p>Dashboards temps réel, analyses automatiques, alertes IA dès qu’un indicateur sort de la normale.</p>
+          <small>Votre activité vue comme un cockpit, en continu.</small>
         </div>
       </div>
     </div>
@@ -500,21 +555,24 @@
     <div class="section-inner">
       <h2 class="section-title">Services</h2>
       <p class="section-desc">
-        De l’agent IA clé-en-main à l’automatisation complète de vos process, avec intégrations propres et scalables.
+        On ne vous livre pas un simple “bot”, mais une couche d’intelligence au-dessus de votre business : reliée à vos outils, testée, documentée, prête à scaler.
       </p>
 
       <div class="cards-grid">
         <div class="card">
           <h3>Conception d’agents IA</h3>
-          <p>Design, logique, prompts, sécurité, connexion à vos outils internes.</p>
+          <p>Design complet d’agents adaptés à votre métier : rôle, ton, logique métier, prise de décision, gestion des cas limites.</p>
+          <small>De l’idée au premier agent en production.</small>
         </div>
         <div class="card">
           <h3>Automations & API</h3>
-          <p>Workflows avancés (CRM, WhatsApp, email, site), API, n8n, webhooks.</p>
+          <p>Connexion à vos CRM, ERP, messageries, sites, formulaires, outils no-code et back-office via API ou n8n.</p>
+          <small>Vos agents parlent aux mêmes outils que vos équipes.</small>
         </div>
         <div class="card">
           <h3>Audit & stratégie IA</h3>
-          <p>Diagnostic de vos opérations, cartographie des tâches automatisables.</p>
+          <p>Cartographie de vos process, identification des “quick wins” IA, priorisation des flux à automatiser en premier.</p>
+          <small>Une feuille de route IA concrète, pas un simple rapport.</small>
         </div>
       </div>
     </div>
@@ -525,26 +583,26 @@
     <div class="section-inner">
       <h2 class="section-title">Tarifs</h2>
       <p class="section-desc">
-        Des plans simples, clairs et évolutifs. Démarrez petit, faites grandir vos agents IA au rythme de votre activité.
+        Les plans sont pensés pour démarrer rapidement, tester un premier cas d’usage, puis étendre progressivement vos agents IA à d’autres domaines.
       </p>
 
       <div class="pricing-row">
         <div class="price-card">
           <h3>Starter</h3>
           <div class="price">49€/mois</div>
-          <p>1 Agent IA<br>Support standard<br>Mise en place rapide.</p>
+          <p>1 Agent IA<br>Intégrations simples<br>Support standard<br><br>Parfait pour tester un cas d’usage précis.</p>
         </div>
 
         <div class="price-card">
           <h3>Business</h3>
           <div class="price">149€/mois</div>
-          <p>3 Agents IA<br>Automations avancées<br>Support prioritaire.</p>
+          <p>Jusqu’à 3 Agents IA<br>Automations avancées<br>Support prioritaire<br><br>Pour structurer une vraie “équipe d’agents”.</p>
         </div>
 
         <div class="price-card">
           <h3>Enterprise</h3>
           <div class="price">Sur devis</div>
-          <p>Agents illimités<br>Automations complexes<br>Accompagnement dédié.</p>
+          <p>Agents illimités<br>Process complexes<br>Accompagnement dédié<br><br>Pour les structures qui veulent une couche IA complète.</p>
         </div>
       </div>
     </div>
@@ -557,17 +615,17 @@
 
       <div class="faq-item">
         <div class="faq-q">Un agent IA remplace-t-il un employé&nbsp;?</div>
-        <div class="faq-a">Non. Il automatise les tâches répétitives et augmente vos équipes.</div>
+        <div class="faq-a">Non. Il automatise les tâches répétitives, prépare les informations et laisse les décisions sensibles aux humains.</div>
       </div>
 
       <div class="faq-item">
         <div class="faq-q">Quels outils puis-je connecter&nbsp;?</div>
-        <div class="faq-a">CRM, ERP, WhatsApp, emails, sites web, API internes, outils no-code, etc.</div>
+        <div class="faq-a">CRM, ERP, outils no-code, messageries, formulaires, base de données, APIs internes, sites e-commerce, etc.</div>
       </div>
 
       <div class="faq-item">
-        <div class="faq-q">Combien de temps pour déployer un agent&nbsp;?</div>
-        <div class="faq-a">De quelques jours à quelques semaines selon la complexité et les intégrations.</div>
+        <div class="faq-q">Et si je n’ai pas encore de process très clair&nbsp;?</div>
+        <div class="faq-a">On peut commencer petit : un seul flux bien défini (prospect → client, support, documents…) puis étendre progressivement.</div>
       </div>
     </div>
   </section>
@@ -579,7 +637,7 @@
 
       <div class="contact-box">
         <p style="font-size:21px;margin-bottom:28px;">
-          Parlez-moi de votre activité, on conçoit ensemble l’agent IA qui vous correspond.
+          Décrivez votre activité, vos outils et un premier cas d’usage. Un agent IA bien conçu peut déjà vous faire gagner plusieurs heures par semaine.
         </p>
         <button class="btn-main" onclick="window.location.href='mailto:nhlab.ai@icloud.com'">
           Me contacter
@@ -705,6 +763,29 @@
       requestAnimationFrame(animateParticles);
     }
     animateParticles();
+
+    /* THEME SCROLL — clair/sombre selon la section visible */
+    const sections = document.querySelectorAll("section");
+    function updateThemeOnScroll() {
+      let currentId = "hero";
+      const mid = window.innerHeight / 2;
+
+      sections.forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top <= mid && rect.bottom >= mid) {
+          currentId = sec.id || "hero";
+        }
+      });
+
+      // Dark mode surtout sur Services + Pricing
+      if (currentId === "services" || currentId === "pricing") {
+        document.body.classList.add("theme-dark");
+      } else {
+        document.body.classList.remove("theme-dark");
+      }
+    }
+    window.addEventListener("scroll", updateThemeOnScroll);
+    window.addEventListener("load", updateThemeOnScroll);
   </script>
 </body>
 </html>
