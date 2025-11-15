@@ -1,39 +1,35 @@
-<!DOCTYPE html>
-<html lang="fr">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>NH110LAB.ai — Apple Intelligence Design</title>
+<title>NH110LAB.ai — Apple Intelligence Extreme Edition</title>
 
-<!-- Font Apple-like -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css">
 
 <style>
 
 /* ==========================================================
-   ROOT — THEME ULTIME : APPLE INTELLIGENCE + VISIONOS + iOS18
+   ROOT — FULL APPLE INTELLIGENCE EXTREME EDITION
 ========================================================== */
 :root {
     --bg: #ffffff;
-    --text: #0d0d0f;
-    --subtext: #666;
+    --text: #0f0f11;
+    --sub: #777;
 
-    /* Glass layers VisionOS */
-    --glass1: rgba(255, 255, 255, 0.65);
-    --glass2: rgba(255, 255, 255, 0.40);
-    --glass3: rgba(255, 255, 255, 0.25);
+    /* Apple Intelligence Color Engine */
+    --ai1: #9D6BFF;
+    --ai2: #00C6FF;
+    --ai3: #FF4DDE;
+    --ai4: #7CF9FF;
+    --aiWhite: rgba(255,255,255,0.95);
 
-    /* Apple Intelligence bubbles colors */
-    --ai1: #9D6BFF;     /* Violet Siri */
-    --ai2: #00C6FF;     /* Bleu AI */
-    --ai3: #FF4DDE;     /* Rose Apple Intelligence */
-    --aiGlow: rgba(140, 95, 255, 0.4);
+    /* Liquid Glass VisionOS */
+    --glass1: rgba(255,255,255,0.55);
+    --glass2: rgba(255,255,255,0.30);
+    --glass3: rgba(255,255,255,0.15);
 
-    /* White halo */
-    --halo: rgba(255,255,255,0.9);
+    --radius: 28px;
+    --shadowSoft: 0 25px 60px rgba(0,0,0,0.08);
 
-    --shadowSoft: 0 20px 55px rgba(0,0,0,0.08);
-    --radius: 26px;
     --transition: .85s cubic-bezier(.25,.6,.3,1);
 }
 
@@ -43,41 +39,64 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body {
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display";
-    background: var(--bg);
-    color: var(--text);
+    font-family:"Inter",-apple-system,BlinkMacSystemFont,"SF Pro Display";
+    background:var(--bg);
+    color:var(--text);
     overflow-x:hidden;
-    transition: background var(--transition), color var(--transition);
+    transition:var(--transition);
+    opacity:0;
+    animation:bodyFadeIn 1.4s ease forwards;
 }
-
-/* Smooth fade for everything */
-section, header { opacity:0; animation:fadeIn 1.2s ease forwards; }
-@keyframes fadeIn { to { opacity:1; } }
+@keyframes bodyFadeIn { to{ opacity:1; } }
 
 /* ==========================================================
-   BACKGROUND AI — HALOS APPLE INTELLIGENCE
+   BACKGROUND LAYERS — MULTI-HALO APPLE INTELLIGENCE
 ========================================================== */
-body::before {
-    content:"";
+
+.bg-layer {
     position:fixed;
-    top:-20%; left:-10%;
-    width:140%;
-    height:140%;
-    background: radial-gradient(circle at 60% 10%,
-                rgba(140,95,255,0.25),
-                rgba(0,198,255,0.18),
-                rgba(255,255,255,0) 70%);
-    filter: blur(90px);
-    z-index:-5;
-    animation:aiGlow 14s infinite alternate ease-in-out;
+    top:0; left:0;
+    width:100vw; height:100vh;
+    pointer-events:none;
+    z-index:-10;
+    filter:blur(120px);
 }
-@keyframes aiGlow {
-    0% { transform:scale(1) translateX(0); opacity:.85; }
-    100% { transform:scale(1.2) translateX(40px); opacity:1; }
+
+/* Layer 1 — Neural Violet */
+.bg-1 {
+    background:radial-gradient(circle at 20% 30%,
+        rgba(157,107,255,0.45), transparent 70%);
+    animation:bgMove1 16s infinite alternate ease-in-out;
+}
+@keyframes bgMove1 {
+    from { transform:translate(-5%, -5%) scale(1); }
+    to   { transform:translate(5%, 5%) scale(1.25); }
+}
+
+/* Layer 2 — Neural Aqua */
+.bg-2 {
+    background:radial-gradient(circle at 80% 40%,
+        rgba(0,198,255,0.35), transparent 70%);
+    animation:bgMove2 18s infinite alternate ease-in-out;
+}
+@keyframes bgMove2 {
+    from { transform:translate(5%, -5%) scale(1.1); }
+    to   { transform:translate(-5%, 8%) scale(1.3); }
+}
+
+/* Layer 3 — Neural Pink */
+.bg-3 {
+    background:radial-gradient(circle at 50% 80%,
+        rgba(255,77,222,0.32), transparent 70%);
+    animation:bgMove3 22s infinite alternate ease-in-out;
+}
+@keyframes bgMove3 {
+    from { transform:translateY(0) scale(1); }
+    to   { transform:translateY(6%) scale(1.35); }
 }
 
 /* ==========================================================
-   HEADER — FLOATING iOS18 + VISIONOS GLASS
+   HEADER — Floating VisionOS
 ========================================================== */
 header {
     position:fixed;
@@ -87,191 +106,232 @@ header {
     display:flex;
     justify-content:space-between;
     align-items:center;
-    backdrop-filter: blur(25px) saturate(1.4);
-    background: rgba(255,255,255,0.55);
-    box-shadow:0 10px 35px rgba(0,0,0,0.06);
-    border-bottom:1px solid rgba(255,255,255,0.55);
-    z-index:1000;
-    transition:0.45s;
+    backdrop-filter:blur(28px) saturate(1.5);
+    background:rgba(255,255,255,0.42);
+    box-shadow:0 10px 40px rgba(0,0,0,0.06);
+    border-bottom:1px solid rgba(255,255,255,0.4);
+    transition:.4s;
+    z-index:2000;
 }
 header.active {
     padding:14px 40px;
-    background:rgba(255,255,255,0.75);
-    box-shadow:0 20px 50px rgba(0,0,0,0.1);
+    background:rgba(255,255,255,0.7);
+    box-shadow:0 18px 60px rgba(0,0,0,0.1);
 }
 
-/* Nav */
-nav ul { display:flex; gap:34px; list-style:none; }
+nav ul {
+    display:flex; gap:34px; list-style:none;
+}
 nav a {
     text-decoration:none;
+    color:var(--text);
     font-weight:500;
-    transition:.3s;
+    transition:.25s;
 }
 nav a:hover {
     color:var(--ai1);
+    text-shadow:0 0 12px rgba(157,107,255,0.6);
 }
 
 /* ==========================================================
-   HERO — APPLE INTELLIGENCE LIQUID ORB
+   HERO — Siri Liquid Orb + Depth Layers
 ========================================================== */
 .hero {
     padding-top:180px;
-    padding-bottom:160px;
+    padding-bottom:200px;
     text-align:center;
     max-width:950px;
     margin:auto;
     position:relative;
-    z-index:2;
+    z-index:5;
 }
 
+/* Siri Orb */
 .hero::before {
     content:"";
     position:absolute;
-    top:-50px; left:50%;
+    top:-180px; left:50%;
     transform:translateX(-50%);
-    width:650px; height:650px;
-    background: radial-gradient(circle,
-                rgba(255,255,255,0.75),
-                rgba(255,255,255,0.15));
-    filter:blur(90px);
+    width:1000px; height:1000px;
+    background:radial-gradient(circle,
+            rgba(255,255,255,0.95),
+            rgba(255,255,255,0.07));
+    filter:blur(140px);
     border-radius:50%;
     z-index:-1;
-    animation:pulseOrb 10s infinite alternate ease-in-out;
+    animation:orbPulse 14s infinite alternate ease-in-out;
 }
-
-@keyframes pulseOrb {
-    0% { transform:translateX(-50%) scale(1); opacity:.6; }
-    100% { transform:translateX(-50%) scale(1.25); opacity:.85; }
+@keyframes orbPulse {
+    0% { transform:translateX(-50%) scale(1); opacity:.7; }
+    100%{ transform:translateX(-50%) scale(1.35); opacity:.95; }
 }
 
 .hero h1 {
-    font-size:72px;
+    font-size:76px;
     font-weight:800;
-    letter-spacing:-2px;
-    line-height:1.05;
+    letter-spacing:-3px;
+    line-height:1.04;
+    background:linear-gradient(90deg,var(--ai1),var(--ai2),var(--ai3));
+    -webkit-background-clip:text;
+    color:transparent;
+    animation:titleGlow 6s infinite ease-in-out;
+}
+@keyframes titleGlow {
+    0% { filter:drop-shadow(0 0 8px rgba(157,107,255,0.4)); }
+    100%{ filter:drop-shadow(0 0 14px rgba(0,198,255,0.6)); }
 }
 
 .hero p {
     font-size:24px;
-    opacity:0.75;
-    margin-top:12px;
+    opacity:0.8;
+    margin-top:18px;
 }
 
+/* Siri Button */
 .btn-main {
-    margin-top:40px;
-    padding:18px 40px;
-    font-size:21px;
+    margin-top:45px;
+    padding:20px 45px;
+    font-size:22px;
     border:none;
+    border-radius:22px;
     color:white;
-    border-radius:20px;
     cursor:pointer;
-    background: linear-gradient(90deg, var(--ai1), var(--ai2), var(--ai3));
-    background-size:200% auto;
-    animation:gradientMove 6s infinite alternate;
-    box-shadow:0 12px 40px rgba(124,77,255,0.35);
+    background:linear-gradient(90deg,var(--ai1),var(--ai2),var(--ai3));
+    background-size:220% auto;
+    animation:btnGradient 8s infinite alternate ease-in-out;
+    box-shadow:0 15px 50px rgba(124,77,255,0.45);
     transition:.35s;
 }
-@keyframes gradientMove {
+@keyframes btnGradient {
     0% { background-position:0% 50%; }
-    100% { background-position:100% 50%; }
+    100%{ background-position:100% 50%; }
 }
-
 .btn-main:hover {
     transform:scale(1.08);
-    box-shadow:0 20px 55px rgba(124,77,255,0.55);
+    box-shadow:0 25px 70px rgba(124,77,255,0.65);
 }
 
 /* ==========================================================
-   SECTION TITLES — LIQUID UNDERLINE
+   TITLES — Liquid Underline
 ========================================================== */
 .section-title {
     font-size:42px;
     font-weight:800;
-    letter-spacing:-1px;
     margin-bottom:12px;
     position:relative;
-    opacity:0; transform:translateY(20px);
+    opacity:0; transform:translateY(40px);
     transition:1s ease;
 }
 .section-title.active {
     opacity:1; transform:translateY(0);
 }
-
 .section-title::after {
     content:"";
     position:absolute;
     bottom:-10px; left:0;
     width:90px; height:5px;
-    background:linear-gradient(90deg, var(--ai1), var(--ai2), var(--ai3));
-    border-radius:10px;
+    background:linear-gradient(90deg,var(--ai1),var(--ai2),var(--ai3));
+    border-radius:8px;
     filter:blur(1px);
 }
 
 /* ==========================================================
-   CARD GRID — VISIONOS FLOATING SHEETS
+   CARDS — VisionOS 3D Parallax + Liquid Glass
 ========================================================== */
 .cards-grid {
     display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
-    gap:35px;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:38px;
 }
 
 .card {
+    position:relative;
+    overflow:hidden;
+    padding:40px;
     background:var(--glass1);
-    padding:32px;
+    backdrop-filter:blur(40px) saturate(1.7);
     border-radius:var(--radius);
-    backdrop-filter:blur(35px) saturate(1.8);
     border:1px solid rgba(255,255,255,0.45);
-    box-shadow:0 25px 60px rgba(0,0,0,0.10);
+    box-shadow:0 28px 60px rgba(0,0,0,0.12);
     transition:.45s;
-    transform:perspective(900px) translateZ(0);
+    transform-style:preserve-3d;
+}
+
+/* Tilt Light */
+.card::before {
+    content:"";
+    position:absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    border-radius:inherit;
+    background:radial-gradient(circle at var(--mx) var(--my),
+                rgba(255,255,255,0.5), transparent 45%);
+    opacity:0;
+    transition:.25s;
+    pointer-events:none;
+}
+.card:hover::before { opacity:1; }
+
+/* Glass Shimmer */
+.card::after {
+    content:"";
+    position:absolute;
+    top:-150%; left:-150%;
+    width:300%; height:300%;
+    background:linear-gradient(
+        135deg,
+        transparent,
+        rgba(255,255,255,0.18),
+        transparent
+    );
+    transform:rotate(25deg);
+    transition:1s;
+    opacity:0;
+}
+.card:hover::after {
+    left:150%; top:150%;
+    opacity:1;
 }
 
 .card:hover {
-    transform:perspective(900px) translateZ(50px) scale(1.03);
-    box-shadow:0 40px 80px rgba(120,90,255,0.25);
-    border-color:rgba(140,95,255,0.65);
-}
-
-.card h3 {
-    font-size:22px;
-    margin-bottom:10px;
+    transform:perspective(900px) translateZ(60px) scale(1.05);
+    border-color:var(--ai1);
 }
 
 /* ==========================================================
-   ANIMATION REVEAL ON SCROLL
+   REVEAL — Scroll Animation Extreme
 ========================================================== */
 .reveal {
     opacity:0;
-    transform:translateY(40px);
-    transition:1.2s cubic-bezier(.25,.6,.3,1);
+    transform:translateY(70px) scale(.92);
+    transition:1.3s cubic-bezier(.25,.6,.3,1);
 }
 .reveal.active {
     opacity:1;
-    transform:translateY(0);
+    transform:translateY(0) scale(1);
 }
 
 /* ==========================================================
-   PRICING — FLOATING GLASS PANELS
+   PRICING — Glass Panels
 ========================================================== */
 .price-card {
     background:var(--glass2);
-    padding:45px;
+    padding:50px;
     border-radius:28px;
-    backdrop-filter:blur(40px) saturate(1.6);
-    border:1px solid rgba(255,255,255,0.4);
-    box-shadow:0 20px 55px rgba(0,0,0,0.1);
+    backdrop-filter:blur(45px) saturate(1.7);
+    border:1px solid rgba(255,255,255,0.5);
+    box-shadow:0 20px 55px rgba(0,0,0,0.12);
     transition:.45s;
     text-align:center;
 }
 .price-card:hover {
     transform:scale(1.06);
-    box-shadow:0 30px 75px rgba(120,90,255,0.3);
     border-color:var(--ai1);
+    box-shadow:0 28px 70px rgba(120,90,255,0.35);
 }
 
 /* ==========================================================
-   FAQ — iOS EXPAND
+   FAQ — Expanding iOS 18
 ========================================================== */
 .faq-item {
     padding:20px 0;
@@ -292,31 +352,62 @@ nav a:hover {
 }
 
 /* ==========================================================
-   CONTACT — FLOATING CONTACT WINDOW
+   CONTACT — Floating Window
 ========================================================== */
 .contact-box {
     background:var(--glass1);
-    padding:55px;
+    padding:60px;
     border-radius:32px;
-    backdrop-filter:blur(35px) saturate(1.5);
+    backdrop-filter:blur(35px) saturate(1.6);
     border:1px solid rgba(255,255,255,0.45);
-    box-shadow:0 30px 70px rgba(0,0,0,0.1);
+    box-shadow:0 30px 85px rgba(0,0,0,0.12);
     text-align:center;
 }
 
-/* MOBILE */
-@media(max-width:800px) {
-    .hero h1 { font-size:52px; }
-    nav ul { gap:20px; }
+/* ==========================================================
+   CURSOR HALO — Apple Intelligence
+========================================================== */
+.cursor-halo {
+    position:fixed;
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    pointer-events:none;
+    background:radial-gradient(circle,
+                rgba(157,107,255,0.30),
+                rgba(0,198,255,0.25),
+                transparent 70%);
+    filter:blur(80px);
+    transform:translate(-50%,-50%);
+    z-index:-2;
+    opacity:0.9;
+    transition:0.2s;
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+@media(max-width:800px){
+    .hero h1 { font-size:50px; }
+    nav ul { gap:16px; }
+    .card { padding:28px; }
 }
 
 </style>
 </head>
-
 <body>
 
+<!-- MULTI-LAYERS APPLE INTELLIGENCE HALOS -->
+<div class="bg-layer bg-1"></div>
+<div class="bg-layer bg-2"></div>
+<div class="bg-layer bg-3"></div>
+
+<!-- HEADER -->
 <header>
-    <div class="logo" style="font-size:26px;font-weight:800;">NH110LAB.ai</div>
+    <div class="logo" style="font-size:26px;font-weight:800;">
+        NH110LAB.ai
+    </div>
+
     <nav>
         <ul>
             <li><a href="#agents">Agents</a></li>
@@ -328,122 +419,335 @@ nav a:hover {
     </nav>
 </header>
 
-<section class="hero">
-    <h1>Des Agents IA<br>modernes & évolutifs</h1>
-    <p>Une conception ultra-premium, liquide et intelligente.</p>
-    <button class="btn-main">Créer mon agent IA</button>
+
+<!-- ==========================================
+     HERO — Apple Intelligence Orb + Depth Layers
+========================================== -->
+<section class="hero reveal">
+    <h1>Des Agents IA<br>Modernes & Évolutifs</h1>
+    <p>Un design Apple Intelligence extrême. VisionOS. Liquid. Futuriste.</p>
+
+    <button class="btn-main">
+        Créer mon agent IA
+    </button>
 </section>
 
-<!-- AGENTS -->
-<section id="agents">
-    <div class="section-inner reveal">
+
+<!-- ==========================================
+     AGENTS — Liquid Glass Cards
+========================================== -->
+<section id="agents" class="reveal" style="padding:120px 40px;">
+    <div class="section-inner" style="max-width:1200px;margin:auto;">
+
         <h2 class="section-title">Agents IA Premium</h2>
-        <p class="section-desc">Glass, VisionOS, Apple Intelligence : les meilleurs agents autonomes.</p>
+        <p class="section-desc" style="opacity:.7;margin-bottom:40px;">
+            Propulsés par Apple Intelligence UI, VisionOS Liquid Glass et interactions 3D.
+        </p>
 
         <div class="cards-grid">
-            <div class="card"><h3>Prospector+</h3><p>Prospection autonome.</p></div>
-            <div class="card"><h3>DocReader</h3><p>Lecture et extraction automatique.</p></div>
-            <div class="card"><h3>CRM Sync</h3><p>Connecteurs CRM + relances.</p></div>
-            <div class="card"><h3>SupportFlow</h3><p>Support IA 24/7.</p></div>
-            <div class="card"><h3>AutoTech</h3><p>Diagnostic OBD IA.</p></div>
-            <div class="card"><h3>Insight</h3><p>Dashboards autonomes.</p></div>
+            <div class="card"><h3>Prospector+</h3><p>Prospection autonome instantanée.</p></div>
+            <div class="card"><h3>DocReader</h3><p>Lecture / extraction automatique.</p></div>
+            <div class="card"><h3>CRM Sync</h3><p>Relances intelligentes + CRM sync.</p></div>
+            <div class="card"><h3>SupportFlow</h3><p>Support IA 24/7 ultra-réactif.</p></div>
+            <div class="card"><h3>AutoTech</h3><p>Diagnostic OBD IA + prédiction.</p></div>
+            <div class="card"><h3>Data Insight</h3><p>Dashboard autonome interactif.</p></div>
         </div>
+
     </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services">
-    <div class="section-inner reveal">
+
+<!-- ==========================================
+     SERVICES — VisionOS Panels
+========================================== -->
+<section id="services" class="reveal" style="padding:120px 40px;">
+    <div class="section-inner" style="max-width:1200px;margin:auto;">
+
         <h2 class="section-title">Services</h2>
-        <p class="section-desc">Développements IA liquides, intégrations premium, workflows complets.</p>
+        <p class="section-desc" style="opacity:.7;margin-bottom:40px;">
+            Automations avancées, IA sur mesure et intégrations pro.
+        </p>
 
         <div class="cards-grid">
-            <div class="card"><h3>Agents IA</h3><p>Agents modernes évolutifs.</p></div>
-            <div class="card"><h3>Automations</h3><p>Automatisation profonde.</p></div>
-            <div class="card"><h3>Audit IA</h3><p>Optimisation de process.</p></div>
+            <div class="card"><h3>Création d’agents</h3><p>Agents IA complets, autonomes et connectés.</p></div>
+            <div class="card"><h3>Automations</h3><p>Automatisation profonde de votre business.</p></div>
+            <div class="card"><h3>Audit IA</h3><p>Optimisation totale de vos process existants.</p></div>
         </div>
+
     </div>
 </section>
 
-<!-- PRICING -->
-<section id="pricing">
-    <div class="section-inner reveal">
-        <h2 class="section-title">Tarifs</h2>
-        <p class="section-desc">Plans flexibles avec technologies Apple Intelligence.</p>
 
-        <div class="pricing-grid" style="display:flex;gap:30px;justify-content:center;">
-            <div class="price-card">
+<!-- ==========================================
+     PRICING — Glass Panels + Brillance Apple
+========================================== -->
+<section id="pricing" class="reveal" style="padding:120px 40px;">
+    <div class="section-inner" style="max-width:1200px;margin:auto;">
+
+        <h2 class="section-title">Tarifs</h2>
+        <p class="section-desc" style="opacity:.7;margin-bottom:40px;">
+            Plans ultra-flexibles propulsés par Apple Intelligence.
+        </p>
+
+        <div style="display:flex;gap:35px;justify-content:center;flex-wrap:wrap;">
+
+            <div class="price-card" style="min-width:260px;">
                 <h3>Starter</h3>
-                <div class="price">49€/mois</div>
+                <div class="price" style="font-size:42px;margin:20px 0;">49€</div>
                 <p>1 Agent IA</p>
             </div>
 
-            <div class="price-card">
+            <div class="price-card" style="min-width:260px;">
                 <h3>Business</h3>
-                <div class="price">149€/mois</div>
+                <div class="price" style="font-size:42px;margin:20px 0;">149€</div>
                 <p>3 Agents IA</p>
             </div>
 
-            <div class="price-card">
+            <div class="price-card" style="min-width:260px;">
                 <h3>Enterprise</h3>
-                <div class="price">Sur devis</div>
+                <div class="price" style="font-size:42px;margin:20px 0;">∞</div>
                 <p>Agents illimités</p>
             </div>
+
         </div>
+
     </div>
 </section>
 
-<!-- FAQ -->
-<section id="faq">
-    <div class="section-inner reveal">
+
+<!-- ==========================================
+     FAQ — iOS 18 Expandable
+========================================== -->
+<section id="faq" class="reveal" style="padding:120px 40px;">
+    <div class="section-inner" style="max-width:900px;margin:auto;">
+
         <h2 class="section-title">FAQ</h2>
 
         <div class="faq-item">
             <div class="faq-q">Comment fonctionne un agent IA ?</div>
-            <div class="faq-a">Il exécute vos process de façon autonome.</div>
+            <div class="faq-a">Il exécute automatiquement vos tâches, analyse, classe et agit.</div>
         </div>
 
         <div class="faq-item">
-            <div class="faq-q">Puis-je connecter un CRM ?</div>
-            <div class="faq-a">Oui : HubSpot, Notion, Airtable, etc.</div>
+            <div class="faq-q">Puis-je connecter mon CRM ?</div>
+            <div class="faq-a">Oui : Notion, HubSpot, Airtable, Shopify, Stripe, Zapier…</div>
         </div>
+
+        <div class="faq-item">
+            <div class="faq-q">Les agents sont autonomes ?</div>
+            <div class="faq-a">100%. Ils apprennent de vos données et améliorent votre activité.</div>
+        </div>
+
     </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-    <div class="section-inner reveal">
+
+<!-- ==========================================
+     CONTACT — Floating Apple Glass Window
+========================================== -->
+<section id="contact" class="reveal" style="padding:120px 40px;">
+    <div class="section-inner" style="max-width:800px;margin:auto;">
+
         <h2 class="section-title">Contact</h2>
 
         <div class="contact-box">
-            <p style="font-size:20px;margin-bottom:24px;">Discutons de votre agent IA.</p>
-            <button class="btn-main">Me contacter</button>
+            <p style="font-size:22px;margin-bottom:32px;">
+                Discutons de votre futur Agent IA Apple Intelligence.
+            </p>
+
+            <button class="btn-main">
+                Me contacter
+            </button>
         </div>
+
     </div>
 </section>
 
+<!-- CURSOR HALO -->
+<div class="cursor-halo"></div>
 <script>
-/* HEADER ANIMATION */
+/* =======================================================
+   HEADER ACTIVE ON SCROLL
+======================================================= */
 window.addEventListener("scroll", () => {
     const h = document.querySelector("header");
     if (window.scrollY > 40) h.classList.add("active");
     else h.classList.remove("active");
 });
 
-/* REVEAL SCROLL */
-const reveals = document.querySelectorAll(".reveal, .section-title");
-const obs = new IntersectionObserver((e)=>{
-    e.forEach(entry=>{
-        if (entry.isIntersecting) entry.target.classList.add("active");
-    })
-},{threshold:0.15});
-reveals.forEach(r=>obs.observe(r));
 
-/* FAQ OPEN */
-document.querySelectorAll(".faq-item").forEach(i=>{
-    i.addEventListener("click",()=> i.classList.toggle("active"));
+/* =======================================================
+   SCROLL REVEAL — Sections come from depth
+======================================================= */
+const reveals = document.querySelectorAll(".reveal, .section-title");
+const obs = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("active");
+        });
+    },
+    { threshold: 0.15 }
+);
+reveals.forEach((r) => obs.observe(r));
+
+
+/* =======================================================
+   FAQ OPEN / CLOSE
+======================================================= */
+document.querySelectorAll(".faq-item").forEach((i) => {
+    i.addEventListener("click", () => i.classList.toggle("active"));
+});
+
+
+/* =======================================================
+   CURSOR HALO — Apple Intelligence glow
+======================================================= */
+const halo = document.querySelector(".cursor-halo");
+document.addEventListener("mousemove", (e) => {
+    halo.style.left = e.pageX + "px";
+    halo.style.top = e.pageY + "px";
+});
+
+
+/* =======================================================
+   VISIONOS 3D PARALLAX FOR CARDS + LIGHT REFLECTION
+======================================================= */
+document.querySelectorAll(".card").forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+
+        const tiltX = (y - 0.5) * 20;
+        const tiltY = (x - 0.5) * -20;
+
+        card.style.transform = `
+            perspective(900px)
+            rotateX(${tiltX}deg)
+            rotateY(${tiltY}deg)
+            scale(1.05)
+        `;
+
+        card.style.setProperty("--mx", `${x * 100}%`);
+        card.style.setProperty("--my", `${y * 100}%`);
+    });
+
+    card.addEventListener("mouseleave", () => {
+        card.style.transform =
+            "perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)";
+    });
+});
+
+
+/* =======================================================
+   PARALLAX BACKGROUND — Apple Intelligence multilayers
+======================================================= */
+const layers = document.querySelectorAll(".bg-layer");
+window.addEventListener("mousemove", (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 20;
+    const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+    layers.forEach((layer, index) => {
+        const depth = (index + 1) * 15; // strength
+        layer.style.transform = `translate(${x / depth}px, ${y / depth}px)`;
+    });
+});
+
+
+/* =======================================================
+   SIRI PARTICLE ENGINE (Apple Intelligence)
+======================================================= */
+
+// Canvas + Engine Initialization
+const particleCanvas = document.createElement("canvas");
+particleCanvas.style.position = "fixed";
+particleCanvas.style.top = "0";
+particleCanvas.style.left = "0";
+particleCanvas.style.width = "100vw";
+particleCanvas.style.height = "100vh";
+particleCanvas.style.zIndex = "-5";
+particleCanvas.style.pointerEvents = "none";
+particleCanvas.style.opacity = "0.55";
+document.body.appendChild(particleCanvas);
+
+const ctx = particleCanvas.getContext("2d");
+let width, height;
+
+function resize() {
+    width = particleCanvas.width = window.innerWidth;
+    height = particleCanvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+// Particles config
+const particles = [];
+const PARTICLE_COUNT = 80;
+
+function createParticle() {
+    const size = Math.random() * 4 + 2;
+    const speed = Math.random() * 0.6 + 0.2;
+
+    return {
+        x: Math.random() * width,
+        y: Math.random() * height,
+        size,
+        speed,
+        vx: (Math.random() - 0.5) * speed,
+        vy: (Math.random() - 0.5) * speed,
+        color:
+            Math.random() > 0.66
+                ? "rgba(157,107,255,0.7)"
+                : Math.random() > 0.33
+                ? "rgba(0,198,255,0.7)"
+                : "rgba(255,77,222,0.7)",
+    };
+}
+
+// Init
+for (let i = 0; i < PARTICLE_COUNT; i++) {
+    particles.push(createParticle());
+}
+
+// Update engine
+function updateParticles() {
+    ctx.clearRect(0, 0, width, height);
+
+    particles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // bounce
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = p.color;
+        ctx.fill();
+    });
+
+    requestAnimationFrame(updateParticles);
+}
+
+updateParticles();
+
+
+/* =======================================================
+   DEPTH ENGINE — Sections moving on scroll (VisionOS)
+======================================================= */
+
+const depthSections = document.querySelectorAll("section");
+
+window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY;
+
+    depthSections.forEach((sec, index) => {
+        const depth = (index + 1) * 0.5;
+        sec.style.transform = `translateY(${scrollY * depth * 0.05}px)`;
+    });
 });
 </script>
 
-</body>
-</html>
