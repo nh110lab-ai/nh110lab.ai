@@ -1,155 +1,166 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>NH110LAB.ai — Intelligence & Automations</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NH110LAB.ai — Intelligence & Automations</title>
 
-    <!-- Police Apple-like -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css">
+<link rel="stylesheet" href="css/style.css">
 
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="css/style.css" />
+<style>
+/* Halo IA */
+.cursor-halo {
+    position: fixed;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle,
+                rgba(157,107,255,0.28),
+                rgba(0,198,255,0.24),
+                transparent 70%);
+    filter: blur(80px);
+    transform: translate(-50%, -50%);
+    z-index: -2;
+    opacity: .9;
+    transition: 0.2s;
+}
+</style>
 </head>
 
 <body>
 
-    <!-- Halo IA (VisionOS) -->
-    <div class="cursor-halo"></div>
+<!-- HALO IA -->
+<div class="cursor-halo"></div>
 
-    <!-- HEADER -->
-    <header>
-        <div class="logo">NH110LAB.ai</div>
-        <nav>
-            <ul>
-                <li><a href="#agents">Agents</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#pricing">Tarifs</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<!-- HEADER -->
+<header>
+    <div class="logo" style="font-size: 26px; font-weight: 800;">NH110LAB.ai</div>
+    <nav>
+        <ul>
+            <li><a href="#agents">Agents</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#pricing">Tarifs</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <!-- HERO -->
-    <section class="hero reveal">
-        <h1>Des Agents IA<br>modernes & évolutifs</h1>
-        <p>Une expérience VisionOS & Apple Intelligence pour accélérer votre activité.</p>
-        <button class="btn-main" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-            Créer mon agent IA
-        </button>
-    </section>
+<!-- HERO -->
+<section class="hero reveal">
+    <h1>Des Agents IA<br>modernes & évolutifs</h1>
+    <p>Créations intelligentes, autonomes et optimisées pour votre activité.</p>
+    <button class="btn-main" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        Créer mon agent IA
+    </button>
+</section>
 
-    <!-- AGENTS -->
-    <section id="agents" class="reveal">
-        <div class="section-inner">
-            <h2 class="section-title">Agents IA Premium</h2>
-            <p class="section-desc">
-                Des agents autonomes spécialisés, rapides, connectés à vos outils, et entraînés pour votre entreprise.
-            </p>
+<!-- AGENTS -->
+<section id="agents" class="reveal">
+    <div class="section-inner">
+        <h2 class="section-title">Agents IA Premium</h2>
+        <p class="section-desc">Une suite d’agents autonomes conçus pour automatiser et optimiser votre activité.</p>
 
-            <div class="cards-grid">
-                <div class="card"><h3>Prospector+</h3><p>Prospection autonome, scoring intelligent, relances optimisées.</p></div>
-                <div class="card"><h3>DocReader IA</h3><p>Extraction, analyse et classification automatique de documents.</p></div>
-                <div class="card"><h3>CRM Sync</h3><p>Relances automatisées + mise à jour CRM intelligente.</p></div>
-                <div class="card"><h3>SupportFlow</h3><p>Support IA 24/7 formé sur vos propres données.</p></div>
-                <div class="card"><h3>AutoTech IA</h3><p>Diagnostic OBD & prédictions pannes.</p></div>
-                <div class="card"><h3>Data Insight</h3><p>Dashboards intelligents + alertes IA.</p></div>
+        <div class="cards-grid">
+            <div class="card"><h3>Prospector+</h3><p>Prospection automatique & scoring intelligent.</p></div>
+            <div class="card"><h3>DocReader IA</h3><p>Analyse & extraction de données.</p></div>
+            <div class="card"><h3>CRM Sync</h3><p>Connexion CRM + relances automatiques.</p></div>
+            <div class="card"><h3>SupportFlow</h3><p>Support client IA 24/7.</p></div>
+            <div class="card"><h3>AutoTech IA</h3><p>Diagnostic OBD + prédictions pannes.</p></div>
+            <div class="card"><h3>Data Insight</h3><p>Dashboards autonomes & insights.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="reveal">
+    <div class="section-inner">
+        <h2 class="section-title">Services Premium</h2>
+        <p class="section-desc">Développement IA sur mesure, automatisation complète et intégrations pro.</p>
+
+        <div class="cards-grid">
+            <div class="card"><h3>Agents IA</h3><p>Agents autonomes pour prospection & gestion.</p></div>
+            <div class="card"><h3>Automations API</h3><p>Workflows CRM, WhatsApp, emails, sites.</p></div>
+            <div class="card"><h3>Audit IA</h3><p>Optimisation complète de vos process.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="reveal">
+    <div class="section-inner">
+        <h2 class="section-title">Tarifs</h2>
+        <p class="section-desc">Des plans simples pour commencer rapidement.</p>
+
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h3>Starter</h3>
+                <div class="price">49€/mois</div>
+                <ul>
+                    <li>1 Agent IA</li>
+                    <li>Automations simples</li>
+                    <li>Support standard</li>
+                </ul>
+            </div>
+
+            <div class="price-card">
+                <h3>Business</h3>
+                <div class="price">149€/mois</div>
+                <ul>
+                    <li>3 Agents IA</li>
+                    <li>Automations avancées</li>
+                    <li>Support prioritaire</li>
+                </ul>
+            </div>
+
+            <div class="price-card">
+                <h3>Entreprise</h3>
+                <div class="price">Sur devis</div>
+                <ul>
+                    <li>Agents illimités</li>
+                    <li>Automations complexes</li>
+                    <li>Accompagnement complet</li>
+                </ul>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- SERVICES -->
-    <section id="services" class="reveal">
-        <div class="section-inner">
-            <h2 class="section-title">Services Premium</h2>
-            <p class="section-desc">Intégrations, automatisations, IA sur mesure, APIs, workflows internes.</p>
+<!-- FAQ -->
+<section id="faq" class="reveal">
+    <div class="section-inner">
+        <h2 class="section-title">FAQ</h2>
 
-            <div class="cards-grid">
-                <div class="card"><h3>Conception IA</h3><p>Création d'agents IA adaptés à votre activité.</p></div>
-                <div class="card"><h3>Automations API</h3><p>Connexion CRM, WhatsApp, email, sites.</p></div>
-                <div class="card"><h3>Audit IA</h3><p>Analyse & optimisation complète de vos process.</p></div>
-            </div>
+        <div class="faq-item">
+            <div class="faq-q">Comment fonctionne un agent IA ?</div>
+            <div class="faq-a">Il agit automatiquement selon vos règles, objectifs et données.</div>
         </div>
-    </section>
 
-    <!-- PRICING -->
-    <section id="pricing" class="reveal">
-        <div class="section-inner">
-            <h2 class="section-title">Tarifs</h2>
-            <p class="section-desc">Des plans modulables pour démarrer puis scaler votre équipe d’agents IA.</p>
-
-            <div class="pricing-grid">
-                <div class="price-card">
-                    <h3>Starter</h3>
-                    <div class="price">49€/mois</div>
-                    <ul>
-                        <li>1 Agent IA</li>
-                        <li>Automations simples</li>
-                        <li>Support standard</li>
-                    </ul>
-                </div>
-
-                <div class="price-card">
-                    <h3>Business</h3>
-                    <div class="price">149€/mois</div>
-                    <ul>
-                        <li>3 Agents IA</li>
-                        <li>Automations avancées</li>
-                        <li>Support prioritaire</li>
-                    </ul>
-                </div>
-
-                <div class="price-card">
-                    <h3>Enterprise</h3>
-                    <div class="price">Sur devis</div>
-                    <ul>
-                        <li>Agents illimités</li>
-                        <li>Automations complexes</li>
-                        <li>Accompagnement complet</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="faq-item">
+            <div class="faq-q">Les agents remplacent-ils un employé ?</div>
+            <div class="faq-a">Ils automatisent les tâches répétitives pour gagner du temps.</div>
         </div>
-    </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="reveal">
-        <div class="section-inner">
-            <h2 class="section-title">FAQ</h2>
-
-            <div class="faq-item">
-                <div class="faq-q">Comment fonctionne un agent IA ?</div>
-                <div class="faq-a">Il agit automatiquement selon vos règles et objectifs.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-q">Puis-je connecter mon CRM ?</div>
-                <div class="faq-a">Oui : Notion, HubSpot, Salesforce, Airtable, etc.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-q">Ai-je besoin de coder ?</div>
-                <div class="faq-a">Non. Les intégrations sont gérées par NH110LAB.ai.</div>
-            </div>
+        <div class="faq-item">
+            <div class="faq-q">Puis-je connecter mon CRM ?</div>
+            <div class="faq-a">Oui, Salesforce, HubSpot, Notion, Airtable et bien plus.</div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="reveal">
-        <div class="section-inner">
-            <h2 class="section-title">Contact</h2>
-
-            <div class="contact-box">
-                <p style="font-size:20px;margin-bottom:24px;">Discutons de votre projet 👋</p>
-                <button class="btn-main" onclick="window.location.href='mailto:nhlab.ai@icloud.com'">
-                    Envoyer un message
-                </button>
-            </div>
+<!-- CONTACT -->
+<section id="contact" class="reveal">
+    <div class="section-inner">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-box">
+            <p style="margin-bottom:24px;font-size:20px;">Discutons de votre projet 👋</p>
+            <button class="btn-main" onclick="window.location.href='mailto:nhlab.ai@icloud.com'">Envoyer un message</button>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- JS -->
-    <script src="js/app.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
