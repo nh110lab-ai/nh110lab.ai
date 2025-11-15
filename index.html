@@ -3,48 +3,81 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>NH110LAB.ai — Intelligence & Automations</title>
+<title>NH110LAB.ai — Apple Intelligence Design</title>
 
+<!-- Font Apple-like -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css">
 
 <style>
+
 /* ==========================================================
-   ROOT — THEME PREMIUM COLORÉ
+   ROOT — THEME ULTIME : APPLE INTELLIGENCE + VISIONOS + iOS18
 ========================================================== */
 :root {
     --bg: #ffffff;
     --text: #0d0d0f;
     --subtext: #666;
 
-    /* Glass Cards */
-    --card-bg: rgba(255,255,255,0.65);
+    /* Glass layers VisionOS */
+    --glass1: rgba(255, 255, 255, 0.65);
+    --glass2: rgba(255, 255, 255, 0.40);
+    --glass3: rgba(255, 255, 255, 0.25);
 
-    /* Header */
-    --nav-bg: rgba(255,255,255,0.85);
+    /* Apple Intelligence bubbles colors */
+    --ai1: #9D6BFF;     /* Violet Siri */
+    --ai2: #00C6FF;     /* Bleu AI */
+    --ai3: #FF4DDE;     /* Rose Apple Intelligence */
+    --aiGlow: rgba(140, 95, 255, 0.4);
 
-    /* Colors premium VisionOS */
-    --accent1: #7C4DFF; /* Violet Apple Intelligence */
-    --accent2: #00C6FF; /* Bleu cyan Vision Pro */
-    --accent3: #FF4FCB; /* Pink neon Option */
+    /* White halo */
+    --halo: rgba(255,255,255,0.9);
 
-    --transition-theme: .85s cubic-bezier(.25,.6,.3,1);
-    --radius: 22px;
-    --shadow: 0 22px 50px rgba(0,0,0,0.08);
+    --shadowSoft: 0 20px 55px rgba(0,0,0,0.08);
+    --radius: 26px;
+    --transition: .85s cubic-bezier(.25,.6,.3,1);
 }
 
+/* ==========================================================
+   GLOBAL
+========================================================== */
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body {
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display";
     background: var(--bg);
     color: var(--text);
-    transition: background var(--transition-theme), color var(--transition-theme);
+    overflow-x:hidden;
+    transition: background var(--transition), color var(--transition);
 }
 
-a { color:inherit; text-decoration:none; }
+/* Smooth fade for everything */
+section, header { opacity:0; animation:fadeIn 1.2s ease forwards; }
+@keyframes fadeIn { to { opacity:1; } }
 
 /* ==========================================================
-   HEADER
+   BACKGROUND AI — HALOS APPLE INTELLIGENCE
+========================================================== */
+body::before {
+    content:"";
+    position:fixed;
+    top:-20%; left:-10%;
+    width:140%;
+    height:140%;
+    background: radial-gradient(circle at 60% 10%,
+                rgba(140,95,255,0.25),
+                rgba(0,198,255,0.18),
+                rgba(255,255,255,0) 70%);
+    filter: blur(90px);
+    z-index:-5;
+    animation:aiGlow 14s infinite alternate ease-in-out;
+}
+@keyframes aiGlow {
+    0% { transform:scale(1) translateX(0); opacity:.85; }
+    100% { transform:scale(1.2) translateX(40px); opacity:1; }
+}
+
+/* ==========================================================
+   HEADER — FLOATING iOS18 + VISIONOS GLASS
 ========================================================== */
 header {
     position:fixed;
@@ -54,110 +87,164 @@ header {
     display:flex;
     justify-content:space-between;
     align-items:center;
-    background:var(--nav-bg);
-    backdrop-filter:blur(20px) saturate(1.3);
-    transition:0.55s;
+    backdrop-filter: blur(25px) saturate(1.4);
+    background: rgba(255,255,255,0.55);
+    box-shadow:0 10px 35px rgba(0,0,0,0.06);
+    border-bottom:1px solid rgba(255,255,255,0.55);
     z-index:1000;
+    transition:0.45s;
 }
 header.active {
     padding:14px 40px;
-    box-shadow:0 18px 40px rgba(0,0,0,0.12);
+    background:rgba(255,255,255,0.75);
+    box-shadow:0 20px 50px rgba(0,0,0,0.1);
 }
 
+/* Nav */
 nav ul { display:flex; gap:34px; list-style:none; }
-nav a:hover { color:var(--accent1); }
+nav a {
+    text-decoration:none;
+    font-weight:500;
+    transition:.3s;
+}
+nav a:hover {
+    color:var(--ai1);
+}
 
 /* ==========================================================
-   HERO AVEC GRADIENT PREMIUM
+   HERO — APPLE INTELLIGENCE LIQUID ORB
 ========================================================== */
 .hero {
     padding-top:180px;
     padding-bottom:160px;
     text-align:center;
-    max-width:900px;
+    max-width:950px;
     margin:auto;
-    background: radial-gradient(
-        circle at 50% -30%,
-        rgba(124, 77, 255, 0.28),
-        rgba(0, 198, 255, 0.22),
-        rgba(255, 255, 255, 0) 70%
-    );
-    border-radius:0 0 40px 40px;
+    position:relative;
+    z-index:2;
+}
+
+.hero::before {
+    content:"";
+    position:absolute;
+    top:-50px; left:50%;
+    transform:translateX(-50%);
+    width:650px; height:650px;
+    background: radial-gradient(circle,
+                rgba(255,255,255,0.75),
+                rgba(255,255,255,0.15));
+    filter:blur(90px);
+    border-radius:50%;
+    z-index:-1;
+    animation:pulseOrb 10s infinite alternate ease-in-out;
+}
+
+@keyframes pulseOrb {
+    0% { transform:translateX(-50%) scale(1); opacity:.6; }
+    100% { transform:translateX(-50%) scale(1.25); opacity:.85; }
 }
 
 .hero h1 {
-    font-size:70px;
+    font-size:72px;
     font-weight:800;
-    line-height:1.05;
     letter-spacing:-2px;
+    line-height:1.05;
 }
 
 .hero p {
-    font-size:22px;
+    font-size:24px;
     opacity:0.75;
-    margin-top:18px;
+    margin-top:12px;
 }
 
 .btn-main {
-    padding:16px 36px;
-    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+    margin-top:40px;
+    padding:18px 40px;
+    font-size:21px;
     border:none;
     color:white;
-    border-radius:18px;
-    font-size:20px;
-    margin-top:40px;
+    border-radius:20px;
     cursor:pointer;
-    transition:0.35s;
-    box-shadow: 0 12px 35px rgba(124,77,255,0.35);
+    background: linear-gradient(90deg, var(--ai1), var(--ai2), var(--ai3));
+    background-size:200% auto;
+    animation:gradientMove 6s infinite alternate;
+    box-shadow:0 12px 40px rgba(124,77,255,0.35);
+    transition:.35s;
 }
+@keyframes gradientMove {
+    0% { background-position:0% 50%; }
+    100% { background-position:100% 50%; }
+}
+
 .btn-main:hover {
-    transform:scale(1.05);
-    box-shadow: 0 22px 45px rgba(124,77,255,0.55);
+    transform:scale(1.08);
+    box-shadow:0 20px 55px rgba(124,77,255,0.55);
 }
 
 /* ==========================================================
-   SECTIONS + TITRES COLORÉS
+   SECTION TITLES — LIQUID UNDERLINE
 ========================================================== */
-section { padding:100px 24px; }
-
-.section-inner { max-width:1100px; margin:auto; }
-
 .section-title {
     font-size:42px;
     font-weight:800;
-    margin-bottom:10px;
     letter-spacing:-1px;
-    opacity:0; transform:translateY(20px);
-    transition:1s;
+    margin-bottom:12px;
     position:relative;
+    opacity:0; transform:translateY(20px);
+    transition:1s ease;
 }
-.section-title.active { opacity:1; transform:translateY(0); }
+.section-title.active {
+    opacity:1; transform:translateY(0);
+}
 
 .section-title::after {
     content:"";
     position:absolute;
-    bottom:-8px; left:0;
-    width:70px; height:4px;
-    border-radius:4px;
-    background: linear-gradient(90deg, var(--accent1), var(--accent2));
-    box-shadow:0 0 15px rgba(124,77,255,0.6);
-}
-
-.section-desc {
-    font-size:18px;
-    color:var(--subtext);
-    max-width:650px;
-    line-height:1.7;
-    margin-bottom:50px;
+    bottom:-10px; left:0;
+    width:90px; height:5px;
+    background:linear-gradient(90deg, var(--ai1), var(--ai2), var(--ai3));
+    border-radius:10px;
+    filter:blur(1px);
 }
 
 /* ==========================================================
-   REVEAL ANIMATION
+   CARD GRID — VISIONOS FLOATING SHEETS
+========================================================== */
+.cards-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:35px;
+}
+
+.card {
+    background:var(--glass1);
+    padding:32px;
+    border-radius:var(--radius);
+    backdrop-filter:blur(35px) saturate(1.8);
+    border:1px solid rgba(255,255,255,0.45);
+    box-shadow:0 25px 60px rgba(0,0,0,0.10);
+    transition:.45s;
+    transform:perspective(900px) translateZ(0);
+}
+
+.card:hover {
+    transform:perspective(900px) translateZ(50px) scale(1.03);
+    box-shadow:0 40px 80px rgba(120,90,255,0.25);
+    border-color:rgba(140,95,255,0.65);
+}
+
+.card h3 {
+    font-size:22px;
+    margin-bottom:10px;
+}
+
+/* ==========================================================
+   ANIMATION REVEAL ON SCROLL
 ========================================================== */
 .reveal {
     opacity:0;
     transform:translateY(40px);
-    transition:1.15s cubic-bezier(.25,.6,.3,1);
+    transition:1.2s cubic-bezier(.25,.6,.3,1);
 }
 .reveal.active {
     opacity:1;
@@ -165,116 +252,38 @@ section { padding:100px 24px; }
 }
 
 /* ==========================================================
-   CARDS PREMIUM COLORÉES
+   PRICING — FLOATING GLASS PANELS
 ========================================================== */
-.cards-grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
-    gap:30px;
-}
-
-.card {
-    background: linear-gradient(
-        135deg,
-        rgba(255,255,255,0.7),
-        rgba(255,255,255,0.4)
-    );
-    padding:28px;
-    border-radius:var(--radius);
-    box-shadow:var(--shadow);
-    border:1px solid rgba(255,255,255,0.3);
-    backdrop-filter:blur(20px);
-    transition:0.4s;
-}
-
-.card:hover {
-    transform:translateY(-10px) scale(1.03);
-    border-color: rgba(124,77,255,0.5);
-    box-shadow:0 30px 70px rgba(124,77,255,0.25);
-    backdrop-filter:blur(28px) saturate(1.8);
-}
-
-.card h3 {
-    font-size:20px;
-    margin-bottom:8px;
-    transition:0.35s;
-}
-.card h3:hover {
-    background:linear-gradient(90deg, var(--accent1), var(--accent2));
-    -webkit-background-clip:text;
-    color:transparent;
-}
-
-.card p { color:var(--subtext); }
-
-/* ==========================================================
-   SECTIONS COLORÉES FAÇON APPLE INTELLIGENCE
-========================================================== */
-#agents {
-    background: linear-gradient(
-        180deg,
-        rgba(0,198,255,0.08),
-        rgba(255,255,255,0)
-    );
-}
-#services {
-    background: linear-gradient(
-        180deg,
-        rgba(124,77,255,0.07),
-        rgba(255,255,255,0)
-    );
-}
-#pricing {
-    background: linear-gradient(
-        180deg,
-        rgba(255,80,200,0.08),
-        rgba(255,255,255,0)
-    );
-}
-
-/* ==========================================================
-   PRICING
-========================================================== */
-.pricing-grid {
-    display:flex;
-    flex-wrap:wrap;
-    gap:30px;
-    justify-content:center;
-}
-
 .price-card {
-    background:var(--card-bg);
-    backdrop-filter:blur(25px);
-    border-radius:26px;
-    padding:40px;
-    width:320px;
+    background:var(--glass2);
+    padding:45px;
+    border-radius:28px;
+    backdrop-filter:blur(40px) saturate(1.6);
+    border:1px solid rgba(255,255,255,0.4);
+    box-shadow:0 20px 55px rgba(0,0,0,0.1);
+    transition:.45s;
     text-align:center;
-    border:1px solid rgba(255,255,255,0.3);
-    transition:0.35s;
 }
 .price-card:hover {
-    transform:translateY(-10px);
-    box-shadow:0 20px 60px rgba(124,77,255,0.3);
-    border-color:var(--accent1);
+    transform:scale(1.06);
+    box-shadow:0 30px 75px rgba(120,90,255,0.3);
+    border-color:var(--ai1);
 }
 
-.price-card h3 { font-size:26px; font-weight:700; }
-.price { font-size:44px; font-weight:800; margin:20px 0; }
-
 /* ==========================================================
-   FAQ
+   FAQ — iOS EXPAND
 ========================================================== */
 .faq-item {
-    padding:18px 0;
+    padding:20px 0;
     border-bottom:1px solid rgba(0,0,0,0.1);
     cursor:pointer;
 }
-.faq-q { font-size:18px; font-weight:600; }
+.faq-q { font-size:20px; font-weight:600; }
 .faq-a {
     max-height:0;
     opacity:0;
     overflow:hidden;
-    transition:0.6s;
+    transition:.6s;
 }
 .faq-item.active .faq-a {
     max-height:200px;
@@ -283,39 +292,31 @@ section { padding:100px 24px; }
 }
 
 /* ==========================================================
-   CONTACT PREMIUM
+   CONTACT — FLOATING CONTACT WINDOW
 ========================================================== */
 .contact-box {
-    background: linear-gradient(
-        135deg,
-        rgba(255,255,255,0.75),
-        rgba(255,255,255,0.5)
-    );
-    padding:50px;
-    border-radius:30px;
+    background:var(--glass1);
+    padding:55px;
+    border-radius:32px;
+    backdrop-filter:blur(35px) saturate(1.5);
+    border:1px solid rgba(255,255,255,0.45);
+    box-shadow:0 30px 70px rgba(0,0,0,0.1);
     text-align:center;
-    backdrop-filter:blur(18px);
-    border:1px solid rgba(255,255,255,0.4);
-    box-shadow:0 18px 45px rgba(0,0,0,0.08);
 }
 
-/* ==========================================================
-   MOBILE
-========================================================== */
-@media(max-width:800px){
-    .hero h1 { font-size:48px; }
-    header { padding:18px 20px; }
-    header.active { padding:10px 20px; }
-    nav ul { gap:16px; }
-    .price-card { width:100%; }
+/* MOBILE */
+@media(max-width:800px) {
+    .hero h1 { font-size:52px; }
+    nav ul { gap:20px; }
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
-    <div class="logo" style="font-size:24px;font-weight:800;">NH110LAB.ai</div>
+    <div class="logo" style="font-size:26px;font-weight:800;">NH110LAB.ai</div>
     <nav>
         <ul>
             <li><a href="#agents">Agents</a></li>
@@ -329,25 +330,23 @@ section { padding:100px 24px; }
 
 <section class="hero">
     <h1>Des Agents IA<br>modernes & évolutifs</h1>
-    <p>Créations intelligentes, autonomes et optimisées pour votre activité.</p>
-    <button class="btn-main" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-        Créer mon agent IA
-    </button>
+    <p>Une conception ultra-premium, liquide et intelligente.</p>
+    <button class="btn-main">Créer mon agent IA</button>
 </section>
 
 <!-- AGENTS -->
 <section id="agents">
     <div class="section-inner reveal">
         <h2 class="section-title">Agents IA Premium</h2>
-        <p class="section-desc">Une suite d’agents autonomes modernisés pour automatiser votre activité.</p>
+        <p class="section-desc">Glass, VisionOS, Apple Intelligence : les meilleurs agents autonomes.</p>
 
         <div class="cards-grid">
-            <div class="card"><h3>Prospector+</h3><p>Prospection automatique & scoring intelligent.</p></div>
-            <div class="card"><h3>DocReader IA</h3><p>Analyse et extraction automatique.</p></div>
-            <div class="card"><h3>CRM Sync</h3><p>Connexion CRM + relances autonomes.</p></div>
-            <div class="card"><h3>SupportFlow</h3><p>Support IA 24/7 sur vos données.</p></div>
-            <div class="card"><h3>AutoTech IA</h3><p>Diagnostic OBD + prédictions pannes.</p></div>
-            <div class="card"><h3>Data Insight</h3><p>Dashboards autonomes & insights.</p></div>
+            <div class="card"><h3>Prospector+</h3><p>Prospection autonome.</p></div>
+            <div class="card"><h3>DocReader</h3><p>Lecture et extraction automatique.</p></div>
+            <div class="card"><h3>CRM Sync</h3><p>Connecteurs CRM + relances.</p></div>
+            <div class="card"><h3>SupportFlow</h3><p>Support IA 24/7.</p></div>
+            <div class="card"><h3>AutoTech</h3><p>Diagnostic OBD IA.</p></div>
+            <div class="card"><h3>Insight</h3><p>Dashboards autonomes.</p></div>
         </div>
     </div>
 </section>
@@ -355,13 +354,13 @@ section { padding:100px 24px; }
 <!-- SERVICES -->
 <section id="services">
     <div class="section-inner reveal">
-        <h2 class="section-title">Services Premium</h2>
-        <p class="section-desc">Développement IA sur mesure, automatisation complète et intégrations professionnelles.</p>
+        <h2 class="section-title">Services</h2>
+        <p class="section-desc">Développements IA liquides, intégrations premium, workflows complets.</p>
 
         <div class="cards-grid">
-            <div class="card"><h3>Agents IA</h3><p>Agents autonomes pour prospection & gestion.</p></div>
-            <div class="card"><h3>Automations API</h3><p>Workflows CRM, WhatsApp, email, sites.</p></div>
-            <div class="card"><h3>Audit IA</h3><p>Optimisation intelligente de vos process.</p></div>
+            <div class="card"><h3>Agents IA</h3><p>Agents modernes évolutifs.</p></div>
+            <div class="card"><h3>Automations</h3><p>Automatisation profonde.</p></div>
+            <div class="card"><h3>Audit IA</h3><p>Optimisation de process.</p></div>
         </div>
     </div>
 </section>
@@ -370,37 +369,25 @@ section { padding:100px 24px; }
 <section id="pricing">
     <div class="section-inner reveal">
         <h2 class="section-title">Tarifs</h2>
-        <p class="section-desc">Des plans simples pour commencer rapidement.</p>
+        <p class="section-desc">Plans flexibles avec technologies Apple Intelligence.</p>
 
-        <div class="pricing-grid">
+        <div class="pricing-grid" style="display:flex;gap:30px;justify-content:center;">
             <div class="price-card">
                 <h3>Starter</h3>
                 <div class="price">49€/mois</div>
-                <ul>
-                    <li>1 Agent IA</li>
-                    <li>Automations simples</li>
-                    <li>Support standard</li>
-                </ul>
+                <p>1 Agent IA</p>
             </div>
 
             <div class="price-card">
                 <h3>Business</h3>
                 <div class="price">149€/mois</div>
-                <ul>
-                    <li>3 Agents IA</li>
-                    <li>Automations avancées</li>
-                    <li>Support prioritaire</li>
-                </ul>
+                <p>3 Agents IA</p>
             </div>
 
             <div class="price-card">
-                <h3>Entreprise</h3>
+                <h3>Enterprise</h3>
                 <div class="price">Sur devis</div>
-                <ul>
-                    <li>Agents illimités</li>
-                    <li>Automations complexes</li>
-                    <li>Accompagnement complet</li>
-                </ul>
+                <p>Agents illimités</p>
             </div>
         </div>
     </div>
@@ -413,17 +400,12 @@ section { padding:100px 24px; }
 
         <div class="faq-item">
             <div class="faq-q">Comment fonctionne un agent IA ?</div>
-            <div class="faq-a">Il agit automatiquement selon vos règles, objectifs et données.</div>
+            <div class="faq-a">Il exécute vos process de façon autonome.</div>
         </div>
 
         <div class="faq-item">
-            <div class="faq-q">Puis-je connecter mon CRM ?</div>
-            <div class="faq-a">Oui, Salesforce, HubSpot, Notion, Airtable, etc.</div>
-        </div>
-
-        <div class="faq-item">
-            <div class="faq-q">Les agents remplacent-ils un employé ?</div>
-            <div class="faq-a">Ils automatisent les tâches répétitives pour gagner du temps.</div>
+            <div class="faq-q">Puis-je connecter un CRM ?</div>
+            <div class="faq-a">Oui : HubSpot, Notion, Airtable, etc.</div>
         </div>
     </div>
 </section>
@@ -434,34 +416,32 @@ section { padding:100px 24px; }
         <h2 class="section-title">Contact</h2>
 
         <div class="contact-box">
-            <p style="font-size:20px;margin-bottom:24px;">Discutons de votre projet 👋</p>
-            <button class="btn-main" onclick="window.location.href='mailto:nhlab.ai@icloud.com'">Envoyer un message</button>
+            <p style="font-size:20px;margin-bottom:24px;">Discutons de votre agent IA.</p>
+            <button class="btn-main">Me contacter</button>
         </div>
     </div>
 </section>
 
 <script>
-/* REVEAL */
-const reveals = document.querySelectorAll(".reveal, .section-title");
-const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-        if(entry.isIntersecting){
-            entry.target.classList.add("active");
-        }
-    });
-},{threshold:0.15});
-reveals.forEach(r=>observer.observe(r));
-
-/* HEADER */
-window.addEventListener("scroll", ()=>{
-    const h=document.querySelector("header");
-    if(window.scrollY>40) h.classList.add("active");
+/* HEADER ANIMATION */
+window.addEventListener("scroll", () => {
+    const h = document.querySelector("header");
+    if (window.scrollY > 40) h.classList.add("active");
     else h.classList.remove("active");
 });
 
-/* FAQ */
-document.querySelectorAll(".faq-item").forEach(item=>{
-    item.addEventListener("click", ()=> item.classList.toggle("active"));
+/* REVEAL SCROLL */
+const reveals = document.querySelectorAll(".reveal, .section-title");
+const obs = new IntersectionObserver((e)=>{
+    e.forEach(entry=>{
+        if (entry.isIntersecting) entry.target.classList.add("active");
+    })
+},{threshold:0.15});
+reveals.forEach(r=>obs.observe(r));
+
+/* FAQ OPEN */
+document.querySelectorAll(".faq-item").forEach(i=>{
+    i.addEventListener("click",()=> i.classList.toggle("active"));
 });
 </script>
 
