@@ -1,310 +1,293 @@
 /* ==========================================================
-   THEME ROOT — Apple Intelligence / VisionOS
+   ROOT THEME — VARIABLES APPLE INTELLIGENCE
 ========================================================== */
 :root {
     --bg: #ffffff;
     --text: #0d0d0f;
-    --sub: #6f6f6f;
-
-    --glass1: rgba(255,255,255,0.55);
-    --glass2: rgba(255,255,255,0.25);
-
-    --ai1: #9D6BFF;
-    --ai2: #00C6FF;
-    --ai3: #FF4DDE;
-
+    --subtext: #666;
+    --card-bg: rgba(255,255,255,0.70);
+    --nav-bg: rgba(255,255,255,0.82);
     --blue: #0a84ff;
-
-    --radius: 24px;
-    --transition: .8s cubic-bezier(.25,.6,.3,1);
+    --transition-theme: .85s cubic-bezier(.25,.6,.3,1);
+    --radius: 22px;
+    --shadow: 0 20px 50px rgba(0,0,0,0.08);
 }
 
-/* DARK MODE AUTO */
+/* MODE SOMBRE AUTO SCROLL */
 body.dark {
-    --bg: #0c0c12;
-    --text: #f5f5f7;
-    --sub: #bdbdc8;
-
-    --glass1: rgba(25,25,30,0.62);
-    --glass2: rgba(25,25,30,0.32);
-}
-
-* {
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body {
-    font-family:"Inter",-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    overflow-x:hidden;
-    transition:background var(--transition), color var(--transition);
+    --bg: #0d0d0f;
+    --text: #f5f5f5;
+    --subtext: #bbbbbb;
+    --card-bg: rgba(20,20,20,0.55);
+    --nav-bg: rgba(10,10,10,0.65);
 }
 
 /* ==========================================================
-   HEADER — VisionOS Floating
+   GLOBAL
+========================================================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: background var(--transition-theme), color var(--transition-theme);
+    overflow-x: hidden;
+}
+
+section {
+    padding: 100px 24px;
+}
+
+.section-inner {
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* ==========================================================
+   TITRES
+========================================================== */
+.section-title {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 1s;
+}
+.section-title.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-desc {
+    font-size: 18px;
+    color: var(--subtext);
+    max-width: 650px;
+    line-height: 1.7;
+    margin-bottom: 50px;
+}
+
+/* ==========================================================
+   HEADER FLOATING APPLE
 ========================================================== */
 header {
-    position:fixed;
-    top:0; left:0;
-    width:100%;
-    padding:26px 40px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    backdrop-filter:blur(22px) saturate(1.4);
-    background:var(--glass1);
-    border-bottom:1px solid rgba(255,255,255,0.4);
-    transition:0.45s ease;
-    z-index:1000;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    padding: 26px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--nav-bg);
+    backdrop-filter: blur(20px) saturate(1.4);
+    transition: 0.55s;
+    z-index: 1000;
 }
-
 header.active {
-    padding:14px 40px;
-    box-shadow:0 18px 50px rgba(0,0,0,0.18);
+    padding: 14px 40px;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
 }
 
-/* NAV */
 nav ul {
-    list-style:none;
-    display:flex;
-    gap:34px;
+    display: flex;
+    gap: 34px;
+    list-style: none;
 }
-
 nav a {
-    text-decoration:none;
-    color:var(--text);
-    font-weight:500;
-    transition:0.3s;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    transition: 0.3s;
 }
-
-nav a:hover {
-    color:var(--ai1);
-    text-shadow:0 0 12px rgba(157,107,255,0.6);
-}
+nav a:hover { color: var(--blue); }
 
 /* ==========================================================
    HERO
 ========================================================== */
 .hero {
-    padding-top:180px;
-    text-align:center;
-    max-width:900px;
-    margin:auto;
-    position:relative;
-}
-
-.hero::before {
-    content:"";
-    position:absolute;
-    top:-250px; left:50%;
-    transform:translateX(-50%);
-    width:900px;
-    height:900px;
-    background:radial-gradient(circle, rgba(255,255,255,0.9), rgba(255,255,255,0.05));
-    border-radius:50%;
-    filter:blur(150px);
-    z-index:-1;
+    padding-top: 180px;
+    text-align: center;
+    max-width: 900px;
+    margin: auto;
 }
 
 .hero h1 {
-    font-size:70px;
-    font-weight:800;
-    line-height:1.05;
-    background:linear-gradient(90deg,var(--ai1),var(--ai2),var(--ai3));
-    -webkit-background-clip:text;
-    color:transparent;
-    letter-spacing:-2px;
+    font-size: 68px;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -2px;
 }
 
 .hero p {
-    font-size:22px;
-    opacity:0.7;
-    margin-top:18px;
+    font-size: 22px;
+    opacity: 0.7;
+    margin-top: 18px;
 }
 
-/* BUTTON */
 .btn-main {
-    margin-top:40px;
-    padding:16px 40px;
-    background:linear-gradient(90deg,var(--ai1),var(--ai2),var(--ai3));
-    background-size:200%;
-    color:white;
-    border:none;
-    font-size:20px;
-    border-radius:16px;
-    cursor:pointer;
-    box-shadow:0 18px 45px rgba(120,90,255,0.45);
-    transition:0.45s;
+    padding: 16px 36px;
+    background: var(--blue);
+    border: none;
+    color: white;
+    border-radius: 18px;
+    font-size: 20px;
+    margin-top: 40px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 12px 35px rgba(10,132,255,0.35);
 }
-
 .btn-main:hover {
-    transform:scale(1.06);
-    filter:brightness(1.15);
+    transform: scale(1.05);
+    filter: brightness(1.1);
 }
 
 /* ==========================================================
-   SECTIONS
+   REVEAL ANIMATION
 ========================================================== */
-section {
-    padding:120px 24px;
-    transition:opacity .8s ease, transform .8s ease;
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 1.1s cubic-bezier(.25,.6,.3,1);
 }
-
-.section-inner {
-    max-width:1200px;
-    margin:auto;
-}
-
-.section-title {
-    font-size:42px;
-    font-weight:800;
-    margin-bottom:12px;
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s ease;
-}
-
-.section-title.active {
-    opacity:1;
-    transform:translateY(0);
-}
-
-.section-desc {
-    font-size:18px;
-    color:var(--sub);
-    max-width:650px;
-    line-height:1.6;
-    margin-bottom:50px;
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* ==========================================================
-   GRID CARDS — VisionOS Glass
+   CARDS GRID
 ========================================================== */
 .cards-grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
 }
 
+/* CARD BASE VISIONOS */
 .card {
-    background:var(--glass1);
-    padding:30px;
-    border-radius:var(--radius);
-    backdrop-filter:blur(40px) saturate(1.7);
-    border:1px solid rgba(255,255,255,0.4);
-    box-shadow:0 30px 80px rgba(0,0,0,0.15);
-    transition:0.45s ease;
-    position:relative;
-    transform-style:preserve-3d;
+    position: relative;
+    background: var(--card-bg);
+    padding: 28px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px);
+    transition: background var(--transition-theme),
+                transform 0.35s ease,
+                backdrop-filter .55s ease,
+                box-shadow .35s ease;
 }
 
+/* FLOATING EFFECT */
+.card {
+    animation: floatCard 6s ease-in-out infinite;
+}
+@keyframes floatCard {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-6px); }
+    100% { transform: translateY(0px); }
+}
+
+/* TILT EFFECT + PULSE IA */
 .card:hover {
-    transform: perspective(900px) rotateX(8deg) rotateY(8deg) scale(1.05);
-    box-shadow:0 40px 90px rgba(120,90,255,0.35);
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 35px 70px rgba(0,0,0,0.15);
+    backdrop-filter: blur(26px) saturate(1.8);
 }
 
 .card::after {
     content:"";
     position:absolute;
-    inset:0;
-    background:linear-gradient(135deg, transparent, rgba(255,255,255,0.22), transparent);
+    top:0; left:0;
+    width:100%; height:100%;
+    border-radius:inherit;
+    pointer-events:none;
     opacity:0;
-    transition:0.8s ease;
+    transition:.4s;
+    background: radial-gradient(circle,
+                rgba(157,107,255,0.25),
+                rgba(0,198,255,0.15),
+                transparent 70%);
 }
+.card:hover::after { opacity: 1; }
 
-.card:hover::after {
-    opacity:1;
+.card h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+.card p {
+    color: var(--subtext);
+    line-height: 1.65;
 }
 
 /* ==========================================================
    PRICING
 ========================================================== */
 .pricing-grid {
-    display:flex;
-    gap:32px;
-    flex-wrap:wrap;
-    justify-content:center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
 }
 
 .price-card {
-    width:300px;
-    background:var(--glass2);
-    padding:40px;
-    border-radius:24px;
-    backdrop-filter:blur(30px);
-    border:1px solid rgba(255,255,255,0.3);
-    text-align:center;
-    transition:0.4s ease;
+    background: var(--card-bg);
+    padding: 40px 36px;
+    width: 320px;
+    border-radius: 24px;
+    text-align: center;
+    backdrop-filter: blur(22px);
 }
 
-.price-card:hover {
-    transform:scale(1.05);
-    border-color:var(--ai1);
-}
-
-.price {
-    font-size:44px;
-    font-weight:900;
-    margin:16px 0;
-}
+.price-card h3 { font-size: 28px; font-weight: 700; margin-bottom: 12px; }
+.price-card .price { font-size: 44px; margin: 20px 0; font-weight: 800; }
+.price-card ul { list-style: none; line-height: 1.8; padding: 0; margin: 0; }
 
 /* ==========================================================
    FAQ
 ========================================================== */
 .faq-item {
-    padding:16px 0;
-    border-bottom:1px solid rgba(255,255,255,0.18);
-    cursor:pointer;
+    margin-bottom: 18px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    padding-bottom: 14px;
+    cursor: pointer;
+}
+body.dark .faq-item {
+    border-bottom: 1px solid rgba(255,255,255,0.12);
 }
 
 .faq-q {
-    font-size:20px;
-    font-weight:600;
+    font-size: 18px;
+    font-weight: 600;
 }
-
 .faq-a {
-    max-height:0;
-    overflow:hidden;
-    opacity:0;
-    transition:0.55s ease;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.6s;
 }
-
 .faq-item.active .faq-a {
-    max-height:200px;
-    opacity:1;
-    margin-top:8px;
+    max-height: 200px;
+    opacity: 1;
+    margin-top: 8px;
 }
 
 /* ==========================================================
    CONTACT
 ========================================================== */
 .contact-box {
-    background:var(--glass1);
-    padding:45px;
-    border-radius:26px;
-    text-align:center;
-    backdrop-filter:blur(40px);
-    box-shadow:0 20px 70px rgba(0,0,0,0.2);
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 24px;
+    text-align: center;
+    backdrop-filter: blur(18px);
 }
 
 /* ==========================================================
-   CURSOR HALO
+   MOBILE
 ========================================================== */
-.cursor-halo {
-    position:fixed;
-    width:260px;
-    height:260px;
-    border-radius:50%;
-    background:radial-gradient(circle,
-               rgba(157,107,255,0.28),
-               rgba(0,198,255,0.24),
-               transparent 70%);
-    filter:blur(90px);
-    pointer-events:none;
-    transform:translate(-50%, -50%);
-    z-index:-3;
-    opacity:1;
+@media(max-width:800px) {
+    .hero h1 { font-size: 45px; }
+    header nav ul { gap: 20px; }
 }
