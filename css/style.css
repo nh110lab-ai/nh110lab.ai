@@ -1,227 +1,64 @@
-/* ==========================================================
-   RESET + BASE
-========================================================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html, body {
-    overflow-x: hidden;
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-    scroll-behavior: smooth;
-}
-
-/* ==========================================================
-   COLORS + VARIABLES (Light Mode)
-========================================================== */
+/* =======================================
+   ROOT — Variables VisionOS / Apple Style
+======================================= */
 :root {
-    --bg: #ffffff;
+    --bg: #f6f7fb;
+    --bg-dark: #0c0c0f;
     --text: #0d0d0f;
-    --sub: #646464;
-
-    --glass-1: rgba(255, 255, 255, 0.65);
-    --glass-2: rgba(255, 255, 255, 0.25);
-    --glass-border: rgba(255, 255, 255, 0.55);
-
-    --blue: #0a84ff;
-    --purple: #9d6bff;
-    --aqua: #00c6ff;
-    --pink: #ff4dde;
-
-    --transition: .85s cubic-bezier(.25,.6,.3,1);
-    --radius: 24px;
+    --text-dark: #f5f5f7;
+    --accent: #6a4dfd;
+    --accent-light: #a48bff;
+    --glass: rgba(255, 255, 255, 0.45);
+    --glass-dark: rgba(20, 20, 25, 0.45);
+    --radius: 20px;
+    --shadow: 0 20px 60px rgba(0,0,0,0.08);
+    --shadow-strong: 0 30px 80px rgba(0,0,0,0.20);
+    --transition: 0.5s cubic-bezier(.25,.6,.3,1);
 }
 
-/* ==========================================================
-   DARK MODE auto (scroll morphing)
-========================================================== */
 body.dark {
-    --bg: #0b0b0e;
-    --text: #f5f5f7;
-    --sub: #bdbdbd;
-
-    --glass-1: rgba(15, 15, 22, 0.75);
-    --glass-2: rgba(22, 22, 30, 0.45);
-    --glass-border: rgba(255, 255, 255, 0.15);
+    --bg: var(--bg-dark);
+    --text: var(--text-dark);
+    --glass: var(--glass-dark);
 }
 
-/* ==========================================================
-   BACKGROUND ORB LAYERS (VisionOS)
-========================================================== */
-#orb-bg, #orb-bg-2, #orb-bg-3 {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 110vw;
-    height: 110vh;
-    pointer-events: none;
-    z-index: -10;
-    filter: blur(100px);
-    opacity: 0.55;
-}
 
-#orb-bg {
-    background: radial-gradient(circle at 20% 30%, #9d6bff55, transparent 70%);
-    animation: orb1 22s infinite ease-in-out alternate;
-}
-#orb-bg-2 {
-    background: radial-gradient(circle at 70% 40%, #00c6ff55, transparent 70%);
-    animation: orb2 26s infinite ease-in-out alternate;
-}
-#orb-bg-3 {
-    background: radial-gradient(circle at 50% 80%, #ff4dde55, transparent 70%);
-    animation: orb3 30s infinite ease-in-out alternate;
-}
+/* =======================================
+   GLOBAL
+======================================= */
+* { margin:0; padding:0; box-sizing:border-box; }
 
-@keyframes orb1 {
-    from { transform: translate(-4%, -3%) scale(1); }
-    to   { transform: translate(3%, 5%) scale(1.25); }
-}
-
-@keyframes orb2 {
-    from { transform: translate(3%, -2%) scale(1.1); }
-    to   { transform: translate(-3%, 6%) scale(1.33); }
-}
-
-@keyframes orb3 {
-    from { transform: translateY(0) scale(1); }
-    to   { transform: translateY(6%) scale(1.35); }
-}
-
-/* ==========================================================
-   CURSOR HALO
-========================================================== */
-.cursor-halo {
-    position: fixed;
-    width: 260px;
-    height: 260px;
-    border-radius: 50%;
-    pointer-events: none;
-    background: radial-gradient(circle, rgba(157,107,255,0.28), rgba(0,198,255,0.24), transparent 70%);
-    filter: blur(80px);
-    transform: translate(-50%, -50%);
-    z-index: -5;
-    opacity: .9;
-}
-
-/* ==========================================================
-   HEADER VisionOS
-========================================================== */
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 26px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    background: var(--glass-1);
-    backdrop-filter: blur(24px) saturate(1.6);
-    border-bottom: 1px solid var(--glass-border);
-
-    transition: .45s ease;
-    z-index: 1000;
-}
-
-header.active {
-    padding: 12px 40px;
-    box-shadow: 0 18px 60px rgba(0,0,0,0.12);
-}
-
-.logo {
-    font-size: 26px;
-    font-weight: 800;
-}
-
-nav ul {
-    display: flex;
-    gap: 34px;
-    list-style: none;
-}
-
-nav a {
-    font-weight: 500;
-    text-decoration: none;
+body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    background: var(--bg);
     color: var(--text);
-    transition: .25s;
+    overflow-x: hidden;
+    transition: background var(--transition), color var(--transition);
 }
 
-nav a:hover {
-    color: var(--blue);
-    text-shadow: 0 0 10px rgba(10,132,255,0.55);
+section {
+    padding: 120px 24px;
 }
 
-/* ==========================================================
-   HERO
-========================================================== */
-.hero {
-    padding-top: 200px;
-    padding-bottom: 160px;
-    text-align: center;
-    max-width: 900px;
-    margin: auto;
-    position: relative;
-    z-index: 5;
-}
-
-.hero-title {
-    font-size: 74px;
-    font-weight: 800;
-    letter-spacing: -3px;
-    line-height: 1.05;
-
-    background: linear-gradient(90deg, var(--purple), var(--aqua), var(--pink));
-    -webkit-background-clip: text;
-    color: transparent;
-    animation: titleGlow 7s infinite alternate ease-in-out;
-}
-
-@keyframes titleGlow {
-    0%   { filter: drop-shadow(0 0 8px rgba(157,107,255,0.4)); }
-    100% { filter: drop-shadow(0 0 14px rgba(0,198,255,0.7)); }
-}
-
-.hero-sub {
-    font-size: 22px;
-    opacity: 0.8;
-    margin-top: 15px;
-}
-
-/* Scroll indicator */
-.scroll-indicator {
-    font-size: 32px;
-    opacity: 0.5;
-    margin-top: 40px;
-    animation: bounce 1.6s infinite;
-}
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(10px); }
-}
-
-/* ==========================================================
-   SECTIONS
-========================================================== */
 .section {
-    padding: 100px 24px;
-}
-
-.section-inner {
-    max-width: 1100px;
+    max-width: 1150px;
     margin: auto;
 }
 
 .section-title {
-    font-size: 42px;
+    font-size: 48px;
     font-weight: 800;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
     opacity: 0;
     transform: translateY(20px);
-    transition: 1s;
+    transition: var(--transition);
+}
+
+.section-desc {
+    max-width: 650px;
+    color: #666;
+    font-size: 20px;
+    margin-bottom: 60px;
 }
 
 .section-title.active {
@@ -229,175 +66,240 @@ nav a:hover {
     transform: translateY(0);
 }
 
-.section-desc {
-    font-size: 18px;
-    color: var(--sub);
-    line-height: 1.7;
-    margin-bottom: 40px;
+/* =======================================
+   HEADER
+======================================= */
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    padding: 26px 40px;
+    backdrop-filter: blur(20px) saturate(1.4);
+    background: var(--glass);
+    z-index: 1000;
+    transition: var(--transition);
 }
 
-/* ==========================================================
-   REVEAL ANIMATION
-========================================================== */
-.reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: 1.2s cubic-bezier(.25,.6,.3,1);
-}
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
+header.scrolled {
+    padding: 14px 40px;
+    box-shadow: var(--shadow);
 }
 
-/* ==========================================================
-   CARDS — Liquid Glass / Tilt / Glow
-========================================================== */
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 32px;
+.nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.card {
-    background: var(--glass-1);
-    padding: 32px;
-    border-radius: var(--radius);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(26px) saturate(1.8);
-    box-shadow: 0 24px 60px rgba(0,0,0,0.12);
-    transition: .35s;
+.logo {
+    height: 42px;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+}
+
+nav a {
+    margin-left: 30px;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+
+/* =======================================
+   HERO — VisionOS Orb + Glass Floating
+======================================= */
+.hero {
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
+    overflow: hidden;
 }
 
-.card:hover {
-    transform: translateY(-8px) scale(1.03);
-    box-shadow: 0 35px 75px rgba(0,0,0,0.18);
-}
-
-/* Light following cursor */
-.card::before {
-    content: "";
+.orb-bg {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: inherit;
-    background: radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,0.4), transparent 55%);
+    width: 900px;
+    opacity: 0.7;
+    filter: blur(40px);
+    animation: orbMove 12s infinite alternate ease-in-out;
+}
+
+@keyframes orbMove {
+    0% { transform: translate(-80px, -40px) scale(1); }
+    100% { transform: translate(80px, 40px) scale(1.15); }
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 72px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1.05;
+    animation: fadeUp 1.2s ease-out forwards;
     opacity: 0;
-    transition: .25s;
-    pointer-events: none;
-}
-.card:hover::before { opacity: 1; }
-
-/* ==========================================================
-   IMAGES
-========================================================== */
-.img-fluid {
-    width: 100%;
-    max-width: 900px;
-    border-radius: 24px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.20);
 }
 
-/* ==========================================================
-   PRICING
-========================================================== */
-.pricing-grid {
+.hero-sub {
+    font-size: 22px;
+    margin-top: 18px;
+    opacity: 0;
+    animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.btn-main {
+    padding: 16px 40px;
+    border-radius: 18px;
+    margin-top: 40px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 12px 35px rgba(106,77,253,0.35);
+    transition: 0.3s;
+}
+
+.btn-main:hover {
+    transform: scale(1.05);
+}
+
+/* =======================================
+   AGENTS — Gallery VisionOS
+======================================= */
+.agents-gallery {
     display: flex;
     flex-wrap: wrap;
-    gap: 32px;
+    gap: 25px;
     justify-content: center;
 }
 
+.agent-img {
+    width: 330px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(22px);
+    background: var(--glass);
+    transition: 0.35s;
+}
+
+.agent-img:hover {
+    transform: scale(1.04);
+    box-shadow: var(--shadow-strong);
+}
+
+/* =======================================
+   CARDS
+======================================= */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: var(--glass);
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(20px);
+    transition: 0.4s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-strong);
+}
+
+/* =======================================
+   PRICE
+======================================= */
+.pricing-grid {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    flex-wrap: wrap;
+}
+
 .price-card {
-    background: var(--glass-2);
+    width: 330px;
+    background: var(--glass);
     padding: 40px;
     border-radius: var(--radius);
-    width: 290px;
-    backdrop-filter: blur(28px) saturate(1.8);
     text-align: center;
-    border: 1px solid var(--glass-border);
-    transition: .35s;
+    box-shadow: var(--shadow);
 }
 
-.price-card:hover {
-    transform: scale(1.06);
-    border-color: var(--purple);
-    box-shadow: 0 28px 75px rgba(120,90,255,0.35);
+.price-card .price {
+    font-size: 46px;
+    margin: 15px 0;
+    font-weight: 900;
 }
 
-.price {
-    font-size: 42px;
-    font-weight: 800;
-    margin: 20px 0;
-}
-
-/* ==========================================================
-   CONTACT
-========================================================== */
-.contact-box {
-    background: var(--glass-1);
-    padding: 40px;
+/* =======================================
+   FAQ
+======================================= */
+.faq-item {
+    background: var(--glass);
+    padding: 22px;
     border-radius: var(--radius);
-    backdrop-filter: blur(26px);
-    border: 1px solid var(--glass-border);
-    text-align: center;
-}
-
-/* ==========================================================
-   BUTTONS
-========================================================== */
-.btn-main {
-    padding: 16px 42px;
-    background: linear-gradient(90deg, var(--purple), var(--aqua), var(--pink));
-    color: white;
-    border: none;
-    border-radius: 20px;
+    margin-bottom: 14px;
     cursor: pointer;
-    font-size: 20px;
-    box-shadow: 0 20px 40px rgba(120,90,255,0.35);
-    transition: .35s;
-}
-.btn-main:hover {
-    transform: scale(1.08);
-    box-shadow: 0 25px 70px rgba(120,90,255,0.55);
+    transition: 0.3s;
 }
 
-/* ==========================================================
-   FOOTER APPLE
-========================================================== */
-.footer {
+.faq-item:hover {
+    box-shadow: var(--shadow);
+}
+
+.faq-a {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.5s ease;
+    margin-top: 8px;
+}
+
+.faq-item.active .faq-a {
+    max-height: 200px;
+    opacity: 1;
+}
+
+/* =======================================
+   CONTACT
+======================================= */
+.contact-box {
+    background: var(--glass);
+    padding: 50px;
+    border-radius: var(--radius);
     text-align: center;
-    padding: 60px 20px;
-    color: var(--sub);
+    box-shadow: var(--shadow);
 }
 
-.footer-logo {
-    width: 64px;
-    opacity: .7;
-    margin-bottom: 20px;
-}
 
-.footer-links a {
-    margin: 0 12px;
-    color: var(--sub);
-    text-decoration: none;
-    transition: .25s;
-}
-
-.footer-links a:hover {
-    color: var(--blue);
-}
-
-.footer-copy {
-    margin-top: 18px;
-    opacity: .5;
-}
-
-/* ==========================================================
+/* =======================================
    RESPONSIVE
-========================================================== */
-@media(max-width:900px) {
+======================================= */
+@media(max-width: 850px){
     .hero-title { font-size: 48px; }
-    header { padding: 20px; }
+    .hero-sub { font-size: 18px; }
+    nav a { margin-left: 15px; }
 }
