@@ -5,162 +5,189 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>NH110LAB.ai — Intelligence & Automations</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css">
-<link rel="stylesheet" href="css/style.css">
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="assets/favicon.png">
 
-<style>
-/* Halo IA */
-.cursor-halo {
-    position: fixed;
-    width: 260px;
-    height: 260px;
-    border-radius: 50%;
-    pointer-events: none;
-    background: radial-gradient(circle,
-                rgba(157,107,255,0.28),
-                rgba(0,198,255,0.24),
-                transparent 70%);
-    filter: blur(80px);
-    transform: translate(-50%, -50%);
-    z-index: -2;
-    opacity: .9;
-    transition: 0.2s;
-}
-</style>
+<!-- Fonts -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css">
+
+<!-- Main Style -->
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- HALO IA -->
+<!-- ==============================
+     MULTI-LAYER ORB BACKGROUND
+=============================== -->
+<div id="orb-bg"></div>
+<div id="orb-bg-2"></div>
+<div id="orb-bg-3"></div>
+
+<!-- ==============================
+     CURSOR HALO
+=============================== -->
 <div class="cursor-halo"></div>
 
-<!-- HEADER -->
+<!-- ==============================
+     HEADER VisionOS
+=============================== -->
 <header>
-    <div class="logo" style="font-size: 26px; font-weight: 800;">NH110LAB.ai</div>
+    <div class="logo">NH110LAB.ai</div>
     <nav>
         <ul>
             <li><a href="#agents">Agents</a></li>
             <li><a href="#services">Services</a></li>
+            <li><a href="#pipeline">Pipeline IA</a></li>
+            <li><a href="#ui">UI Agent</a></li>
             <li><a href="#pricing">Tarifs</a></li>
-            <li><a href="#faq">FAQ</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 </header>
 
-<!-- HERO -->
-<section class="hero reveal">
-    <h1>Des Agents IA<br>modernes & évolutifs</h1>
-    <p>Créations intelligentes, autonomes et optimisées pour votre activité.</p>
-    <button class="btn-main" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-        Créer mon agent IA
-    </button>
+<!-- ==============================
+     HERO VISION PRO
+=============================== -->
+<section id="hero" class="hero reveal">
+    <div class="hero-inner">
+        <h1 class="hero-title">
+            Agents IA<br>Vision Pro<br>Modernes & Évolutifs
+        </h1>
+        <p class="hero-sub">
+            Une expérience inspirée de VisionOS & Apple Intelligence,<br>
+            conçue pour propulser votre activité avec des agents autonomes.
+        </p>
+
+        <button class="btn-main" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+            Créer mon agent IA
+        </button>
+
+        <div class="scroll-indicator">▾</div>
+    </div>
 </section>
 
-<!-- AGENTS -->
-<section id="agents" class="reveal">
+<!-- ==============================
+     AGENTS
+=============================== -->
+<section id="agents" class="section reveal">
     <div class="section-inner">
         <h2 class="section-title">Agents IA Premium</h2>
-        <p class="section-desc">Une suite d’agents autonomes conçus pour automatiser et optimiser votre activité.</p>
+        <p class="section-desc">
+            Vos agents deviennent de véritables membres de votre équipe : autonomes, connectés, performants.
+        </p>
 
         <div class="cards-grid">
-            <div class="card"><h3>Prospector+</h3><p>Prospection automatique & scoring intelligent.</p></div>
-            <div class="card"><h3>DocReader IA</h3><p>Analyse & extraction de données.</p></div>
+            <div class="card"><h3>Prospector+</h3><p>Prospection autonome et scoring intelligent.</p></div>
+            <div class="card"><h3>DocReader IA</h3><p>Lecture, résumé et extraction de données.</p></div>
             <div class="card"><h3>CRM Sync</h3><p>Connexion CRM + relances automatiques.</p></div>
-            <div class="card"><h3>SupportFlow</h3><p>Support client IA 24/7.</p></div>
-            <div class="card"><h3>AutoTech IA</h3><p>Diagnostic OBD + prédictions pannes.</p></div>
-            <div class="card"><h3>Data Insight</h3><p>Dashboards autonomes & insights.</p></div>
+            <div class="card"><h3>SupportFlow</h3><p>Support IA 24/7 sur vos données internes.</p></div>
+            <div class="card"><h3>AutoTech IA</h3><p>Diagnostic OBD + prédiction des pannes.</p></div>
+            <div class="card"><h3>Data Insight</h3><p>Dashboards temps réel + alertes IA.</p></div>
         </div>
     </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services" class="reveal">
+<!-- ==============================
+     SERVICES
+=============================== -->
+<section id="services" class="section reveal">
     <div class="section-inner">
-        <h2 class="section-title">Services Premium</h2>
-        <p class="section-desc">Développement IA sur mesure, automatisation complète et intégrations pro.</p>
+        <h2 class="section-title">Services Vision Pro</h2>
+        <p class="section-desc">Automatisation intelligente, intégrations API, agents autonomes.</p>
 
         <div class="cards-grid">
-            <div class="card"><h3>Agents IA</h3><p>Agents autonomes pour prospection & gestion.</p></div>
-            <div class="card"><h3>Automations API</h3><p>Workflows CRM, WhatsApp, emails, sites.</p></div>
-            <div class="card"><h3>Audit IA</h3><p>Optimisation complète de vos process.</p></div>
+            <div class="card"><h3>Agents IA</h3><p>Agents spécialisés prêts à l’emploi.</p></div>
+            <div class="card"><h3>API & Automations</h3><p>CRM, WhatsApp, e-commerce, webhooks.</p></div>
+            <div class="card"><h3>Pilotage IA</h3><p>Analyses automatiques + prises de décision.</p></div>
         </div>
     </div>
 </section>
 
-<!-- PRICING -->
-<section id="pricing" class="reveal">
+<!-- ==============================
+     PIPELINE IA (Image)
+=============================== -->
+<section id="pipeline" class="section reveal">
+    <div class="section-inner">
+        <h2 class="section-title">Architecture IA</h2>
+        <p class="section-desc">
+            L’architecture complète d’un agent moderne : données → actions → décisions.
+        </p>
+
+        <img src="assets/pipeline.png" class="img-fluid">
+    </div>
+</section>
+
+<!-- ==============================
+     UI AGENT (Image)
+=============================== -->
+<section id="ui" class="section reveal">
+    <div class="section-inner">
+        <h2 class="section-title">Interface Agent IA</h2>
+        <p class="section-desc">Une interface premium, claire, lisible et inspirée d’Apple Vision Pro.</p>
+
+        <img src="assets/agent-ui.png" class="img-fluid">
+    </div>
+</section>
+
+<!-- ==============================
+     PRICING
+=============================== -->
+<section id="pricing" class="section reveal">
     <div class="section-inner">
         <h2 class="section-title">Tarifs</h2>
-        <p class="section-desc">Des plans simples pour commencer rapidement.</p>
+        <p class="section-desc">Des plans modulables selon vos besoins.</p>
 
         <div class="pricing-grid">
             <div class="price-card">
                 <h3>Starter</h3>
                 <div class="price">49€/mois</div>
-                <ul>
-                    <li>1 Agent IA</li>
-                    <li>Automations simples</li>
-                    <li>Support standard</li>
-                </ul>
+                <ul><li>1 Agent IA</li><li>Intégrations simples</li><li>Support standard</li></ul>
             </div>
 
             <div class="price-card">
                 <h3>Business</h3>
                 <div class="price">149€/mois</div>
-                <ul>
-                    <li>3 Agents IA</li>
-                    <li>Automations avancées</li>
-                    <li>Support prioritaire</li>
-                </ul>
+                <ul><li>3 Agents IA</li><li>Automations avancées</li><li>Support prioritaire</li></ul>
             </div>
 
             <div class="price-card">
                 <h3>Entreprise</h3>
                 <div class="price">Sur devis</div>
-                <ul>
-                    <li>Agents illimités</li>
-                    <li>Automations complexes</li>
-                    <li>Accompagnement complet</li>
-                </ul>
+                <ul><li>Agents illimités</li><li>Automations complexes</li><li>Accompagnement dédié</li></ul>
             </div>
         </div>
     </div>
 </section>
 
-<!-- FAQ -->
-<section id="faq" class="reveal">
-    <div class="section-inner">
-        <h2 class="section-title">FAQ</h2>
-
-        <div class="faq-item">
-            <div class="faq-q">Comment fonctionne un agent IA ?</div>
-            <div class="faq-a">Il agit automatiquement selon vos règles, objectifs et données.</div>
-        </div>
-
-        <div class="faq-item">
-            <div class="faq-q">Les agents remplacent-ils un employé ?</div>
-            <div class="faq-a">Ils automatisent les tâches répétitives pour gagner du temps.</div>
-        </div>
-
-        <div class="faq-item">
-            <div class="faq-q">Puis-je connecter mon CRM ?</div>
-            <div class="faq-a">Oui, Salesforce, HubSpot, Notion, Airtable et bien plus.</div>
-        </div>
-    </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="reveal">
+<!-- ==============================
+     CONTACT
+=============================== -->
+<section id="contact" class="section reveal">
     <div class="section-inner">
         <h2 class="section-title">Contact</h2>
         <div class="contact-box">
-            <p style="margin-bottom:24px;font-size:20px;">Discutons de votre projet 👋</p>
+            <p>Présentez votre projet, vos outils et vos besoins.</p>
             <button class="btn-main" onclick="window.location.href='mailto:nhlab.ai@icloud.com'">Envoyer un message</button>
         </div>
     </div>
 </section>
 
-<script src="js/app.js"></script>
+<!-- ==============================
+     FOOTER APPLE-LIKE
+=============================== -->
+<footer class="footer">
+    <img src="assets/favicon.png" class="footer-logo">
+    <div class="footer-links">
+        <a href="#agents">Agents</a>
+        <a href="#pricing">Tarifs</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <p class="footer-copy">
+        © 2025 NH110LAB.ai — Site conçu avec Apple-Inspired VisionOS UI.
+    </p>
+</footer>
+
+<script src="app.js"></script>
 </body>
 </html>
