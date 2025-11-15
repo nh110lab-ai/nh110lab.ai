@@ -1,0 +1,341 @@
+/* ==========================================================
+   ROOT VARIABLES — Apple Intelligence + Vision Pro
+========================================================== */
+:root {
+    --bg: #ffffff;
+    --text: #0d0d0f;
+    --subtext: #666;
+    --card-bg: rgba(255, 255, 255, 0.65);
+    --nav-bg: rgba(255, 255, 255, 0.82);
+
+    /* Apple Intelligence Neon Colors */
+    --ai1: #9D6BFF;
+    --ai2: #00C6FF;
+    --ai3: #FF4DDE;
+
+    --radius: 24px;
+    --shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    --transition-theme: 0.85s cubic-bezier(.25,.6,.3,1);
+
+    /* Glass 2.0 */
+    --glass-strong: rgba(255, 255, 255, 0.70);
+    --glass-dark: rgba(18, 18, 22, 0.55);
+}
+
+/* DARK MODE AUTO (activé via JS) */
+body.dark {
+    --bg: #0b0b0d;
+    --text: #f5f5f8;
+    --subtext: #bfbfc8;
+    --card-bg: rgba(20,20,28,0.55);
+    --nav-bg: rgba(10,10,14,0.75);
+    --glass-strong: rgba(30,30,38,0.55);
+}
+
+
+/* ==========================================================
+   GLOBAL
+========================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    transition:
+        background var(--transition-theme),
+        color var(--transition-theme);
+}
+
+section {
+    padding: 110px 26px;
+}
+
+.section-inner {
+    max-width: 1150px;
+    margin: auto;
+}
+
+.section-title {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 14px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 1s;
+}
+.section-title.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-desc {
+    font-size: 18px;
+    max-width: 680px;
+    color: var(--subtext);
+    line-height: 1.7;
+    margin-bottom: 50px;
+}
+
+
+/* ==========================================================
+   HEADER — VisionOS Floating
+========================================================== */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 26px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(22px) saturate(1.4);
+    background: var(--nav-bg);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    transition: .55s;
+    z-index: 1000;
+}
+header.active {
+    padding: 14px 40px;
+    box-shadow: 0 22px 60px rgba(0,0,0,0.15);
+}
+
+nav ul {
+    display: flex;
+    gap: 34px;
+    list-style: none;
+}
+nav a {
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    transition: 0.3s;
+}
+nav a:hover {
+    color: var(--ai2);
+}
+
+
+/* ==========================================================
+   HERO — Vision Pro Orb + Gradient Title
+========================================================== */
+.hero {
+    padding-top: 180px;
+    text-align: center;
+    max-width: 900px;
+    margin: auto;
+}
+
+.hero h1 {
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 1.04;
+    background: linear-gradient(90deg, var(--ai1), var(--ai2), var(--ai3));
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: titleGlow 8s infinite alternate ease-in-out;
+}
+@keyframes titleGlow {
+    0% { filter: drop-shadow(0 0 8px rgba(157,107,255,0.4)); }
+    100% { filter: drop-shadow(0 0 18px rgba(0,198,255,0.7)); }
+}
+
+.hero p {
+    font-size: 22px;
+    opacity: .8;
+    margin-top: 20px;
+}
+
+.btn-main {
+    padding: 18px 42px;
+    font-size: 20px;
+    border-radius: 22px;
+    border: none;
+    margin-top: 42px;
+    color: white;
+    cursor: pointer;
+    background: linear-gradient(90deg, var(--ai1), var(--ai2), var(--ai3));
+    animation: gradientMove 9s infinite ease alternate;
+    box-shadow: 0 12px 40px rgba(120,90,255,0.45);
+    transition: .3s;
+}
+@keyframes gradientMove {
+    0% { background-position: 0%; }
+    100% { background-position: 200%; }
+}
+.btn-main:hover {
+    transform: scale(1.06);
+}
+
+
+/* ==========================================================
+   CARDS (VisionOS Glass)
+========================================================== */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+}
+
+.card {
+    background: var(--glass-strong);
+    padding: 32px;
+    border-radius: var(--radius);
+    backdrop-filter: blur(28px) saturate(1.6);
+    border: 1px solid rgba(255,255,255,0.35);
+    box-shadow: var(--shadow);
+    transition: .45s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.03);
+    backdrop-filter: blur(38px) saturate(1.8);
+    box-shadow: 0 32px 75px rgba(0,0,0,0.15);
+}
+
+.card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.card p {
+    font-size: 15px;
+    color: var(--subtext);
+}
+
+
+/* ==========================================================
+   PRICING SECTION
+========================================================== */
+.pricing-grid {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.price-card {
+    width: 310px;
+    padding: 45px;
+    background: var(--glass-strong);
+    border-radius: 26px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.35);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(28px);
+    transition: .45s ease;
+}
+
+.price-card:hover {
+    transform: translateY(-12px) scale(1.05);
+    box-shadow: 0 40px 90px rgba(0,0,0,0.18);
+}
+
+.price-card h3 {
+    font-size: 28px;
+    font-weight: 700;
+}
+.price {
+    font-size: 45px;
+    margin: 20px 0;
+    font-weight: 900;
+    background: linear-gradient(110deg, var(--ai1), var(--ai2));
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+
+/* ==========================================================
+   FAQ
+========================================================== */
+.faq-item {
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    cursor: pointer;
+}
+body.dark .faq-item {
+    border-bottom-color: rgba(255,255,255,0.15);
+}
+
+.faq-q {
+    font-size: 19px;
+    font-weight: 600;
+}
+.faq-a {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: .5s;
+}
+.faq-item.active .faq-a {
+    max-height: 180px;
+    opacity: 1;
+    margin-top: 8px;
+}
+
+
+/* ==========================================================
+   CONTACT
+========================================================== */
+.contact-box {
+    background: var(--glass-strong);
+    padding: 55px;
+    border-radius: 30px;
+    backdrop-filter: blur(32px) saturate(1.6);
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.35);
+    box-shadow: var(--shadow);
+}
+
+
+/* ==========================================================
+   CURSOR HALO (Apple Intelligence)
+========================================================== */
+.cursor-halo {
+    position: fixed;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(157,107,255,0.25), rgba(0,198,255,0.23), transparent 70%);
+    filter: blur(85px);
+    transform: translate(-50%, -50%);
+    z-index: -2;
+    opacity: .9;
+    transition: 0.2s;
+}
+
+
+/* ==========================================================
+   REVEAL ANIMATIONS
+========================================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 1s cubic-bezier(.25,.6,.3,1);
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+@media (max-width: 800px) {
+    .hero h1 {
+        font-size: 48px;
+    }
+    header {
+        padding: 18px 22px;
+    }
+    header.active {
+        padding: 12px 22px;
+    }
+}
