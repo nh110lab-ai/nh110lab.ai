@@ -1,172 +1,89 @@
-/* ==========================================================
-   CURSOR HALO FOLLOW
-========================================================== */
-const halo = document.querySelector(".cursor-halo");
+/* ============================================================
+   SCROLL REVEAL — Animation douce sur toutes les sections
+============================================================ */
+const revealElements = document.querySelectorAll('.section-title, .section-desc, .card, .agent-img, .price-card, .faq-item, .contact-box');
 
-document.addEventListener("mousemove", (e) => {
-    halo.style.left = e.pageX + "px";
-    halo.style.top = e.pageY + "px";
-});
-
-/* ==========================================================
-   HEADER SHRINK ON SCROLL
-========================================================== */
-window.addEventListener("scroll", () => {
-    const h = document.querySelector("header");
-    if (window.scrollY > 40) h.classList.add("active");
-    else h.classList.remove("active");
-});
-
-/* ==========================================================
-   REVEAL ANIMATIONS (Intersection Observer)
-========================================================== */
-const reveals = document.querySelectorAll(".reveal, .section-title");
-const io = new IntersectionObserver((entries) => {
+const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add("active");
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            entry.target.style.transitionDelay = "0.1s";
+        }
     });
 }, { threshold: 0.15 });
 
-reveals.forEach(el => io.observe(el));
+revealElements.forEach(el => revealObserver.observe(el));
 
-/* ==========================================================
-   AUTO DARK/LIGHT MODE — Apple Style
-========================================================== */
-const body = document.body;
-const sections = document.querySelectorAll("section");
 
-function updateThemeOnScroll() {
-    const mid = window.innerHeight / 2;
-    let currentId = "hero";
+/* ============================================================
+   HEADER — Change style en scroll (VisionOS style)
+============================================================ */
+const header = document.getElementById("header");
 
-    sections.forEach(sec => {
-        const r = sec.getBoundingClientRect();
-        if (r.top <= mid && r.bottom >= mid) {
-            currentId = sec.id;
-        }
-    });
-
-    // Mode sombre sur pipeline, UI, pricing
-    if (["pipeline", "ui", "pricing"].includes(currentId)) {
-        body.classList.add("dark");
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+        header.classList.add("scrolled");
     } else {
-        body.classList.remove("dark");
+        header.classList.remove("scrolled");
     }
-}
+});
 
-window.addEventListener("scroll", updateThemeOnScroll);
-window.addEventListener("load", updateThemeOnScroll);
 
-/* ==========================================================
-   PARALLAX — ORB BACKGROUND LAYERS
-========================================================== */
-const layers = [
-    document.getElementById("orb-bg"),
-    document.getElementById("orb-bg-2"),
-    document.getElementById("orb-bg-3"),
-];
+/* ============================================================
+   DARK / LIGHT AUTO — Change toutes les 1 sections
+============================================================ */
+const body = document.body;
 
-window.addEventListener("mousemove", (e) => {
-    const rx = (e.clientX / window.innerWidth - 0.5) * 30;
-    const ry = (e.clientY / window.innerHeight - 0.5) * 30;
+let lastMode = 0;
 
-    layers.forEach((layer, i) => {
-        const depth = (i + 1) * 15;
-        layer.style.transform = `translate(${rx / depth}px, ${ry / depth}px)`;
+window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY;
+    const viewport = window.innerHeight;
+
+    // Mode change every viewport height
+    const sectionIndex = Math.floor(scrollY / viewport);
+
+    if (sectionIndex % 2 === 1 && lastMode !== 1) {
+        body.classList.add("dark");
+        lastMode = 1;
+    } 
+    else if (sectionIndex % 2 === 0 && lastMode !== 0) {
+        body.classList.remove("dark");
+        lastMode = 0;
+    }
+});
+
+
+/* ============================================================
+   FAQ — Accordéon
+============================================================ */
+document.querySelectorAll(".faq-item").forEach(item => {
+    item.addEventListener("click", () => {
+        item.classList.toggle("active");
     });
 });
 
-/* ==========================================================
-   CARD TILT 3D + LIGHT FOLLOW
-========================================================== */
-document.querySelectorAll(".card").forEach(card => {
-    card.addEventListener("mousemove", (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width;
-        const y = (e.clientY - rect.top) / rect.height;
 
-        const tiltX = (y - 0.5) * 18;
-        const tiltY = (x - 0.5) * -18;
+/* ============================================================
+   PARALLAX ORB — Effet Apple Intelligence
+============================================================ */
+const orb = document.querySelector(".orb-bg");
 
-        card.style.transform =
-            `perspective(900px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.04)`;
-
-        card.style.setProperty("--mx", `${x * 100}%`);
-        card.style.setProperty("--my", `${y * 100}%`);
-    });
-
-    card.addEventListener("mouseleave", () => {
-        card.style.transform = "perspective(900px) rotateX(0) rotateY(0) scale(1)";
-    });
+document.addEventListener("mousemove", (e) => {
+    if (!orb) return;
+    const x = (e.clientX / window.innerWidth - 0.5) * 40;
+    const y = (e.clientY / window.innerHeight - 0.5) * 40;
+    orb.style.transform = `translate(${x}px, ${y}px) scale(1.15)`;
 });
 
-/* ==========================================================
-   PARTICLES — APPLE INTELLIGENCE STYLE
-========================================================== */
-const canvas = document.createElement("canvas");
-canvas.id = "aiParticles";
-canvas.style.position = "fixed";
-canvas.style.top = 0;
-canvas.style.left = 0;
-canvas.style.width = "100vw";
-canvas.style.height = "100vh";
-canvas.style.zIndex = -8;
-canvas.style.pointerEvents = "none";
 
-document.body.appendChild(canvas);
-
-const ctx = canvas.getContext("2d");
-
-let w, h;
-function resize() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener("resize", resize);
-
-const particles = [];
-const COUNT = 70;
-
-function createParticle() {
-    const size = Math.random() * 3 + 2;
-    const speed = Math.random() * 0.5 + 0.2;
-
-    return {
-        x: Math.random() * w,
-        y: Math.random() * h,
-        vx: (Math.random() - 0.5) * speed,
-        vy: (Math.random() - 0.5) * speed,
-        size,
-        color:
-            Math.random() > 0.66
-                ? "rgba(157,107,255,0.7)"
-                : Math.random() > 0.33
-                ? "rgba(0,198,255,0.7)"
-                : "rgba(255,77,222,0.7)",
-    };
-}
-
-for (let i = 0; i < COUNT; i++) particles.push(createParticle());
-
-function animateParticles() {
-    ctx.clearRect(0, 0, w, h);
-
-    particles.forEach((p) => {
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0 || p.x > w) p.vx *= -1;
-        if (p.y < 0 || p.y > h) p.vy *= -1;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.shadowBlur = 15;
-        ctx.shadowColor = p.color;
-        ctx.fill();
+/* ============================================================
+   SMOOTH SCROLL — Pour les liens nav
+============================================================ */
+document.querySelectorAll("nav a").forEach(link => {
+    link.addEventListener("click", e => {
+        e.preventDefault();
+        const id = link.getAttribute("href").replace("#", "");
+        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
     });
-
-    requestAnimationFrame(animateParticles);
-}
-animateParticles();
+});
