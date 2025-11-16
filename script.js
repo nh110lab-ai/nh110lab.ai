@@ -22,6 +22,7 @@
     };
   };
 
+  // Cache DOM
   const DOM = {
     root: document.documentElement,
     yearEl: null,
@@ -600,6 +601,7 @@
   // ============ INIT PRINCIPALE ============
   const init = () => {
     initDOMCache();
+    console.log("[NH110LAB] Initialisation NH110LAB.ai...");
     updateYear();
     initTheme();
     initSmoothScroll();
@@ -627,6 +629,8 @@
         initParticles();
       },
     };
+
+    console.log("[NH110LAB] ✅ Initialisation terminée");
   };
 
   if (document.readyState === "loading") {
