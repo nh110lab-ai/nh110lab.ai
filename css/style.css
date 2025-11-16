@@ -1,175 +1,80 @@
-/* -------------------- */
-/* RESET + BASE GLOBAL  */
-/* -------------------- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<!-- NH110LAB.ai — One-Page Tesla Cyber Minimal (Full Rebuild) -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NH110LAB.ai — Intelligence Artificielle & Automations</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <img src="assets/images/logo.png" class="logo" alt="NH110LAB.ai" />
+    <nav class="nav">
+      <a href="#hero">Accueil</a>
+      <a href="#agents">Agents IA</a>
+      <a href="#services">Services</a>
+      <a href="#pricing">Tarifs</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-body {
-    font-family: "Inter", sans-serif;
-    background: #080808;
-    color: #f3f3f3;
-    line-height: 1.7;
-    padding-bottom: 80px;
-}
+  <!-- HERO -->
+  <section id="hero" class="hero">
+    <h1>Intelligence Artificielle Premium</h1>
+    <p>Des agents IA puissants, autonomes et spécialisés pour automatiser votre activité.</p>
+    <button class="cta">Créer mon agent IA</button>
+  </section>
 
-img {
-    max-width: 100%;
-    display: block;
-}
+  <!-- AGENTS -->
+  <section id="agents">
+    <h2>Agents IA Premium</h2>
+    <p>Automatisation complète, prospection, gestion et décisions autonomes.</p>
+    <div class="service-grid">
+      <div class="service-card"><h3>Agent Prospection</h3><p>Démarchage automatisé & réponses intelligentes.</p></div>
+      <div class="service-card"><h3>Agent Support</h3><p>Gestion client 24/7 autonome.</p></div>
+      <div class="service-card"><h3>Agent CRM</h3><p>Intégré à HubSpot, Notion, Airtable.</p></div>
+    </div>
+  </section>
 
-section {
-    padding: 80px 10%;
-}
+  <!-- SERVICES -->
+  <section id="services" class="dark">
+    <h2>Services Premium</h2>
+    <div class="service-grid">
+      <div class="service-card"><h3>Automations API</h3><p>WhatsApp, Email, sites web, CRM.</p></div>
+      <div class="service-card"><h3>Audit IA</h3><p>Diagnostic complet & optimisation IA.</p></div>
+      <div class="service-card"><h3>Développement IA</h3><p>Solutions IA sur mesure pour entreprises.</p></div>
+    </div>
+  </section>
 
-/* TITRES */
-h1, h2, h3 {
-    font-weight: 700;
-}
+  <!-- PRICING -->
+  <section id="pricing">
+    <h2>Tarifs</h2>
+    <div class="pricing-grid">
+      <div class="pricing-card"><h3>Starter</h3><p class="price">49€/mois</p></div>
+      <div class="pricing-card highlighted"><h3>Pro</h3><p class="price">199€/mois</p></div>
+      <div class="pricing-card"><h3>Enterprise</h3><p class="price">Sur devis</p></div>
+    </div>
+  </section>
 
-h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
+  <!-- FAQ -->
+  <section id="faq" class="dark">
+    <h2>FAQ</h2>
+    <ul class="features">
+      <li>Qu'est-ce qu’un agent IA ?</li>
+      <li>Combien de temps pour le déploiement ?</li>
+      <li>Intégration avec mes outils existants ?</li>
+    </ul>
+  </section>
 
-h2 {
-    font-size: 2.4rem;
-    margin-bottom: 25px;
-}
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email : contact@nh110lab.ai</p>
+  </section>
 
-h3 {
-    font-size: 1.6rem;
-    margin-bottom: 15px;
-}
-
-/* -------------------- */
-/* HEADER               */
-/* -------------------- */
-.header {
-    width: 100%;
-    padding: 20px 10%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    background: rgba(0,0,0,0.4);
-    backdrop-filter: blur(8px);
-}
-
-.nav a {
-    color: #f3f3f3;
-    margin-left: 20px;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.logo {
-    height: 40px;
-}
-
-/* -------------------- */
-/* HERO                 */
-/* -------------------- */
-.hero {
-    padding-top: 180px;
-    padding-bottom: 150px;
-    text-align: center;
-    background: radial-gradient(circle at top, #202020, #000);
-}
-
-.hero p {
-    margin: 15px auto 25px auto;
-    max-width: 650px;
-    font-size: 1.2rem;
-    opacity: 0.8;
-}
-
-.cta {
-    background: linear-gradient(90deg, #4A6CF7, #6A54FF);
-    padding: 15px 28px;
-    border: none;
-    border-radius: 50px;
-    color: white;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.cta:hover {
-    transform: scale(1.05);
-}
-
-/* -------------------- */
-/* SECTIONS             */
-/* -------------------- */
-.section-img {
-    margin: 40px auto;
-}
-
-.features li {
-    list-style: none;
-    margin-bottom: 10px;
-    font-size: 1.1rem;
-}
-
-/* DARK Sections */
-.dark {
-    background: #111;
-    border-top: 1px solid #222;
-    border-bottom: 1px solid #222;
-}
-
-/* -------------------- */
-/* SERVICES CARDS       */
-/* -------------------- */
-.service-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    margin-top: 40px;
-}
-
-.service-card {
-    background: #181818;
-    padding: 25px;
-    border-radius: 16px;
-    border: 1px solid #222;
-}
-
-.service-card:hover {
-    transform: translateY(-3px);
-}
-
-/* -------------------- */
-/* PRICING              */
-/* -------------------- */
-.pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.pricing-card {
-    background: #151515;
-    padding: 30px;
-    border-radius: 16px;
-    border: 1px solid #222;
-    text-align: center;
-}
-
-.highlighted {
-    border: 1px solid #6A54FF;
-    background: #201A40;
-}
-
-.price {
-    font-size: 2rem;
-    margin: 15px 0;
-    font-weight: 700;
-}
+  <script src="js/app.js"></script>
+</body>
+</html>
