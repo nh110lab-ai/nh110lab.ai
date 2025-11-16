@@ -1,143 +1,119 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NH110LAB.ai — Agents IA Autonomes</title>
-
+    <title>NH110LAB.ai – Intelligence Autonome</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div id="theme-wrapper">
+<!-- FONDS ANIMÉS -->
+<canvas id="orb"></canvas>
+<canvas id="halo"></canvas>
+<canvas id="particles"></canvas>
 
-    <!-- FONDS INTERACTIFS -->
-    <canvas id="orb"></canvas>
-    <canvas id="particles"></canvas>
+<header class="header glass">
+    <div class="logo">NH110LAB.ai</div>
+    <nav>
+        <a href="#hero">Accueil</a>
+        <a href="#about">À propos</a>
+        <a href="#agents">Agents IA</a>
+        <a href="#services">Services</a>
+        <a href="#tech">Technologie</a>
+        <a href="#usecases">Cas d’usage</a>
+        <a href="#pricing">Tarifs</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
 
-    <header class="header glass">
-        <div class="logo">NH110LAB.ai</div>
-        <nav>
-            <a href="#hero">Accueil</a>
-            <a href="#agents">Agents IA</a>
-            <a href="#services">Services</a>
-            <a href="#tech">Technologie</a>
-            <a href="#usecases">Cas d’usage</a>
-            <a href="#pricing">Tarifs</a>
-            <a href="#faq">FAQ</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+<!-- HERO -->
+<section id="hero" class="hero">
+    <div class="hero-content glass reveal">
+        <h1>Une Intelligence Autonome qui Travaille Pour Vous</h1>
+        <p>Agents IA autonomes, mémoire persistante, décisions intelligentes et actions en temps réel.</p>
+        <a href="#contact" class="cta">Créer mon agent IA</a>
+    </div>
+</section>
 
-    <!-- HERO -->
-    <section id="hero" class="hero">
-        <div class="hero-content glass">
-            <h1 class="fade-title">L’IA autonome qui travaille pour vous</h1>
-            <p>Agents IA intelligents, connectés, autonomes, performants.  
-                Workflows, API, CRM, prospection, data — tout est automatisé.</p>
-            <a href="#contact" class="cta">Créer mon agent IA</a>
-        </div>
-    </section>
+<!-- ABOUT -->
+<section id="about" class="section reveal">
+    <h2>L’IA Réinventée</h2>
+    <p class="text-large">Nous développons des agents autonomes capables d’observer, décider, agir et apprendre dans votre entreprise.</p>
+</section>
 
-    <!-- AGENTS -->
-    <section id="agents" class="section dark-block">
-        <h2>Agents IA Autonomes</h2>
-        <div class="cards">
-            <div class="card glass"><h3>Agent Commercial</h3><p>Prospection intelligente, segmentation dynamique.</p></div>
-            <div class="card glass"><h3>Agent CRM</h3><p>WhatsApp, emails, suivi client, relances automatiques.</p></div>
-            <div class="card glass"><h3>Agent Analyste</h3><p>Analyse data, dashboards, décisions autonomes.</p></div>
-            <div class="card glass"><h3>Agent Opérations</h3><p>Automatisation interne, tâches, organisation complète.</p></div>
-        </div>
-    </section>
+<!-- AGENTS -->
+<section id="agents" class="section dark-block reveal">
+    <h2>Agents IA Autonomes</h2>
+    <div class="cards">
+        <div class="card glass"><h3>Agent Commercial</h3><p>Prospection intelligente & automatisée.</p></div>
+        <div class="card glass"><h3>Agent CRM</h3><p>WhatsApp, emails, relances, pipelines.</p></div>
+        <div class="card glass"><h3>Agent Analyste</h3><p>Rapports automatiques, prédictions.</p></div>
+        <div class="card glass"><h3>Agent Opérations</h3><p>Organisation & automatisations internes.</p></div>
+    </div>
+</section>
 
-    <!-- SERVICES -->
-    <section id="services" class="section">
-        <h2>Services Premium</h2>
-        <p class="text-large">Des solutions IA puissantes, personnalisées, optimisées pour votre activité.</p>
+<!-- SERVICES -->
+<section id="services" class="section reveal">
+    <h2>Services Premium</h2>
+    <div class="cards">
+        <div class="card glass"><h3>Agents sur mesure</h3><p>Adaptés à votre activité.</p></div>
+        <div class="card glass"><h3>Automations CRM</h3><p>WhatsApp, email, API.</p></div>
+        <div class="card glass"><h3>Prospection Auto</h3><p>24/7 multi-canal.</p></div>
+        <div class="card glass"><h3>Analyse Data</h3><p>Dashboards & insights.</p></div>
+    </div>
+</section>
 
-        <div class="cards">
-            <div class="card glass"><h3>Agents IA sur mesure</h3><p>Architecture et comportement personnalisés.</p></div>
-            <div class="card glass"><h3>Automations WhatsApp / CRM</h3><p>Réponses instantanées + suivi + intégrations API.</p></div>
-            <div class="card glass"><h3>Prospection automatique</h3><p>Acquisition multicanale 24/7.</p></div>
-            <div class="card glass"><h3>Analyse data intelligente</h3><p>Rapports, extraction, prédictions.</p></div>
-            <div class="card glass"><h3>Workflows n8n</h3><p>Automatisations complexes + API.</p></div>
-            <div class="card glass"><h3>Stratégie IA complète</h3><p>Audit + déploiement + optimisation continue.</p></div>
-        </div>
-    </section>
+<!-- TECH -->
+<section id="tech" class="section dark-block reveal">
+    <h2>Aurora Intelligence — Notre Technologie</h2>
+    <div class="tech-grid">
+        <div class="tech-item glass"><h3>Perception</h3><p>Analyse intelligente.</p></div>
+        <div class="tech-item glass"><h3>Mémoire</h3><p>Mémoire longue persistante.</p></div>
+        <div class="tech-item glass"><h3>Décision</h3><p>Raisonnement avancé.</p></div>
+        <div class="tech-item glass"><h3>Action</h3><p>Actions autonomes API.</p></div>
+        <div class="tech-item glass"><h3>Optimisation</h3><p>Amélioration continue.</p></div>
+    </div>
+</section>
 
-    <!-- TECHNOLOGIE -->
-    <section id="tech" class="section dark-block">
-        <h2>Aurora Intelligence — Technologie Propriétaire</h2>
-        <p class="text-large">
-            Un moteur IA inspiré d’Apple Intelligence : fluide, contextuel, intelligent, 
-            capable d’agir seul et d’apprendre en continu.
-        </p>
-        <div class="tech-grid">
-            <div class="tech glass"><h3>Perception</h3><p>Analyse documents, data, signaux métiers.</p></div>
-            <div class="tech glass"><h3>Mémoire</h3><p>Contexte permanent, cohérence totale.</p></div>
-            <div class="tech glass"><h3>Décision</h3><p>Raisonnement avancé & logique adaptative.</p></div>
-            <div class="tech glass"><h3>Action</h3><p>WhatsApp, CRM, API — exécution autonome.</p></div>
-            <div class="tech glass"><h3>Optimisation</h3><p>Amélioration continue basée sur vos résultats.</p></div>
-        </div>
-    </section>
+<!-- USE CASES -->
+<section id="usecases" class="section reveal">
+    <h2>Cas d’usage</h2>
+    <div class="usecase-grid">
+        <div class="usecase glass"><h3>Prospection Auto</h3><p>Recherche + qualification + relances.</p></div>
+        <div class="usecase glass"><h3>Support Client</h3><p>Réponses immédiates multicanal.</p></div>
+        <div class="usecase glass"><h3>Analyse Continue</h3><p>Tableaux & alertes.</p></div>
+        <div class="usecase glass"><h3>CRM Auto</h3><p>Contacts + pipelines.</p></div>
+    </div>
+</section>
 
-    <!-- USECASES -->
-    <section id="usecases" class="section">
-        <h2>Cas d’usage — Concrets & Réels</h2>
-        <div class="usecase-grid">
-            <div class="usecase glass"><h3>Prospection auto</h3><p>Acquisition + relances intelligentes.</p></div>
-            <div class="usecase glass"><h3>Support client</h3><p>Réponses instantanées 24/7.</p></div>
-            <div class="usecase glass"><h3>Analyse data</h3><p>Rapports, alertes, prédictions.</p></div>
-            <div class="usecase glass"><h3>CRM automatisé</h3><p>Segmentation + suivi complet.</p></div>
-            <div class="usecase glass"><h3>Opérations</h3><p>Tâches internes + exécution autonome.</p></div>
-            <div class="usecase glass"><h3>Assistant métier</h3><p>Finance, RH, marketing…</p></div>
-        </div>
-    </section>
+<section id="pricing" class="section dark-block reveal">
+    <h2>Tarifs</h2>
+    <div class="cards pricing-cards">
+        <div class="card glass"><h3>Starter</h3><p class="price">49€/mois</p></div>
+        <div class="card glass"><h3>Business</h3><p class="price">149€/mois</p></div>
+        <div class="card glass"><h3>Entreprise</h3><p class="price">Sur devis</p></div>
+    </div>
+</section>
 
-    <!-- PRICING -->
-    <section id="pricing" class="section dark-block">
-        <h2>Tarifs</h2>
-        <div class="cards pricing">
-            <div class="card glass">
-                <h3>Starter</h3>
-                <p class="price">49€/mois</p>
-                <ul><li>1 Agent IA</li><li>Automations simples</li><li>Support standard</li></ul>
-            </div>
-            <div class="card glass">
-                <h3>Business</h3>
-                <p class="price">149€/mois</p>
-                <ul><li>3 Agents IA</li><li>Automations avancées</li><li>Support prioritaire</li></ul>
-            </div>
-            <div class="card glass">
-                <h3>Entreprise</h3>
-                <p class="price">Sur devis</p>
-                <ul><li>Agents illimités</li><li>Automations complexes</li><li>Accompagnement total</li></ul>
-            </div>
-        </div>
-    </section>
+<section id="faq" class="section reveal">
+    <h2>FAQ</h2>
+    <div class="faq">
+        <div class="faq-item"><h3>Un agent IA ?</h3><p>Un système autonome.</p></div>
+        <div class="faq-item"><h3>Pour qui ?</h3><p>Entrepreneurs & entreprises.</p></div>
+        <div class="faq-item"><h3>Intégration ?</h3><p>Analyse → création → API → actions.</p></div>
+    </div>
+</section>
 
-    <!-- FAQ -->
-    <section id="faq" class="section">
-        <h2>FAQ</h2>
-        <div class="faq-list">
-            <div class="faq glass"><h3>Qu’est-ce qu’un agent IA ?</h3><p>Un système autonome qui comprend, décide et agit pour vous.</p></div>
-            <div class="faq glass"><h3>Pour qui ?</h3><p>Indépendants, PME, entreprises.</p></div>
-            <div class="faq glass"><h3>Comment ?</h3><p>Analyse + création + intégration + optimisation continue.</p></div>
-        </div>
-    </section>
+<section id="contact" class="section glass reveal">
+    <h2>Contact</h2>
+    <p>Discutons de votre projet.</p>
+    <a href="mailto:contact@nh110lab.ai" class="cta">Envoyer un message</a>
+</section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="section glass">
-        <h2>Contact</h2>
-        <p>Discutons de votre projet IA.</p>
-        <a href="mailto:contact@nh110lab.ai" class="cta">Envoyer un message</a>
-    </section>
-
-    <footer class="footer">
-        © 2025 — NH110LAB.ai
-    </footer>
-
-</div>
+<footer class="footer">© 2025 — NH110LAB.ai</footer>
 
 <script src="script.js"></script>
 </body>
