@@ -246,3 +246,21 @@ if (agentsRange && agentsValue && pricingHint) {
   agentsRange.addEventListener("input", updateEstimate);
   updateEstimate();
 }
+/* --- HOVER 3D LÉGER SUR LES CARTES --- */
+const threeDCards = document.querySelectorAll(".card-3d");
+
+threeDCards.forEach((card) => {
+  card.addEventListener("mousemove", (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const rotateX = ((y - rect.height / 2) / rect.height) * 10;
+    const rotateY = ((x - rect.width / 2) / rect.width) * -10;
+
+    card.style.transform = `translateY(-6px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = "";
+  });
+});
