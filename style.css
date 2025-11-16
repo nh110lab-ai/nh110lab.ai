@@ -1,352 +1,124 @@
-/* --------------------------------------------- */
-/*                 GLOBAL RESET                  */
-/* --------------------------------------------- */
+/* ---------------- GLOBAL ----------------- */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Inter", sans-serif;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-html, body {
-    height: 100%;
+body {
+    background: #f5f5f7;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    color: #1d1d1f;
     overflow-x: hidden;
-    scroll-behavior: smooth;
-    background: hsl(240, 10%, 10%);
-    color: white;
 }
 
-
-/* --------------------------------------------- */
-/*               BACKGROUND CANVAS               */
-/* --------------------------------------------- */
-
-#bg-orb, #bg-halo, #bg-particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: -10;
-}
-
-
-/* --------------------------------------------- */
-/*                     HEADER                    */
-/* --------------------------------------------- */
+/* ---------------- HEADER ----------------- */
 
 .header {
     position: fixed;
-    top: 0;
+    top: 0; left: 0;
     width: 100%;
     padding: 18px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 20;
-    backdrop-filter: blur(12px);
-}
-
-.header .logo {
-    font-size: 1.6rem;
-    font-weight: 700;
+    backdrop-filter: blur(25px);
+    background: rgba(255,255,255,0.6);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    z-index: 100;
 }
 
 .header nav a {
     margin-left: 22px;
     text-decoration: none;
-    color: white;
+    color: #1d1d1f;
     font-weight: 500;
-    opacity: 0.9;
-    transition: 0.2s;
 }
 
-.header nav a:hover {
-    opacity: 1;
-}
-
-
-/* --------------------------------------------- */
-/*                  SECTIONS BASE                 */
-/* --------------------------------------------- */
-
-.section {
-    padding: 140px 12%;
-    max-width: 1400px;
-    margin: auto;
-}
-
-.section h2 {
-    font-size: 2.6rem;
-    margin-bottom: 25px;
-}
-
-.large-text {
-    font-size: 1.25rem;
-    opacity: 0.85;
-    margin-top: 15px;
-}
-
-/* Dark blocks */
-.dark-block {
-    background: rgba(255,255,255,0.05);
-    border-radius: 24px;
-    padding: 120px 10%;
-}
-
-
-/* --------------------------------------------- */
-/*                   HERO SECTION                */
-/* --------------------------------------------- */
+/* ---------------- HERO ----------------- */
 
 .hero {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 12%;
+    padding: 180px 40px 140px;
+    text-align: center;
 }
 
-.hero h1 {
-    font-size: 3.8rem;
-    margin-bottom: 20px;
+.hero .title {
+    font-size: 48px;
+    font-weight: 700;
 }
 
-.hero p {
-    font-size: 1.3rem;
-    margin-bottom: 40px;
-    opacity: 0.85;
+.subtitle {
+    margin-top: 15px;
+    font-size: 20px;
+    color: #555;
 }
 
 .cta {
+    margin-top: 25px;
+    display: inline-block;
+    background: black;
+    color: white;
     padding: 14px 28px;
-    background: linear-gradient(90deg, #8b5cf6, #7dd3fc);
     border-radius: 40px;
-    color: #000;
-    font-weight: 700;
+    font-size: 16px;
     text-decoration: none;
-    transition: 0.3s;
+    transition: 0.25s;
 }
 
 .cta:hover {
     transform: scale(1.05);
 }
 
+/* ---------------- SECTIONS ----------------- */
 
-/* --------------------------------------------- */
-/*                  BULLET POINTS                */
-/* --------------------------------------------- */
+.section {
+    padding: 120px 40px;
+    text-align: center;
+}
 
-.bullet-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+.grid {
     margin-top: 40px;
-}
-
-.bullet {
-    background: rgba(255,255,255,0.08);
-    padding: 14px 20px;
-    border-radius: 14px;
-    font-size: 1.1rem;
-}
-
-
-/* --------------------------------------------- */
-/*                    CARDS GRID                */
-/* --------------------------------------------- */
-
-.cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 24px;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
 }
 
 .card {
-    padding: 30px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 18px;
-    transition: 0.25s;
+    padding: 35px;
+    background: white;
+    border-radius: 22px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    transition: 0.3s;
 }
 
 .card:hover {
     transform: translateY(-6px);
 }
 
-
-/* --------------------------------------------- */
-/*                  TECHNOLOGY GRID              */
-/* --------------------------------------------- */
-
-.tech-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 24px;
-    margin-top: 40px;
+.featured {
+    border: 2px solid #000;
 }
 
-.tech-item {
-    padding: 28px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 18px;
-    transition: 0.25s;
+/* ---------------- PRICING ----------------- */
+
+.price {
+    font-size: 32px;
+    margin-top: 10px;
+    font-weight: 700;
 }
 
-.tech-item:hover {
-    transform: translateY(-5px);
-}
+/* ---------------- FOOTER ----------------- */
 
-
-/* --------------------------------------------- */
-/*                CASE STUDIES GRID              */
-/* --------------------------------------------- */
-
-.cases-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 24px;
-    margin-top: 40px;
-}
-
-.case {
-    padding: 26px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 18px;
-}
-
-
-/* --------------------------------------------- */
-/*                  PRICING CARDS                */
-/* --------------------------------------------- */
-
-.pricing-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 32px;
-    margin-top: 40px;
-}
-
-.price-card {
-    padding: 28px;
-    border-radius: 18px;
-    background: rgba(255,255,255,0.10);
-}
-
-.price-card .price {
-    font-size: 2rem;
-    margin: 15px 0;
-}
-
-
-/* --------------------------------------------- */
-/*                      FAQ                      */
-/* --------------------------------------------- */
-
-.faq-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 26px;
-    margin-top: 40px;
-}
-
-.faq-item {
-    padding: 22px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 14px;
-}
-
-
-/* --------------------------------------------- */
-/*                    CONTACT                    */
-/* --------------------------------------------- */
-
-#contact {
+footer {
+    padding: 40px;
     text-align: center;
+    font-size: 14px;
+    opacity: 0.7;
 }
 
-#contact .cta {
-    margin-top: 20px;
-}
+/* ---------------- ORB BACKGROUND ----------------- */
 
-
-/* --------------------------------------------- */
-/*            AI AGENT WIDGET (BOTTOM)           */
-/* --------------------------------------------- */
-
-.ai-agent {
+#orb {
     position: fixed;
-    right: 30px;
-    bottom: 30px;
-    width: 260px;
-    padding: 20px;
-    background: rgba(255,255,255,0.10);
-    border-radius: 18px;
-    backdrop-filter: blur(10px);
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    animation: float 4s ease-in-out infinite;
-}
-
-.ai-avatar {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #a78bfa, #7dd3fc);
-}
-
-.ai-chat {
-    flex: 1;
-}
-
-.ai-text {
-    font-size: 0.95rem;
-    opacity: 0.85;
-}
-
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-6px); }
-    100% { transform: translateY(0px); }
-}
-
-
-/* --------------------------------------------- */
-/*                REVEAL ANIMATION               */
-/* --------------------------------------------- */
-
-.reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: 0.7s ease;
-}
-
-.reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-
-/* --------------------------------------------- */
-/*                   RESPONSIVE                  */
-/* --------------------------------------------- */
-
-@media(max-width: 850px) {
-    .header nav {
-        display: none;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .bullet-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .ai-agent {
-        width: 220px;
-    }
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
 }
