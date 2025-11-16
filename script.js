@@ -264,3 +264,37 @@ threeDCards.forEach((card) => {
     card.style.transform = "";
   });
 });
+/* --- COMPTEURS ANIMÉS POUR LES STATS --- */
+const statNumbers = document.querySelectorAll(".stat-number");
+
+if (statNumbers.length) {
+  const statsObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseFloat(el.dataset.target || el.textContent) || 0;
+        const duration = 1200;
+        const start = performance.now();
+
+        function tick(now) {
+          const progress = Math.min(1, (now - start) / duration);
+          const value = Math.floor(target * progress);
+          el.textContent = value.toLocaleString("fr-FR");
+          if (progress < 1) {
+            requestAnimationFrame(tick);
+          } else {
+            el.classList.add("bump");
+            setTimeout(() => el.classList.remove("bump"), 220);
+          }
+        }
+
+        requestAnimationFrame(tick);
+        statsObserver.unobserve(el);
+      });
+    },
+    { threshold: 0.4 }
+  );
+
+  statNumbers.forEach((n) => statsObserver.observe(n));
+}
