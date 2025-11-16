@@ -1,23 +1,50 @@
-// Scroll reveal + active nav + mobile nav + pricing toggle + FAQ + canvases
+// NH110LAB.ai front : scroll, nav, theme, pricing, FAQ, contact toast,
+// canvases, and AI agent widget.
 
 document.addEventListener("DOMContentLoaded", () => {
+  /* -------- YEAR -------- */
   const yearEl = document.getElementById("year");
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
 
-  /* Smooth scroll */
+  /* -------- THEME TOGGLE -------- */
+  const root = document.documentElement;
+  const themeToggle = document.querySelector(".theme-toggle");
+  const themeIcon = document.querySelector(".theme-toggle-icon");
+
+  const applyTheme = (theme) => {
+    root.setAttribute("data-theme", theme);
+    if (themeIcon) themeIcon.textContent = theme === "dark" ? "☾" : "☀︎";
+  };
+
+  const storedTheme = localStorage.getItem("nh110-theme");
+  if (storedTheme === "light" || storedTheme === "dark") {
+    applyTheme(storedTheme);
+  } else {
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    applyTheme(prefersDark ? "dark" : "light");
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const current = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+      const next = current === "dark" ? "light" : "dark";
+      applyTheme(next);
+      localStorage.setItem("nh110-theme", next);
+    });
+  }
+
+  /* -------- SMOOTH SCROLL ANCHORS -------- */
   document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener("click", (e) => {
       const targetId = link.getAttribute("href");
       if (!targetId || targetId === "#") return;
       const target = document.querySelector(targetId);
       if (!target) return;
-
       e.preventDefault();
-      const top =
-        target.getBoundingClientRect().top + window.scrollY - 80;
 
+      const top = target.getBoundingClientRect().top + window.scrollY - 80;
       window.scrollTo({
         top,
         behavior: "smooth",
@@ -28,22 +55,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* Reveal on scroll */
+  /* -------- REVEAL ON SCROLL -------- */
   const revealElements = document.querySelectorAll(".reveal");
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15 }
-  );
-  revealElements.forEach((el) => revealObserver.observe(el));
+  if ("IntersectionObserver" in window && revealElements.length) {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    revealElements.forEach((el) => revealObserver.observe(el));
+  } else {
+    revealElements.forEach((el) => el.classList.add("visible"));
+  }
 
-  /* Active nav on scroll */
+  /* -------- ACTIVE NAV ON SCROLL -------- */
   const sections = document.querySelectorAll("section[id]");
   const navLinks = document.querySelectorAll(".nav-link");
 
@@ -70,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setActiveNav();
   window.addEventListener("scroll", setActiveNav);
 
-  /* Mobile nav toggle */
+  /* -------- MOBILE NAV TOGGLE -------- */
   const navToggle = document.querySelector(".nav-toggle");
   if (navToggle) {
     navToggle.addEventListener("click", () => {
@@ -78,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* Pricing toggle */
+  /* -------- PRICING TOGGLE -------- */
   const toggleButtons = document.querySelectorAll(".toggle-btn");
   const pilotCard = document.querySelector(".pricing-pilot");
   const runCard = document.querySelector(".pricing-run");
@@ -91,18 +122,19 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       if (mode === "pilot") {
-        pilotCard.classList.remove("hidden");
-        runCard.classList.add("hidden");
+        pilotCard && pilotCard.classList.remove("hidden");
+        runCard && runCard.classList.add("hidden");
       } else {
-        pilotCard.classList.add("hidden");
-        runCard.classList.remove("hidden");
+        pilotCard && pilotCard.classList.add("hidden");
+        runCard && runCard.classList.remove("hidden");
       }
     });
   });
 
-  /* FAQ accordion */
+  /* -------- FAQ ACCORDION -------- */
   document.querySelectorAll(".faq-item").forEach((item) => {
     const question = item.querySelector(".faq-question");
+    if (!question) return;
     question.addEventListener("click", () => {
       const isOpen = item.classList.contains("open");
       document
@@ -112,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* Contact form fake submit + toast */
+  /* -------- CONTACT FORM TOAST -------- */
   const form = document.getElementById("contact-form");
   const toast = document.getElementById("toast");
 
@@ -125,9 +157,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* CANVAS ANIMATIONS */
+  /* -------- CANVAS ANIMATIONS -------- */
 
-  // Simple particles
   const particleCanvas = document.getElementById("particles");
   const orbCanvas = document.getElementById("orb");
   const haloCanvas = document.getElementById("halo");
@@ -148,7 +179,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Particles
   const particles = [];
   const PARTICLE_COUNT = 80;
-
   for (let i = 0; i < PARTICLE_COUNT; i++) {
     particles.push({
       x: Math.random() * window.innerWidth,
@@ -198,7 +228,6 @@ document.addEventListener("DOMContentLoaded", () => {
     orbCtx.clearRect(0, 0, w, h);
     haloCtx.clearRect(0, 0, w, h);
 
-    // Orb
     const radius = Math.max(w, h) * 0.35;
     const gradient = orbCtx.createRadialGradient(
       cx,
@@ -215,7 +244,6 @@ document.addEventListener("DOMContentLoaded", () => {
     orbCtx.fillStyle = gradient;
     orbCtx.fillRect(0, 0, w, h);
 
-    // Halo
     const haloRadius = radius * 0.9;
     const haloGradient = haloCtx.createRadialGradient(
       cx,
@@ -238,91 +266,70 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(loop);
   };
   requestAnimationFrame(loop);
-});
-document.addEventListener('DOMContentLoaded', () => {
-  // --- Année dynamique dans le footer ---
-  const yearSpan = document.getElementById('year');
-  if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
+
+  /* -------- AI AGENT WIDGET -------- */
+
+  const aiToggle = document.getElementById("ai-toggle");
+  const aiPanel = document.getElementById("ai-panel");
+  const aiClose = document.getElementById("ai-close");
+  const aiForm = document.getElementById("ai-form");
+  const aiInput = document.getElementById("ai-input");
+  const aiMessages = document.getElementById("ai-messages");
+
+  const appendMessage = (text, from = "bot") => {
+    if (!aiMessages) return;
+    const div = document.createElement("div");
+    div.className =
+      "ai-message " +
+      (from === "user" ? "ai-message-user" : "ai-message-bot");
+    div.textContent = text;
+    aiMessages.appendChild(div);
+    aiMessages.scrollTop = aiMessages.scrollHeight;
+  };
+
+  const openPanel = () => {
+    aiPanel && aiPanel.classList.add("open");
+  };
+
+  const closePanel = () => {
+    aiPanel && aiPanel.classList.remove("open");
+  };
+
+  if (aiToggle) {
+    aiToggle.addEventListener("click", openPanel);
+  }
+  if (aiClose) {
+    aiClose.addEventListener("click", closePanel);
   }
 
-  // --- Scroll fluide sur les ancres ---
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', event => {
-      const href = link.getAttribute('href');
-      const id = href && href.slice(1);
-      const target = id && document.getElementById(id);
+  if (aiForm && aiInput) {
+    aiForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const value = aiInput.value.trim();
+      if (!value) return;
 
-      if (target) {
-        event.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
+      appendMessage(value, "user");
+      aiInput.value = "";
 
-  // --- Animations "reveal" au scroll ---
-  const revealEls = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window && revealEls.length) {
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
+      // Réponse immédiate côté front pour la démo.
+      appendMessage(
+        "Je réfléchis à 2–3 idées d’agent pour ce flux… (connectez-moi à votre backend IA pour une vraie réponse 😉)"
+      );
+
+      // Exemple de hook pour votre backend / API IA :
+      /*
+      try {
+        const response = await fetch("https://votre-backend/agent", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: value }),
         });
-      },
-      { threshold: 0.15 }
-    );
-
-    revealEls.forEach(el => observer.observe(el));
-  } else {
-    // fallback : tout visible si pas supporté
-    revealEls.forEach(el => el.classList.add('is-visible'));
-  }
-
-  // --- FAQ accordéon ---
-  document.querySelectorAll('.faq-item').forEach(item => {
-    const button = item.querySelector('.faq-question');
-    if (!button) return;
-
-    button.addEventListener('click', () => {
-      const isOpen = item.classList.contains('open');
-
-      // fermer les autres
-      document.querySelectorAll('.faq-item.open').forEach(openItem => {
-        if (openItem !== item) openItem.classList.remove('open');
-      });
-
-      // toggle courant
-      item.classList.toggle('open', !isOpen);
-    });
-  });
-
-  // --- Toggle pricing pilote / run ---
-  const toggleBtns = document.querySelectorAll('.pricing-toggle .toggle-btn');
-  const pilotCard = document.querySelector('.pricing-pilot');
-  const runCard = document.querySelector('.pricing-run');
-
-  if (toggleBtns.length && pilotCard && runCard) {
-    toggleBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const mode = btn.dataset.mode;
-
-        toggleBtns.forEach(b =>
-          b.classList.toggle('toggle-btn-active', b === btn)
-        );
-
-        if (mode === 'run') {
-          pilotCard.classList.add('hidden');
-          runCard.classList.remove('hidden');
-        } else {
-          pilotCard.classList.remove('hidden');
-          runCard.classList.add('hidden');
-        }
-      });
+        const data = await response.json();
+        appendMessage(data.reply || "Agent : réponse vide.");
+      } catch (err) {
+        appendMessage("Impossible de joindre l’agent pour le moment.");
+      }
+      */
     });
   }
-
-  // TODO: effets visuels sur les canvas #particles, #orb, #halo
 });
