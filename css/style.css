@@ -1,305 +1,253 @@
-/* =======================================
-   ROOT — Variables VisionOS / Apple Style
-======================================= */
-:root {
-    --bg: #f6f7fb;
-    --bg-dark: #0c0c0f;
-    --text: #0d0d0f;
-    --text-dark: #f5f5f7;
-    --accent: #6a4dfd;
-    --accent-light: #a48bff;
-    --glass: rgba(255, 255, 255, 0.45);
-    --glass-dark: rgba(20, 20, 25, 0.45);
-    --radius: 20px;
-    --shadow: 0 20px 60px rgba(0,0,0,0.08);
-    --shadow-strong: 0 30px 80px rgba(0,0,0,0.20);
-    --transition: 0.5s cubic-bezier(.25,.6,.3,1);
+/* ====== RESET ====== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", -apple-system, system-ui, sans-serif;
 }
-
-body.dark {
-    --bg: var(--bg-dark);
-    --text: var(--text-dark);
-    --glass: var(--glass-dark);
-}
-
-
-/* =======================================
-   GLOBAL
-======================================= */
-* { margin:0; padding:0; box-sizing:border-box; }
 
 body {
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    overflow-x: hidden;
-    transition: background var(--transition), color var(--transition);
+    background: #0d0f12;
+    color: #fff;
+    line-height: 1.6;
 }
 
-section {
-    padding: 120px 24px;
-}
-
+/* ====== GLOBAL ====== */
 .section {
-    max-width: 1150px;
+    padding: 120px 8%;
+    max-width: 1400px;
     margin: auto;
 }
 
-.section-title {
-    font-size: 48px;
-    font-weight: 800;
-    margin-bottom: 10px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: var(--transition);
+.section.dark {
+    background: #111318;
 }
 
-.section-desc {
-    max-width: 650px;
-    color: #666;
-    font-size: 20px;
-    margin-bottom: 60px;
+.section h2 {
+    font-size: 42px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-align: center;
 }
 
-.section-title.active {
-    opacity: 1;
-    transform: translateY(0);
+.section p {
+    max-width: 900px;
+    margin: 0 auto 40px auto;
+    font-size: 18px;
+    text-align: center;
+    opacity: 0.8;
 }
 
-/* =======================================
-   HEADER
-======================================= */
-header {
+.section-img {
+    display: block;
+    width: 70%;
+    max-width: 750px;
+    margin: 40px auto;
+    filter: drop-shadow(0 0 20px rgba(0, 140, 255, 0.2));
+}
+
+/* ====== HEADER ====== */
+.header {
     position: fixed;
-    width: 100%;
     top: 0;
-    padding: 26px 40px;
-    backdrop-filter: blur(20px) saturate(1.4);
-    background: var(--glass);
-    z-index: 1000;
-    transition: var(--transition);
-}
-
-header.scrolled {
-    padding: 14px 40px;
-    box-shadow: var(--shadow);
-}
-
-.nav-inner {
+    width: 100%;
+    padding: 18px 8%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: rgba(8, 10, 14, 0.65);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
 }
 
-.logo {
-    height: 42px;
-    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+.header .logo {
+    height: 45px;
 }
 
-nav a {
+.nav a {
     margin-left: 30px;
+    color: #fff;
     text-decoration: none;
-    color: var(--text);
-    font-weight: 600;
-    transition: 0.25s;
+    font-size: 16px;
+    opacity: 0.8;
+    transition: 0.3s;
 }
 
-nav a:hover {
-    color: var(--accent);
+.nav a:hover {
+    opacity: 1;
 }
 
-
-/* =======================================
-   HERO — VisionOS Orb + Glass Floating
-======================================= */
+/* ====== HERO ====== */
 .hero {
-    height: 95vh;
+    height: 100vh;
+    padding: 0 8%;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     position: relative;
-    overflow: hidden;
 }
 
 .orb-bg {
     position: absolute;
-    width: 900px;
-    opacity: 0.7;
-    filter: blur(40px);
-    animation: orbMove 12s infinite alternate ease-in-out;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    transform: translate(-50%, -50%);
+    opacity: 0.25;
+    filter: blur(80px);
+    z-index: -1;
 }
 
-@keyframes orbMove {
-    0% { transform: translate(-80px, -40px) scale(1); }
-    100% { transform: translate(80px, 40px) scale(1.15); }
+.hero-content h1 {
+    font-size: 62px;
+    font-weight: 800;
+    line-height: 1.2;
 }
 
-.hero-content {
-    text-align: center;
-    z-index: 2;
-}
-
-.hero-title {
-    font-size: 72px;
-    font-weight: 900;
-    letter-spacing: -2px;
-    line-height: 1.05;
-    animation: fadeUp 1.2s ease-out forwards;
-    opacity: 0;
-}
-
-.hero-sub {
-    font-size: 22px;
-    margin-top: 18px;
-    opacity: 0;
-    animation: fadeIn 2s ease forwards;
-}
-
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-.btn-main {
-    padding: 16px 40px;
-    border-radius: 18px;
-    margin-top: 40px;
+.hero-content p {
+    margin: 20px auto;
+    max-width: 700px;
+    opacity: 0.8;
     font-size: 20px;
+}
+
+/* BUTTONS */
+.cta {
+    background: linear-gradient(135deg, #007aff, #0055ff);
+    color: #fff;
+    padding: 16px 36px;
+    font-size: 18px;
     border: none;
+    border-radius: 12px;
+    margin-top: 15px;
     cursor: pointer;
-    background: var(--accent);
-    color: white;
-    box-shadow: 0 12px 35px rgba(106,77,253,0.35);
+    font-weight: 600;
+    box-shadow: 0 6px 22px rgba(0, 110, 255, 0.5);
     transition: 0.3s;
 }
 
-.btn-main:hover {
-    transform: scale(1.05);
+.cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 110, 255, 0.65);
 }
 
-/* =======================================
-   AGENTS — Gallery VisionOS
-======================================= */
-.agents-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
-    justify-content: center;
+/* ====== FEATURES LIST ====== */
+.features {
+    list-style: none;
+    display: grid;
+    gap: 18px;
+    max-width: 800px;
+    margin: 30px auto;
+    font-size: 20px;
 }
 
-.agent-img {
-    width: 330px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(22px);
-    background: var(--glass);
-    transition: 0.35s;
+.features li {
+    background: #161922;
+    padding: 18px 25px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0, 140, 255, 0.08);
 }
 
-.agent-img:hover {
-    transform: scale(1.04);
-    box-shadow: var(--shadow-strong);
-}
-
-/* =======================================
-   CARDS
-======================================= */
-.cards-grid {
+/* ====== SERVICES GRID ====== */
+.service-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 25px;
+    gap: 30px;
+    margin-top: 40px;
 }
 
-.card {
-    background: var(--glass);
+.service-card {
+    background: #161922;
     padding: 30px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(20px);
-    transition: 0.4s;
-}
-
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-strong);
-}
-
-/* =======================================
-   PRICE
-======================================= */
-.pricing-grid {
-    display: flex;
-    justify-content: center;
-    gap: 35px;
-    flex-wrap: wrap;
-}
-
-.price-card {
-    width: 330px;
-    background: var(--glass);
-    padding: 40px;
-    border-radius: var(--radius);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.06);
     text-align: center;
-    box-shadow: var(--shadow);
+    transition: 0.3s;
+    box-shadow: 0 0 25px rgba(0, 140, 255, 0.1);
 }
 
-.price-card .price {
-    font-size: 46px;
-    margin: 15px 0;
-    font-weight: 900;
+.service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 40px rgba(0, 140, 255, 0.2);
 }
 
-/* =======================================
-   FAQ
-======================================= */
-.faq-item {
-    background: var(--glass);
-    padding: 22px;
-    border-radius: var(--radius);
-    margin-bottom: 14px;
-    cursor: pointer;
+.service-card h3 {
+    margin-bottom: 12px;
+    font-size: 22px;
+}
+
+/* ====== PRICING ====== */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.pricing-card {
+    background: #161922;
+    padding: 35px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+    box-shadow: 0 0 30px rgba(0, 110, 255, 0.08);
     transition: 0.3s;
 }
 
-.faq-item:hover {
-    box-shadow: var(--shadow);
+.pricing-card:hover {
+    transform: translateY(-6px);
 }
 
-.faq-a {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: 0.5s ease;
-    margin-top: 8px;
+.pricing-card.highlighted {
+    background: linear-gradient(135deg, #0055ff, #0033aa);
+    box-shadow: 0 0 35px rgba(0, 110, 255, 0.5);
 }
 
-.faq-item.active .faq-a {
-    max-height: 200px;
-    opacity: 1;
+.pricing-card h3 {
+    margin-bottom: 10px;
+    font-size: 24px;
 }
 
-/* =======================================
-   CONTACT
-======================================= */
-.contact-box {
-    background: var(--glass);
-    padding: 50px;
-    border-radius: var(--radius);
-    text-align: center;
-    box-shadow: var(--shadow);
+.price {
+    font-size: 34px;
+    margin-bottom: 25px;
+    font-weight: 700;
 }
 
+.pricing-card ul {
+    list-style: none;
+}
 
-/* =======================================
-   RESPONSIVE
-======================================= */
-@media(max-width: 850px){
-    .hero-title { font-size: 48px; }
-    .hero-sub { font-size: 18px; }
-    nav a { margin-left: 15px; }
+.pricing-card ul li {
+    margin: 10px 0;
+    opacity: 0.85;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 780px) {
+
+    .hero-content h1 {
+        font-size: 40px;
+    }
+
+    .hero-content p {
+        font-size: 17px;
+    }
+
+    .cta {
+        font-size: 16px;
+        padding: 14px 28px;
+    }
+
+    .section {
+        padding: 80px 6%;
+    }
+
+    .pricing-grid,
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
 }
