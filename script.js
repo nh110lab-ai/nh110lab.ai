@@ -1,76 +1,158 @@
-/* --- REVEAL ON SCROLL --- */
-const reveals = document.querySelectorAll(".reveal");
-const obser = new IntersectionObserver((e)=>{
-    e.forEach(x=>{ if(x.isIntersecting) x.target.classList.add("visible"); });
-},{threshold:0.2});
-reveals.forEach(r=>obser.observe(r));
+// ----- REVEAL ON SCROLL -----
+const revealEls = document.querySelectorAll(".reveal");
 
-/* --- APPLE FLOW GRADIENT BACKGROUND --- */
-const canvas = document.getElementById("flow-bg");
-const ctx = canvas.getContext("2d");
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
 
-function resize(){
-    canvas.width = innerWidth;
-    canvas.height = innerHeight;
-}
-resize();
-window.onresize = resize;
-
-let t = 0;
-
-function flow(){
-    t += 0.003;
-
-    const g = ctx.createLinearGradient(
-        0, 0,
-        canvas.width, canvas.height
-    );
-
-    g.addColorStop(0, `hsl(${200 + Math.sin(t)*40}, 90%, 92%)`);
-    g.addColorStop(1, `hsl(${260 + Math.cos(t)*40}, 95%, 88%)`);
-
-    ctx.fillStyle = g;
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-
-    requestAnimationFrame(flow);
-}
-flow();
-
-/* --- AGENT IA --- */
-const bubble = document.getElementById("agent-bubble");
-const windowIA = document.getElementById("agent-window");
-const inputIA = document.getElementById("agent-input");
-const msgIA = document.getElementById("agent-messages");
-
-bubble.onclick = ()=>{
-    windowIA.style.display = windowIA.style.display==="flex" ? "none" : "flex";
-};
-
-function aiReply(text){
-    const div = document.createElement("div");
-    div.style.background="#f1f1f1";
-    div.style.padding="10px";
-    div.style.margin="5px 0";
-    div.style.borderRadius="12px";
-    div.textContent = "🤖 " + text;
-    msgIA.appendChild(div);
-    msgIA.scrollTop = msgIA.scrollHeight;
+  revealEls.forEach(el => observer.observe(el));
+} else {
+  // Fallback
+  revealEls.forEach(el => el.classList.add("visible"));
 }
 
-inputIA.addEventListener("keydown", e=>{
-    if(e.key==="Enter" && inputIA.value.trim()!==""){
-        const userMsg = document.createElement("div");
-        userMsg.style.background="#007aff";
-        userMsg.style.color="white";
-        userMsg.style.padding="10px";
-        userMsg.style.margin="5px 0";
-        userMsg.style.borderRadius="12px";
-        userMsg.style.textAlign="right";
-        userMsg.textContent = inputIA.value;
-        msgIA.appendChild(userMsg);
+// ----- CANVAS HELPERS -----
+function resizeCanvas(canvas) {
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = window.innerWidth * dpr;
+  canvas.height = window.innerHeight * dpr;
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  return ctx;
+}
 
-        aiReply("Je suis votre agent IA. Que souhaitez-vous automatiser ?");
+// ----- PARTICLES BACKGROUND -----
+(function initParticles() {
+  const canvas = document.getElementById("particles");
+  if (!canvas) return;
+  const ctx = resizeCanvas(canvas);
 
-        inputIA.value = "";
-    }
-});
+  let particles = [];
+  const COUNT = 110;
+
+  function resetParticle(p) {
+    p.x = Math.random() * window.innerWidth;
+    p.y = Math.random() * window.innerHeight;
+    p.vx = (Math.random() - 0.5) * 0.35;
+    p.vy = (Math.random() - 0.5) * 0.35;
+    p.r = Math.random() * 1.8 + 0.4;
+    p.alpha = Math.random() * 0.6 + 0.2;
+  }
+
+  for (let i = 0; i < COUNT; i++) {
+    const p = {};
+    resetParticle(p);
+    particles.push(p);
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    ctx.fillStyle = "rgba(255,255,255,0.9)";
+
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < -50 || p.x > window.innerWidth + 50 || p.y < -50 || p.y > window.innerHeight + 50) {
+        resetParticle(p);
+      }
+
+      ctx.globalAlpha = p.alpha;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+
+  window.addEventListener("resize", () => {
+    resizeCanvas(canvas);
+  });
+})();
+
+// ----- ORB -----
+(function initOrb() {
+  const canvas = document.getElementById("orb");
+  if (!canvas) return;
+  const ctx = resizeCanvas(canvas);
+
+  let t = 0;
+
+  function draw() {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    ctx.clearRect(0, 0, w, h);
+
+    const x = w / 2;
+    const y = h / 2;
+    const baseRadius = Math.min(w, h) * 0.28;
+    const r = baseRadius + Math.sin(t) * 28;
+
+    const grad = ctx.createRadialGradient(x, y, r * 0.15, x, y, r);
+    grad.addColorStop(0, "rgba(210,180,255,0.95)");
+    grad.addColorStop(0.35, "rgba(150,110,255,0.9)");
+    grad.addColorStop(1, "rgba(10,5,25,0)");
+
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fill();
+
+    t += 0.012;
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+
+  window.addEventListener("resize", () => {
+    resizeCanvas(canvas);
+  });
+})();
+
+// ----- HALO -----
+(function initHalo() {
+  const canvas = document.getElementById("halo");
+  if (!canvas) return;
+  const ctx = resizeCanvas(canvas);
+
+  let h = 0;
+
+  function draw() {
+    const w = window.innerWidth;
+    const hgt = window.innerHeight;
+
+    ctx.clearRect(0, 0, w, hgt);
+
+    const radius = Math.min(w, hgt) * 0.4 + Math.sin(h) * 12;
+    const alpha = 0.18 + Math.sin(h) * 0.08;
+
+    ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+    ctx.lineWidth = 1.8;
+
+    ctx.beginPath();
+    ctx.arc(w / 2, hgt / 2, radius, 0, Math.PI * 2);
+    ctx.stroke();
+
+    h += 0.01;
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+
+  window.addEventListener("resize", () => {
+    resizeCanvas(canvas);
+  });
+})();
