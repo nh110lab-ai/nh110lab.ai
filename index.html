@@ -2,494 +2,493 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>NH110LAB.ai — Agents IA autonomes pour votre business</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NH110LAB.ai — Agents IA autonomes pour les équipes business</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="NH110LAB.ai conçoit des agents IA autonomes qui analysent, décident et agissent dans vos processus métier."
+  />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Canvas d'arrière-plan -->
-  <canvas id="orb" class="bg-layer"></canvas>
-  <canvas id="halo" class="bg-layer"></canvas>
-  <canvas id="particles" class="bg-layer"></canvas>
+  <!-- BACKGROUND CANVASES -->
+  <canvas id="particles" class="bg-canvas"></canvas>
+  <canvas id="orb" class="bg-canvas"></canvas>
+  <canvas id="halo" class="bg-canvas"></canvas>
 
-  <div class="site">
-    <!-- HEADER / NAV -->
-    <header class="header">
-      <div class="logo">NH110LAB.ai</div>
-      <nav class="nav">
-        <a href="#hero" class="nav-link active">Accueil</a>
-        <a href="#about" class="nav-link">À propos</a>
-        <a href="#services" class="nav-link">Services</a>
-        <a href="#usecases" class="nav-link">Use cases</a>
-        <a href="#agents" class="nav-link">Agents</a>
-        <a href="#tech" class="nav-link">Tech</a>
-        <a href="#pricing" class="nav-link">Pricing</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#contact" class="nav-link nav-cta">Contact</a>
-      </nav>
-    </header>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">NH110LAB.ai</div>
+    <nav class="nav">
+      <a href="#hero" class="nav-link">Accueil</a>
+      <a href="#agents" class="nav-link">Agents</a>
+      <a href="#usecases" class="nav-link">Cas d’usage</a>
+      <a href="#tech" class="nav-link">Tech &amp; sécurité</a>
+      <a href="#pricing" class="nav-link">Prix</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+      <a href="#contact" class="nav-link nav-link-cta">Parler à un humain</a>
+    </nav>
+  </header>
 
-    <main>
-      <!-- HERO -->
-      <section id="hero" class="section hero reveal">
-        <div class="hero-content">
-          <p class="eyebrow">AGENTS IA AUTONOMES • NH110LAB.ai</p>
-          <h1>
-            Des agents IA qui<br />
-            <span class="gradient-text">analysent, décident, agissent</span><br />
-            pour votre entreprise.
-          </h1>
-          <p class="lead">
-            Nous branchons des agents IA sur vos outils existants pour automatiser
-            le support, l’ops, la data, les tâches pénibles — sans casser vos
-            process.
+  <main>
+    <!-- HERO -->
+    <section id="hero" class="section hero reveal">
+      <div class="hero-content">
+        <p class="eyebrow">Agents IA autonomes pour les équipes business</p>
+        <h1>
+          Des agents qui <span class="underline">lisent vos données</span>,
+          prennent des décisions et déclenchent des actions. Sans
+          réinventer votre SI.
+        </h1>
+        <p class="hero-subtitle">
+          NH110LAB.ai construit des agents IA discrets mais puissants :
+          ils observent vos flux, orchestrent les bons outils et vous
+          remontent seulement les décisions qui comptent.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">
+            Planifier un atelier 45 min
+          </a>
+          <a href="#usecases" class="btn btn-ghost">
+            Voir des cas concrets
+          </a>
+        </div>
+
+        <div class="hero-highlights">
+          <div class="pill">⏱️ 4–6 semaines pour un pilote</div>
+          <div class="pill">🔌 Connecteurs CRM, ticketing, ERP, e-mail…</div>
+          <div class="pill">🛡️ Hébergement EU, RGPD ready</div>
+        </div>
+      </div>
+
+      <div class="hero-aside">
+        <div class="metric-card">
+          <p class="metric-label">Temps gagné / agent mis en prod</p>
+          <p class="metric-value">–30 à –60 h / mois</p>
+          <p class="metric-footnote">
+            Estimations sur missions pilotes (ops, finance, customer care).
           </p>
-
-          <div class="hero-actions">
-            <a href="#contact" class="btn primary">Planifier un call de 20 min</a>
-            <a href="#usecases" class="btn ghost">Voir des use cases</a>
-          </div>
-
-          <div class="hero-badges">
-            <span>⚡ Réponse en quelques ms</span>
-            <span>🔒 Données hébergées en Europe</span>
-            <span>🧩 Intégration Slack, Notion, Hubspot, Zapier…</span>
-          </div>
         </div>
 
-        <div class="hero-orb-card">
-          <div class="hero-orb-inner">
-            <p>Votre “IA Ops” qui travaille en continu pendant que votre équipe dort.</p>
-            <ul>
-              <li>Observe vos données en temps réel</li>
-              <li>Propose des décisions ou agit automatiquement</li>
-              <li>Trace chaque action dans vos outils internes</li>
-            </ul>
-          </div>
-          <div class="scroll-indicator">
-            <span>Scrollez pour explorer</span>
-            <div class="mouse">
-              <div class="wheel"></div>
-            </div>
-          </div>
+        <div class="timeline-card">
+          <h2>Comment ça se passe&nbsp;?</h2>
+          <ol>
+            <li><strong>Semaine 1</strong> — cadrage métier &amp; data.</li>
+            <li><strong>Semaine 2–3</strong> — design &amp; build des agents.</li>
+            <li><strong>Semaine 4</strong> — tests, ajustements, go live pilote.</li>
+            <li><strong>Semaine 5–6</strong> — industrialisation &amp; run.</li>
+          </ol>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- À PROPOS -->
-      <section id="about" class="section reveal">
-        <div class="section-header">
-          <h2>À propos</h2>
+    <!-- AGENTS -->
+    <section id="agents" class="section reveal">
+      <header class="section-header">
+        <h2>Des agents spécialisés, pensés comme des collègues</h2>
+        <p>
+          Plutôt qu’un chatbot générique, nous concevons des agents
+          focalisés sur un périmètre clair, avec des responsabilités,
+          des garde-fous et des KPI.
+        </p>
+      </header>
+
+      <div class="grid-3">
+        <article class="card">
+          <h3>Agent Ops &amp; Support</h3>
           <p>
-            NH110LAB.ai construit des agents IA autonomes capables d’analyser,
-            décider et agir dans vos processus.
+            Analyse les tickets entrants, propose la bonne réponse,
+            vérifie dans vos systèmes (CRM, back-office) et met à jour
+            les dossiers automatiquement.
           </p>
-        </div>
+          <ul class="card-list">
+            <li>Taggage &amp; routing automatique des tickets</li>
+            <li>Suggestions de réponses contextualisées</li>
+            <li>Mise à jour du statut &amp; des champs clés</li>
+          </ul>
+          <p class="card-footnote">
+            Idéal pour les équipes support sur-sollicitées.
+          </p>
+        </article>
 
-        <div class="grid two">
-          <div class="card">
-            <h3>Notre vision</h3>
-            <p>
-              Une IA fluide, discrète, intelligente — comme Apple Intelligence,
-              mais dédiée aux entreprises. Pas un chatbot isolé dans un coin,
-              mais une couche qui comprend le contexte et agit à travers vos outils.
-            </p>
-          </div>
-          <div class="card">
-            <h3>Concrètement</h3>
-            <p>
-              Nous construisons des “agents métiers” spécialisés : un agent
-              support, un agent ops, un agent data, un agent PM… Ils se parlent
-              entre eux et remontent aux humains uniquement les sujets qui
-              nécessitent vraiment votre jugement.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- SERVICES -->
-      <section id="services" class="section reveal">
-        <div class="section-header">
-          <h2>Services</h2>
-          <p>On part de vos contraintes réelles, pas d’une démo figée.</p>
-        </div>
-
-        <div class="grid three">
-          <div class="card service-card">
-            <h3>Diagnostic &amp; design d’agents</h3>
-            <p>
-              Audit de vos process, cartographie des flux et définition des
-              agents pertinents : entrée, sortie, garde-fous, KPI.
-            </p>
-            <ul>
-              <li>Interviews équipes + shadowing</li>
-              <li>Blueprint des agents &amp; intégrations</li>
-              <li>Roadmap sur 4–8 semaines</li>
-            </ul>
-          </div>
-
-          <div class="card service-card">
-            <h3>Build &amp; intégration</h3>
-            <p>
-              Développement sur mesure d’agents connectés à vos outils internes /
-              SaaS existants.
-            </p>
-            <ul>
-              <li>Connecteurs API &amp; RAG sur vos données</li>
-              <li>Workflows multi-agents orchestrés</li>
-              <li>Environnements de test &amp; sandbox</li>
-            </ul>
-          </div>
-
-          <div class="card service-card">
-            <h3>Run &amp; optimisation continue</h3>
-            <p>
-              On ne livre pas “une IA” puis on disparaît. On suit,
-              monitor, améliore.
-            </p>
-            <ul>
-              <li>Tableau de bord qualité / ROI</li>
-              <li>Amélioration continue des prompts &amp; flux</li>
-              <li>Support direct avec l’équipe NH110LAB.ai</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- USE CASES -->
-      <section id="usecases" class="section reveal">
-        <div class="section-header">
-          <h2>Use cases</h2>
-          <p>Quelques exemples d’agents que l’on déploie chez nos clients.</p>
-        </div>
-
-        <div class="grid three">
-          <article class="card usecase-card">
-            <h3>Agent support niveau 1 & 2</h3>
-            <p>
-              Lit automatiquement les tickets, remonte la bonne réponse
-              depuis votre base (Notion, Zendesk, Docs interne), répond,
-              et escalade uniquement les vrais cas limites.
-            </p>
-            <ul>
-              <li>-40 à -70&nbsp;% de tickets humains</li>
-              <li>Réponses cohérentes avec votre ton de marque</li>
-              <li>Traçabilité complète dans votre outil support</li>
-            </ul>
-          </article>
-
-          <article class="card usecase-card">
-            <h3>Agent ops &amp; monitoring</h3>
-            <p>
-              Surveille les dashboards (DB, CRM, monitoring produit),
-              détecte des signaux faibles et ouvre des tâches
-              lorsqu’un humain doit intervenir.
-            </p>
-            <ul>
-              <li>Alertes expliquées en langage naturel</li>
-              <li>Suggestions d’actions en 1 clic</li>
-              <li>Connexion à Slack / Teams</li>
-            </ul>
-          </article>
-
-          <article class="card usecase-card">
-            <h3>Agent data &amp; reporting</h3>
-            <p>
-              Génère vos rapports récurrents, comités, synthèses de backlog,
-              à partir des données brutes : CRM, produit, finances…
-            </p>
-            <ul>
-              <li>Slides et résumés auto-générés</li>
-              <li>Q&amp;A ad-hoc sur vos données en langage naturel</li>
-              <li>Historique versionné</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <!-- AGENTS -->
-      <section id="agents" class="section reveal">
-        <div class="section-header">
-          <h2>Nos agents</h2>
-          <p>Chaque agent a un rôle clair et des garde-fous explicites.</p>
-        </div>
-
-        <div class="grid four agents-grid">
-          <div class="card agent-card">
-            <h3>Agent Support</h3>
-            <p>Comprend vos clients, votre produit et vos politiques.</p>
-            <p class="pill">Canaux&nbsp;: email, chat, Slack</p>
-          </div>
-          <div class="card agent-card">
-            <h3>Agent Ops</h3>
-            <p>Surveille les métriques business &amp; produit en continu.</p>
-            <p class="pill">Connecté à vos dashboards</p>
-          </div>
-          <div class="card agent-card">
-            <h3>Agent Data</h3>
-            <p>Prépare vos analyses, reports, et réponses ad-hoc.</p>
-            <p class="pill">SQL, spreadsheets, BI</p>
-          </div>
-          <div class="card agent-card">
-            <h3>Agent PM</h3>
-            <p>Résume feedback, tickets et roadmaps pour vos comités.</p>
-            <p class="pill">Product / Roadmap</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- TECH -->
-      <section id="tech" class="section reveal">
-        <div class="section-header">
-          <h2>Stack technique</h2>
+        <article class="card">
+          <h3>Agent Finance &amp; Revenue</h3>
           <p>
-            On choisit les briques (modèles, hébergement, tooling) en fonction de
-            vos contraintes de sécurité et de votre stack existante.
+            Vérifie les factures, rapproche paiements, détecte les
+            anomalies et génère des résumés actionnables pour vos
+            contrôleurs de gestion.
           </p>
+          <ul class="card-list">
+            <li>Contrôles de cohérence automatiques</li>
+            <li>Alerte sur écarts et montants suspects</li>
+            <li>Exports prêts pour vos outils comptables</li>
+          </ul>
+          <p class="card-footnote">
+            Compatible avec vos outils existants (ERP, tableurs…).
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Agent Sales &amp; Marketing</h3>
+          <p>
+            Enrichit les leads, prépare des séquences personnalisées,
+            génère des résumés de calls et met à jour le CRM sans effort
+            côté sales.
+          </p>
+          <ul class="card-list">
+            <li>Enrichissement automatique des fiches comptes</li>
+            <li>Compte-rendus de rendez-vous en 30 secondes</li>
+            <li>Suivi des tâches et relances intelligentes</li>
+          </ul>
+          <p class="card-footnote">
+            Focalisé sur l’augmentation de la productivité commerciale.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- USE CASES -->
+    <section id="usecases" class="section section-alt reveal">
+      <header class="section-header">
+        <h2>Cas d’usage prêts à déployer</h2>
+        <p>
+          Nous arrivons avec une bibliothèque de scénarios éprouvés que
+          l’on adapte à vos outils et à vos règles internes.
+        </p>
+      </header>
+
+      <div class="usecases-layout">
+        <div class="usecases-column">
+          <h3>Ops &amp; Customer Care</h3>
+          <ul class="bullet-grid">
+            <li>Classification automatique des e-mails entrants</li>
+            <li>Réponses assistées dans votre outil de ticketing</li>
+            <li>Analyse de verbatim clients pour détecter les irritants</li>
+            <li>Résumé quotidien des points critiques pour les managers</li>
+          </ul>
         </div>
 
-        <div class="grid three">
-          <div class="card">
-            <h3>Modèles</h3>
-            <p>GPT-4.1 / 4o, Claude, modèles open-source (Llama, Mixtral…) selon le use case.</p>
-          </div>
-          <div class="card">
-            <h3>Orchestration</h3>
-            <p>Graphes d’agents, outils structurés, memory, planification de tâches.</p>
-          </div>
-          <div class="card">
-            <h3>Intégrations</h3>
-            <p>Slack, Notion, HubSpot, Linear, Zendesk, custom APIs…</p>
-          </div>
-        </div>
-      </section>
-
-    <section id="pricing" class="page pricing-page reveal">
-  <h1>Tarifs</h1>
-  <p class="page-intro">
-    Deux façons de travailler avec NH110LAB.ai : un pilote cadré pour prouver la valeur,
-    puis un abonnement « run » pour opérer vos agents IA au quotidien.
-  </p>
-<section id="processus" class="section reveal">
-  <h2>Comment on déploie un agent NH110LAB.ai chez vous ?</h2>
-  <p class="section-subtitle">
-    Un parcours simple, guidé et mesurable en moins de 4 semaines.
-  </p>
-  <div class="steps">
-    <article class="step card-3d">
-      <h3>1. Cartographie</h3>
-      <p>On analyse vos processus existants, vos données et vos outils pour
-      identifier où l’agent apporte le maximum de ROI.</p>
-    </article>
-    <article class="step card-3d">
-      <h3>2. Agent pilote</h3>
-      <p>On construit un agent dédié à un cas d’usage prioritaire, connecté à
-      vos systèmes (API, mail, Slack, back-office…).</p>
-    </article>
-    <article class="step card-3d">
-      <h3>3. Run &amp; scale</h3>
-      <p>On mesure les gains, on ajuste le comportement de l’agent et on
-      déploie progressivement sur d’autres équipes.</p>
-    </article>
-  </div>
-</section>
-
-  <!-- Toggle -->
-  <div class="pricing-toggle">
-    <button class="toggle-btn toggle-btn-active" data-mode="pilot">
-      Phase pilote
-    </button>
-    <button class="toggle-btn" data-mode="run">
-      Phase run
-    </button>
-  </div>
-
-  <div class="pricing-grid">
-    <!-- OFFRE PILOTE -->
-    <article class="pricing-card pricing-pilot">
-      <h2>Pilote 4&nbsp;semaines</h2>
-      <p class="pricing-price">
-        <span class="pricing-amount">15&nbsp;000&nbsp;€</span>
-        <span class="pricing-period">HT — forfait</span>
-      </p>
-      <p class="pricing-tagline">
-        Un cas d’usage, un agent IA en production limitée, une preuve de valeur chiffrée.
-      </p>
-      <ul class="pricing-list">
-        <li>Atelier de cadrage (processus, données, risques)</li>
-        <li>Design et implémentation d’un agent IA complet</li>
-        <li>Intégration à 1–2 sources de données ou outils métier</li>
-        <li>Tests, monitoring de base et boucles de feedback hebdomadaires</li>
-        <li>Restitution finale avec métriques et roadmap « run »</li>
-      </ul>
-      <p class="pricing-note">
-        Idéal pour valider rapidement l’impact de l’IA autonome sur un premier processus.
-      </p>
-      <a href="contact.html" class="btn btn-primary">
-        Lancer un pilote
-      </a>
-    </article>
-
-    <!-- OFFRE RUN -->
-    <article class="pricing-card pricing-run hidden">
-      <h2>Run mensuel</h2>
-      <p class="pricing-price">
-        <span class="pricing-amount">À partir de 6&nbsp;000&nbsp;€/mois</span>
-        <span class="pricing-period">HT — engagement 3&nbsp;mois</span>
-      </p>
-      <p class="pricing-tagline">
-        On opère vos agents IA comme un nouveau « membre de l’équipe », avec amélioration continue.
-      </p>
-      <ul class="pricing-list">
-        <li>Opérations &amp; supervision de 1 à 3 agents IA</li>
-        <li>Améliorations continues basées sur vos KPIs métier</li>
-        <li>Monitoring, alertes et revue mensuelle de performance</li>
-        <li>Intégration progressive à de nouveaux outils / données</li>
-        <li>Support prioritaire et canal dédié</li>
-      </ul>
-      <p class="pricing-note">
-        Tarif ajusté en fonction du nombre d’agents, du volume et des intégrations nécessaires.
-      </p>
-      <a href="contact.html" class="btn btn-primary">
-        Discuter d’un run
-      </a>
-    </article>
-  </div>
-
-  <p class="pricing-footnote">
-    Les tarifs sont indicatifs et peuvent être adaptés selon votre secteur, votre volumétrie
-    et vos contraintes de sécurité/compliance.
-  </p>
-</section>
-
-      <!-- FAQ -->
-      <section id="faq" class="section reveal">
-        <div class="section-header">
-          <h2>FAQ</h2>
-          <p>Les questions qui reviennent le plus souvent.</p>
+        <div class="usecases-column">
+          <h3>Finance &amp; Back-office</h3>
+          <ul class="bullet-grid">
+            <li>Contrôle automatisé de factures PDF vs commande</li>
+            <li>Extraction &amp; structuration des pièces jointes</li>
+            <li>Revue intelligente des notes de frais</li>
+            <li>Préparation de reportings mensuels en langage naturel</li>
+          </ul>
         </div>
 
-        <div class="faq">
-          <div class="faq-item">
-            <button class="faq-question">
-              Combien de temps pour mettre en place un premier agent ?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>
-                En général 3 à 6 semaines selon la complexité de vos outils et
-                de vos process. On commence toujours par un pilote très ciblé.
-              </p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question">
-              Quid de la sécurité et des données sensibles ?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>
-                Nous respectons vos contraintes (RGPD, hébergement, permissions).
-                Les agents n’accèdent qu’aux données nécessaires et chaque action
-                est loggée.
-              </p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question">
-              Est-ce que ça remplace l’équipe existante ?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>
-                Non : on enlève le bruit, pas le cerveau. L’objectif est de
-                libérer du temps pour les sujets à forte valeur, pas de remplacer
-                les équipes.
-              </p>
-            </div>
-          </div>
+        <div class="usecases-column">
+          <h3>Sales, Marketing &amp; Produit</h3>
+          <ul class="bullet-grid">
+            <li>Compte-rendus de meetings synchronisés au CRM</li>
+            <li>Veille concurrentielle et synthèse hebdomadaire</li>
+            <li>Segmentation automatique de comptes &amp; opportunités</li>
+            <li>Analyse des feedbacks produit multi-canaux</li>
+          </ul>
         </div>
-      </section>
+      </div>
 
-      <!-- CONTACT -->
-      <section id="contact" class="section reveal">
-        <div class="section-header">
-          <h2>Contact</h2>
-          <p>Parlons de vos process, pas de “magie IA” abstraite.</p>
-        </div>
+      <div class="callout">
+        <p>
+          Vous avez un processus très spécifique&nbsp;? Parfait.
+          L’atelier de cadrage sert justement à traduire vos règles
+          métier en comportements d’agent.
+        </p>
+      </div>
+    </section>
 
-        <div class="grid two">
-          <div class="card">
-            <h3>Explorons un use case concret</h3>
+    <!-- TECH & SECURITY -->
+    <section id="tech" class="section reveal">
+      <header class="section-header">
+        <h2>Stack technique &amp; sécurité pensées pour les équipes IT</h2>
+        <p>
+          Nous construisons les agents comme des services industriels,
+          observables, versionnés et supervisables.
+        </p>
+      </header>
+
+      <div class="tech-grid">
+        <article class="card">
+          <h3>Architecture</h3>
+          <ul class="card-list">
+            <li>Orchestrateur d’agents avec mémoire structurée</li>
+            <li>Connecteurs API / fichiers / bases de données</li>
+            <li>Journalisation complète des décisions d’agent</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Sécurité &amp; conformité</h3>
+          <ul class="card-list">
+            <li>Hébergement EU, chiffrement en transit et au repos</li>
+            <li>Paramétrage fin des données visibles par chaque agent</li>
+            <li>Traçabilité des actions et possibilité de “replay”</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Gouvernance &amp; contrôle</h3>
+          <ul class="card-list">
+            <li>Modes “suggestion” puis “auto-action” activables</li>
+            <li>Tableau de bord sur les gains, erreurs, exceptions</li>
+            <li>Processus clair pour valider chaque nouvelle capacité</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="tech-foot">
+        <p>
+          Nous ne remplaçons pas vos systèmes. Les agents se branchent
+          dessus, respectent vos règles et vous donnent de la visibilité
+          au lieu d’ajouter de l’opacité.
+        </p>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="section section-alt reveal">
+      <header class="section-header">
+        <h2>Une approche en deux temps&nbsp;: pilote puis run</h2>
+        <p>
+          Le but&nbsp;: prouver rapidement la valeur avec un pilote
+          ciblé, puis industrialiser seulement les agents qui
+          délivrent réellement.
+        </p>
+      </header>
+
+      <div class="pricing-toggle">
+        <button class="toggle-btn toggle-btn-active" data-mode="pilot">
+          Phase pilote
+        </button>
+        <button class="toggle-btn" data-mode="run">
+          Phase run &amp; scale
+        </button>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- PILOT -->
+        <article class="pricing-card pricing-pilot">
+          <h3>Pilote ciblé (4–6 semaines)</h3>
+          <p class="pricing-price">Forfait sur mesure</p>
+          <p class="pricing-caption">
+            1 à 2 agents maximum, intégrés à votre stack existante.
+          </p>
+          <ul class="pricing-features">
+            <li>Atelier de cadrage &amp; sélection des cas prioritaires</li>
+            <li>Design des agents (règles, garde-fous, métriques)</li>
+            <li>Intégration à vos outils (API, webhooks, fichiers)</li>
+            <li>Tests utilisateurs &amp; accompagnement au lancement</li>
+            <li>Mesure détaillée des gains et irritants</li>
+          </ul>
+          <p class="pricing-ideal">
+            Idéal pour les directions Ops, Finance, Care ou Revenue qui
+            veulent “toucher” l’IA sans lancer un projet de 12 mois.
+          </p>
+        </article>
+
+        <!-- RUN -->
+        <article class="pricing-card pricing-run hidden">
+          <h3>Run &amp; scale</h3>
+          <p class="pricing-price">Abonnement par agent actif</p>
+          <p class="pricing-caption">
+            Support, monitoring et itérations continues sur les agents
+            qui délivrent.
+          </p>
+          <ul class="pricing-features">
+            <li>Supervision 24/7 &amp; alertes sur incidents</li>
+            <li>Mises à jour régulières des prompts &amp; connecteurs</li>
+            <li>Recalibrage des garde-fous et des seuils</li>
+            <li>Rapports mensuels d’impact (temps gagné, qualité)</li>
+            <li>Possibilité d’ajouter de nouveaux agents progressivement</li>
+          </ul>
+          <p class="pricing-ideal">
+            Pensé pour les équipes qui veulent considérer l’IA comme un
+            <strong>actif productif</strong>, pas comme une démo.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section reveal">
+      <header class="section-header">
+        <h2>Questions fréquentes</h2>
+        <p>
+          Quelques réponses rapides. Le reste se fait mieux en
+          discutant de votre contexte précis.
+        </p>
+      </header>
+
+      <div class="faq-list">
+        <article class="faq-item open">
+          <button class="faq-question">
+            Est-ce que les agents remplacent les équipes ?
+          </button>
+          <div class="faq-answer">
             <p>
-              Dites-nous en quelques lignes où vous pensez que des agents IA
-              pourraient vous aider. On revient vers vous avec une proposition
-              de pilote très concrète.
+              Non. Nous les concevons comme des <strong>copilotes</strong> :
+              ils absorbent la partie répétitive et structurée du
+              travail, mais la décision finale et les cas limites
+              restent humains. On mesure l’impact en temps réalloué, pas
+              en suppression de postes.
             </p>
-            <ul>
-              <li>Call de 20–30 min</li>
-              <li>1&nbsp;à&nbsp;2 idées de pilotes</li>
-              <li>Sans engagement</li>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <button class="faq-question">
+            Quels outils pouvez-vous connecter ?
+          </button>
+          <div class="faq-answer">
+            <p>
+              De manière générale, tout outil qui expose une API, des
+              webhooks ou des exports réguliers. Typiquement&nbsp;:
+              CRM, helpdesk, ERP, bases de données, suites bureautiques,
+              outils internes… On cartographie ça ensemble au démarrage.
+            </p>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <button class="faq-question">
+            Comment gérez-vous la confidentialité des données ?
+          </button>
+          <div class="faq-answer">
+            <p>
+              Nous limitons strictement les données visibles par chaque
+              agent, nous loggons les actions, et nous pouvons travailler
+              avec des modèles hébergés en Europe. Aucun entraînement
+              public n’est fait sur vos données.
+            </p>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <button class="faq-question">
+            Combien de temps pour voir un premier résultat concret ?
+          </button>
+          <div class="faq-answer">
+            <p>
+              Sur un bon périmètre, on vise un premier agent en pilote
+              en 4 à 6 semaines, avec des métriques claires
+              (temps gagné, volume traité, qualité perçue).
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section section-alt reveal">
+      <header class="section-header">
+        <h2>Parlons de vos processus, pas de “l’IA en général”</h2>
+        <p>
+          Dites-nous comment travaillent vos équipes aujourd’hui. On
+          reviendra vers vous avec 2 ou 3 idées d’agents concrets,
+          chiffrés, adaptés à votre contexte.
+        </p>
+      </header>
+
+      <div class="contact-layout">
+        <form class="contact-form">
+          <div class="field-group">
+            <label for="name">Votre nom</label>
+            <input id="name" name="name" type="text" required />
+          </div>
+
+          <div class="field-group">
+            <label for="email">E-mail professionnel</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              inputmode="email"
+              required
+            />
+          </div>
+
+          <div class="field-group">
+            <label for="company">Entreprise</label>
+            <input id="company" name="company" type="text" />
+          </div>
+
+          <div class="field-group">
+            <label for="team">Équipe / périmètre concerné</label>
+            <input
+              id="team"
+              name="team"
+              type="text"
+              placeholder="Ops, Finance, Care, Sales…"
+            />
+          </div>
+
+          <div class="field-group">
+            <label for="message">Décrivez vos flux &amp; irritants</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              placeholder="Ex : 200 tickets / jour, beaucoup de copier-coller entre outils, reporting manuel…"
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full">
+            Envoyer mon contexte
+          </button>
+
+          <p class="form-note">
+            Le formulaire est une maquette : branchez-le à votre backend
+            ou à votre outil de formulaires (Typeform, Tally, HubSpot…).
+          </p>
+        </form>
+
+        <aside class="contact-aside">
+          <div class="mini-card">
+            <h3>Ce que vous obtenez</h3>
+            <ul class="card-list">
+              <li>Un retour par e-mail avec 2–3 cas d’agents ciblés</li>
+              <li>Une estimation d’impact vs effort d’intégration</li>
+              <li>La possibilité de lancer un pilote rapide</li>
             </ul>
           </div>
 
-          <form class="card contact-form">
-            <label>
-              Nom / organisation
-              <input type="text" name="name" required />
-            </label>
-            <label>
-              Email
-              <input type="email" name="email" required />
-            </label>
-            <label>
-              Où l’IA pourrait vous aider ?
-              <textarea name="message" rows="4" required></textarea>
-            </label>
-            <button type="submit" class="btn primary full">
-              Envoyer (maquette — pas d’envoi réel)
-            </button>
-            <p class="form-hint">
-              Le formulaire est pour l’instant une démo front. Branchez-le sur
-              votre backend / outil préféré (Formspree, Zapier, etc.).
-            </p>
-          </form>
-        </div>
-      </section>
-    </main>
+          <div class="mini-card">
+            <h3>Pour qui c’est pertinent&nbsp;?</h3>
+            <ul class="card-list">
+              <li>Mid-market &amp; ETI avec beaucoup de flux récurrents</li>
+              <li>Scale-ups avec des équipes ops / back-office saturées</li>
+              <li>Directions métiers qui veulent garder la main</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
 
-    <footer class="footer">
-      <span>© 2025 NH110LAB.ai — Agents IA autonomes pour entreprises.</span>
-      <span>Construit avec ❤️ et beaucoup de café.</span>
-    </footer>
-  </div>
+  <footer class="footer">
+    <div class="footer-main">
+      <div>
+        <div class="logo">NH110LAB.ai</div>
+        <p>
+          Des agents IA qui travaillent vraiment pour vos équipes, pas
+          des démos ponctuelles.
+        </p>
+      </div>
+      <div class="footer-links">
+        <a href="about.html">À propos</a>
+        <a href="services.html">Services</a>
+        <a href="pricing.html">Pricing détaillé</a>
+        <a href="faq.html">FAQ complète</a>
+      </div>
+    </div>
+    <p class="footer-meta">
+      © <span id="year"></span> NH110LAB.ai — Tous droits réservés.
+    </p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
 </html>
-<p class="stat">
-  <span class="stat-number" data-target="1200">1200</span> heures économisées / an
-</p>
-<p class="stat">
-  <span class="stat-number" data-target="4">4</span>x plus de productivité
-</p>
-<section class="logos reveal">
-  <p class="logos-title">Ils explorent déjà les agents NH110LAB.ai</p>
-  <div class="logos-row">
-    <span>Fintech</span>
-    <span>Industrie 4.0</span>
-    <span>Retail</span>
-    <span>Services B2B</span>
-  </div>
-</section>
-<section class="cta-strip reveal">
-  <div>
-    <h2>On vous montre un agent en action ?</h2>
-    <p>15 minutes de démo live pour voir comment NH110LAB.ai s’intègre
-    dans vos outils.</p>
-  </div>
-  <a href="contact.html" class="btn-primary">
-    Réserver un créneau
-  </a>
-</section>
