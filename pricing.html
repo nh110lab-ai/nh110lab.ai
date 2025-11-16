@@ -3,6 +3,113 @@
 <title>Tarifs — NH110LAB.ai</title>
 <link rel="stylesheet" href="style.css"></head>
 <body>
+    <body>
+  <!-- Fond animé -->
+  <div class="bg-layer">
+    <canvas id="particles"></canvas>
+    <canvas id="orb"></canvas>
+    <canvas id="halo"></canvas>
+  </div>
+
+  <header class="header">
+    <div class="logo">NH110LAB.ai</div>
+    <nav class="nav">
+      <a class="nav-link" href="index.html">Accueil</a>
+      <a class="nav-link" href="about.html">À propos</a>
+      <a class="nav-link" href="services.html">Services</a>
+      <a class="nav-link" href="usecases.html">Use cases</a>
+      <a class="nav-link" href="agents.html">Agents</a>
+      <a class="nav-link nav-link-active" href="pricing.html">Pricing</a>
+      <a class="nav-link" href="faq.html">FAQ</a>
+      <a class="nav-link nav-link-primary" href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="page pricing-page">
+    <section class="pricing-hero reveal">
+      <p class="eyebrow">Pricing simple</p>
+      <h1>On préfère une relation claire plutôt que des grilles illisibles.</h1>
+      <p class="pricing-subtitle">
+        Deux modes de collaboration, ajustés à votre rythme&nbsp;: pilote rapide pour tester,
+        run continu pour industrialiser.
+      </p>
+
+      <div class="pricing-toggle">
+        <button class="toggle-btn toggle-btn-active" data-mode="pilot">
+          Mode pilote (4–6 semaines)
+        </button>
+        <button class="toggle-btn" data-mode="run">
+          Mode run continu
+        </button>
+      </div>
+    </section>
+
+    <section class="pricing-content reveal">
+      <div class="pricing-cards">
+        <!-- Carte PILOTE -->
+        <article class="pricing-card pricing-pilot">
+          <h2>Pilote</h2>
+          <p class="pricing-tagline">
+            On choisit un use case à fort ROI, on construit 1–2 agents et on mesure l’impact.
+          </p>
+          <ul class="pricing-list">
+            <li>Design + build + intégration</li>
+            <li>Workshops avec vos équipes</li>
+            <li>Tableau de bord d’impact</li>
+          </ul>
+          <p class="pricing-footer">Forfait sur devis</p>
+        </article>
+
+        <!-- Carte RUN CONTINU (cachée au départ) -->
+        <article class="pricing-card pricing-run hidden">
+          <h2>Run continu</h2>
+          <p class="pricing-tagline">
+            On maintient, fait évoluer vos agents et on ouvre de nouveaux use cases en continu.
+          </p>
+          <ul class="pricing-list">
+            <li>Améliorations et nouveaux agents chaque mois</li>
+            <li>Monitoring + SLO sur la qualité des réponses</li>
+            <li>Support prioritaire + coaching des équipes</li>
+          </ul>
+          <p class="pricing-footer">Retainer mensuel, sur devis</p>
+        </article>
+
+        <!-- FICHE / CALCULATEUR INTERACTIF -->
+        <aside class="pricing-estimator">
+          <h3>Estimation interactive</h3>
+          <p class="pricing-estimator-intro">
+            Pour vous donner un ordre de grandeur. Le chiffrage final se fait toujours sur mesure.
+          </p>
+
+          <label class="estimator-label" for="agentsRange">
+            Nombre d’agents à maintenir
+          </label>
+          <input
+            type="range"
+            id="agentsRange"
+            min="1"
+            max="5"
+            value="2"
+          />
+
+          <div class="pricing-output">
+            <span id="agentsValue" class="pricing-output-main">2 agents</span>
+            <span id="pricingHint" class="pricing-output-hint">
+              Budget indicatif : 4–8&nbsp;k€ / mois
+            </span>
+          </div>
+
+          <p class="pricing-disclaimer">
+            Ces montants sont indicatifs, hors infrastructure et outils tiers.
+          </p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
 
 <header class="header"><div class="logo">NH110LAB.ai</div></header>
 
