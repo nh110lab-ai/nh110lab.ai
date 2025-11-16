@@ -5,372 +5,545 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NH110LAB.ai — Intelligence Artificielle & Automations</title>
 
-  <!-- Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
 
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Meta -->
+  <meta name="description" content="NH110LAB.ai conçoit des agents IA premium et des automations sur mesure pour les entreprises : prospection, support, CRM, WhatsApp, APIs et multi-agents." />
 </head>
 <body>
-  <!-- HEADER -->
+  <!-- =====================
+       HEADER
+  ======================= -->
   <header class="header">
     <div class="header-inner">
       <a href="#hero" class="brand">
-        <img src="assets/images/logo.png" alt="NH110LAB.ai" class="logo" />
-        <span class="brand-text">NH110LAB.ai</span>
+        <img src="assets/images/logo.png" class="logo" alt="NH110LAB.ai" />
+        <span class="brand-name">NH110LAB.ai</span>
       </a>
+
       <nav class="nav">
         <a href="#hero">Accueil</a>
         <a href="#agents">Agents IA</a>
         <a href="#services">Services</a>
+        <a href="#advantages">Avantages</a>
         <a href="#pricing">Tarifs</a>
         <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
       </nav>
+
+      <!-- Bouton thème (utilisé par script.js si présent) -->
+      <button class="theme-toggle" aria-label="Changer le thème"></button>
+
+      <!-- Burger mobile si tu l'utilises déjà dans script.js -->
+      <button class="nav-toggle" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section id="hero" class="hero section">
+  <!-- =====================
+       HERO
+  ======================= -->
+  <section id="hero" class="hero reveal">
     <div class="hero-content">
       <p class="hero-kicker">Intelligence Artificielle Premium</p>
       <h1 class="hero-title">
-        Agents IA modernes,<br />
-        autonomes & évolutifs.
+        Des Agents IA modernes & évolutifs<br />
+        pour accélérer votre croissance
       </h1>
       <p class="hero-sub">
-        Des agents intelligents, connectés à vos outils, inspirés par les meilleures entreprises d’IA au monde.
-        Automatisez votre prospection, votre support et vos opérations.
+        Créations intelligentes, autonomes et connectées à vos outils.
+        Automatisez vos processus et décuplez votre productivité dès aujourd’hui.
       </p>
+
       <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary">✨ Créer mon agent IA</a>
-        <a href="#services" class="btn btn-ghost">Découvrir les services</a>
+        <a href="#contact" class="btn btn-main">✨ Créer mon agent IA</a>
+        <a href="#services" class="btn btn-ghost">Découvrir nos services</a>
       </div>
-      <div class="hero-tags">
-        <span>Multi-agents collaboratifs</span>
-        <span>Intégrations CRM & API</span>
-        <span>Déploiement rapide</span>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-value">50+</span>
+          <span class="stat-label">Agents déployés</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">99%</span>
+          <span class="stat-label">Taux de satisfaction</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">24/7</span>
+          <span class="stat-label">Support disponible</span>
+        </div>
       </div>
     </div>
 
     <div class="hero-visual">
-      <div class="orb orb-main"></div>
+      <img src="assets/images/background-orb.png" alt="" class="hero-orb" />
       <div class="hero-card">
-        <img src="assets/images/agent-ui.png" alt="Interface Agent IA" />
-        <p>Agent IA en action : prospection, réponses, suivi — entièrement automatisé.</p>
+        <p>Agents multi-étapes inspirés des meilleures stacks IA.</p>
+        <span>OpenAI • Anthropic • Tools • APIs</span>
       </div>
     </div>
   </section>
 
-  <!-- STATS -->
-  <section class="section stats">
-    <div class="stats-grid">
-      <div class="stat">
-        <span class="stat-value">50+</span>
-        <span class="stat-label">Agents déployés</span>
-      </div>
-      <div class="stat">
-        <span class="stat-value">99%</span>
-        <span class="stat-label">Satisfaction clients</span>
-      </div>
-      <div class="stat">
-        <span class="stat-value">24/7</span>
-        <span class="stat-label">Agents disponibles</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- AGENTS -->
-  <section id="agents" class="section section-content">
+  <!-- =====================
+       NOTRE VISION
+  ======================= -->
+  <section id="vision" class="section reveal">
     <div class="section-header">
-      <h2>Agents IA Premium</h2>
-      <p>
-        Une suite d’agents autonomes conçus pour analyser, décider et agir comme une équipe dédiée à votre croissance.
+      <h2 class="section-title">Notre vision</h2>
+      <p class="section-sub">
+        Une intelligence autonome qui travaille pour vous, 24/7.
       </p>
     </div>
 
-    <div class="cards-grid">
-      <article class="card reveal">
+    <div class="section-layout">
+      <div class="section-text">
+        <p>
+          Chez <strong>NH110LAB.ai</strong>, nous croyons que chaque entreprise
+          mérite une intelligence autonome capable d’apprendre, de raisonner et d’agir.
+        </p>
+        <p>
+          Inspirés par <strong>OpenAI, Anthropic et Scale AI</strong>, nous
+          construisons des agents fiables, rapides et connectés qui transforment
+          profondément votre manière de travailler.
+        </p>
+        <p>
+          De la prospection à la gestion client, en passant par le reporting et
+          les intégrations API, vos agents IA deviennent un levier de croissance
+          concret, pas un simple “gadget IA”.
+        </p>
+      </div>
+      <div class="section-highlight-card">
+        <ul class="features">
+          <li>🧠 Agents spécialisés par métier</li>
+          <li>🤝 Intégrés à vos outils existants</li>
+          <li>📈 Pensés pour la performance et le ROI</li>
+          <li>🔒 Priorité donnée à la sécurité et à la confidentialité</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================
+       AGENTS IA
+  ======================= -->
+  <section id="agents" class="section reveal">
+    <div class="section-header">
+      <h2 class="section-title">Agents IA Premium</h2>
+      <p class="section-sub">
+        Une suite d’agents autonomes conçus pour analyser, décider et agir, comme une équipe ultra-efficace.
+      </p>
+    </div>
+
+    <div class="agents-grid">
+      <article class="agent-card">
         <h3>Agent Prospection</h3>
         <p>
-          Prospection automatisée, qualification intelligente, suivi des leads et relances multi-canaux (email, WhatsApp…).
+          📞 Prospection automatique & qualification des leads, emails intelligents
+          et suivi proactif de vos prospects.
         </p>
-        <ul class="card-list">
-          <li>Segmentation automatique des prospects</li>
-          <li>Messages personnalisés selon le contexte</li>
+        <ul>
+          <li>Segmentation & ciblage contextuel</li>
+          <li>Relances automatiques personnalisées</li>
+          <li>Intégration CRM (HubSpot, Salesforce, Notion…)</li>
+        </ul>
+      </article>
+
+      <article class="agent-card">
+        <h3>Agent Support & Service Client</h3>
+        <p>
+          💬 Gestion client autonome sur WhatsApp, Messenger, SMS ou chat web,
+          24/7, avec transfert humain si nécessaire.
+        </p>
+        <ul>
+          <li>Réponses contextuelles et naturelles</li>
+          <li>Historique client centralisé</li>
+          <li>Escalade vers vos équipes en cas de besoin</li>
+        </ul>
+      </article>
+
+      <article class="agent-card">
+        <h3>Agent Opérations & Back-Office</h3>
+        <p>
+          ⚙️ Automatisation des tâches internes : reporting, mises à jour CRM,
+          synchronisation de bases, préparation de documents.
+        </p>
+        <ul>
+          <li>Workflows multi-étapes</li>
+          <li>Connexion à vos APIs métiers</li>
           <li>Reporting clair et actionnable</li>
         </ul>
       </article>
-
-      <article class="card reveal">
-        <h3>Agent Support</h3>
-        <p>
-          Un agent IA qui gère vos demandes clients en continu, répond, escalade et apprend de chaque interaction.
-        </p>
-        <ul class="card-list">
-          <li>Réponses 24/7 sur vos canaux</li>
-          <li>Base de connaissances intégrée</li>
-          <li>Escalade vers humain quand nécessaire</li>
-        </ul>
-      </article>
-
-      <article class="card reveal">
-        <h3>Agent CRM & Données</h3>
-        <p>
-          Connecté à HubSpot, Notion, Airtable, Salesforce… pour maintenir vos données propres et à jour.
-        </p>
-        <ul class="card-list">
-          <li>Mise à jour automatique des fiches</li>
-          <li>Synchronisation multi-outils</li>
-          <li>Analyses et suggestions actionnables</li>
-        </ul>
-      </article>
     </div>
 
-    <div class="section-visual reveal">
-      <img src="assets/images/pipeline.png" alt="Pipeline multi-agents" />
-      <p class="section-note">
-        Pipelines IA multi-agents inspirés des workflows des meilleurs labs d’IA (OpenAI, Anthropic, etc.).
-      </p>
+    <div class="agents-images">
+      <img src="assets/images/agent-ui.png" class="agent-img" alt="Interface d’agent IA" />
+      <img src="assets/images/pipeline.png" class="agent-img" alt="Pipeline d’agents IA" />
+      <img src="assets/images/orb.png" class="agent-img" alt="Visualisation IA" />
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section id="services" class="section section-alt">
+  <!-- =====================
+       SERVICES
+  ======================= -->
+  <section id="services" class="section section-alt reveal">
     <div class="section-header">
-      <h2>Services & Intégrations Premium</h2>
-      <p>
-        De l’idée au déploiement : nous concevons, intégrons et opérons vos agents IA dans vos outils existants.
+      <h2 class="section-title">Services Premium</h2>
+      <p class="section-sub">
+        Développement IA sur mesure, intégrations professionnelles et automatisation complète.
       </p>
     </div>
 
-    <div class="cards-grid">
-      <article class="card reveal">
-        <h3>Automations API</h3>
+    <div class="services-grid">
+      <article class="service-card">
+        <h3>Agents IA sur mesure</h3>
         <p>
-          Connexion à vos systèmes : CRM, facturation, messagerie, support, back-office, etc.
+          Conception d’agents autonomes adaptés à votre activité : prospection, support,
+          opérations, data, etc.
         </p>
-        <ul class="card-list">
-          <li>WhatsApp Business, Email, SMS</li>
-          <li>Stripe, Google, Notion, Airtable</li>
-          <li>Intégrations Webhooks & REST API</li>
+        <ul>
+          <li>Analyse de vos besoins</li>
+          <li>Design des prompts & rôles</li>
+          <li>Tests, optimisation & suivi</li>
         </ul>
       </article>
 
-      <article class="card reveal">
-        <h3>Audit IA & Stratégie</h3>
+      <article class="service-card">
+        <h3>Automations API & CRM</h3>
         <p>
-          Cartographie de vos processus, identification des gains, design des agents et roadmap de déploiement.
+          Workflows automatisés pour CRM, WhatsApp, emails, sites web et toutes vos
+          plateformes métiers.
         </p>
-        <ul class="card-list">
-          <li>Diagnostic complet</li>
-          <li>Recommandations IA concrètes</li>
-          <li>Plan d’action priorisé</li>
+        <ul>
+          <li>Intégrations CRM (HubSpot, Notion, Airtable…)</li>
+          <li>WhatsApp Business & email automation</li>
+          <li>Synchronisation de données multi-outils</li>
         </ul>
       </article>
 
-      <article class="card reveal">
-        <h3>Développement sur mesure</h3>
+      <article class="service-card">
+        <h3>Audit & Stratégie IA</h3>
         <p>
-          Agents et automations personnalisés pour votre secteur, votre équipe et vos contraintes métiers.
+          Audit complet de vos process avec recommandations IA concrètes et plan
+          d’action détaillé.
         </p>
-        <ul class="card-list">
-          <li>Scénarios complexes multi-étapes</li>
-          <li>Intégration à vos workflows existants</li>
-          <li>Accompagnement au changement</li>
+        <ul>
+          <li>Cartographie des tâches automatisables</li>
+          <li>Roadmap IA sur 3 à 12 mois</li>
+          <li>Accompagnement de vos équipes</li>
         </ul>
       </article>
     </div>
+
+    <div class="section-cta">
+      <p>Prêt à transformer votre manière de travailler ?</p>
+      <a href="#contact" class="btn btn-main">Démarrer maintenant</a>
+    </div>
   </section>
 
-  <!-- CTA BAND -->
-  <section class="section cta-band">
-    <div class="cta-band-inner">
-      <div>
-        <h2>Prêt à automatiser votre activité avec l’IA ?</h2>
-        <p>On conçoit ensemble un agent IA adapté à votre business, déployé en quelques jours.</p>
+  <!-- =====================
+       AVANTAGES
+  ======================= -->
+  <section id="advantages" class="section reveal">
+    <div class="section-header">
+      <h2 class="section-title">Pourquoi NH110LAB.ai ?</h2>
+      <p class="section-sub">
+        Une approche orientée résultats, inspirée des meilleures entreprises d’IA au monde.
+      </p>
+    </div>
+
+    <div class="advantages-grid">
+      <div class="adv-card">
+        <h3>⚡ Automatisations intelligentes</h3>
+        <p>
+          Des workflows pensés pour réduire le temps passé sur les tâches répétitives
+          et augmenter votre chiffre d’affaires.
+        </p>
       </div>
-      <a href="#contact" class="btn btn-primary">Discuter de mon projet</a>
+      <div class="adv-card">
+        <h3>🧠 Agents autonomes & évolutifs</h3>
+        <p>
+          Des agents qui apprennent, s’ajustent et évoluent avec vos données et vos
+          objectifs business.
+        </p>
+      </div>
+      <div class="adv-card">
+        <h3>🔒 Sécurité & fiabilité</h3>
+        <p>
+          Des choix techniques inspirés des standards Anthropic & enterprise-grade
+          pour la confidentialité de vos données.
+        </p>
+      </div>
+      <div class="adv-card">
+        <h3>🚀 Résultats mesurables</h3>
+        <p>
+          KPIs, reporting et optimisation continue : l’IA comme un centre de profit,
+          pas un centre de coût.
+        </p>
+      </div>
     </div>
   </section>
 
-  <!-- PRICING -->
-  <section id="pricing" class="section section-content">
+  <!-- =====================
+       TARIFS
+  ======================= -->
+  <section id="pricing" class="section section-alt reveal">
     <div class="section-header">
-      <h2>Tarifs transparents</h2>
-      <p>Des plans simples pour démarrer, évolutifs selon vos besoins et votre croissance.</p>
+      <h2 class="section-title">Tarifs transparents</h2>
+      <p class="section-sub">
+        Des plans simples pour commencer rapidement. Sans engagement, résiliable à tout moment.
+      </p>
     </div>
 
     <div class="pricing-grid">
-      <article class="pricing-card reveal">
+      <article class="pricing-card">
         <h3>Starter</h3>
-        <p class="price">49€ / mois</p>
-        <p class="subtitle">Parfait pour tester l’IA dans votre activité.</p>
-        <ul class="card-list">
+        <p class="pricing-tagline">Parfait pour débuter avec l’IA</p>
+        <p class="price">
+          49<span class="price-unit">€/mois</span>
+        </p>
+        <ul>
           <li>1 Agent IA</li>
           <li>Automations simples</li>
-          <li>Support par email</li>
+          <li>Support email</li>
+          <li>Mises à jour incluses</li>
         </ul>
+        <a href="#contact" class="btn btn-outline">Commencer</a>
       </article>
 
-      <article class="pricing-card pricing-card-highlight reveal">
+      <article class="pricing-card pricing-card-highlight">
+        <div class="badge">Populaire</div>
         <h3>Pro</h3>
-        <p class="price">199€ / mois</p>
-        <p class="subtitle">Pour les entreprises en croissance.</p>
-        <ul class="card-list">
-          <li>Jusqu’à 5 Agents IA</li>
-          <li>Automations avancées</li>
-          <li>Intégrations API complètes</li>
+        <p class="pricing-tagline">Pour les entreprises en croissance</p>
+        <p class="price">
+          199<span class="price-unit">€/mois</span>
+        </p>
+        <ul>
+          <li>5 Agents IA</li>
+          <li>Automations complexes</li>
+          <li>Intégrations API avancées</li>
           <li>Support prioritaire</li>
+          <li>Rapports personnalisés</li>
         </ul>
-        <span class="badge">Populaire</span>
+        <a href="#contact" class="btn btn-main">Choisir Pro</a>
       </article>
 
-      <article class="pricing-card reveal">
+      <article class="pricing-card">
         <h3>Enterprise</h3>
-        <p class="price">Sur devis</p>
-        <p class="subtitle">Solution IA sur mesure, à grande échelle.</p>
-        <ul class="card-list">
+        <p class="pricing-tagline">Solution complète & personnalisée</p>
+        <p class="price">
+          Sur mesure
+        </p>
+        <ul>
           <li>Agents IA illimités</li>
-          <li>Pipelines multi-agents complexes</li>
+          <li>Développement sur mesure</li>
+          <li>Intégrations avancées</li>
           <li>Support dédié 24/7</li>
           <li>Formation de vos équipes</li>
+          <li>SLA garantis</li>
         </ul>
+        <a href="#contact" class="btn btn-outline">Nous contacter</a>
       </article>
     </div>
+
+    <p class="pricing-note">
+      Tous les plans incluent les mises à jour et le support. Facturation mensuelle sans engagement.
+    </p>
   </section>
 
-  <!-- FAQ -->
-  <section id="faq" class="section section-alt">
+  <!-- =====================
+       FAQ
+  ======================= -->
+  <section id="faq" class="section reveal">
     <div class="section-header">
-      <h2>Questions fréquentes</h2>
-      <p>Les réponses aux questions qu’on nous pose le plus souvent.</p>
+      <h2 class="section-title">Questions fréquentes</h2>
+      <p class="section-sub">
+        Tout ce que vous devez savoir sur nos solutions IA. Besoin de plus d’infos ? Contactez-nous.
+      </p>
     </div>
 
     <div class="faq-list">
       <div class="faq-item">
         <button class="faq-question">
           Qu’est-ce qu’un agent IA ?
-          <span class="chevron">▾</span>
         </button>
         <div class="faq-answer">
-          Un agent IA est un système autonome qui reçoit des objectifs, analyse les données disponibles,
-          appelle des outils (APIs, CRM, emails…) et exécute des actions pour atteindre ces objectifs, sans
-          supervision constante.
+          <p>
+            Un agent IA est un système autonome qui peut comprendre des consignes,
+            analyser des données et exécuter des actions à votre place :
+            réponses clients, prospection, reporting, etc.
+          </p>
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question">
-          En combien de temps puis-je déployer mon premier agent ?
-          <span class="chevron">▾</span>
+          Combien de temps faut-il pour déployer un agent ?
         </button>
         <div class="faq-answer">
-          Pour un premier cas d’usage simple, nous pouvons généralement déployer un agent en quelques jours
-          après la validation du périmètre et des accès nécessaires.
+          <p>
+            Selon la complexité, la plupart de nos agents sont déployés en quelques jours
+            à quelques semaines, avec des premiers résultats visibles très rapidement.
+          </p>
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question">
-          Est-ce compatible avec mes outils actuels ?
-          <span class="chevron">▾</span>
+          Puis-je intégrer vos agents à mes outils existants ?
         </button>
         <div class="faq-answer">
-          Oui. Nous nous connectons à vos outils via API ou intégrations natives : HubSpot, Notion, Airtable,
-          Salesforce, Google Workspace, WhatsApp Business, etc.
+          <p>
+            Oui. Nous connectons vos agents à vos outils via API : HubSpot, Salesforce,
+            Notion, Airtable, Google Workspace, WhatsApp Business, et bien d’autres.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Quelle garantie sur les résultats ?
+        </button>
+        <div class="faq-answer">
+          <p>
+            Nous définissons avec vous des objectifs clairs (temps gagné, leads générés,
+            réactivité client…) et optimisons l’agent en continu pour maximiser votre ROI.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Comment fonctionne le support ?
+        </button>
+        <div class="faq-answer">
+          <p>
+            Vous disposez d’un canal dédié pour le support, avec un temps de réponse
+            prioritaire pour les offres Pro & Enterprise, et une assistance 24/7 pour les clients Enterprise.
+          </p>
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question">
           Mes données sont-elles sécurisées ?
-          <span class="chevron">▾</span>
         </button>
         <div class="faq-answer">
-          Nous privilégions les fournisseurs conformes aux meilleures pratiques de sécurité. Vos accès et
-          données sont traités avec une approche stricte de confidentialité et de segmentation.
+          <p>
+            Oui. Nous respectons des standards stricts en matière de sécurité et de confidentialité.
+            Les flux de données sont chiffrés et nous minimisons la conservation des informations sensibles.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="section section-content">
+  <!-- =====================
+       CONTACT
+  ======================= -->
+  <section id="contact" class="section section-alt reveal">
     <div class="section-header">
-      <h2>Contact & Démo</h2>
-      <p>Parlez-nous de votre activité et de vos idées, on s’occupe de l’IA.</p>
+      <h2 class="section-title">Contact</h2>
+      <p class="section-sub">
+        Prêt à démarrer votre projet IA ? Discutons de vos besoins et objectifs.
+      </p>
     </div>
 
     <div class="contact-grid">
       <div class="contact-info">
-        <h3>Discutons de votre projet 👋</h3>
-        <p>
-          Expliquez-nous votre contexte, vos outils et vos objectifs. Nous revenons vers vous avec une
-          proposition concrète d’agent IA.
+        <h3>Coordonnées</h3>
+        <p><strong>Email</strong><br />
+          <a href="mailto:contact@nh110lab.ai">contact@nh110lab.ai</a>
         </p>
-        <ul class="contact-list">
-          <li><strong>Email</strong> : <a href="mailto:contact@nh110lab.ai">contact@nh110lab.ai</a></li>
-          <li><strong>Localisation</strong> : France</li>
-          <li><strong>Horaires</strong> : Lundi – Vendredi, 9h – 18h</li>
-        </ul>
+        <p><strong>Téléphone</strong><br />
+          <a href="tel:+33123456789">+33 1 23 45 67 89</a>
+        </p>
+        <p><strong>Localisation</strong><br />
+          Paris, France
+        </p>
+        <p><strong>Horaires</strong><br />
+          Lundi – Vendredi : 9h – 18h<br />
+          Support 24/7 pour clients Enterprise
+        </p>
+
+        <a href="mailto:contact@nh110lab.ai" class="btn btn-main">
+          Envoyer un email
+        </a>
       </div>
 
       <form class="contact-form" action="mailto:contact@nh110lab.ai" method="post" enctype="text/plain">
+        <h3>Discutons de votre projet 👋</h3>
         <label>
-          Nom complet
+          Nom complet *
           <input type="text" name="nom" required />
         </label>
+
         <label>
-          Email
+          Email *
           <input type="email" name="email" required />
         </label>
+
         <label>
-          Message
+          Téléphone
+          <input type="tel" name="telephone" />
+        </label>
+
+        <label>
+          Message *
           <textarea name="message" rows="4" required></textarea>
         </label>
-        <button type="submit" class="btn btn-primary">Envoyer le message</button>
+
+        <button type="submit" class="btn btn-main">
+          Envoyer le message
+        </button>
       </form>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- =====================
+       FOOTER
+  ======================= -->
   <footer class="footer">
-    <div class="footer-inner">
+    <div class="footer-top">
       <div class="footer-brand">
         <span class="footer-logo">NH</span>
         <div>
           <p class="footer-title">NH110LAB.ai</p>
-          <p class="footer-tagline">Intelligence artificielle & automatisations sur mesure.</p>
+          <p class="footer-tagline">
+            Intelligence artificielle & automatisations sur mesure pour votre entreprise.
+          </p>
         </div>
       </div>
 
-      <div class="footer-columns">
+      <div class="footer-links">
         <div>
           <h4>Services</h4>
           <a href="#agents">Agents IA</a>
           <a href="#services">Automations API</a>
-          <a href="#pricing">Tarifs</a>
+          <a href="#services">Audit IA</a>
         </div>
         <div>
           <h4>Ressources</h4>
+          <a href="#pricing">Tarifs</a>
           <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
         </div>
-        <div>
-          <h4>Contact</h4>
-          <a href="mailto:contact@nh110lab.ai">contact@nh110lab.ai</a>
-        </div>
       </div>
     </div>
+
     <div class="footer-bottom">
       <span>© 2025 NH110LAB.ai. Tous droits réservés.</span>
+      <a href="mailto:contact@nh110lab.ai">contact@nh110lab.ai</a>
     </div>
   </footer>
 
   <!-- JS -->
   <script src="js/app.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
