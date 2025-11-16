@@ -1,141 +1,162 @@
 /* =========================================================
-   NH110LAB — Vision Engine JS
-   Effets — Animations — Dark Mode Scroll — Particules
+   NH110LAB — Vision Engine JS v2
+   Apple Intelligence FX • VisionOS • Parallax • Particles
    ========================================================= */
 
-/* =========================================================
-   1. SCROLL DARK MODE (Apple Style)
-   ========================================================= */
+
+/* ---------------------------------------------------------
+   0. PERFORMANCE BOOST
+--------------------------------------------------------- */
+document.documentElement.style.setProperty("scroll-behavior", "smooth");
+
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let allowHeavyFX = !prefersReducedMotion;
+
+
+/* ---------------------------------------------------------
+   1. AUTO DARK MODE ON SCROLL (APPLE STYLE)
+--------------------------------------------------------- */
 const body = document.body;
 
 window.addEventListener("scroll", () => {
     const trigger = window.innerHeight * 0.55;
+
     if (window.scrollY > trigger) {
-        body.classList.add("scroll-dark");
-        body.classList.add("dark-mode");
+        body.classList.add("scroll-dark", "dark-mode");
     } else {
-        body.classList.remove("scroll-dark");
-        body.classList.remove("dark-mode");
+        body.classList.remove("scroll-dark", "dark-mode");
     }
 });
 
-/* =========================================================
-   2. NAV SCROLL ACTIVE
-   ========================================================= */
+
+/* ---------------------------------------------------------
+   2. NAVIGATION REACTIVITY
+--------------------------------------------------------- */
 const nav = document.querySelector(".nav-vision");
 
 window.addEventListener("scroll", () => {
-    if (window.scrollY > 40) {
-        nav.classList.add("scroll-active");
-    } else {
-        nav.classList.remove("scroll-active");
-    }
+    nav.classList.toggle("scroll-active", window.scrollY > 40);
 });
 
-/* =========================================================
-   3. REVEAL ON SCROLL (VisionOS animations)
-   ========================================================= */
-const revealElements = document.querySelectorAll(".reveal, .reveal-slide, .reveal-zoom");
 
-function revealOnScroll() {
-    const trigger = window.innerHeight * 0.82;
+/* ---------------------------------------------------------
+   3. REVEAL ENGINE (new ultra smooth)
+--------------------------------------------------------- */
+const reveals = document.querySelectorAll(".reveal, .reveal-slide, .reveal-zoom");
 
-    revealElements.forEach((el) => {
-        const top = el.getBoundingClientRect().top;
+const revealObserver = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+        });
+    },
+    { threshold: 0.2 }
+);
 
-        if (top < trigger) {
-            el.classList.add("visible");
-        }
-    });
-}
+reveals.forEach((el) => revealObserver.observe(el));
 
-window.addEventListener("scroll", revealOnScroll);
-revealOnScroll();
 
-/* =========================================================
-   4. PARTICLE ENGINE — VisionOS Floating Particles
-   ========================================================= */
+/* ---------------------------------------------------------
+   4. PARTICLE ENGINE (VisionOS style)
+--------------------------------------------------------- */
 const canvas = document.getElementById("particleCanvas");
-const ctx = canvas.getContext("2d");
+const ctx = canvas.getContext("2d", { alpha: true });
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+let particles = [];
 
-let particlesArray = [];
-
-window.addEventListener("resize", () => {
+function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     initParticles();
-});
+}
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
 
 class Particle {
     constructor() {
+        this.reset();
+    }
+    reset() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 1.8 + 0.6;
+        this.speedX = (Math.random() - 0.5) * 0.45;
+        this.speedY = (Math.random() - 0.5) * 0.45;
 
-        this.size = Math.random() * 2 + 1;
-        this.speedX = (Math.random() - 0.5) * 0.7;
-        this.speedY = (Math.random() - 0.5) * 0.7;
-
-        // pastel apple colors
-        const colors = ["#9cc9ff", "#b88aff", "#ff8ccd"];
-        this.color = colors[Math.floor(Math.random() * colors.length)];
+        const palette = ["#9cc9ff", "#b88aff", "#ff8ccd"];
+        this.color = palette[Math.floor(Math.random() * palette.length)];
     }
-
     update() {
-        this.x += this.speedX * 0.6;
-        this.y += this.speedY * 0.6;
+        this.x += this.speedX;
+        this.y += this.speedY;
 
-        // reposition particles
-        if (this.x > canvas.width) this.x = 0;
-        if (this.x < 0) this.x = canvas.width;
-        if (this.y > canvas.height) this.y = 0;
-        if (this.y < 0) this.y = canvas.height;
+        if (this.x > canvas.width || this.x < 0) this.reset();
+        if (this.y > canvas.height || this.y < 0) this.reset();
     }
-
     draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = this.color + "cc";
+        ctx.fillStyle = this.color + "bb";
         ctx.fill();
     }
 }
 
 function initParticles() {
-    particlesArray = [];
-    const number = canvas.width < 900 ? 60 : 130;
-    for (let i = 0; i < number; i++) {
-        particlesArray.push(new Particle());
-    }
+    particles = [];
+    const count = canvas.width < 900 ? 70 : 150;
+
+    for (let i = 0; i < count; i++) particles.push(new Particle());
 }
-initParticles();
 
 function animateParticles() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    particlesArray.forEach((particle) => {
-        particle.update();
-        particle.draw();
+    particles.forEach(p => {
+        p.update();
+        p.draw();
     });
 
     requestAnimationFrame(animateParticles);
 }
-animateParticles();
+if (allowHeavyFX) animateParticles();
 
-/* =========================================================
-   5. TILT EFFECT 3D (for cards)
-   ========================================================= */
-document.querySelectorAll(".tilt").forEach((card) => {
+
+/* ---------------------------------------------------------
+   5. PARALLAX ORBS (Vision Pro Floating effect)
+--------------------------------------------------------- */
+const orbs = document.querySelectorAll(".hero-orb");
+
+window.addEventListener("mousemove", (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 40;
+    const y = (e.clientY / window.innerHeight - 0.5) * 40;
+
+    orbs.forEach((orb, i) => {
+        const intensity = (i + 1) * 0.6;
+        orb.style.transform = `translate(${x * intensity}px, ${y * intensity}px)`;
+    });
+});
+
+
+/* ---------------------------------------------------------
+   6. TILT 3D (New Magnetic Apple Hover)
+--------------------------------------------------------- */
+const tiltCards = document.querySelectorAll(".tilt");
+
+tiltCards.forEach((card) => {
     card.addEventListener("mousemove", (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        const r = card.getBoundingClientRect();
+        const x = e.clientX - r.left;
+        const y = e.clientY - r.top;
 
-        const rotateX = ((y - rect.height / 2) / 18).toFixed(2);
-        const rotateY = ((x - rect.width / 2) / -18).toFixed(2);
+        const rotateX = ((y - r.height / 2) / 22).toFixed(2);
+        const rotateY = -((x - r.width / 2) / 22).toFixed(2);
 
-        card.style.transform = `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.04)`;
+        card.style.transform = `
+            perspective(700px)
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+            scale(1.05)
+        `;
     });
 
     card.addEventListener("mouseleave", () => {
@@ -144,26 +165,28 @@ document.querySelectorAll(".tilt").forEach((card) => {
     });
 });
 
-/* =========================================================
-   6. SMOOTH SCROLL FOR NAV LINKS
-   ========================================================= */
+
+/* ---------------------------------------------------------
+   7. SMOOTH ANCHOR NAVIGATION
+--------------------------------------------------------- */
 document.querySelectorAll(".nav-links a").forEach((link) => {
     link.addEventListener("click", (e) => {
         const href = link.getAttribute("href");
-        if (href.startsWith("#")) {
-            e.preventDefault();
-            document.querySelector(href).scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-        }
+        if (!href.startsWith("#")) return;
+
+        e.preventDefault();
+        document.querySelector(href)?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        });
     });
 });
 
-/* =========================================================
-   7. OPTIONAL : AUTO-INTRO ANIMATION (HERO)
-   ========================================================= */
 
+/* ---------------------------------------------------------
+   8. HERO INTRO (Apple fade)
+--------------------------------------------------------- */
 window.addEventListener("load", () => {
-    document.querySelector(".hero-content").classList.add("visible");
+    const hero = document.querySelector(".hero-content");
+    if (hero) hero.classList.add("visible");
 });
