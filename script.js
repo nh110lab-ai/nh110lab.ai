@@ -1,112 +1,87 @@
-/* -----------------------------------------------------
-   BACKGROUND ANIMÉ (Particules + Halo VisionOS)
------------------------------------------------------ */
-
+/* FOND ANIMÉ + PARTICULES + ORB */
 const canvas = document.getElementById("background");
 const ctx = canvas.getContext("2d");
+canvas.width = innerWidth;
+canvas.height = innerHeight;
 
-let width, height;
 let particles = [];
-
-function resize() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
+for (let i = 0; i < 80; i++) {
+    particles.push({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        r: Math.random()*2+1,
+        vx: (Math.random()-0.5)*0.4,
+        vy: (Math.random()-0.5)*0.4
+    });
 }
-resize();
-window.addEventListener("resize", resize);
 
-/* ----- Génération des particules ----- */
-function createParticles() {
-    particles = [];
+function animateBackground(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
 
-    for (let i = 0; i < 70; i++) {
-        particles.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            size: Math.random() * 2.2 + 0.5,
-            speedX: (Math.random() - 0.5) * 0.15,
-            speedY: (Math.random() - 0.5) * 0.15
-        });
-    }
-}
-createParticles();
+    // halo
+    const grd = ctx.createRadialGradient(
+        canvas.width/2, canvas.height/2, 100,
+        canvas.width/2, canvas.height/2, 600
+    );
+    grd.addColorStop(0,"rgba(255,255,255,0.10)");
+    grd.addColorStop(1,"rgba(0,0,0,0)");
+    ctx.fillStyle = grd;
+    ctx.fillRect(0,0,canvas.width,canvas.height);
 
-/* ----- Animation des particules ----- */
-function animateParticles() {
-    ctx.clearRect(0, 0, width, height);
+    particles.forEach(p=>{
+        p.x+=p.vx; p.y+=p.vy;
 
-    ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
-    particles.forEach(p => {
-        p.x += p.speedX;
-        p.y += p.speedY;
-
-        if (p.x < 0 || p.x > width) p.speedX *= -1;
-        if (p.y < 0 || p.y > height) p.speedY *= -1;
+        if(p.x<0||p.x>canvas.width) p.vx*=-1;
+        if(p.y<0||p.y>canvas.height) p.vy*=-1;
 
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle="rgba(255,255,255,0.6)";
         ctx.fill();
     });
 
-    requestAnimationFrame(animateParticles);
+    requestAnimationFrame(animateBackground);
 }
-animateParticles();
+animateBackground();
 
-/* -----------------------------------------------------
-   EFFET LUMIÈRE / FOLLOW CURSOR (Halo Apple)
------------------------------------------------------ */
+/* MODE CLAIR/SOMBRE DYNAMIQUE (Option C) */
+function updateTheme(){
+    const scrollY = window.scrollY;
+    const max = document.body.scrollHeight - innerHeight;
+    const ratio = scrollY / max; // 0 → haut clair, 1 → bas sombre
 
-let mouseX = 0;
-let mouseY = 0;
-
-document.addEventListener("mousemove", e => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-});
-
-function drawHalo() {
-    const gradient = ctx.createRadialGradient(
-        mouseX, mouseY, 0,
-        mouseX, mouseY, 180
-    );
-
-    gradient.addColorStop(0, "rgba(255,255,255,0.12)");
-    gradient.addColorStop(1, "rgba(0,0,0,0)");
-
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, width, height);
-
-    requestAnimationFrame(drawHalo);
+    if(ratio < 0.25) document.body.className = "light-mode";
+    else if(ratio < 0.55) document.body.className = "";
+    else document.body.className = "dark-mode";
 }
-drawHalo();
+window.addEventListener("scroll", updateTheme);
+updateTheme();
 
-/* -----------------------------------------------------
-   ANIMATION SCROLL (sections qui apparaissent)
------------------------------------------------------ */
-
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add("visible");
-    });
-}, { threshold: 0.2 });
-
-document.querySelectorAll(".section, .card, .hero-content").forEach(el => {
-    observer.observe(el);
-});
-
-/* -----------------------------------------------------
-   SMOOTH SCROLL
------------------------------------------------------ */
-
-document.querySelectorAll("a[href^='#']").forEach(anchor => {
-    anchor.addEventListener("click", function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute("href"));
-        if (target) {
-            window.scrollTo({
-                top: target.offsetTop - 80,
-                behavior: "smooth"
-            });
+/* ANIMATION SECTION REVEAL */
+const sections = document.querySelectorAll(".section-fade");
+function revealSections(){
+    sections.forEach(sec=>{
+        const rect = sec.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 100){
+            sec.classList.add("visible");
         }
     });
+}
+window.addEventListener("scroll", revealSections);
+revealSections();
+
+/* PARALLAXE 3D */
+document.addEventListener("mousemove", e=>{
+    const x = (e.clientX / innerWidth - 0.5) * 20;
+    const y = (e.clientY / innerHeight - 0.5) * 20;
+    document.getElementById("theme-wrapper").style.transform =
+        `translate(${x}px, ${y}px)`;
 });
+
+/* ASSISTANT IA */
+const aiBtn = document.getElementById("ai-button");
+const aiPanel = document.getElementById("ai-panel");
+
+aiBtn.onclick = () => {
+    aiPanel.style.display = aiPanel.style.display==="flex" ? "none" : "flex";
+};
