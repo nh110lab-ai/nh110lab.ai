@@ -239,3 +239,90 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   requestAnimationFrame(loop);
 });
+document.addEventListener('DOMContentLoaded', () => {
+  // --- Année dynamique dans le footer ---
+  const yearSpan = document.getElementById('year');
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+  }
+
+  // --- Scroll fluide sur les ancres ---
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', event => {
+      const href = link.getAttribute('href');
+      const id = href && href.slice(1);
+      const target = id && document.getElementById(id);
+
+      if (target) {
+        event.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // --- Animations "reveal" au scroll ---
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && revealEls.length) {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    revealEls.forEach(el => observer.observe(el));
+  } else {
+    // fallback : tout visible si pas supporté
+    revealEls.forEach(el => el.classList.add('is-visible'));
+  }
+
+  // --- FAQ accordéon ---
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const button = item.querySelector('.faq-question');
+    if (!button) return;
+
+    button.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+
+      // fermer les autres
+      document.querySelectorAll('.faq-item.open').forEach(openItem => {
+        if (openItem !== item) openItem.classList.remove('open');
+      });
+
+      // toggle courant
+      item.classList.toggle('open', !isOpen);
+    });
+  });
+
+  // --- Toggle pricing pilote / run ---
+  const toggleBtns = document.querySelectorAll('.pricing-toggle .toggle-btn');
+  const pilotCard = document.querySelector('.pricing-pilot');
+  const runCard = document.querySelector('.pricing-run');
+
+  if (toggleBtns.length && pilotCard && runCard) {
+    toggleBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const mode = btn.dataset.mode;
+
+        toggleBtns.forEach(b =>
+          b.classList.toggle('toggle-btn-active', b === btn)
+        );
+
+        if (mode === 'run') {
+          pilotCard.classList.add('hidden');
+          runCard.classList.remove('hidden');
+        } else {
+          pilotCard.classList.remove('hidden');
+          runCard.classList.add('hidden');
+        }
+      });
+    });
+  }
+
+  // TODO: effets visuels sur les canvas #particles, #orb, #halo
+});
