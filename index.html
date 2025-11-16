@@ -1,88 +1,108 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>NH110LAB.ai — Intelligence & Automations</title>
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/images/logo.png">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NH110LAB.ai — Intelligence & Automations</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-<!-- =====================
-     HEADER
-======================= -->
-<header id="header">
-    <div class="nav-inner">
-        <img src="assets/images/logo.png" class="logo" alt="NH Logo">
-        <nav>
-            <a href="#agents">Agents</a>
-            <a href="#services">Services</a>
-            <a href="#pricing">Tarifs</a>
-            <a href="#faq">FAQ</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </div>
+<!-- HEADER -->
+<header class="header">
+    <img src="logo.png" alt="NH110LAB Logo" class="logo" />
+    <nav class="nav">
+        <a href="#hero">Accueil</a>
+        <a href="#agents">Agents IA</a>
+        <a href="#services">Services</a>
+        <a href="#avantages">Avantages</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="#contact">Contact</a>
+    </nav>
 </header>
 
-<!-- =====================
-     HERO
-======================= -->
-<section class="hero">
-    <img src="assets/images/background-orb.png" class="orb-bg" alt="">
+<!-- HERO -->
+<section id="hero" class="hero">
+    <img src="background-orb.png" class="orb-bg" />
     <div class="hero-content">
-        <h1 class="hero-title">Des Agents IA<br>modernes & évolutifs</h1>
-        <p class="hero-sub">Créations intelligentes, autonomes et optimisées pour votre activité.</p>
-        <button class="btn-main" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-            Créer mon agent IA
-        </button>
+        <h1>Agents IA premium pour automatiser votre activité</h1>
+        <p>Des agents intelligents, autonomes et connectés à vos outils.  
+        Inspirés par les meilleures entreprises d’IA au monde.</p>
+        <button class="cta">✨ Créer mon agent IA</button>
     </div>
 </section>
 
-<!-- =====================
-     AGENTS
-======================= -->
+<!-- SECTION VISION -->
+<section id="vision" class="section">
+    <h2>Notre Vision</h2>
+    <p>Chez NH110LAB.ai, nous croyons que chaque entreprise mérite une intelligence autonome capable 
+    d’apprendre, de raisonner et d’agir.  
+    Inspirés par OpenAI, Anthropic et Scale AI, nous construisons des agents fiables, rapides et connectés
+    qui transforment profondément votre manière de travailler.</p>
+</section>
+
+<!-- AGENTS IA -->
 <section id="agents" class="section">
-    <h2 class="section-title">Agents IA Premium</h2>
-    <p class="section-desc">Une suite d’agents autonomes conçus pour automatiser et optimiser votre activité.</p>
+    <h2>Agents IA Premium</h2>
+    <img src="agent-ui.png" class="section-img" />
+    <p>Nos agents sont conçus pour analyser, décider et agir automatiquement, comme une équipe 
+    ultra-efficace. Ils comprennent vos données, s'adaptent à vos clients et exécutent des actions complexes.</p>
 
-    <div class="agents-gallery">
-        <img src="assets/images/agent-ui.png" class="agent-img" alt="">
-        <img src="assets/images/pipeline.png" class="agent-img" alt="">
-        <img src="assets/images/orb.png" class="agent-img" alt="">
+    <ul class="features">
+        <li>📞 Prospection automatique & qualification</li>
+        <li>📧 Emails intelligents & personnalisés</li>
+        <li>💬 Gestion WhatsApp / Messenger / SMS</li>
+        <li>📊 Analyse avancée et reporting</li>
+        <li>🔗 Intégration CRM (HubSpot, Salesforce, Notion…)</li>
+        <li>🤖 Prise de décision multi-étapes inspirée d’OpenAI</li>
+    </ul>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section dark">
+    <h2>Services Premium</h2>
+    <img src="pipeline.png" class="section-img" />
+    <p>Développement IA sur mesure, intégrations professionnelles, audit complet et automatisation totale.</p>
+
+    <div class="service-grid">
+        <div class="service-card">
+            <h3>🔄 Pipelines IA Multi-Agents</h3>
+            <p>Agents qui collaborent ensemble comme chez Adept AI ou Reworkd Agents.</p>
+        </div>
+        <div class="service-card">
+            <h3>🔗 Intégrations API</h3>
+            <p>WhatsApp, Stripe, Google, Airtable, Notion, CRM… tout est connecté.</p>
+        </div>
+        <div class="service-card">
+            <h3>⚙️ Automatisation Totale</h3>
+            <p>Opérations, reporting, emails, messages, back-office… automatisés de A à Z.</p>
+        </div>
     </div>
 </section>
 
-<!-- =====================
-     SERVICES
-======================= -->
-<section id="services" class="section">
-    <h2 class="section-title">Services Premium</h2>
-    <p class="section-desc">Développement IA sur mesure, automatisation complète et intégrations pro.</p>
-
-    <div class="cards-grid">
-        <div class="card"><h3>Agents IA</h3><p>Agents autonomes pour prospection & gestion.</p></div>
-        <div class="card"><h3>Automations API</h3><p>Workflows CRM, WhatsApp, emails, sites.</p></div>
-        <div class="card"><h3>Audit IA</h3><p>Optimisation complète de vos process.</p></div>
-    </div>
+<!-- AVANTAGES -->
+<section id="avantages" class="section">
+    <h2>Pourquoi NH110LAB.ai ?</h2>
+    <img src="orb.png" class="section-img" />
+    <ul class="features">
+        <li>⚡ Automatisations intelligentes</li>
+        <li>🧠 Agents IA autonomes & évolutifs</li>
+        <li>🔒 Sécurité & fiabilité inspirée d’Anthropic</li>
+        <li>🚀 Résultats immédiats</li>
+        <li>🔗 Intégrations professionnelles</li>
+        <li>📚 IA entraînée sur vos données</li>
+    </ul>
 </section>
 
-<!-- =====================
-     PRICING
-======================= -->
-<section id="pricing" class="section">
-    <h2 class="section-title">Tarifs</h2>
-    <p class="section-desc">Des plans simples pour commencer rapidement.</p>
+<!-- TARIFS -->
+<section id="tarifs" class="section dark">
+    <h2>Tarifs</h2>
 
     <div class="pricing-grid">
-        <div class="price-card">
+        <div class="pricing-card">
             <h3>Starter</h3>
-            <div class="price">49€/mois</div>
+            <p class="price">49€/mois</p>
             <ul>
                 <li>1 Agent IA</li>
                 <li>Automations simples</li>
@@ -90,9 +110,9 @@
             </ul>
         </div>
 
-        <div class="price-card">
+        <div class="pricing-card highlighted">
             <h3>Business</h3>
-            <div class="price">149€/mois</div>
+            <p class="price">149€/mois</p>
             <ul>
                 <li>3 Agents IA</li>
                 <li>Automations avancées</li>
@@ -100,9 +120,9 @@
             </ul>
         </div>
 
-        <div class="price-card">
+        <div class="pricing-card">
             <h3>Entreprise</h3>
-            <div class="price">Sur devis</div>
+            <p class="price">Sur devis</p>
             <ul>
                 <li>Agents illimités</li>
                 <li>Automations complexes</li>
@@ -112,27 +132,11 @@
     </div>
 </section>
 
-<!-- =====================
-     FAQ
-======================= -->
-<section id="faq" class="section">
-    <h2 class="section-title">FAQ</h2>
-    <div class="faq-item"><div class="faq-q">Comment fonctionne un agent IA ?</div><div class="faq-a">Il agit automatiquement selon vos règles, objectifs et données.</div></div>
-    <div class="faq-item"><div class="faq-q">Les agents remplacent-ils un employé ?</div><div class="faq-a">Ils automatisent les tâches répétitives pour gagner du temps.</div></div>
-    <div class="faq-item"><div class="faq-q">Puis-je connecter mon CRM ?</div><div class="faq-a">Oui : HubSpot, Notion, Airtable, Salesforce…</div></div>
-</section>
-
-<!-- =====================
-     CONTACT
-======================= -->
+<!-- CONTACT -->
 <section id="contact" class="section">
-    <h2 class="section-title">Contact</h2>
-    <div class="contact-box">
-        <p style="margin-bottom:18px;">Discutons de votre projet 👋</p>
-        <button class="btn-main" onclick="window.location.href='mailto:nhlab.ai@icloud.com'">Envoyer un message</button>
-    </div>
+    <h2>Discutons de votre projet 👋</h2>
+    <button class="cta">Envoyer un message</button>
 </section>
 
-<script src="js/app.js"></script>
 </body>
 </html>
