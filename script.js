@@ -1,77 +1,121 @@
-/* MODE CLAIR / SOMBRE PROGRESSIF */
-const wrapper = document.getElementById("theme-wrapper");
+/* ============================================
+   MODE CLAIR / SOMBRE AUTO + SMOOTH
+============================================ */
 
-window.addEventListener("scroll", () => {
-    const progress = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-    if (progress > 0.25) wrapper.classList.add("dark-mode");
-    else wrapper.classList.remove("dark-mode");
-});
+function updateTheme() {
+    const wrapper = document.getElementById("theme-wrapper");
+    const scrollPos = window.scrollY;
+    const max = 800;
 
-/* PARTIES DU FOND ANIMÉ */
-const bg = document.getElementById("background");
-const ctx = bg.getContext("2d");
+    if (scrollPos > max) {
+        wrapper.classList.add("light");
+    } else {
+        wrapper.classList.remove("light");
+    }
+}
 
-const particlesCanvas = document.getElementById("particles");
-const ptx = particlesCanvas.getContext("2d");
+window.addEventListener("scroll", updateTheme);
+updateTheme();
 
-bg.width = particlesCanvas.width = innerWidth;
-bg.height = particlesCanvas.height = innerHeight;
+/* ============================================
+   CANVAS : ORB / HALO / PARTICULES (Apple style)
+============================================ */
 
-/* ORBE IA */
-let orb = { x: innerWidth/2, y: innerHeight/2, r: 130 };
+const orb = document.getElementById("bg-orb");
+const halo = document.getElementById("bg-halo");
+const particles = document.getElementById("bg-particles");
 
-/* PARTICLES */
-let particles = [];
+const orbCtx = orb.getContext("2d");
+const haloCtx = halo.getContext("2d");
+const partCtx = particles.getContext("2d");
+
+function resize() {
+    [orb, halo, particles].forEach(c => {
+        c.width = window.innerWidth;
+        c.height = window.innerHeight;
+    });
+}
+resize();
+window.addEventListener("resize", resize);
+
+/* ORB principal */
+let orbX = window.innerWidth / 2;
+let orbY = window.innerHeight / 2;
+
+function drawOrb() {
+    orbCtx.clearRect(0,0,orb.width,orb.height);
+
+    const grd = orbCtx.createRadialGradient(
+        orbX, orbY, 0,
+        orbX, orbY, 250
+    );
+
+    grd.addColorStop(0, "rgba(255,255,255,0.7)");
+    grd.addColorStop(1, "rgba(255,255,255,0)");
+
+    orbCtx.fillStyle = grd;
+    orbCtx.fillRect(0,0,orb.width,orb.height);
+}
+
+/* HALO réactif */
+function drawHalo() {
+    haloCtx.clearRect(0,0,halo.width,halo.height);
+
+    const grd = haloCtx.createRadialGradient(
+        orbX, orbY, 0,
+        orbX, orbY, 600
+    );
+
+    grd.addColorStop(0, "rgba(255,255,255,0.15)");
+    grd.addColorStop(1, "rgba(255,255,255,0)");
+
+    haloCtx.fillStyle = grd;
+    haloCtx.fillRect(0,0,halo.width,halo.height);
+}
+
+/* PARTICULES flottantes */
+const particleArray = [];
 for (let i = 0; i < 60; i++) {
-    particles.push({
-        x: Math.random()*innerWidth,
-        y: Math.random()*innerHeight,
-        vx: (Math.random()-0.5)*0.6,
-        vy: (Math.random()-0.5)*0.6,
-        size: Math.random()*2 + 1
+    particleArray.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        size: Math.random() * 3 + 1,
+        speedX: Math.random() * 0.6 - 0.3,
+        speedY: Math.random() * 0.6 - 0.3,
+        alpha: Math.random() * 0.5 + 0.2
     });
 }
 
-/* ANIMATION */
-function animate() {
-    requestAnimationFrame(animate);
+function drawParticles() {
+    partCtx.clearRect(0,0,particles.width,particles.height);
 
-    /* HALO + ORB */
-    ctx.clearRect(0,0,bg.width,bg.height);
+    particleArray.forEach(p => {
+        p.x += p.speedX;
+        p.y += p.speedY;
 
-    let gradient = ctx.createRadialGradient(orb.x, orb.y, 40, orb.x, orb.y, orb.r);
-    gradient.addColorStop(0, "rgba(255,255,255,0.9)");
-    gradient.addColorStop(1, "rgba(255,255,255,0)");
+        if (p.x < 0) p.x = window.innerWidth;
+        if (p.x > window.innerWidth) p.x = 0;
+        if (p.y < 0) p.y = window.innerHeight;
+        if (p.y > window.innerHeight) p.y = 0;
 
-    ctx.fillStyle = gradient;
-    ctx.beginPath();
-    ctx.arc(orb.x, orb.y, orb.r, 0, Math.PI*2);
-    ctx.fill();
-
-    /* PETITE ANIMATION ORBE */
-    orb.x += Math.sin(Date.now()/2000)*0.3;
-    orb.y += Math.cos(Date.now()/2500)*0.3;
-
-    /* PARTICULES */
-    ptx.clearRect(0,0,innerWidth,innerHeight);
-
-    particles.forEach(p => {
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0 || p.x > innerWidth) p.vx *= -1;
-        if (p.y < 0 || p.y > innerHeight) p.vy *= -1;
-
-        ptx.fillStyle = "rgba(255,255,255,0.6)";
-        ptx.fillRect(p.x, p.y, p.size, p.size);
+        partCtx.fillStyle = `rgba(255,255,255,${p.alpha})`;
+        partCtx.beginPath();
+        partCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        partCtx.fill();
     });
 }
 
-animate();
-
-/* ORBE SUIVANT LÉGÈREMENT LA SOURIS */
+/* HOVER / MOUSE FOLLOW */
 window.addEventListener("mousemove", e => {
-    orb.x += (e.clientX - orb.x) * 0.03;
-    orb.y += (e.clientY - orb.y) * 0.03;
+    orbX += (e.clientX - orbX) * 0.1;
+    orbY += (e.clientY - orbY) * 0.1;
 });
+
+function animate() {
+    drawOrb();
+    drawHalo();
+    drawParticles();
+    requestAnimationFrame(animate);
+}
+animate();
 
