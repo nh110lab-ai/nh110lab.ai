@@ -1,125 +1,260 @@
-/* RESET */
+/* ————————————————
+   RESET + BASE
+——————————————— */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* BODY */
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro", sans-serif;
-    background: #000;
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: "Inter", "SF Pro Display", "Segoe UI", sans-serif;
+    background: #0b0b0d;
     color: #fff;
     overflow-x: hidden;
 }
 
-/************* FOND ANIMÉ **************/
-#bgCanvas {
+/* ————————————————
+   CANVAS BACKGROUND (fond animé)
+——————————————— */
+
+#background {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -1;
-    filter: blur(40px) brightness(1.5);
+    z-index: -5;
+    background: radial-gradient(circle at center, #1a1a1d, #0a0a0c);
+    filter: blur(0.5px);
 }
 
-/************* HEADER **************/
+/* ————————————————
+   GLASS EFFECT
+——————————————— */
+
+.glass {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 25px;
+}
+
+/* ————————————————
+   HEADER
+——————————————— */
+
 .header {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 20px 40px;
+    padding: 18px 40px;
     display: flex;
     justify-content: space-between;
-    background: rgba(0,0,0,0.4);
-    backdrop-filter: blur(15px);
-    z-index: 99;
+    align-items: center;
+    z-index: 50;
 }
 
 .logo {
     font-size: 22px;
     font-weight: 700;
     letter-spacing: 1px;
+    opacity: 0.9;
 }
 
-nav a {
-    color: #ffffff;
-    margin-left: 20px;
+.header nav a {
+    margin-left: 22px;
+    color: #dcdcdc;
     text-decoration: none;
-    font-weight: 500;
-    transition: 0.3s;
+    font-size: 15px;
+    transition: 0.25s ease;
 }
-nav a:hover { opacity: 0.5; }
 
-/************* HERO **************/
+.header nav a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 12px #fff;
+}
+
+/* ————————————————
+   HERO SECTION
+——————————————— */
+
 .hero {
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 140px 40px 80px;
 }
 
-.hero-box {
-    padding: 60px;
-    border-radius: 30px;
+.hero-content {
+    max-width: 850px;
     text-align: center;
-    animation: fadeIn 1.5s ease;
+    animation: fadeIn 1.4s ease forwards;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(40px); }
-    to   { opacity: 1; transform: translateY(0); }
+.hero h1 {
+    font-size: 3.4rem;
+    margin-bottom: 18px;
+    line-height: 1.15;
 }
 
-/************* GLASS **************/
-.glass {
-    background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(25px);
-    border: 1px solid rgba(255,255,255,0.15);
-    box-shadow: 0 0 30px rgba(255,255,255,0.05);
+.hero p {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+    color: #ddd;
 }
 
-/************* CTA **************/
 .cta {
     display: inline-block;
-    margin-top: 20px;
-    padding: 15px 32px;
-    background: white;
-    color: black;
+    padding: 14px 30px;
     border-radius: 30px;
-    text-decoration: none;
+    background: linear-gradient(135deg, #ffffff 0%, #bcbcbc 100%);
+    color: #000;
     font-weight: 600;
-    transition: 0.3s;
+    text-decoration: none;
+    transition: 0.35s ease;
+    box-shadow: 0 0 10px rgba(255,255,255,0.2);
 }
-.cta:hover { opacity: 0.7; }
 
-/************* SECTIONS **************/
-.section {
-    padding: 140px 60px;
-    text-align: center;
+.cta:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 18px rgba(255,255,255,0.5);
 }
+
+/* ————————————————
+   SECTIONS
+——————————————— */
+
+.section {
+    padding: 120px 50px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.section h2 {
+    font-size: 2.4rem;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.text-large {
+    font-size: 1.25rem;
+    text-align: center;
+    max-width: 900px;
+    margin: auto;
+    color: #d6d6d6;
+    line-height: 1.7;
+}
+
+.dark-block {
+    background: rgba(255,255,255,0.03);
+    border-radius: 25px;
+    padding: 80px 40px;
+}
+
+/* ————————————————
+   CARDS
+——————————————— */
 
 .cards {
-    margin-top: 50px;
+    margin-top: 40px;
     display: grid;
-    gap: 35px;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
 }
 
 .card {
-    padding: 40px;
-    border-radius: 25px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 40px rgba(255,255,255,0.15);
+    padding: 30px;
+    border-radius: 18px;
+    transition: 0.35s ease;
+    min-height: 200px;
 }
 
-/************* FOOTER **************/
-.footer {
-    padding: 40px;
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 25px rgba(255,255,255,0.12);
+}
+
+/* ————————————————
+   USE CASES
+——————————————— */
+
+.usecases-list {
+    list-style: none;
+    font-size: 1.2rem;
+    text-align: left;
+    max-width: 700px;
+    margin: auto;
+}
+
+.usecases-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ————————————————
+   PRICING
+——————————————— */
+
+.price {
+    font-size: 2rem;
+    margin: 15px 0;
+    font-weight: 700;
+}
+
+.pricing-cards ul li {
+    margin: 8px 0;
+}
+
+/* ————————————————
+   FAQ
+——————————————— */
+
+.faq-item {
+    margin-bottom: 25px;
+}
+
+.faq-item h3 {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+}
+
+.faq-item p {
+    color: #cacaca;
+}
+
+/* ————————————————
+   CONTACT
+——————————————— */
+
+#contact {
     text-align: center;
-    opacity: 0.5;
+    padding: 100px 30px;
+}
+
+/* ————————————————
+   FOOTER
+——————————————— */
+
+.footer {
+    text-align: center;
+    padding: 40px 0;
+    color: #888;
+    font-size: 0.95rem;
+    margin-top: 60px;
+}
+
+/* ————————————————
+   ANIMATIONS
+——————————————— */
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
