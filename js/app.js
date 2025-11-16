@@ -1,73 +1,39 @@
-/* ===========================================================================
-   NH110LAB.AI — FULL ANIMATION ENGINE
-   Smooth scroll reveal + theme switch + header FX + mobile menu + FAQ
-=========================================================================== */
-
-/* --------------------------------------
-   1) HEADER STICKY ANIMATION
--------------------------------------- */
+/* HEADER FX */
 const header = document.querySelector(".header");
-
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 60) header.classList.add("scrolled");
-  else header.classList.remove("scrolled");
+  header.classList.toggle("scrolled", window.scrollY > 60);
 });
 
-
-/* --------------------------------------
-   2) THEME: AUTO + MANUAL OVERRIDE
--------------------------------------- */
-
+/* THEME */
 const themeBtn = document.querySelector(".theme-toggle");
 
-function applyTheme(theme) {
-  document.documentElement.setAttribute("data-theme", theme);
-  localStorage.setItem("theme", theme);
+function applyTheme(t) {
+  document.documentElement.setAttribute("data-theme", t);
+  localStorage.setItem("theme", t);
 }
 
-function initTheme() {
-  const saved = localStorage.getItem("theme");
-
-  if (saved) applyTheme(saved);
-  else {
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    applyTheme(prefersDark ? "dark" : "light");
-  }
-}
+const saved = localStorage.getItem("theme");
+applyTheme(saved || (window.matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light"));
 
 themeBtn?.addEventListener("click", () => {
   const current = document.documentElement.getAttribute("data-theme");
   applyTheme(current === "dark" ? "light" : "dark");
 });
 
-initTheme();
-
-
-/* --------------------------------------
-   3) SMOOTH REVEAL ANIMATIONS
--------------------------------------- */
-
+/* REVEAL */
 const reveals = document.querySelectorAll(".reveal");
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if (e.isIntersecting) {
+      e.target.classList.add("reveal-visible");
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("reveal-visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.15 }
-);
+reveals.forEach((el) => obs.observe(el));
 
-reveals.forEach((el) => observer.observe(el));
-
-
-/* --------------------------------------
-   4) MOBILE NAV MENU
--------------------------------------- */
-
+/* MOBILE NAV */
 const navToggle = document.querySelector(".nav-toggle");
 const nav = document.querySelector(".nav");
 
@@ -77,105 +43,68 @@ navToggle?.addEventListener("click", () => {
   document.body.classList.toggle("no-scroll");
 });
 
-
-/* --------------------------------------
-   5) FAQ ACCORDION
--------------------------------------- */
-
+/* FAQ */
 document.querySelectorAll(".faq-item").forEach((item) => {
-  const btn = item.querySelector(".faq-question");
-
-  btn.addEventListener("click", () => {
+  item.querySelector(".faq-question").addEventListener("click", () => {
     item.classList.toggle("open");
   });
 });
 
-
-/* --------------------------------------
-   6) PARALLAX ORBS (OPTION VISUELLE)
--------------------------------------- */
-
+/* PARALLAX */
 document.addEventListener("mousemove", (e) => {
   document.querySelectorAll(".orb, .hero-orb").forEach((orb) => {
-    const speed = orb.getAttribute("data-speed") || 20;
+    const speed = orb.dataset.speed || 20;
     const x = (window.innerWidth / 2 - e.clientX) / speed;
     const y = (window.innerHeight / 2 - e.clientY) / speed;
     orb.style.transform = `translate(${x}px, ${y}px)`;
   });
 });
 
-
-/* --------------------------------------
-   7) SMOOTH SCROLL (Native but enhanced)
--------------------------------------- */
-
+/* SMOOTH SCROLL */
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
-    const target = document.querySelector(link.getAttribute("href"));
-    if (!target) return;
-
-    window.scrollTo({
-      top: target.offsetTop - 60,
-      behavior: "smooth",
-    });
+    const t = document.querySelector(link.getAttribute("href"));
+    if (!t) return;
+    window.scrollTo({ top: t.offsetTop - 60, behavior: "smooth" });
   });
 });
 
+/* COUNTERS */
+function animateCounter(el) {
+  const t = +el.dataset.value;
+  let c = 0;
+  const inc = t / 80;
 
-/* --------------------------------------
-   8) ANIMATED COUNTERS (Stats section)
--------------------------------------- */
-
-function animateCounter(counter) {
-  const target = +counter.dataset.value;
-  let current = 0;
-  const increment = target / 80;
-
-  const update = () => {
-    current += increment;
-    if (current < target) {
-      counter.textContent = Math.floor(current);
-      requestAnimationFrame(update);
-    } else {
-      counter.textContent = target;
-    }
-  };
-
+  function update() {
+    c += inc;
+    el.textContent = c < t ? Math.floor(c) : t;
+    if (c < t) requestAnimationFrame(update);
+  }
   update();
 }
 
-const statObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.querySelectorAll("[data-value]").forEach(animateCounter);
-        statObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.3 }
-);
+const statObs = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll("[data-value]").forEach(animateCounter);
+      statObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
 
-document.querySelectorAll(".stats-grid").forEach((el) => statObserver.observe(el));
+document.querySelectorAll(".stats-grid").forEach((el) => statObs.observe(el));
 
-
-/* --------------------------------------
-   9) FLOAT ANIMATION LOOP FOR ORBS
--------------------------------------- */
-
-function floatElement(el, intensity = 10, speed = 4000) {
-  let y = 0, direction = 1;
-
-  function animate() {
-    y += direction * 0.1;
-    if (Math.abs(y) > intensity) direction *= -1;
-
+/* FLOATING ORBS */
+function floatElement(el, intensity = 10) {
+  let y = 0, dir = 1;
+  function loop() {
+    y += dir * 0.1;
+    if (Math.abs(y) > intensity) dir *= -1;
     el.style.transform = `translateY(${y}px)`;
-    requestAnimationFrame(animate);
+    requestAnimationFrame(loop);
   }
-
-  animate();
+  loop();
 }
 
-document.querySelectorAll(".orb, .hero-orb").forEach((orb) => floatElement(orb));
+document.querySelectorAll(".orb, .hero-orb").forEach((el) => floatElement(el));
