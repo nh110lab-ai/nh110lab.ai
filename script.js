@@ -1,8 +1,8 @@
-// NH110LAB.ai — Script optimisé + widgets devis & témoignages
+// NH110LAB.ai — Script optimisé (devis, témoignages, pricing, FAQ, IA, canvas)
 (function () {
   "use strict";
 
-  // ============ UTILITAIRES ============
+  // ===== UTILITAIRES =====
   const debounce = (fn, delay) => {
     let timer;
     return (...args) => {
@@ -22,7 +22,6 @@
     };
   };
 
-  // Cache DOM
   const DOM = {
     root: document.documentElement,
     yearEl: null,
@@ -31,7 +30,7 @@
     navToggle: null,
     navLinks: null,
     sections: null,
-    form: null,
+    contactForm: null,
     toast: null,
     aiToggle: null,
     aiPanel: null,
@@ -69,7 +68,7 @@
     animationFrame: null,
   };
 
-  // ============ INIT DOM CACHE ============
+  // ===== INIT DOM CACHE =====
   const initDOMCache = () => {
     DOM.yearEl = document.getElementById("year");
     DOM.themeToggle = document.querySelector(".theme-toggle");
@@ -77,7 +76,7 @@
     DOM.navToggle = document.querySelector(".nav-toggle");
     DOM.navLinks = document.querySelectorAll(".nav-link");
     DOM.sections = document.querySelectorAll("section[id]");
-    DOM.form = document.getElementById("contact-form");
+    DOM.contactForm = document.getElementById("contact-form");
     DOM.toast = document.getElementById("toast");
 
     DOM.aiToggle = document.getElementById("ai-toggle");
@@ -110,14 +109,14 @@
     DOM.testimonials.panels = document.querySelectorAll(".testimonial-panel");
   };
 
-  // ============ ANNÉE ============
+  // ===== ANNÉE =====
   const updateYear = () => {
     if (DOM.yearEl) {
       DOM.yearEl.textContent = new Date().getFullYear();
     }
   };
 
-  // ============ THÈME ============
+  // ===== THÈME =====
   const applyTheme = (theme) => {
     state.currentTheme = theme;
     DOM.root.setAttribute("data-theme", theme);
@@ -146,7 +145,7 @@
     }
   };
 
-  // ============ NAVIGATION ============
+  // ===== NAVIGATION =====
   const initSmoothScroll = () => {
     document.querySelectorAll('a[href^="#"]').forEach((link) => {
       link.addEventListener("click", (e) => {
@@ -198,7 +197,7 @@
     }
   };
 
-  // ============ REVEAL ============
+  // ===== REVEAL =====
   const initReveal = () => {
     const revealElements = document.querySelectorAll(".reveal");
     if ("IntersectionObserver" in window && revealElements.length) {
@@ -239,11 +238,13 @@
     els.forEach((el) => obs.observe(el));
   };
 
-  // ============ PRICING ============
+  // ===== PRICING =====
   const initPricing = () => {
     const toggleButtons = document.querySelectorAll(".toggle-btn");
     const pilotCard = document.querySelector(".pricing-pilot");
     const runCard = document.querySelector(".pricing-run");
+
+    if (!toggleButtons.length || !pilotCard || !runCard) return;
 
     toggleButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -254,17 +255,17 @@
         );
 
         if (mode === "pilot") {
-          pilotCard?.classList.remove("hidden");
-          runCard?.classList.add("hidden");
+          pilotCard.classList.remove("hidden");
+          runCard.classList.add("hidden");
         } else {
-          pilotCard?.classList.add("hidden");
-          runCard?.classList.remove("hidden");
+          pilotCard.classList.add("hidden");
+          runCard.classList.remove("hidden");
         }
       });
     });
   };
 
-  // ============ FAQ ============
+  // ===== FAQ =====
   const initFAQ = () => {
     document.querySelectorAll(".faq-item").forEach((item) => {
       const question = item.querySelector(".faq-question");
@@ -280,18 +281,18 @@
     });
   };
 
-  // ============ FORMULAIRE CONTACT ============
+  // ===== FORMULAIRE CONTACT =====
   const initContactForm = () => {
-    if (!DOM.form || !DOM.toast) return;
-    DOM.form.addEventListener("submit", (e) => {
+    if (!DOM.contactForm || !DOM.toast) return;
+    DOM.contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
       DOM.toast.classList.add("visible");
       setTimeout(() => DOM.toast.classList.remove("visible"), 3200);
-      DOM.form.reset();
+      DOM.contactForm.reset();
     });
   };
 
-  // ============ CANVAS ANIMATIONS ============
+  // ===== CANVAS ANIMATIONS =====
   let particles = [];
   let canvasContext = {};
 
@@ -427,7 +428,7 @@
     else startAnimation();
   };
 
-  // ============ WIDGET IA ============
+  // ===== WIDGET IA =====
   const appendMessage = (text, from = "bot") => {
     if (!DOM.aiMessages) return;
     const div = document.createElement("div");
@@ -467,7 +468,7 @@
     }
   };
 
-  // ============ DEVIS INTERACTIF ============
+  // ===== DEVIS INTERACTIF =====
   const formatEuro = (n) =>
     n.toLocaleString("fr-FR", { maximumFractionDigits: 0 });
 
@@ -499,7 +500,7 @@
     else labelType = "mix site + agent IA";
 
     const min = Math.max(500, budget * 0.8);
-    const max = Math.max(min + 200, budget * 1.2);
+    const max = Math.max(min + 200, budget * 1.25);
 
     if (DOM.quote.budgetValue) {
       DOM.quote.budgetValue.textContent = formatEuro(budget);
@@ -550,7 +551,7 @@
     });
   };
 
-  // ============ TÉMOIGNAGES ============
+  // ===== TÉMOIGNAGES =====
   const initTestimonials = () => {
     const tabs = DOM.testimonials.tabs;
     const panels = DOM.testimonials.panels;
@@ -559,16 +560,24 @@
     tabs.forEach((tab) => {
       tab.addEventListener("click", () => {
         const target = tab.dataset.testimonial;
-        tabs.forEach((t) => t.classList.toggle("active", t === tab));
+
+        tabs.forEach((t) => {
+          const isActive = t === tab;
+          t.classList.toggle("active", isActive);
+          t.setAttribute("aria-selected", isActive ? "true" : "false");
+        });
+
         panels.forEach((panel) => {
           const id = panel.dataset.testimonialPanel;
-          panel.classList.toggle("active", id === target);
+          const isActive = id === target;
+          panel.classList.toggle("active", isActive);
+          panel.setAttribute("aria-hidden", isActive ? "false" : "true");
         });
       });
     });
   };
 
-  // ============ PARALLAX (logo / éléments) ============
+  // ===== PARALLAX (logo) =====
   const initParallax = () => {
     const parallaxItems = document.querySelectorAll("[data-parallax]");
     if (!parallaxItems.length) return;
@@ -586,7 +595,7 @@
     );
   };
 
-  // ============ RESIZE & CLEANUP ============
+  // ===== RESIZE & CLEANUP =====
   const handleResize = debounce(() => {
     resizeCanvas();
     initParticles();
@@ -598,10 +607,9 @@
     document.removeEventListener("visibilitychange", handleVisibilityChange);
   };
 
-  // ============ INIT PRINCIPALE ============
+  // ===== INIT PRINCIPALE =====
   const init = () => {
     initDOMCache();
-    console.log("[NH110LAB] Initialisation NH110LAB.ai...");
     updateYear();
     initTheme();
     initSmoothScroll();
@@ -622,15 +630,13 @@
     startAnimation();
     window.addEventListener("beforeunload", cleanup);
 
-    // Exposition légère pour debug dans la console si besoin
+    // Debug simple dans la console
     window.NH110LAB = {
       state: () => ({ ...state, particles: particles.length }),
       resetAnimations: () => {
         initParticles();
       },
     };
-
-    console.log("[NH110LAB] ✅ Initialisation terminée");
   };
 
   if (document.readyState === "loading") {
