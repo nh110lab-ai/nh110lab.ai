@@ -1,6 +1,5 @@
 /* --- REVEAL ANIMATION --- */
 const reveals = document.querySelectorAll(".reveal");
-
 if (reveals.length) {
   const obs = new IntersectionObserver(
     (entries) => {
@@ -17,23 +16,23 @@ if (reveals.length) {
 const navLinks = document.querySelectorAll(".nav-link");
 const sections = document.querySelectorAll("section");
 
-if (navLinks.length && sections.length) {
-  navLinks.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const href = link.getAttribute("href");
-      if (href && href.startsWith("#")) {
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-          window.scrollTo({
-            top: target.offsetTop - 80,
-            behavior: "smooth",
-          });
-        }
+navLinks.forEach((link) => {
+  link.addEventListener("click", (e) => {
+    const href = link.getAttribute("href");
+    if (href && href.startsWith("#")) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        window.scrollTo({
+          top: target.offsetTop - 80,
+          behavior: "smooth",
+        });
       }
-    });
+    }
   });
+});
 
+if (sections.length && navLinks.length) {
   const navObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -50,61 +49,52 @@ if (navLinks.length && sections.length) {
   sections.forEach((s) => navObserver.observe(s));
 }
 
-/* --- SCROLL THEME SWITCH (fond clair) --- */
+/* --- SCROLL THEME SWITCH (légère variation) --- */
 window.addEventListener("scroll", () => {
   const ratio =
     window.scrollY /
-      (document.body.scrollHeight - window.innerHeight || 1) || 0;
-  // luminosité de 96% (haut de page) vers 76% en bas, fond clair
-  const brightness = 96 - ratio * 20;
-  document.body.style.background = `hsl(210, 40%, ${brightness}%)`;
+      (document.body.scrollHeight - window.innerHeight || 1);
+  const brightness = 8 + ratio * 70;
+  document.body.style.background = `hsl(240, 15%, ${brightness}%)`;
 });
 
-/* --- PARTICLES / ORB / HALO (sécurisé si canvas absent) --- */
+/* --- CANVAS ELEMENTS (peuvent être absents sur certaines pages) --- */
 const p = document.getElementById("particles");
 const orb = document.getElementById("orb");
 const halo = document.getElementById("halo");
 
-let ctxP = null;
-let ctxO = null;
-let ctxH = null;
-
-if (p && p.getContext) ctxP = p.getContext("2d");
-if (orb && orb.getContext) ctxO = orb.getContext("2d");
-if (halo && halo.getContext) ctxH = halo.getContext("2d");
-
 function resizeCanvas() {
-  if (!p || !orb || !halo) return;
-
-  p.width = innerWidth;
-  p.height = innerHeight;
-  orb.width = innerWidth;
-  orb.height = innerHeight;
-  halo.width = innerWidth;
-  halo.height = innerHeight;
+  if (p) {
+    p.width = innerWidth;
+    p.height = innerHeight;
+  }
+  if (orb) {
+    orb.width = innerWidth;
+    orb.height = innerHeight;
+  }
+  if (halo) {
+    halo.width = innerWidth;
+    halo.height = innerHeight;
+  }
 }
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
 
-if (ctxP && ctxO && ctxH) {
-  resizeCanvas();
-  window.addEventListener("resize", resizeCanvas);
-}
+/* --- PARTICLES --- */
+if (p) {
+  const ctxP = p.getContext("2d");
 
-/* Particules */
-let particles = [];
-if (ctxP && p) {
-  particles = Array.from({ length: 120 }, () => ({
+  let particles = Array.from({ length: 120 }, () => ({
     x: Math.random() * p.width,
     y: Math.random() * p.height,
     s: Math.random() * 2 + 0.5,
-    vx: (Math.random() - 0.5) * 0.4,
-    vy: (Math.random() - 0.5) * 0.4,
+    vx: (Math.random() - 0.5) * 0.5,
+    vy: (Math.random() - 0.5) * 0.5,
   }));
 
-  (function animateParticles() {
-    if (!ctxP || !p) return;
-
+  function animateParticles() {
     ctxP.clearRect(0, 0, p.width, p.height);
-    ctxP.fillStyle = "rgba(15, 23, 42, 0.25)";
+    ctxP.fillStyle = "rgba(255,255,255,0.7)";
     particles.forEach((pt) => {
       pt.x += pt.vx;
       pt.y += pt.vy;
@@ -116,23 +106,24 @@ if (ctxP && p) {
       ctxP.fill();
     });
     requestAnimationFrame(animateParticles);
-  })();
+  }
+  animateParticles();
 }
 
-/* Orb animé */
-let t = 0;
-if (ctxO && orb) {
-  (function animateOrb() {
-    if (!ctxO || !orb) return;
+/* --- ORB ANIMÉ --- */
+if (orb) {
+  const ctxO = orb.getContext("2d");
+  let t = 0;
 
+  function animateOrb() {
     ctxO.clearRect(0, 0, orb.width, orb.height);
     const x = orb.width / 2;
     const y = orb.height / 2;
     const r = 180 + Math.sin(t) * 40;
 
-    const grad = ctxO.createRadialGradient(x, y, r * 0.25, x, y, r);
-    grad.addColorStop(0, "rgba(255,255,255,0.9)");
-    grad.addColorStop(1, "rgba(59,130,246,0.08)");
+    const grad = ctxO.createRadialGradient(x, y, r * 0.3, x, y, r);
+    grad.addColorStop(0, "rgba(180,100,255,0.6)");
+    grad.addColorStop(1, "rgba(20,10,30,0.05)");
 
     ctxO.fillStyle = grad;
     ctxO.beginPath();
@@ -141,17 +132,20 @@ if (ctxO && orb) {
 
     t += 0.01;
     requestAnimationFrame(animateOrb);
-  })();
+  }
+  animateOrb();
 }
 
-/* Halo */
-let h = 0;
-if (ctxH && halo) {
-  (function animateHalo() {
-    if (!ctxH || !halo) return;
+/* --- HALO --- */
+if (halo) {
+  const ctxH = halo.getContext("2d");
+  let h = 0;
 
+  function animateHalo() {
     ctxH.clearRect(0, 0, halo.width, halo.height);
-    ctxH.strokeStyle = `rgba(15, 23, 42, ${0.08 + Math.sin(h) * 0.04})`;
+    ctxH.strokeStyle = `rgba(255,255,255,${
+      0.15 + Math.sin(h) * 0.1
+    })`;
     ctxH.lineWidth = 2;
 
     ctxH.beginPath();
@@ -166,7 +160,8 @@ if (ctxH && halo) {
 
     h += 0.01;
     requestAnimationFrame(animateHalo);
-  })();
+  }
+  animateHalo();
 }
 
 /* --- PRICING TOGGLE --- */
@@ -177,7 +172,9 @@ const runCard = document.querySelector(".pricing-run");
 if (toggleButtons.length && pilotCard && runCard) {
   toggleButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      toggleButtons.forEach((b) => b.classList.remove("toggle-btn-active"));
+      toggleButtons.forEach((b) =>
+        b.classList.remove("toggle-btn-active")
+      );
       btn.classList.add("toggle-btn-active");
       const mode = btn.dataset.mode;
       if (mode === "pilot") {
@@ -205,20 +202,15 @@ if (faqItems.length) {
   });
 }
 
-/* --- FORM HANDLER (maquette) --- */
+/* --- FAKE FORM HANDLER (juste feedback visuel) --- */
 const contactForm = document.querySelector(".contact-form");
 if (contactForm) {
   contactForm.addEventListener("submit", (e) => {
     e.preventDefault();
     contactForm.reset();
     alert(
-      "Merci ! Pour rendre ce formulaire réellement fonctionnel, branchez-le à votre backend ou à votre outil de formulaires."
+      "Merci ! Le formulaire est une maquette. Branchez-le à votre backend ou outil de formulaire pour le rendre réellement fonctionnel."
     );
   });
 }
 
-/* --- YEAR IN FOOTER --- */
-const yearSpan = document.getElementById("year");
-if (yearSpan) {
-  yearSpan.textContent = new Date().getFullYear().toString();
-}
