@@ -816,3 +816,22 @@ body {
 .card-3d:hover::after {
   opacity: 1;
 }
+.stat {
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
+
+.stat-number {
+  font-weight: 600;
+  font-size: 1.8rem;
+  letter-spacing: 0.03em;
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+  min-width: 2ch;
+  color: #ffffff;
+  transition: transform 0.25s ease;
+}
+
+.stat-number.bump {
+  transform: translateY(-3px);
+}
