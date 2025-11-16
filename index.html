@@ -1,130 +1,205 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NH110LAB.ai — Intelligence & Automations</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NH110LAB.ai — Vision Engine</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" />
 
-    <!-- Script animations -->
+    <!-- JS -->
     <script defer src="js/script.js"></script>
 </head>
 
 <body>
 
-<header class="header">
-    <img src="logo.png" alt="NH110LAB" class="logo">
-    <nav class="nav">
+<!-- ========================= -->
+<!--   NAVIGATION VISIONOS     -->
+<!-- ========================= -->
+<header class="nav-vision">
+    <div class="nav-left">
+        <img src="assets/logo.png" class="nav-logo" alt="NH110LAB Logo" />
+        <span class="nav-title">NH110LAB.ai</span>
+    </div>
+
+    <nav class="nav-links">
         <a href="#hero">Accueil</a>
-        <a href="#core">Technologie</a>
-        <a href="#agents">Agents IA</a>
-        <a href="#services">Services</a>
-        <a href="#cases">Cas d’usage</a>
+        <a href="#vision">Vision IA</a>
+        <a href="#tech">Technologie</a>
+        <a href="#agents">Agents</a>
+        <a href="#pipeline">Pipeline</a>
+        <a href="#demos">Démos</a>
         <a href="#contact">Contact</a>
     </nav>
 </header>
 
-<section id="hero" class="hero section">
-    <div class="hero-orb orb-big"></div>
-    <div class="hero-orb orb-small"></div>
-    <h1 class="reveal">NH110LAB.ai</h1>
-    <p class="reveal">Intelligence autonome, pipelines multi-agents, IA avancée.<br>
-       Une nouvelle génération de systèmes intelligents.</p>
-    <button class="cta reveal">✨ Créer mon agent IA</button>
+<!-- ========================= -->
+<!--     HERO ULTRA VFX        -->
+<!-- ========================= -->
+<section id="hero" class="hero-section">
+    <canvas id="particleCanvas"></canvas>
+
+    <div class="hero-content">
+        <h1 class="title-vision reveal-zoom">NH110LAB Vision Engine</h1>
+        <p class="subtitle-vision reveal-slide">
+            Une nouvelle génération d’intelligence autonome.<br/>
+            <span>VisionOS × Apple Intelligence × Multi-Agents × xAI</span>
+        </p>
+
+        <button class="cta-primary reveal">✨ Créer mon Agent IA</button>
+    </div>
+
+    <div class="hero-orb orb-main"></div>
+    <div class="hero-orb orb-secondary"></div>
 </section>
 
-<section id="core" class="section">
-    <h2 class="title reveal">NH System Core v1.0</h2>
-    <p class="reveal">
-        Notre architecture interne multi-agents orchestre l’analyse, la décision, les actions, 
-        et l'évolution continue. Un noyau IA inspiré des meilleures technologies modernes.
+<!-- ========================= -->
+<!--   SECTION VISION IA       -->
+<!-- ========================= -->
+<section id="vision" class="section glass">
+    <h2 class="section-title reveal">Vision IA</h2>
+    <p class="section-sub reveal">
+        Une expérience immersive inspirée de Vision Pro, OpenAI et des interfaces futuristes.
     </p>
 
-    <div class="core-grid">
-        <div class="core-card reveal-zoom">
-            <h3>Noyau Décisionnel</h3>
-            <p>Analyse contextuelle, logique avancée, prise de décision multi-étapes.</p>
+    <div class="vision-grid">
+        <div class="vision-card reveal-zoom tilt">
+            <h3>Interface Volumétrique</h3>
+            <p>Composants flottants, profondeur dynamique, ombres spatiales.</p>
         </div>
-        <div class="core-card reveal-zoom">
-            <h3>Orchestrateur Multi-Agents</h3>
-            <p>Plusieurs agents collaborent entre eux, comme un véritable système vivant.</p>
+
+        <div class="vision-card reveal-zoom tilt">
+            <h3>Luminosité Intelligente</h3>
+            <p>Adaptation en temps réel selon le défilement et l’attention utilisateur.</p>
         </div>
-        <div class="core-card reveal-zoom">
-            <h3>Pipeline Intelligence</h3>
-            <p>Traitement de données, actions API, automation complète.</p>
+
+        <div class="vision-card reveal-zoom tilt">
+            <h3>Éléments Holographiques</h3>
+            <p>Texto-hologrammes, halos dynamiques, reflets basés sur le mouvement.</p>
         </div>
     </div>
 </section>
 
-<section id="agents" class="section dark">
-    <h2 class="title reveal">Agents IA Spécialisés</h2>
-    <p class="reveal">Chaque agent exécute une mission précise, comme un membre d’une équipe cybernétique.</p>
+<!-- ========================= -->
+<!--   TECHNOLOGIE NH-CORE     -->
+<!-- ========================= -->
+<section id="tech" class="section dark">
+    <h2 class="section-title reveal">NH-Core Engine</h2>
+    <p class="section-sub reveal">
+        Le coeur technologique de NH110LAB : architecture distribuée + agents autonomes + raisonnement profond.
+    </p>
+
+    <div class="tech-grid">
+        <div class="tech-card reveal-slide tilt">
+            <h3>Noyau Cognitif</h3>
+            <p>Chaînes de pensée, planification multi-étapes, mémoire dynamique.</p>
+        </div>
+
+        <div class="tech-card reveal-slide tilt">
+            <h3>Orchestrateur Multi-Agents</h3>
+            <p>Les agents coopèrent en temps réel comme un organisme intelligent.</p>
+        </div>
+
+        <div class="tech-card reveal-slide tilt">
+            <h3>Moteur d’Exécution</h3>
+            <p>Actions API, automatisation complète, workflows distribués.</p>
+        </div>
+
+        <div class="tech-card reveal-slide tilt">
+            <h3>Hyper-Optimisation</h3>
+            <p>Latence minimale, priorisation intelligente, self-improvement.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ========================= -->
+<!--       AGENTS IA           -->
+<!-- ========================= -->
+<section id="agents" class="section">
+    <h2 class="section-title reveal">Agents Autonomes</h2>
+    <p class="section-sub reveal">Votre équipe IA virtuelle, spécialisée et auto-coordonnée.</p>
 
     <div class="agents-grid">
-        <div class="agent-card reveal-slide">
-            <h3>Agent Prospecteur</h3>
-            <p>Analyse, recherche, qualification automatique.</p>
+        <div class="agent-card reveal-zoom tilt">
+            <h3>Prospecteur</h3>
+            <p>Analyse entreprises, extraction infos, qualification automatique.</p>
         </div>
-        <div class="agent-card reveal-slide">
-            <h3>Agent WhatsApp</h3>
-            <p>Réponses intelligentes, gestion conversationnelle autonome.</p>
+        <div class="agent-card reveal-zoom tilt">
+            <h3>WhatsApp / Messenger</h3>
+            <p>Gestion conversationnelle & réponses autonomes.</p>
         </div>
-        <div class="agent-card reveal-slide">
-            <h3>Agent Opérations</h3>
-            <p>Exécute des actions complexes, enchaîne les tâches automatiquement.</p>
+        <div class="agent-card reveal-zoom tilt">
+            <h3>Opérations</h3>
+            <p>Exécution d’actions complexes et chaînes de tâches.</p>
         </div>
-        <div class="agent-card reveal-slide">
-            <h3>Agent Analyse</h3>
-            <p>Reports automatiques, visualisation, insights.</p>
-        </div>
-    </div>
-</section>
-
-<section id="services" class="section">
-    <h2 class="title reveal">Services Premium</h2>
-    <p class="reveal">Développement d'agents IA, automatisation totale, intégrations pro.</p>
-
-    <div class="service-grid">
-        <div class="service-card reveal-zoom">
-            <h3>Pipelines Multi-Agents</h3>
-            <p>Actions coordonnées inspirées des architectures distribuées modernes.</p>
-        </div>
-        <div class="service-card reveal-zoom">
-            <h3>Intégrations API</h3>
-            <p>WhatsApp, Stripe, Google, Notion, AirTable, CRM…</p>
-        </div>
-        <div class="service-card reveal-zoom">
-            <h3>Automatisation Complète</h3>
-            <p>Plus de tâches répétitives : l'IA exécute tout.</p>
+        <div class="agent-card reveal-zoom tilt">
+            <h3>Analyse</h3>
+            <p>Dashboards, insights, décisions assistées.</p>
         </div>
     </div>
 </section>
 
-<section id="cases" class="section dark">
-    <h2 class="title reveal">Cas d’usage réels</h2>
+<!-- ========================= -->
+<!--   PIPELINE MULTI-AGENTS   -->
+<!-- ========================= -->
+<section id="pipeline" class="section dark">
+    <h2 class="section-title reveal">Pipeline Multi-Agents</h2>
+    <p class="section-sub reveal">Une architecture vivante, auto-ajustée, coopérative.</p>
 
-    <div class="case-grid">
-        <div class="case-card reveal-slide">
-            <h3>PME</h3>
-            <p>Prospection automatique + gestion client.</p>
+    <div class="pipeline-steps">
+        <div class="step reveal-slide">
+            <span>1</span> Perception & Analyse
         </div>
-        <div class="case-card reveal-slide">
-            <h3>Commerces</h3>
-            <p>Messages automatisés, commandes, support.</p>
+        <div class="step reveal-slide">
+            <span>2</span> Décision & Planification
         </div>
-        <div class="case-card reveal-slide">
-            <h3>Indépendants</h3>
-            <p>Automations simples rapides + assistant personnel IA.</p>
+        <div class="step reveal-slide">
+            <span>3</span> Exécution Multi-Agents
+        </div>
+        <div class="step reveal-slide">
+            <span>4</span> Vérification & Optimisation
         </div>
     </div>
 </section>
 
+<!-- ========================= -->
+<!--       DEMOS IA            -->
+<!-- ========================= -->
+<section id="demos" class="section glass">
+    <h2 class="section-title reveal">Démos Interactives</h2>
+    <p class="section-sub reveal">Exemples temps réel, simulations, visualisations IA.</p>
+
+    <div class="demos-grid">
+        <div class="demo-card reveal-zoom tilt">
+            <h3>Recherche Prospects</h3>
+            <p>Découvrez comment l’agent scanne, classe et détecte les opportunités.</p>
+        </div>
+        <div class="demo-card reveal-zoom tilt">
+            <h3>Automatisation WhatsApp</h3>
+            <p>Réponses automatiques, gestion client, prise de RDV.</p>
+        </div>
+        <div class="demo-card reveal-zoom tilt">
+            <h3>Rapports IA</h3>
+            <p>Analyse automatique + prise de décision assistée.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ========================= -->
+<!--        CONTACT            -->
+<!-- ========================= -->
 <section id="contact" class="section">
-    <h2 class="title reveal">Discutons ensemble 👋</h2>
-    <button class="cta reveal">Contact</button>
+    <h2 class="section-title reveal">Discutons ensemble 👋</h2>
+    <button class="cta-primary reveal">Contact</button>
 </section>
+
+<!-- ========================= -->
+<!--         FOOTER            -->
+<!-- ========================= -->
+<footer class="footer">
+    <p>© 2025 NH110LAB.ai — Vision Engine</p>
+</footer>
 
 </body>
 </html>
