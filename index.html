@@ -8,10 +8,13 @@
 </head>
 
 <body>
+
 <div id="theme-wrapper">
 
-    <canvas id="background"></canvas>
-    <canvas id="particles"></canvas>
+    <!-- FOND INTERACTIF -->
+    <canvas id="bg-orb"></canvas>
+    <canvas id="bg-halo"></canvas>
+    <canvas id="bg-particles"></canvas>
 
     <header class="header glass">
         <div class="logo">NH110LAB.ai</div>
@@ -28,83 +31,94 @@
         </nav>
     </header>
 
+    <!-- HERO -->
     <section id="hero" class="hero">
         <div class="hero-content glass">
-            <h1>Une Intelligence Autonome au Service de Votre Croissance</h1>
-            <p>Agents IA sur mesure, automatisations avancées et stratégies intelligentes pour PME, indépendants et entreprises visionnaires.</p>
+            <h1>Une Intelligence Autonome qui Travaille Pour Vous</h1>
+            <p>Agents IA personnalisés, automatisations avancées, optimisation continue. Une technologie conçue pour les entrepreneurs, PME et entreprises modernes.</p>
             <a href="#contact" class="cta">Créer mon agent IA</a>
         </div>
     </section>
 
+    <!-- ABOUT -->
     <section id="about" class="section">
-        <h2>NH110LAB.ai — L’IA au Niveau Supérieur</h2>
-        <p class="text-large">
-            Nous créons des systèmes intelligents capables d’analyser, décider et agir.
-            Notre mission : offrir aux entreprises une puissance opérationnelle 24/7 
-            grâce à une IA réellement autonome, précise, et complètement personnalisée.
-        </p>
+        <h2>NH110LAB.ai — L’IA Réinventée</h2>
+        <p class="text-large">Nous construisons des systèmes autonomes capables de comprendre, décider et agir dans votre entreprise. Une IA sur mesure, précise, connectée et opérationnelle 24/7.</p>
     </section>
 
+    <!-- AGENTS -->
     <section id="agents" class="section dark-block">
         <h2>Agents IA Autonomes</h2>
         <div class="cards">
-            <div class="card glass"><h3>Agent Commercial</h3><p>Prospection intelligente, segmentation automatique.</p></div>
-            <div class="card glass"><h3>Agent CRM</h3><p>WhatsApp, emails, suivi & relances.</p></div>
-            <div class="card glass"><h3>Agent Analyste</h3><p>Analyse, rapports, visualisation.</p></div>
-            <div class="card glass"><h3>Agent Opérations</h3><p>Automations internes & exécution complexe.</p></div>
+            <div class="card glass"><h3>Agent Commercial</h3><p>Prospection intelligente, segmentation automatique, messages adaptés.</p></div>
+            <div class="card glass"><h3>Agent CRM</h3><p>WhatsApp, emails, suivi client, relances automatiques.</p></div>
+            <div class="card glass"><h3>Agent Analyste</h3><p>Analyse data, rapports automatiques, visualisation, décisions.</p></div>
+            <div class="card glass"><h3>Agent Opérations</h3><p>Organisation, automatisations internes, exécution précise.</p></div>
         </div>
     </section>
 
+    <!-- SERVICES -->
     <section id="services" class="section">
         <h2>Services Premium</h2>
         <div class="cards">
-            <div class="card glass"><h3>Création d’agents IA</h3><p>Construits pour votre activité.</p></div>
-            <div class="card glass"><h3>Automations WhatsApp / CRM</h3><p>Réponses instantanées + CRM automatique.</p></div>
-            <div class="card glass"><h3>Prospection automatique</h3><p>Acquisition 24/7.</p></div>
-            <div class="card glass"><h3>Analyse Data intelligente</h3><p>Dashboards & prédiction.</p></div>
-            <div class="card glass"><h3>Workflows n8n</h3><p>API + pipelines avancés.</p></div>
-            <div class="card glass"><h3>Stratégie IA complète</h3><p>Audit & transformation IA.</p></div>
+            <div class="card glass"><h3>Agents IA sur mesure</h3><p>Conçus pour votre activité, workflow et objectifs.</p></div>
+            <div class="card glass"><h3>Automations WhatsApp / CRM</h3><p>Réponses instantanées. Intégrations API. Suivi sans effort.</p></div>
+            <div class="card glass"><h3>Prospection automatique</h3><p>Acquisition 24/7 sur LinkedIn, email et WhatsApp.</p></div>
+            <div class="card glass"><h3>Analyse Data</h3><p>Extraction, dashboards, recommandations, prédiction.</p></div>
+            <div class="card glass"><h3>Workflows n8n</h3><p>Automatisations complexes, API, pipelines intelligents.</p></div>
+            <div class="card glass"><h3>Stratégie IA complète</h3><p>Audit, optimisation, transformation digitale totale.</p></div>
         </div>
     </section>
 
+    <!-- TECH (VERSION APPLE INTELLIGENCE) -->
     <section id="tech" class="section dark-block">
-        <h2>Aurora Intelligence — Technologie</h2>
-        <p class="text-large">
-            Perception • Mémoire • Décision • Action • Optimisation continue.
+        <h2>Aurora Intelligence — Notre Technologie</h2>
+
+        <p class="tech-intro">
+            Aurora Intelligence est un moteur IA propriétaire inspiré des principes Apple Intelligence : 
+            fluidité, autonomie, confidentialité et précision contextuelle.
         </p>
+
+        <div class="tech-grid">
+            <div class="tech-item glass"><h3>Perception</h3><p>Analyse intelligente de documents, données, messages, contextes et signaux métier.</p></div>
+            <div class="tech-item glass"><h3>Mémoire</h3><p>Mémoire longue, contextuelle et persistante pour des actions cohérentes.</p></div>
+            <div class="tech-item glass"><h3>Décision</h3><p>Moteur de raisonnement avancé, règles métier, logique adaptative.</p></div>
+            <div class="tech-item glass"><h3>Action</h3><p>Exécution autonome dans vos outils : WhatsApp, CRM, emails, API.</p></div>
+            <div class="tech-item glass"><h3>Optimisation</h3><p>Amélioration continue automatique basée sur les résultats obtenus.</p></div>
+        </div>
     </section>
 
+    <!-- USE CASES (COMPLET) -->
     <section id="usecases" class="section">
-        <h2>Cas d’usage</h2>
-        <ul class="usecases-list">
-            <li>🔍 Prospection automatique 24/7 (email + LinkedIn)</li>
-            <li>📩 Réponses client instantanées avec contexte</li>
-            <li>🤖 Automations CRM et WhatsApp intelligentes</li>
-            <li>📊 Analyse de données & rapports automatiques</li>
-            <li>🧩 Agents spécialisés pour chaque service</li>
-            <li>⚙️ Automatisation de vos opérations internes</li>
-            <li>💬 Support client autonome jour/nuit</li>
-            <li>🧠 IA interne sur mesure pour votre activité</li>
-            <li>📈 Prédiction & recommandations business</li>
-            <li>📥 Extraction automatique de documents</li>
-        </ul>
+        <h2>Cas d’usage — Ce que vos agents IA feront réellement</h2>
+
+        <div class="usecase-grid">
+            <div class="usecase glass"><h3>Prospection 100% automatique</h3><p>LinkedIn, email, WhatsApp. Recherche + qualification + envoi + relances intelligentes.</p></div>
+            <div class="usecase glass"><h3>Réponses client immédiates</h3><p>WhatsApp, email, site web. Contexte mémorisé, réponses humaines.</p></div>
+            <div class="usecase glass"><h3>Analyse de données en continu</h3><p>Extraction, organisation, tableaux, prédictions, alertes intelligentes.</p></div>
+            <div class="usecase glass"><h3>CRM automatisé</h3><p>Ajout contacts, suivi, segmentation, relances, pipelines.</p></div>
+            <div class="usecase glass"><h3>Operations internes</h3><p>Gestion tâches, automatisations, rapports, coordination interne.</p></div>
+            <div class="usecase glass"><h3>Assistants spécialisés</h3><p>Finance, support client, marketing, RH : chaque département à son agent.</p></div>
+        </div>
     </section>
+
+    <!-- PRICING / FAQ / CONTACT (inchangés) -->
 
     <section id="pricing" class="section dark-block">
         <h2>Tarifs</h2>
         <div class="cards pricing-cards">
-            <div class="card glass"><h3>Starter</h3><p class="price">49€/mois</p></div>
-            <div class="card glass"><h3>Business</h3><p class="price">149€/mois</p></div>
-            <div class="card glass"><h3>Entreprise</h3><p class="price">Sur devis</p></div>
+            <div class="card glass"><h3>Starter</h3><p class="price">49€/mois</p><ul><li>1 agent IA</li><li>Automations simples</li><li>Support standard</li></ul></div>
+            <div class="card glass"><h3>Business</h3><p class="price">149€/mois</p><ul><li>3 agents IA</li><li>Automations avancées</li><li>Support prioritaire</li></ul></div>
+            <div class="card glass"><h3>Entreprise</h3><p class="price">Sur devis</p><ul><li>Agents illimités</li><li>Solutions personnalisées</li><li>Infrastructure dédiée</li></ul></div>
         </div>
     </section>
 
     <section id="faq" class="section">
         <h2>FAQ</h2>
         <div class="faq">
-            <div class="faq-item"><h3>Qu’est-ce qu’un agent IA ?</h3><p>Un système autonome qui décide & agit.</p></div>
-            <div class="faq-item"><h3>Pour qui ?</h3><p>Indépendants / PME / Entreprises.</p></div>
-            <div class="faq-item"><h3>Intégration ?</h3><p>Analyse → création → API → déploiement.</p></div>
+            <div class="faq-item"><h3>Qu’est-ce qu’un agent IA ?</h3><p>Un système autonome qui comprend, décide et agit pour vous.</p></div>
+            <div class="faq-item"><h3>Pour qui ?</h3><p>Indépendants, PME, entreprises souhaitant automatiser leur activité.</p></div>
+            <div class="faq-item"><h3>Comment se fait l’intégration ?</h3><p>Analyse, création, API, déploiement, optimisation continue.</p></div>
         </div>
     </section>
 
