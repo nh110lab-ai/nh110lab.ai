@@ -1,153 +1,129 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NH110LAB.ai — Intelligence & Automations</title>
 
-    <!-- LIEN CSS CORRECT -->
-    <link rel="stylesheet" href="css/style.css" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Script animations -->
+    <script defer src="js/script.js"></script>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header class="header">
-    <img src="logo.png" alt="NH110LAB Logo" class="logo" />
+    <img src="logo.png" alt="NH110LAB" class="logo">
     <nav class="nav">
         <a href="#hero">Accueil</a>
+        <a href="#core">Technologie</a>
         <a href="#agents">Agents IA</a>
         <a href="#services">Services</a>
-        <a href="#avantages">Avantages</a>
-        <a href="#tarifs">Tarifs</a>
+        <a href="#cases">Cas d’usage</a>
         <a href="#contact">Contact</a>
     </nav>
 </header>
 
-<!-- HERO -->
-<section id="hero" class="hero">
-    <img src="background-orb.png" class="orb-bg" />
-    <div class="hero-content">
-        <h1>Agents IA premium pour automatiser votre activité</h1>
-        <p>Des agents intelligents, autonomes et connectés à vos outils. 
-           Inspirés par les meilleures entreprises d’IA au monde.</p>
-        <button class="cta">✨ Créer mon agent IA</button>
+<section id="hero" class="hero section">
+    <div class="hero-orb orb-big"></div>
+    <div class="hero-orb orb-small"></div>
+    <h1 class="reveal">NH110LAB.ai</h1>
+    <p class="reveal">Intelligence autonome, pipelines multi-agents, IA avancée.<br>
+       Une nouvelle génération de systèmes intelligents.</p>
+    <button class="cta reveal">✨ Créer mon agent IA</button>
+</section>
+
+<section id="core" class="section">
+    <h2 class="title reveal">NH System Core v1.0</h2>
+    <p class="reveal">
+        Notre architecture interne multi-agents orchestre l’analyse, la décision, les actions, 
+        et l'évolution continue. Un noyau IA inspiré des meilleures technologies modernes.
+    </p>
+
+    <div class="core-grid">
+        <div class="core-card reveal-zoom">
+            <h3>Noyau Décisionnel</h3>
+            <p>Analyse contextuelle, logique avancée, prise de décision multi-étapes.</p>
+        </div>
+        <div class="core-card reveal-zoom">
+            <h3>Orchestrateur Multi-Agents</h3>
+            <p>Plusieurs agents collaborent entre eux, comme un véritable système vivant.</p>
+        </div>
+        <div class="core-card reveal-zoom">
+            <h3>Pipeline Intelligence</h3>
+            <p>Traitement de données, actions API, automation complète.</p>
+        </div>
     </div>
 </section>
 
-<!-- VISION -->
-<section id="vision" class="section">
-    <h2>Notre Vision</h2>
-    <p>
-        Chez NH110LAB.ai, nous croyons que chaque entreprise mérite une intelligence autonome capable 
-        d’apprendre, de raisonner et d’agir.
-        Inspirés par OpenAI, Anthropic et Scale AI, nous construisons des agents fiables, rapides et 
-        connectés qui transforment profondément votre manière de travailler.
-    </p>
+<section id="agents" class="section dark">
+    <h2 class="title reveal">Agents IA Spécialisés</h2>
+    <p class="reveal">Chaque agent exécute une mission précise, comme un membre d’une équipe cybernétique.</p>
+
+    <div class="agents-grid">
+        <div class="agent-card reveal-slide">
+            <h3>Agent Prospecteur</h3>
+            <p>Analyse, recherche, qualification automatique.</p>
+        </div>
+        <div class="agent-card reveal-slide">
+            <h3>Agent WhatsApp</h3>
+            <p>Réponses intelligentes, gestion conversationnelle autonome.</p>
+        </div>
+        <div class="agent-card reveal-slide">
+            <h3>Agent Opérations</h3>
+            <p>Exécute des actions complexes, enchaîne les tâches automatiquement.</p>
+        </div>
+        <div class="agent-card reveal-slide">
+            <h3>Agent Analyse</h3>
+            <p>Reports automatiques, visualisation, insights.</p>
+        </div>
+    </div>
 </section>
 
-<!-- AGENTS IA -->
-<section id="agents" class="section">
-    <h2>Agents IA Premium</h2>
-    <img src="agent-ui.png" class="section-img" />
-    <p>
-        Nos agents sont conçus pour analyser, décider et agir automatiquement, comme une équipe 
-        ultra-efficace. Ils comprennent vos données, s'adaptent à vos clients et exécutent des actions 
-        complexes.
-    </p>
-
-    <ul class="features">
-        <li>📞 Prospection automatique & qualification</li>
-        <li>📧 Emails intelligents & personnalisés</li>
-        <li>💬 Gestion WhatsApp / Messenger / SMS</li>
-        <li>📊 Analyse avancée et reporting</li>
-        <li>🔗 Intégration CRM (HubSpot, Salesforce, Notion…)</li>
-        <li>🤖 Prise de décision multi-étapes inspirée d’OpenAI</li>
-    </ul>
-</section>
-
-<!-- SERVICES -->
-<section id="services" class="section dark">
-    <h2>Services Premium</h2>
-    <img src="pipeline.png" class="section-img" />
-    <p>
-        Développement IA sur mesure, intégrations professionnelles, audit complet et automatisation 
-        totale.
-    </p>
+<section id="services" class="section">
+    <h2 class="title reveal">Services Premium</h2>
+    <p class="reveal">Développement d'agents IA, automatisation totale, intégrations pro.</p>
 
     <div class="service-grid">
-        <div class="service-card">
-            <h3>🔄 Pipelines IA Multi-Agents</h3>
-            <p>Agents qui collaborent ensemble comme chez Adept AI ou Reworkd Agents.</p>
+        <div class="service-card reveal-zoom">
+            <h3>Pipelines Multi-Agents</h3>
+            <p>Actions coordonnées inspirées des architectures distribuées modernes.</p>
         </div>
-
-        <div class="service-card">
-            <h3>🔗 Intégrations API</h3>
-            <p>WhatsApp, Stripe, Google, Airtable, Notion, CRM… tout est connecté.</p>
+        <div class="service-card reveal-zoom">
+            <h3>Intégrations API</h3>
+            <p>WhatsApp, Stripe, Google, Notion, AirTable, CRM…</p>
         </div>
-
-        <div class="service-card">
-            <h3>⚙️ Automatisation Totale</h3>
-            <p>Opérations, reporting, emails, messages, back-office… automatisés de A à Z.</p>
+        <div class="service-card reveal-zoom">
+            <h3>Automatisation Complète</h3>
+            <p>Plus de tâches répétitives : l'IA exécute tout.</p>
         </div>
     </div>
 </section>
 
-<!-- AVANTAGES -->
-<section id="avantages" class="section">
-    <h2>Pourquoi NH110LAB.ai ?</h2>
-    <img src="orb.png" class="section-img" />
-    <ul class="features">
-        <li>⚡ Automatisations intelligentes</li>
-        <li>🧠 Agents IA autonomes & évolutifs</li>
-        <li>🔒 Sécurité & fiabilité inspirée d’Anthropic</li>
-        <li>🚀 Résultats immédiats</li>
-        <li>🔗 Intégrations professionnelles</li>
-        <li>📚 IA entraînée sur vos données</li>
-    </ul>
-</section>
+<section id="cases" class="section dark">
+    <h2 class="title reveal">Cas d’usage réels</h2>
 
-<!-- TARIFS -->
-<section id="tarifs" class="section dark">
-    <h2>Tarifs</h2>
-
-    <div class="pricing-grid">
-        <div class="pricing-card">
-            <h3>Starter</h3>
-            <p class="price">49€/mois</p>
-            <ul>
-                <li>1 Agent IA</li>
-                <li>Automations simples</li>
-                <li>Support standard</li>
-            </ul>
+    <div class="case-grid">
+        <div class="case-card reveal-slide">
+            <h3>PME</h3>
+            <p>Prospection automatique + gestion client.</p>
         </div>
-
-        <div class="pricing-card highlighted">
-            <h3>Business</h3>
-            <p class="price">149€/mois</p>
-            <ul>
-                <li>3 Agents IA</li>
-                <li>Automations avancées</li>
-                <li>Support prioritaire</li>
-            </ul>
+        <div class="case-card reveal-slide">
+            <h3>Commerces</h3>
+            <p>Messages automatisés, commandes, support.</p>
         </div>
-
-        <div class="pricing-card">
-            <h3>Entreprise</h3>
-            <p class="price">Sur devis</p>
-            <ul>
-                <li>Agents illimités</li>
-                <li>Automations complexes</li>
-                <li>Accompagnement complet</li>
-            </ul>
+        <div class="case-card reveal-slide">
+            <h3>Indépendants</h3>
+            <p>Automations simples rapides + assistant personnel IA.</p>
         </div>
     </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact" class="section">
-    <h2>Discutons de votre projet 👋</h2>
-    <button class="cta">Envoyer un message</button>
+    <h2 class="title reveal">Discutons ensemble 👋</h2>
+    <button class="cta reveal">Contact</button>
 </section>
 
 </body>
