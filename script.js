@@ -1,180 +1,124 @@
-/* ------------------------------------------------ */
-/*                REVEAL ANIMATION                  */
-/* ------------------------------------------------ */
-const reveals = document.querySelectorAll(".reveal");
-const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add("visible");
-    });
-}, { threshold: 0.2 });
+/* ---------------- GLOBAL ----------------- */
 
-reveals.forEach(r => obs.observe(r));
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-
-
-/* ------------------------------------------------ */
-/*          SCROLL THEME (Apple Intelligence)       */
-/* ------------------------------------------------ */
-window.addEventListener("scroll", () => {
-    const ratio = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-    const brightness = 10 + ratio * 80;
-
-    document.body.style.background = `hsl(240, 10%, ${brightness}%)`;
-    document.body.style.color = brightness > 50 ? "#000" : "#fff";
-});
-
-
-
-/* ------------------------------------------------ */
-/*                AUTO RESIZE CANVAS                */
-/* ------------------------------------------------ */
-function autoResizeCanvas(canvas) {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+body {
+    background: #f5f5f7;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    color: #1d1d1f;
+    overflow-x: hidden;
 }
 
-window.addEventListener("resize", () => {
-    autoResizeCanvas(bgOrb);
-    autoResizeCanvas(bgHalo);
-    autoResizeCanvas(bgParticles);
-});
+/* ---------------- HEADER ----------------- */
 
-
-
-/* ------------------------------------------------ */
-/*                PARTICLES BACKGROUND              */
-/* ------------------------------------------------ */
-const bgParticles = document.getElementById("bg-particles");
-const ctxP = bgParticles.getContext("2d");
-autoResizeCanvas(bgParticles);
-
-let particles = Array.from({ length: 140 }, () => ({
-    x: Math.random() * bgParticles.width,
-    y: Math.random() * bgParticles.height,
-    size: Math.random() * 2 + 0.6,
-    vx: (Math.random() - 0.5) * 0.4,
-    vy: (Math.random() - 0.5) * 0.4
-}));
-
-function animateParticles() {
-    ctxP.clearRect(0, 0, bgParticles.width, bgParticles.height);
-    ctxP.fillStyle = "rgba(255, 255, 255, 0.8)";
-
-    particles.forEach(p => {
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0 || p.x > bgParticles.width) p.vx *= -1;
-        if (p.y < 0 || p.y > bgParticles.height) p.vy *= -1;
-
-        ctxP.beginPath();
-        ctxP.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctxP.fill();
-    });
-
-    requestAnimationFrame(animateParticles);
-}
-animateParticles();
-
-
-
-/* ------------------------------------------------ */
-/*                    ORB ANIMÉ                     */
-/* ------------------------------------------------ */
-const bgOrb = document.getElementById("bg-orb");
-const ctxO = bgOrb.getContext("2d");
-autoResizeCanvas(bgOrb);
-
-let orbT = 0;
-function animateOrb() {
-    ctxO.clearRect(0, 0, bgOrb.width, bgOrb.height);
-
-    const x = bgOrb.width / 2;
-    const y = bgOrb.height / 2;
-    const r = 200 + Math.sin(orbT) * 40;
-
-    const g = ctxO.createRadialGradient(x, y, r * 0.2, x, y, r);
-    g.addColorStop(0, "rgba(150,100,255,0.7)");
-    g.addColorStop(1, "rgba(20,10,40,0.05)");
-
-    ctxO.fillStyle = g;
-    ctxO.beginPath();
-    ctxO.arc(x, y, r, 0, Math.PI * 2);
-    ctxO.fill();
-
-    orbT += 0.01;
-    requestAnimationFrame(animateOrb);
-}
-animateOrb();
-
-
-
-/* ------------------------------------------------ */
-/*                   HALO ANIMÉ                     */
-/* ------------------------------------------------ */
-const bgHalo = document.getElementById("bg-halo");
-const ctxH = bgHalo.getContext("2d");
-autoResizeCanvas(bgHalo);
-
-let haloT = 0;
-function animateHalo() {
-    ctxH.clearRect(0, 0, bgHalo.width, bgHalo.height);
-
-    ctxH.strokeStyle = `rgba(255,255,255,${0.15 + Math.sin(haloT) * 0.1})`;
-    ctxH.lineWidth = 2;
-
-    ctxH.beginPath();
-    ctxH.arc(bgHalo.width / 2, bgHalo.height / 2, 260 + Math.sin(haloT) * 12, 0, Math.PI * 2);
-    ctxH.stroke();
-
-    haloT += 0.01;
-    requestAnimationFrame(animateHalo);
-}
-animateHalo();
-
-
-
-/* ------------------------------------------------ */
-/*        INTERACTIVE AI AGENT (WIDGET)             */
-/* ------------------------------------------------ */
-
-const agent = {
-    messages: [
-        "Bonjour 👋 besoin d’un agent IA pour ton business ?",
-        "Je peux automatiser WhatsApp, CRM, Email, Prospection…",
-        "Tu veux un diagnostic gratuit ?",
-        "Ton entreprise mérite une IA autonome ⚡",
-        "Je peux créer ton agent IA personnalisé en 24h."
-    ],
-    i: 0
-};
-
-function rotateAgentMessage() {
-    const el = document.querySelector(".ai-text");
-    if (!el) return;
-    el.style.opacity = 0;
-
-    setTimeout(() => {
-        agent.i = (agent.i + 1) % agent.messages.length;
-        el.textContent = agent.messages[agent.i];
-        el.style.opacity = 1;
-    }, 300);
+.header {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(25px);
+    background: rgba(255,255,255,0.6);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    z-index: 100;
 }
 
-setInterval(rotateAgentMessage, 4000);
+.header nav a {
+    margin-left: 22px;
+    text-decoration: none;
+    color: #1d1d1f;
+    font-weight: 500;
+}
 
+/* ---------------- HERO ----------------- */
 
+.hero {
+    padding: 180px 40px 140px;
+    text-align: center;
+}
 
-/* ------------------------------------------------ */
-/*     BONUS : CLICK → ANIMATION "PULSE" GLOW       */
-/* ------------------------------------------------ */
+.hero .title {
+    font-size: 48px;
+    font-weight: 700;
+}
 
-document.addEventListener("click", (e) => {
-    const pulse = document.createElement("div");
-    pulse.className = "pulse-effect";
-    pulse.style.left = e.clientX + "px";
-    pulse.style.top = e.clientY + "px";
-    document.body.appendChild(pulse);
+.subtitle {
+    margin-top: 15px;
+    font-size: 20px;
+    color: #555;
+}
 
-    setTimeout(() => pulse.remove(), 1000);
-});
+.cta {
+    margin-top: 25px;
+    display: inline-block;
+    background: black;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 40px;
+    font-size: 16px;
+    text-decoration: none;
+    transition: 0.25s;
+}
+
+.cta:hover {
+    transform: scale(1.05);
+}
+
+/* ---------------- SECTIONS ----------------- */
+
+.section {
+    padding: 120px 40px;
+    text-align: center;
+}
+
+.grid {
+    margin-top: 40px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.card {
+    padding: 35px;
+    background: white;
+    border-radius: 22px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+.featured {
+    border: 2px solid #000;
+}
+
+/* ---------------- PRICING ----------------- */
+
+.price {
+    font-size: 32px;
+    margin-top: 10px;
+    font-weight: 700;
+}
+
+/* ---------------- FOOTER ----------------- */
+
+footer {
+    padding: 40px;
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* ---------------- ORB BACKGROUND ----------------- */
+
+#orb {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
