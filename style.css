@@ -1,74 +1,127 @@
 /* RESET */
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:"Inter",sans-serif;overflow-x:hidden}
-
-/* LIGHT/DARK DYNAMIC */
-:root {
-    --bg: #0b0b0d;
-    --text: #fff;
-    --glass: rgba(255,255,255,0.05);
+* {
+    margin:0; padding:0;
+    box-sizing:border-box;
 }
 
-.light {
-    --bg: #f7f7f8;
-    --text: #111;
-    --glass: rgba(0,0,0,0.05);
-}
-
-#theme-wrapper{
-    background:var(--bg);
-    color:var(--text);
+body {
+    font-family: "Inter", sans-serif;
+    background:#0d0d0f;
+    overflow-x:hidden;
+    color:white;
     transition:background 0.6s ease, color 0.6s ease;
 }
 
-/* HEADER */
-.header{
-    position:fixed;top:0;width:100%;
-    padding:20px 40px;display:flex;justify-content:space-between;
-    z-index:100;
+/* FONDS ANIMÉS */
+canvas {
+    position:fixed;
+    top:0; left:0;
+    width:100vw; height:100vh;
+    z-index:-10;
 }
-.header a{color:var(--text);opacity:0.7;margin-left:20px;text-decoration:none}
-.header a:hover{opacity:1}
 
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:140px 20px;text-align:center}
-.hero-content{max-width:800px}
-.hero h1{font-size:3.4rem;margin-bottom:20px}
-
-/* CTA */
-.cta{
-    display:inline-block;padding:14px 28px;border-radius:30px;
-    background:#fff;color:#000;text-decoration:none;font-weight:600;
-}
-.cta:hover{transform:scale(1.05)}
-
-/* SECTIONS */
-.section{padding:120px 40px;max-width:1200px;margin:auto;text-align:center}
-
-/* GLASS */
-.glass{
-    background:var(--glass);
+/* GLASS EFFECT */
+.glass {
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
     backdrop-filter:blur(18px);
     border-radius:20px;
-    padding:30px;
+    padding:25px;
+}
+
+/* HEADER */
+.header {
+    position:fixed;
+    top:0; width:100%;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:20px 40px;
+    z-index:100;
+}
+.header a { 
+    margin-left:20px; color:#ddd;
+    text-decoration:none;
+    transition:0.3s;
+}
+.header a:hover {
+    color:#fff;
+    text-shadow:0 0 10px #fff;
+}
+
+/* HERO */
+.hero {
+    height:100vh;
+    display:flex; justify-content:center; align-items:center;
+    text-align:center;
+}
+.hero-content h1 {
+    font-size:3.4rem;
+}
+.hero-content p {
+    margin:20px 0;
+    font-size:1.3rem;
+    opacity:0.85;
+}
+
+/* CTA */
+.cta {
+    display:inline-block;
+    padding:14px 30px;
+    border-radius:30px;
+    background:linear-gradient(135deg,#fff,#bcbcbc);
+    color:black; font-weight:600;
+    text-decoration:none;
+    transition:0.3s;
+}
+.cta:hover {
+    transform:scale(1.05);
+    box-shadow:0 0 20px white;
+}
+
+/* SECTIONS */
+.section {
+    padding:120px 40px;
+    max-width:1200px;
+    margin:auto;
+    text-align:center;
+}
+
+.dark-block {
+    background:rgba(255,255,255,0.03);
+    border-radius:25px;
+    padding:80px 40px;
 }
 
 /* CARDS */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;margin-top:40px}
-.card{transition:0.3s}
-.card:hover{transform:translateY(-6px);box-shadow:0 0 20px rgba(255,255,255,0.15)}
+.cards {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+    margin-top:40px;
+}
+.card {
+    padding:25px;
+    border-radius:18px;
+    transition:0.3s;
+}
+.card:hover {
+    transform:translateY(-6px);
+    box-shadow:0 0 25px rgba(255,255,255,0.2);
+}
 
-/* TECH GRID */
-.tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;margin-top:40px}
-
-/* USECASE GRID */
-.usecase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;margin-top:40px}
-
-/* FAQ */
-.faq-list{display:grid;gap:20px}
+/* REVEAL SCROLL */
+.reveal {
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s cubic-bezier(.16,1,.3,1);
+}
+.reveal.visible {
+    opacity:1;
+    transform:translateY(0);
+}
 
 /* FOOTER */
-.footer{text-align:center;padding:40px 0;opacity:0.6}
-
-/* BACKGROUND CANVAS */
-#orb,#particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-10}
+.footer {
+    text-align:center;
+    opacity:0.7;
+    padding:40px 0;
+}
