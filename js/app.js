@@ -1,110 +1,89 @@
-/* HEADER FX */
-const header = document.querySelector(".header");
-window.addEventListener("scroll", () => {
-  header.classList.toggle("scrolled", window.scrollY > 60);
-});
+/* ============================================================
+   SCROLL REVEAL — Animation douce sur toutes les sections
+============================================================ */
+const revealElements = document.querySelectorAll('.section-title, .section-desc, .card, .agent-img, .price-card, .faq-item, .contact-box');
 
-/* THEME */
-const themeBtn = document.querySelector(".theme-toggle");
-
-function applyTheme(t) {
-  document.documentElement.setAttribute("data-theme", t);
-  localStorage.setItem("theme", t);
-}
-
-const saved = localStorage.getItem("theme");
-applyTheme(saved || (window.matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light"));
-
-themeBtn?.addEventListener("click", () => {
-  const current = document.documentElement.getAttribute("data-theme");
-  applyTheme(current === "dark" ? "light" : "dark");
-});
-
-/* REVEAL */
-const reveals = document.querySelectorAll(".reveal");
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach((e) => {
-    if (e.isIntersecting) {
-      e.target.classList.add("reveal-visible");
-      obs.unobserve(e.target);
-    }
-  });
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            entry.target.style.transitionDelay = "0.1s";
+        }
+    });
 }, { threshold: 0.15 });
 
-reveals.forEach((el) => obs.observe(el));
+revealElements.forEach(el => revealObserver.observe(el));
 
-/* MOBILE NAV */
-const navToggle = document.querySelector(".nav-toggle");
-const nav = document.querySelector(".nav");
 
-navToggle?.addEventListener("click", () => {
-  nav.classList.toggle("open");
-  navToggle.classList.toggle("open");
-  document.body.classList.toggle("no-scroll");
-});
+/* ============================================================
+   HEADER — Change style en scroll (VisionOS style)
+============================================================ */
+const header = document.getElementById("header");
 
-/* FAQ */
-document.querySelectorAll(".faq-item").forEach((item) => {
-  item.querySelector(".faq-question").addEventListener("click", () => {
-    item.classList.toggle("open");
-  });
-});
-
-/* PARALLAX */
-document.addEventListener("mousemove", (e) => {
-  document.querySelectorAll(".orb, .hero-orb").forEach((orb) => {
-    const speed = orb.dataset.speed || 20;
-    const x = (window.innerWidth / 2 - e.clientX) / speed;
-    const y = (window.innerHeight / 2 - e.clientY) / speed;
-    orb.style.transform = `translate(${x}px, ${y}px)`;
-  });
-});
-
-/* SMOOTH SCROLL */
-document.querySelectorAll('a[href^="#"]').forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    const t = document.querySelector(link.getAttribute("href"));
-    if (!t) return;
-    window.scrollTo({ top: t.offsetTop - 60, behavior: "smooth" });
-  });
-});
-
-/* COUNTERS */
-function animateCounter(el) {
-  const t = +el.dataset.value;
-  let c = 0;
-  const inc = t / 80;
-
-  function update() {
-    c += inc;
-    el.textContent = c < t ? Math.floor(c) : t;
-    if (c < t) requestAnimationFrame(update);
-  }
-  update();
-}
-
-const statObs = new IntersectionObserver((entries) => {
-  entries.forEach((e) => {
-    if (e.isIntersecting) {
-      e.target.querySelectorAll("[data-value]").forEach(animateCounter);
-      statObs.unobserve(e.target);
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+    } else {
+        header.classList.remove("scrolled");
     }
-  });
-}, { threshold: 0.3 });
+});
 
-document.querySelectorAll(".stats-grid").forEach((el) => statObs.observe(el));
 
-/* FLOATING ORBS */
-function floatElement(el, intensity = 10) {
-  let y = 0, dir = 1;
-  function loop() {
-    y += dir * 0.1;
-    if (Math.abs(y) > intensity) dir *= -1;
-    el.style.transform = `translateY(${y}px)`;
-    requestAnimationFrame(loop);
-  }
-  loop();
-}
+/* ============================================================
+   DARK / LIGHT AUTO — Change toutes les 1 sections
+============================================================ */
+const body = document.body;
 
-document.querySelectorAll(".orb, .hero-orb").forEach((el) => floatElement(el));
+let lastMode = 0;
+
+window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY;
+    const viewport = window.innerHeight;
+
+    // Mode change every viewport height
+    const sectionIndex = Math.floor(scrollY / viewport);
+
+    if (sectionIndex % 2 === 1 && lastMode !== 1) {
+        body.classList.add("dark");
+        lastMode = 1;
+    } 
+    else if (sectionIndex % 2 === 0 && lastMode !== 0) {
+        body.classList.remove("dark");
+        lastMode = 0;
+    }
+});
+
+
+/* ============================================================
+   FAQ — Accordéon
+============================================================ */
+document.querySelectorAll(".faq-item").forEach(item => {
+    item.addEventListener("click", () => {
+        item.classList.toggle("active");
+    });
+});
+
+
+/* ============================================================
+   PARALLAX ORB — Effet Apple Intelligence
+============================================================ */
+const orb = document.querySelector(".orb-bg");
+
+document.addEventListener("mousemove", (e) => {
+    if (!orb) return;
+    const x = (e.clientX / window.innerWidth - 0.5) * 40;
+    const y = (e.clientY / window.innerHeight - 0.5) * 40;
+    orb.style.transform = `translate(${x}px, ${y}px) scale(1.15)`;
+});
+
+
+/* ============================================================
+   SMOOTH SCROLL — Pour les liens nav
+============================================================ */
+document.querySelectorAll("nav a").forEach(link => {
+    link.addEventListener("click", e => {
+        e.preventDefault();
+        const id = link.getAttribute("href").replace("#", "");
+        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    });
+});
