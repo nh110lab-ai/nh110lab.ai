@@ -1,7 +1,6 @@
-/* ============================= */
-/* RESET + GLOBAL */
-/* ============================= */
-
+/* ============================== */
+/* RESET & BASE */
+/* ============================== */
 * {
     margin: 0;
     padding: 0;
@@ -9,208 +8,198 @@
 }
 
 html, body {
-    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
     overflow-x: hidden;
+    font-family: "Inter", sans-serif;
     background: #0a0a12;
     color: white;
-}
-
-/* Smooth scrolling */
-html {
     scroll-behavior: smooth;
 }
 
-/* ============================= */
-/* GLASS EFFECT (VisionOS style) */
-/* ============================= */
+section {
+    padding: 100px 10%;
+    position: relative;
+    z-index: 5;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+}
+
+p {
+    line-height: 1.6;
+}
+
+
+/* ============================== */
+/* GLASS EFFECT */
+/* ============================== */
 .glass {
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
-    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 18px;
 }
 
-/* ============================= */
-/* HEADER */
-/* ============================= */
 
+/* ============================== */
+/* HEADER */
+/* ============================== */
 .header {
-    position: fixed;
-    top: 0; left: 0;
     width: 100%;
-    padding: 14px 6%;
-    z-index: 50;
+    padding: 20px 8%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 50;
 }
 
 .header nav a {
-    margin-left: 18px;
-    color: #fff;
-    font-size: 14px;
+    margin: 0 12px;
+    color: white;
+    font-size: 15px;
     text-decoration: none;
-    transition: 0.3s;
+    opacity: 0.85;
 }
 
 .header nav a:hover {
-    color: #c7a7ff;
+    opacity: 1;
 }
 
-/* ============================= */
-/* HERO */
-/* ============================= */
 
+/* ============================== */
+/* HERO */
+/* ============================== */
 .hero {
     height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 6%;
-}
-
-.hero-content {
-    max-width: 650px;
+    align-items: center;
     text-align: center;
-    padding: 40px;
-    border-radius: 40px;
 }
 
-.hero h1 {
-    font-size: 48px;
-    margin-bottom: 16px;
-    line-height: 1.1;
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
 }
 
-.hero p {
-    font-size: 18px;
-    opacity: 0.9;
+.hero-content p {
+    font-size: 1.2rem;
+    opacity: 0.8;
 }
 
 .cta {
     display: inline-block;
-    margin-top: 26px;
-    padding: 16px 32px;
-    background: linear-gradient(135deg, #b47bff, #8c4dff);
-    border-radius: 40px;
+    margin-top: 25px;
+    padding: 12px 26px;
+    border-radius: 14px;
+    background: linear-gradient(120deg,#8a5cff,#b67fff);
     color: white;
-    font-weight: bold;
     text-decoration: none;
-    font-size: 17px;
-    transition: 0.25s;
+    font-weight: 600;
 }
 
-.cta:hover {
-    transform: scale(1.05);
-    background: linear-gradient(135deg, #c68cff, #9d5eff);
-}
 
-/* ============================= */
-/* SECTIONS */
-/* ============================= */
-
-.section {
-    padding: 90px 6%;
-    text-align: center;
-}
-
-.dark-block {
-    background: rgba(255,255,255,0.04);
-    border-radius: 40px;
-    margin: 60px 4%;
-}
-
-/* ============================= */
+/* ============================== */
 /* CARDS */
-/* ============================= */
-
+/* ============================== */
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-    gap: 22px;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 25px;
     margin-top: 40px;
 }
 
 .card {
-    padding: 32px;
-    border-radius: 30px;
-    transition: 0.3s;
+    padding: 28px;
+    border-radius: 18px;
+    min-height: 160px;
 }
 
-.card:hover {
-    transform: translateY(-6px);
-    background: rgba(255,255,255,0.13);
+.card h3 {
+    margin-bottom: 10px;
 }
 
-/* ============================= */
+
+/* ============================== */
+/* DARK BLOCK SECTIONS */
+/* ============================== */
+.dark-block {
+    background: rgba(255,255,255,0.03);
+    border-radius: 22px;
+}
+
+/* ============================== */
 /* TECH GRID */
-/* ============================= */
-
+/* ============================== */
 .tech-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-    gap: 22px;
     margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 25px;
 }
 
 .tech-item {
-    padding: 26px;
-    border-radius: 26px;
+    padding: 25px;
 }
 
-/* ============================= */
-/* USECASE GRID */
-/* ============================= */
 
+/* ============================== */
+/* USECASE GRID */
+/* ============================== */
 .usecase-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-    gap: 26px;
     margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 25px;
 }
 
 .usecase {
-    padding: 30px;
-    border-radius: 26px;
-    transition: 0.3s;
+    padding: 25px;
 }
 
-.usecase:hover {
-    transform: translateY(-6px);
+
+/* ============================== */
+/* PRICING */
+/* ============================== */
+.pricing-cards ul {
+    list-style: none;
+    margin-top: 10px;
 }
 
-/* ============================= */
+.price {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+}
+
+
+/* ============================== */
+/* FAQ */
+/* ============================== */
+.faq-item {
+    margin-bottom: 25px;
+}
+
+
+/* ============================== */
 /* FOOTER */
-/* ============================= */
-
+/* ============================== */
 .footer {
     text-align: center;
-    padding: 40px;
-    opacity: 0.5;
-    margin-top: 60px;
+    padding: 35px;
+    opacity: 0.6;
 }
 
-/* ============================= */
-/* BACKGROUND CANVAS */
-/* ============================= */
 
-#bg-orb, #bg-halo, #bg-particles {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: -1;
-    pointer-events: none;
-}
-
-/* ============================= */
-/* REVEAL ANIMATIONS */
-/* ============================= */
-
+/* ============================== */
+/* REVEAL ANIMATION */
+/* ============================== */
 .reveal {
     opacity: 0;
     transform: translateY(40px);
-    transition: 0.8s ease-out;
+    transition: all 0.7s ease;
 }
 
 .reveal.visible {
@@ -218,121 +207,129 @@ html {
     transform: translateY(0);
 }
 
-/* ============================= */
-/* AGENT IA FLOATING */
-/* ============================= */
 
+/* ============================== */
+/* BACKGROUND CANVAS LAYERS */
+/* ============================== */
+#bg-orb,
+#bg-halo,
+#bg-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+}
+
+
+/* ============================== */
+/* AGENT IA BUTTON */
+/* ============================== */
 #ai-agent {
     position: fixed;
-    bottom: 40px;
-    right: 40px;
-    width: 105px;
-    height: 105px;
-    z-index: 40;
-    cursor: pointer;
-    animation: floatAgent 4s ease-in-out infinite;
-}
-
-@keyframes floatAgent {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-    100% { transform: translateY(0); }
-}
-
-#agent-face {
-    width: 100%;
-    height: 100%;
+    bottom: 35px;
+    right: 35px;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(140deg,#7b46ff,#a66bff);
     border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, #bb88ff, #5e3bb8);
-    box-shadow: 0 0 32px #a477ff;
-    border: 2px solid rgba(255,255,255,0.3);
+    box-shadow: 0 0 25px rgba(140,70,255,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 999;
+    transition: transform .2s ease;
 }
 
-/* ============================= */
-/* CHAT PANEL */
-/* ============================= */
+#ai-agent:hover {
+    transform: scale(1.1);
+}
 
+.agent-face {
+    font-size: 32px;
+}
+
+
+/* ============================== */
+/* CHAT PANEL */
+/* ============================== */
 #chat-panel {
     position: fixed;
+    bottom: 130px;
     right: 40px;
-    bottom: 170px;
-    width: 340px;
-    max-height: 520px;
-    background: rgba(20,20,30,0.7);
-    border-radius: 22px;
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
-    border: 1px solid rgba(255,255,255,0.12);
-    padding-bottom: 10px;
-    display: none;
+    width: 320px;
+    height: 400px;
+    background: rgba(20,20,30,0.8);
+    backdrop-filter: blur(25px);
+    border-radius: 18px;
+    padding: 15px;
+    display: flex;
     flex-direction: column;
-    z-index: 60;
-}
-
-.chat-header {
-    font-weight: bold;
-    padding: 14px;
-    text-align: center;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 0 25px rgba(0,0,0,0.3);
+    display: none;
+    z-index: 999;
 }
 
 #chat-messages {
-    padding: 14px;
     flex: 1;
     overflow-y: auto;
-    font-size: 15px;
+    padding-right: 5px;
 }
 
 #chat-input {
-    width: 88%;
-    margin: 8px auto;
-    padding: 12px 14px;
-    border-radius: 14px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
     border: none;
     outline: none;
-    font-size: 15px;
-    background: rgba(255,255,255,0.15);
+    margin-top: 8px;
+    background: rgba(255,255,255,0.1);
     color: white;
 }
 
-/* Message bubbles */
-.msg {
-    padding: 10px 16px;
-    margin: 6px 0;
-    background: rgba(255,255,255,0.15);
-    border-radius: 14px;
-    max-width: 85%;
+#chat-input::placeholder {
+    color: rgba(255,255,255,0.6);
 }
 
-.me {
-    background: rgba(132,76,255,0.35);
-    margin-left: auto;
+
+/* ============================== */
+/* CHAT BUBBLES */
+/* ============================== */
+.message {
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    max-width: 80%;
+    font-size: 14px;
 }
 
-/* ============================= */
-/* MOBILE FIXES */
-/* ============================= */
+.user-msg {
+    background: #7d4bff;
+    align-self: flex-end;
+}
 
-@media (max-width: 768px) {
-    #ai-agent {
-        right: 20px;
-        bottom: 20px;
-        width: 80px;
-        height: 80px;
+.ai-msg {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+
+/* ============================== */
+/* RESPONSIVE */
+/* ============================== */
+@media (max-width: 800px) {
+    .header nav {
+        display: none;
     }
-
+    .hero-content h1 {
+        font-size: 2.3rem;
+    }
     #chat-panel {
-        right: 10px;
-        bottom: 110px;
-        width: 88%;
-    }
-
-    .hero h1 {
-        font-size: 32px;
-    }
-
-    .cta {
-        padding: 14px 26px;
-        font-size: 15px;
+        width: 90%;
+        right: 5%;
     }
 }
