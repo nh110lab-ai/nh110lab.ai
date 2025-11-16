@@ -11,12 +11,11 @@
 
 <body>
 
-<!-- HEADER -->
 <header class="header">
   <div class="header-inner">
     <a href="#hero" class="brand">
-      <img src="assets/images/logo.png" class="logo" alt="NH110LAB Logo" />
-      <span class="brand-text">NH110LAB.ai</span>
+      <img src="assets/images/logo.png" class="logo" />
+      <span>NH110LAB.ai</span>
     </a>
 
     <nav class="nav">
@@ -29,244 +28,56 @@
       <a href="#contact">Contact</a>
     </nav>
 
-    <button class="theme-toggle" aria-label="Changer le thème"></button>
-
-    <button class="nav-toggle" aria-label="Menu mobile">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="theme-toggle"></button>
+    <button class="nav-toggle"><span></span><span></span><span></span></button>
   </div>
 </header>
 
-<!-- HERO -->
 <section id="hero" class="hero reveal">
   <div class="hero-content">
     <p class="hero-kicker">Intelligence Artificielle Premium</p>
-
     <h1 class="hero-title">
       Des Agents IA modernes & évolutifs<br />
       pour accélérer votre croissance
     </h1>
-
     <p class="hero-sub">
-      Agents autonomes, connectés à vos outils, capables d'exécuter vos tâches
-      avec précision. Multi-agents, actions API, intense productivité.
+      Créations intelligentes, autonomes et connectées à vos outils.
+      Automatisez vos processus.
     </p>
 
     <div class="hero-actions">
-      <a href="#contact" class="btn btn-primary">✨ Créer mon agent IA</a>
+      <a href="#contact" class="btn btn-main">✨ Créer mon agent IA</a>
       <a href="#services" class="btn btn-ghost">Découvrir nos services</a>
     </div>
 
-    <div class="stats-grid">
-      <div class="stat">
-        <span class="stat-value" data-value="50">0</span>
-        <span class="stat-label">Agents déployés</span>
-      </div>
-      <div class="stat">
-        <span class="stat-value" data-value="99">0</span>
-        <span class="stat-label">Satisfaction</span>
-      </div>
-      <div class="stat">
-        <span class="stat-value" data-value="24">0</span>
-        <span class="stat-label">Support 24/7</span>
-      </div>
+    <div class="hero-stats">
+      <div class="stat"><span data-value="50" class="stat-value">0</span><span>Agents déployés</span></div>
+      <div class="stat"><span data-value="99" class="stat-value">0</span><span>Taux satisfaction</span></div>
+      <div class="stat"><span data-value="24" class="stat-value">0</span><span>Support 24/7</span></div>
     </div>
   </div>
 
   <div class="hero-visual">
-    <div class="hero-orb orb-main" data-speed="12"></div>
-
+    <img src="assets/images/background-orb.png" class="hero-orb" />
     <div class="hero-card">
-      <p>Agents multi-étapes autonomes</p>
-      <span>OpenAI · Anthropic · API Tools</span>
+      <p>Agents multi-étapes inspirés des meilleures stacks IA.</p>
+      <span>OpenAI • Anthropic • Tools • APIs</span>
     </div>
   </div>
 </section>
 
-<!-- VISION -->
-<section id="vision" class="section reveal">
-  <div class="section-header">
-    <h2 class="section-title">Notre vision</h2>
-    <p class="section-sub">L’IA qui travaille réellement pour vous.</p>
-  </div>
-
-  <div class="section-layout">
-    <div class="section-text">
-      <p>
-        Chez <strong>NH110LAB.ai</strong>, nous créons des agents IA autonomes
-        inspirés d'OpenAI, Anthropic et Scale AI.
-      </p>
-      <p>
-        Ils apprennent, raisonnent, prennent des décisions et exécutent des
-        tâches complexes pour vous.
-      </p>
-      <p>
-        Une productivité démultipliée, une fiabilité immédiate, une intégration
-        parfaite à vos outils existants.
-      </p>
-    </div>
-
-    <div class="section-highlight-card">
-      <ul class="features">
-        <li>🧠 Agents spécialisés</li>
-        <li>🤝 Intégrés à votre stack</li>
-        <li>📈 ROI immédiat</li>
-        <li>🔒 Niveau sécurité enterprise</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- AGENTS -->
-<section id="agents" class="section reveal">
-  <div class="section-header">
-    <h2 class="section-title">Agents IA Premium</h2>
-    <p class="section-sub">
-      Une suite d’agents autonomes conçus comme une équipe complète.
-    </p>
-  </div>
-
-  <div class="cards-grid">
-    <div class="card reveal">
-      <h3>Agent Prospection</h3>
-      <p>Prospection intelligente + relances automatiques.</p>
-      <ul class="card-list">
-        <li>Segmentation dynamique</li>
-        <li>Emails & messages contextualisés</li>
-        <li>Intégration CRM</li>
-      </ul>
-    </div>
-
-    <div class="card reveal">
-      <h3>Agent Support Client</h3>
-      <p>Support autonome 24/7 multi-canaux.</p>
-      <ul class="card-list">
-        <li>WhatsApp · Messenger · SMS</li>
-        <li>Transfert humain possible</li>
-        <li>Analyse d’émotions</li>
-      </ul>
-    </div>
-
-    <div class="card reveal">
-      <h3>Agent Back-Office</h3>
-      <p>Exécution autonome de vos tâches internes.</p>
-      <ul class="card-list">
-        <li>Reporting automatique</li>
-        <li>Sync multi-API</li>
-        <li>Mises à jour CRM</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section id="services" class="section section-alt reveal">
-  <div class="section-header">
-    <h2 class="section-title">Services Premium</h2>
-    <p class="section-sub">Développement IA complet et sur mesure.</p>
-  </div>
-
-  <div class="cards-grid">
-    <div class="card reveal">
-      <h3>Agents IA sur mesure</h3>
-      <p>Adaptés à vos besoins business.</p>
-      <ul class="card-list">
-        <li>Analyse de vos workflows</li>
-        <li>Prompts & rôles</li>
-        <li>Optimisation continue</li>
-      </ul>
-    </div>
-
-    <div class="card reveal">
-      <h3>Automations API</h3>
-      <p>Connexion à vos outils professionnels.</p>
-      <ul class="card-list">
-        <li>WhatsApp API</li>
-        <li>CRM & ERP</li>
-        <li>Google · Notion · Airtable</li>
-      </ul>
-    </div>
-
-    <div class="card reveal">
-      <h3>Audit IA</h3>
-      <p>Plan d’action clair + roadmap IA.</p>
-      <ul class="card-list">
-        <li>Audit complet</li>
-        <li>Stratégie IA 12 mois</li>
-        <li>Accompagnement équipes</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- AVANTAGES -->
-<section id="advantages" class="section reveal">
-  <div class="section-header">
-    <h2 class="section-title">Pourquoi NH110LAB.ai ?</h2>
-    <p class="section-sub">Une approche orientée résultats.</p>
-  </div>
-
-  <div class="advantages-grid">
-    <div class="adv-card reveal">⚡ Automatisations intelligentes</div>
-    <div class="adv-card reveal">🧠 Agents évolutifs</div>
-    <div class="adv-card reveal">🔒 Sécurité Enterprise</div>
-    <div class="adv-card reveal">🚀 Résultats mesurables</div>
-  </div>
-</section>
-
-<!-- TARIFS -->
-<section id="pricing" class="section reveal section-alt">
-  <div class="section-header">
-    <h2 class="section-title">Tarifs transparents</h2>
-    <p class="section-sub">Sans engagement. Mises à jour incluses.</p>
-  </div>
-
-  <div class="pricing-grid">
-    <div class="pricing-card reveal">
-      <h3>Starter</h3>
-      <p class="price">49€/mois</p>
-      <ul class="card-list">
-        <li>1 Agent IA</li>
-        <li>Automations simples</li>
-        <li>Support email</li>
-      </ul>
-    </div>
-
-    <div class="pricing-card pricing-card-highlight reveal">
-      <div class="badge">Populaire</div>
-      <h3>Pro</h3>
-      <p class="price">199€/mois</p>
-      <ul class="card-list">
-        <li>5 Agents IA</li>
-        <li>API avancées</li>
-        <li>Support prioritaire</li>
-      </ul>
-    </div>
-
-    <div class="pricing-card reveal">
-      <h3>Enterprise</h3>
-      <p class="price">Sur mesure</p>
-      <ul class="card-list">
-        <li>Agents illimités</li>
-        <li>Développement spécifique</li>
-        <li>SLA garantis</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
 <section id="faq" class="section reveal">
   <div class="section-header">
-    <h2 class="section-title">FAQ</h2>
+    <h2>Questions fréquentes</h2>
+    <p>Tout ce qu’il faut savoir.</p>
   </div>
 
   <div class="faq-list">
+
     <div class="faq-item">
       <button class="faq-question">Qu’est-ce qu’un agent IA ?</button>
       <div class="faq-answer">
-        Un agent IA exécute des tâches pour vous : prospection, support,
-        automatisations API…
+        Un agent IA exécute des tâches pour vous : prospection, support, automatisations API…
       </div>
     </div>
 
@@ -283,14 +94,14 @@
         Oui : architecture enterprise-grade, chiffrement, minima data policy.
       </div>
     </div>
+
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact" class="section section-alt reveal">
   <div class="section-header">
-    <h2 class="section-title">Contact</h2>
-    <p class="section-sub">Discutons de votre projet IA.</p>
+    <h2>Contact</h2>
+    <p>Discutons de votre projet IA.</p>
   </div>
 
   <div class="contact-grid">
@@ -304,19 +115,16 @@
       <label>Nom complet* <input type="text" required /></label>
       <label>Email* <input type="email" required /></label>
       <label>Message* <textarea required></textarea></label>
-      <button class="btn btn-primary">Envoyer</button>
+
+      <button class="btn btn-main">Envoyer</button>
     </form>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-top">
-    <p>© 2025 NH110LAB.ai — Tous droits réservés.</p>
-  </div>
+  <p>© 2025 NH110LAB.ai — Tous droits réservés.</p>
 </footer>
 
 <script src="js/app.js"></script>
-
 </body>
 </html>
