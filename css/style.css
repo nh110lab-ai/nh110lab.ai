@@ -1,175 +1,244 @@
-/* -------------------- */
-/* RESET + BASE GLOBAL  */
-/* -------------------- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* =============================== */
+/*       BASE & RESET              */
+/* =============================== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-body {
-    font-family: "Inter", sans-serif;
-    background: #080808;
-    color: #f3f3f3;
-    line-height: 1.7;
-    padding-bottom: 80px;
+html{
+  scroll-behavior:smooth;
 }
 
-img {
-    max-width: 100%;
-    display: block;
+body{
+  font-family:"Inter", sans-serif;
+  line-height:1.6;
+  background: #f5f5f7;
+  color:#0a0a0a;
+  transition: background 0.6s ease, color 0.6s ease;
+  overflow-x:hidden;
 }
 
-section {
-    padding: 80px 10%;
+/* Mode sombre appliqué automatiquement par le JS */
+body.dark-mode{
+  background:#050505;
+  color:#f5f5f5;
+}
+
+/* =============================== */
+/*       HEADER                    */
+/* =============================== */
+.header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:20px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(255,255,255,0.6);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,0.3);
+  z-index:1000;
+  transition:background 0.4s ease;
+}
+
+/* en mode sombre */
+body.dark-mode .header{
+  background:rgba(10,10,10,0.6);
+  border-bottom-color:rgba(255,255,255,0.05);
+}
+
+.logo{
+  height:42px;
+}
+
+.nav a{
+  margin-left:20px;
+  text-decoration:none;
+  font-weight:500;
+  color:inherit;
+  opacity:0.85;
+  transition:opacity 0.3s;
+}
+
+.nav a:hover{
+  opacity:1;
+}
+
+/* =============================== */
+/*       SECTIONS                  */
+/* =============================== */
+.section{
+  padding:120px 10%;
+  position:relative;
+  z-index:1;
+}
+
+.dark{
+  background:rgba(0,0,0,0.06);
+}
+
+body.dark-mode .dark{
+  background:rgba(255,255,255,0.05);
 }
 
 /* TITRES */
-h1, h2, h3 {
-    font-weight: 700;
+.title, h1, h2{
+  font-weight:700;
+  margin-bottom:25px;
+  letter-spacing:-0.5px;
 }
 
-h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
+/* =============================== */
+/*   HERO — ORBES FUTURISTES      */
+/* =============================== */
+.hero{
+  text-align:center;
+  padding-top:200px;
+  padding-bottom:200px;
+  overflow:hidden;
+  position:relative;
 }
 
-h2 {
-    font-size: 2.4rem;
-    margin-bottom: 25px;
+.hero-orb{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(90px);
+  opacity:0.75;
+  animation:float 12s infinite linear;
+  z-index:-1;
 }
 
-h3 {
-    font-size: 1.6rem;
-    margin-bottom: 15px;
+.orb-big{
+  width:450px;
+  height:450px;
+  background:radial-gradient(circle,#637dff,#935cff,#ff5cde);
+  top:-80px;
+  left:-120px;
 }
 
-/* -------------------- */
-/* HEADER               */
-/* -------------------- */
-.header {
-    width: 100%;
-    padding: 20px 10%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    background: rgba(0,0,0,0.4);
-    backdrop-filter: blur(8px);
+.orb-small{
+  width:260px;
+  height:260px;
+  background:radial-gradient(circle,#ff5cde,#935cff);
+  bottom:-80px;
+  right:-80px;
 }
 
-.nav a {
-    color: #f3f3f3;
-    margin-left: 20px;
-    text-decoration: none;
-    font-weight: 500;
+@keyframes float{
+  0%{ transform:translateY(0px);}
+  50%{ transform:translateY(40px);}
+  100%{ transform:translateY(0px);}
 }
 
-.logo {
-    height: 40px;
+/* =============================== */
+/*    GRIDS & CARDS                */
+/* =============================== */
+
+.core-grid, .agents-grid, .service-grid, .case-grid {
+  display:grid;
+  gap:30px;
+  margin-top:50px;
 }
 
-/* -------------------- */
-/* HERO                 */
-/* -------------------- */
-.hero {
-    padding-top: 180px;
-    padding-bottom: 150px;
-    text-align: center;
-    background: radial-gradient(circle at top, #202020, #000);
+.core-grid{
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 }
 
-.hero p {
-    margin: 15px auto 25px auto;
-    max-width: 650px;
-    font-size: 1.2rem;
-    opacity: 0.8;
+.core-card, .agent-card, .service-card, .case-card{
+  background:rgba(255,255,255,0.5);
+  backdrop-filter:blur(12px);
+  padding:25px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.7);
+  box-shadow:0px 4px 30px rgba(0,0,0,0.08);
+  transition:transform 0.3s, box-shadow 0.3s;
 }
 
-.cta {
-    background: linear-gradient(90deg, #4A6CF7, #6A54FF);
-    padding: 15px 28px;
-    border: none;
-    border-radius: 50px;
-    color: white;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: 0.3s;
+body.dark-mode .core-card,
+body.dark-mode .agent-card,
+body.dark-mode .service-card,
+body.dark-mode .case-card{
+  background:rgba(15,15,15,0.5);
+  border-color:rgba(255,255,255,0.08);
+  box-shadow:0px 4px 50px rgba(255,255,255,0.04);
 }
 
-.cta:hover {
-    transform: scale(1.05);
+.core-card:hover,
+.agent-card:hover,
+.service-card:hover,
+.case-card:hover{
+  transform:translateY(-4px) scale(1.02);
+  box-shadow:0px 6px 50px rgba(0,0,0,0.15);
 }
 
-/* -------------------- */
-/* SECTIONS             */
-/* -------------------- */
-.section-img {
-    margin: 40px auto;
+/* =============================== */
+/*       CTA BUTTON                */
+/* =============================== */
+
+.cta{
+  background:linear-gradient(135deg,#637dff,#935cff,#ff5cde);
+  color:white;
+  padding:14px 34px;
+  border:none;
+  border-radius:50px;
+  font-weight:600;
+  font-size:1.1rem;
+  cursor:pointer;
+  box-shadow:0 0 20px rgba(147,92,255,0.4);
+  transition:transform 0.35s, box-shadow 0.35s;
 }
 
-.features li {
-    list-style: none;
-    margin-bottom: 10px;
-    font-size: 1.1rem;
+.cta:hover{
+  transform:scale(1.06);
+  box-shadow:0 0 40px rgba(255,92,222,0.55);
 }
 
-/* DARK Sections */
-.dark {
-    background: #111;
-    border-top: 1px solid #222;
-    border-bottom: 1px solid #222;
+/* =============================== */
+/*   ANIMATIONS REVEAL FUTURISTES */
+/* =============================== */
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity 0.8s cubic-bezier(.17,.84,.44,1), 
+             transform 0.8s cubic-bezier(.17,.84,.44,1);
+}
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
 }
 
-/* -------------------- */
-/* SERVICES CARDS       */
-/* -------------------- */
-.service-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    margin-top: 40px;
+/* Slide futuriste */
+.reveal-slide{
+  opacity:0;
+  transform:translateX(50px);
+  transition:0.9s ease;
+}
+.reveal-slide.visible{
+  opacity:1;
+  transform:translateX(0);
 }
 
-.service-card {
-    background: #181818;
-    padding: 25px;
-    border-radius: 16px;
-    border: 1px solid #222;
+/* Zoom visionOS */
+.reveal-zoom{
+  opacity:0;
+  transform:scale(0.88);
+  transition:opacity 1s ease, transform 1s ease;
+}
+.reveal-zoom.visible{
+  opacity:1;
+  transform:scale(1);
 }
 
-.service-card:hover {
-    transform: translateY(-3px);
-}
+/* =============================== */
+/*     SCROLL TRANSITION COLOR     */
+/* =============================== */
 
-/* -------------------- */
-/* PRICING              */
-/* -------------------- */
-.pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.pricing-card {
-    background: #151515;
-    padding: 30px;
-    border-radius: 16px;
-    border: 1px solid #222;
-    text-align: center;
-}
-
-.highlighted {
-    border: 1px solid #6A54FF;
-    background: #201A40;
-}
-
-.price {
-    font-size: 2rem;
-    margin: 15px 0;
-    font-weight: 700;
+body.scroll-dark{
+  background:#050505 !important;
+  color:#f5f5f5 !important;
+  transition:background 1s ease, color 1s ease;
 }
