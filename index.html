@@ -2,72 +2,153 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NH110LAB.ai — Intelligence Autonome</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<canvas id="orb"></canvas>
+<!-- FOND APPLE FLOW GRADIENT -->
+<canvas id="flow-bg"></canvas>
 
 <header class="header glass">
     <div class="logo">NH110LAB.ai</div>
     <nav>
         <a href="#hero">Accueil</a>
-        <a href="#agents">Agents IA</a>
+        <a href="#about">À propos</a>
+        <a href="#agents">Agents</a>
         <a href="#services">Services</a>
+        <a href="#comparatif">Comparatif</a>
+        <a href="#tech">Technologie</a>
+        <a href="#usecases">Use cases</a>
         <a href="#pricing">Tarifs</a>
         <a href="#contact">Contact</a>
     </nav>
 </header>
 
-<section id="hero" class="hero">
-    <h1 class="title">Une Intelligence Autonome<br> conçue pour votre entreprise</h1>
-    <p class="subtitle">
-        Agents IA personnalisés. Automations avancées. Une nouvelle ère d’efficacité.
-    </p>
+<!-- HERO -->
+<section id="hero" class="section hero reveal">
+    <h1>Votre Intelligence Autonome.<br>Simple. Puissante. Continue.</h1>
+    <p>Une technologie inspirée d’Apple Intelligence : fluide, contextuelle, autonome et parfaitement intégrée à votre activité.</p>
     <a href="#contact" class="cta">Créer mon agent IA</a>
 </section>
 
-<section id="agents" class="section">
-    <h2>Agents Autonomes</h2>
-    <div class="grid">
-        <div class="card"><h3>Prospection</h3><p>Acquisition 24/7.</p></div>
-        <div class="card"><h3>CRM</h3><p>WhatsApp + Emails automatiques.</p></div>
-        <div class="card"><h3>Analyste</h3><p>Data, insights, décisions.</p></div>
-        <div class="card"><h3>Opérations</h3><p>Automatisation interne.</p></div>
+<!-- À PROPOS -->
+<section id="about" class="section reveal">
+    <h2>L’IA Nouvelle Génération</h2>
+    <p class="text-large">
+        NH110LAB.ai conçoit des agents IA autonomes capables d’analyser, décider et exécuter vos tâches comme un véritable collaborateur.
+    </p>
+</section>
+
+<!-- AGENTS -->
+<section id="agents" class="section reveal">
+    <h2>Vos Agents IA</h2>
+    <div class="cards">
+        <div class="card"><h3>Agent Commercial</h3><p>Prospection intelligente 24/7 sur emails, WhatsApp et LinkedIn.</p></div>
+        <div class="card"><h3>Agent CRM</h3><p>Suivi complet des clients, segmentation automatique, relances intelligentes.</p></div>
+        <div class="card"><h3>Agent Analyste</h3><p>Analyse data, extraction, dashboards, recommandations automatiques.</p></div>
+        <div class="card"><h3>Agent Opérations</h3><p>Gestion des tâches internes, automatisation totale de vos workflows.</p></div>
     </div>
 </section>
 
-<section id="services" class="section">
-    <h2>Services</h2>
-    <div class="grid">
-        <div class="card"><h3>Agent IA sur mesure</h3><p>Pour votre activité.</p></div>
-        <div class="card"><h3>Automations API</h3><p>WhatsApp, CRM, sites…</p></div>
-        <div class="card"><h3>Prospection IA</h3><p>LinkedIn + Email.</p></div>
-        <div class="card"><h3>Analyse Data</h3><p>Tableaux + prédiction.</p></div>
+<!-- SERVICES -->
+<section id="services" class="section reveal">
+    <h2>Services Premium</h2>
+
+    <div class="cards">
+        <div class="card"><h3>Automations WhatsApp</h3><p>Réponses instantanées, mémorisation du contexte, gestion complète.</p></div>
+        <div class="card"><h3>Workflows n8n</h3><p>Automatisation avancée : API, CRM, fichiers, emails, pipelines.</p></div>
+        <div class="card"><h3>Création d’Agents IA sur mesure</h3><p>Adaptés à votre entreprise, vos process et votre secteur.</p></div>
+        <div class="card"><h3>Stratégie IA</h3><p>Audit complet, plan d’action, optimisation et intégration totale.</p></div>
     </div>
 </section>
 
-<section id="pricing" class="section">
+<!-- COMPARATIF (NOUVEAU) -->
+<section id="comparatif" class="section reveal">
+    <h2>Pourquoi NH110LAB.ai ?</h2>
+    <div class="compare">
+        <div>
+            <h3>NH110LAB.ai</h3>
+            <ul>
+                <li>✔ Agents autonomes 24/7</li>
+                <li>✔ Intégrations pro (API, CRM, WhatsApp)</li>
+                <li>✔ Optimisation continue</li>
+                <li>✔ Confidentialité totale</li>
+                <li>✔ Coût 5 à 10× inférieur</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Concurrents</h3>
+            <ul>
+                <li>✘ Agents limités</li>
+                <li>✘ Peu d’intégrations</li>
+                <li>✘ Coûts élevés (2000–7000€/mois)</li>
+                <li>✘ Dépendance technique</li>
+                <li>✘ Pas d’amélioration automatique</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- TECHNOLOGIE -->
+<section id="tech" class="section reveal">
+    <h2>Aurora Intelligence</h2>
+    <p class="text-large">Un moteur inspiré de VisionOS & Apple Intelligence.</p>
+
+    <div class="tech-grid">
+        <div class="tech-item"><h3>Perception</h3><p>Analyse documents, messages, signaux métier.</p></div>
+        <div class="tech-item"><h3>Mémoire</h3><p>Long terme, contextuelle, persistante.</p></div>
+        <div class="tech-item"><h3>Décision</h3><p>Raisonnement logique + règles métier adaptatives.</p></div>
+        <div class="tech-item"><h3>Action</h3><p>Exécutions autonomes (WhatsApp, CRM, APIs...).</p></div>
+        <div class="tech-item"><h3>Optimisation</h3><p>Amélioration constante via résultats réels.</p></div>
+    </div>
+</section>
+
+<!-- USE CASES -->
+<section id="usecases" class="section reveal">
+    <h2>Cas d’usage</h2>
+    <div class="usecases-grid">
+        <div class="usecase">Prospection automatique 24/7</div>
+        <div class="usecase">Support client instantané</div>
+        <div class="usecase">Analyse data & tableaux</div>
+        <div class="usecase">Automations CRM</div>
+        <div class="usecase">Gestion interne intelligente</div>
+        <div class="usecase">Assistants spécialisés par métier</div>
+    </div>
+</section>
+
+<!-- TARIFS -->
+<section id="pricing" class="section reveal">
     <h2>Tarifs</h2>
-    <div class="pricing">
+    <div class="pricing-cards">
         <div class="card"><h3>Starter</h3><p class="price">49€/mois</p></div>
-        <div class="card featured"><h3>Business</h3><p class="price">149€/mois</p></div>
-        <div class="card"><h3>Entreprise</h3><p class="price">Sur devis</p></div>
+        <div class="card"><h3>Business</h3><p class="price">149€/mois</p></div>
+        <div class="card"><h3>Entreprise</h3><p class="price">Sur mesure</p></div>
     </div>
 </section>
 
-<section id="contact" class="section">
+<!-- CONTACT -->
+<section id="contact" class="section reveal">
     <h2>Contact</h2>
-    <p>Discutons de votre projet IA.</p>
-    <a class="cta" href="mailto:contact@nh110lab.ai">Envoyer un message</a>
+    <p>Discutons ensemble de votre projet IA.</p>
+    <a href="mailto:contact@nh110lab.ai" class="cta">Envoyer un message</a>
 </section>
 
-<footer>© 2025 — NH110LAB.ai</footer>
+<footer class="footer">© 2025 — NH110LAB.ai</footer>
+
+<!-- AGENT IA -->
+<div id="ai-agent">
+    <div id="agent-bubble">🤖</div>
+    <div id="agent-window">
+        <h3>Agent IA</h3>
+        <div id="agent-messages"></div>
+        <input id="agent-input" placeholder="Posez une question…">
+    </div>
+</div>
 
 <script src="script.js"></script>
-
 </body>
 </html>
