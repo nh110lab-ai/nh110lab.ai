@@ -880,3 +880,24 @@ body {
 .logos-row span:hover::after {
   width: 100%;
 }
+.section {
+  padding: 5rem 0;
+}
+
+.section-subtitle {
+  max-width: 620px;
+  margin-top: 0.75rem;
+  opacity: 0.8;
+}
+
+.steps {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.75rem;
+}
+
+.step h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
