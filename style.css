@@ -1,67 +1,66 @@
-/* ============================== */
-/* RESET & BASE */
-/* ============================== */
+/* --------------------------------------------- */
+/*                 GLOBAL RESET                  */
+/* --------------------------------------------- */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Inter", sans-serif;
 }
 
 html, body {
+    height: 100%;
     overflow-x: hidden;
-    font-family: "Inter", sans-serif;
-    background: #0a0a12;
-    color: white;
     scroll-behavior: smooth;
-}
-
-section {
-    padding: 100px 10%;
-    position: relative;
-    z-index: 5;
-}
-
-h1, h2, h3 {
-    font-weight: 700;
-}
-
-p {
-    line-height: 1.6;
+    background: hsl(240, 10%, 10%);
+    color: white;
 }
 
 
-/* ============================== */
-/* GLASS EFFECT */
-/* ============================== */
-.glass {
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 18px;
+/* --------------------------------------------- */
+/*               BACKGROUND CANVAS               */
+/* --------------------------------------------- */
+
+#bg-orb, #bg-halo, #bg-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: -10;
 }
 
 
-/* ============================== */
-/* HEADER */
-/* ============================== */
+/* --------------------------------------------- */
+/*                     HEADER                    */
+/* --------------------------------------------- */
+
 .header {
+    position: fixed;
+    top: 0;
     width: 100%;
-    padding: 20px 8%;
+    padding: 18px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
-    top: 0;
-    z-index: 50;
+    z-index: 20;
+    backdrop-filter: blur(12px);
+}
+
+.header .logo {
+    font-size: 1.6rem;
+    font-weight: 700;
 }
 
 .header nav a {
-    margin: 0 12px;
-    color: white;
-    font-size: 15px;
+    margin-left: 22px;
     text-decoration: none;
-    opacity: 0.85;
+    color: white;
+    font-weight: 500;
+    opacity: 0.9;
+    transition: 0.2s;
 }
 
 .header nav a:hover {
@@ -69,137 +68,259 @@ p {
 }
 
 
-/* ============================== */
-/* HERO */
-/* ============================== */
-.hero {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+/* --------------------------------------------- */
+/*                  SECTIONS BASE                 */
+/* --------------------------------------------- */
+
+.section {
+    padding: 140px 12%;
+    max-width: 1400px;
+    margin: auto;
 }
 
-.hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
-
-.hero-content p {
-    font-size: 1.2rem;
-    opacity: 0.8;
-}
-
-.cta {
-    display: inline-block;
-    margin-top: 25px;
-    padding: 12px 26px;
-    border-radius: 14px;
-    background: linear-gradient(120deg,#8a5cff,#b67fff);
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-
-/* ============================== */
-/* CARDS */
-/* ============================== */
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-    gap: 25px;
-    margin-top: 40px;
-}
-
-.card {
-    padding: 28px;
-    border-radius: 18px;
-    min-height: 160px;
-}
-
-.card h3 {
-    margin-bottom: 10px;
-}
-
-
-/* ============================== */
-/* DARK BLOCK SECTIONS */
-/* ============================== */
-.dark-block {
-    background: rgba(255,255,255,0.03);
-    border-radius: 22px;
-}
-
-/* ============================== */
-/* TECH GRID */
-/* ============================== */
-.tech-grid {
-    margin-top: 40px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-    gap: 25px;
-}
-
-.tech-item {
-    padding: 25px;
-}
-
-
-/* ============================== */
-/* USECASE GRID */
-/* ============================== */
-.usecase-grid {
-    margin-top: 40px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-    gap: 25px;
-}
-
-.usecase {
-    padding: 25px;
-}
-
-
-/* ============================== */
-/* PRICING */
-/* ============================== */
-.pricing-cards ul {
-    list-style: none;
-    margin-top: 10px;
-}
-
-.price {
-    font-size: 1.8rem;
-    margin-bottom: 12px;
-}
-
-
-/* ============================== */
-/* FAQ */
-/* ============================== */
-.faq-item {
+.section h2 {
+    font-size: 2.6rem;
     margin-bottom: 25px;
 }
 
+.large-text {
+    font-size: 1.25rem;
+    opacity: 0.85;
+    margin-top: 15px;
+}
 
-/* ============================== */
-/* FOOTER */
-/* ============================== */
-.footer {
-    text-align: center;
-    padding: 35px;
-    opacity: 0.6;
+/* Dark blocks */
+.dark-block {
+    background: rgba(255,255,255,0.05);
+    border-radius: 24px;
+    padding: 120px 10%;
 }
 
 
-/* ============================== */
-/* REVEAL ANIMATION */
-/* ============================== */
+/* --------------------------------------------- */
+/*                   HERO SECTION                */
+/* --------------------------------------------- */
+
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 12%;
+}
+
+.hero h1 {
+    font-size: 3.8rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: 40px;
+    opacity: 0.85;
+}
+
+.cta {
+    padding: 14px 28px;
+    background: linear-gradient(90deg, #8b5cf6, #7dd3fc);
+    border-radius: 40px;
+    color: #000;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.cta:hover {
+    transform: scale(1.05);
+}
+
+
+/* --------------------------------------------- */
+/*                  BULLET POINTS                */
+/* --------------------------------------------- */
+
+.bullet-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 40px;
+}
+
+.bullet {
+    background: rgba(255,255,255,0.08);
+    padding: 14px 20px;
+    border-radius: 14px;
+    font-size: 1.1rem;
+}
+
+
+/* --------------------------------------------- */
+/*                    CARDS GRID                */
+/* --------------------------------------------- */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.card {
+    padding: 30px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 18px;
+    transition: 0.25s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+
+/* --------------------------------------------- */
+/*                  TECHNOLOGY GRID              */
+/* --------------------------------------------- */
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+}
+
+.tech-item {
+    padding: 28px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 18px;
+    transition: 0.25s;
+}
+
+.tech-item:hover {
+    transform: translateY(-5px);
+}
+
+
+/* --------------------------------------------- */
+/*                CASE STUDIES GRID              */
+/* --------------------------------------------- */
+
+.cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+}
+
+.case {
+    padding: 26px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 18px;
+}
+
+
+/* --------------------------------------------- */
+/*                  PRICING CARDS                */
+/* --------------------------------------------- */
+
+.pricing-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 32px;
+    margin-top: 40px;
+}
+
+.price-card {
+    padding: 28px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.10);
+}
+
+.price-card .price {
+    font-size: 2rem;
+    margin: 15px 0;
+}
+
+
+/* --------------------------------------------- */
+/*                      FAQ                      */
+/* --------------------------------------------- */
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 26px;
+    margin-top: 40px;
+}
+
+.faq-item {
+    padding: 22px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 14px;
+}
+
+
+/* --------------------------------------------- */
+/*                    CONTACT                    */
+/* --------------------------------------------- */
+
+#contact {
+    text-align: center;
+}
+
+#contact .cta {
+    margin-top: 20px;
+}
+
+
+/* --------------------------------------------- */
+/*            AI AGENT WIDGET (BOTTOM)           */
+/* --------------------------------------------- */
+
+.ai-agent {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    width: 260px;
+    padding: 20px;
+    background: rgba(255,255,255,0.10);
+    border-radius: 18px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    animation: float 4s ease-in-out infinite;
+}
+
+.ai-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a78bfa, #7dd3fc);
+}
+
+.ai-chat {
+    flex: 1;
+}
+
+.ai-text {
+    font-size: 0.95rem;
+    opacity: 0.85;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0px); }
+}
+
+
+/* --------------------------------------------- */
+/*                REVEAL ANIMATION               */
+/* --------------------------------------------- */
+
 .reveal {
     opacity: 0;
     transform: translateY(40px);
-    transition: all 0.7s ease;
+    transition: 0.7s ease;
 }
 
 .reveal.visible {
@@ -208,128 +329,24 @@ p {
 }
 
 
-/* ============================== */
-/* BACKGROUND CANVAS LAYERS */
-/* ============================== */
-#bg-orb,
-#bg-halo,
-#bg-particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 0;
-}
+/* --------------------------------------------- */
+/*                   RESPONSIVE                  */
+/* --------------------------------------------- */
 
-
-/* ============================== */
-/* AGENT IA BUTTON */
-/* ============================== */
-#ai-agent {
-    position: fixed;
-    bottom: 35px;
-    right: 35px;
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(140deg,#7b46ff,#a66bff);
-    border-radius: 50%;
-    box-shadow: 0 0 25px rgba(140,70,255,0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 999;
-    transition: transform .2s ease;
-}
-
-#ai-agent:hover {
-    transform: scale(1.1);
-}
-
-.agent-face {
-    font-size: 32px;
-}
-
-
-/* ============================== */
-/* CHAT PANEL */
-/* ============================== */
-#chat-panel {
-    position: fixed;
-    bottom: 130px;
-    right: 40px;
-    width: 320px;
-    height: 400px;
-    background: rgba(20,20,30,0.8);
-    backdrop-filter: blur(25px);
-    border-radius: 18px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgba(255,255,255,0.15);
-    box-shadow: 0 0 25px rgba(0,0,0,0.3);
-    display: none;
-    z-index: 999;
-}
-
-#chat-messages {
-    flex: 1;
-    overflow-y: auto;
-    padding-right: 5px;
-}
-
-#chat-input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 12px;
-    border: none;
-    outline: none;
-    margin-top: 8px;
-    background: rgba(255,255,255,0.1);
-    color: white;
-}
-
-#chat-input::placeholder {
-    color: rgba(255,255,255,0.6);
-}
-
-
-/* ============================== */
-/* CHAT BUBBLES */
-/* ============================== */
-.message {
-    padding: 8px 12px;
-    margin-bottom: 12px;
-    border-radius: 12px;
-    max-width: 80%;
-    font-size: 14px;
-}
-
-.user-msg {
-    background: #7d4bff;
-    align-self: flex-end;
-}
-
-.ai-msg {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-}
-
-
-/* ============================== */
-/* RESPONSIVE */
-/* ============================== */
-@media (max-width: 800px) {
+@media(max-width: 850px) {
     .header nav {
         display: none;
     }
-    .hero-content h1 {
-        font-size: 2.3rem;
+
+    .hero h1 {
+        font-size: 2.5rem;
     }
-    #chat-panel {
-        width: 90%;
-        right: 5%;
+
+    .bullet-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ai-agent {
+        width: 220px;
     }
 }
