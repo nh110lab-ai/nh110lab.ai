@@ -1,14 +1,24 @@
-/* --- REVEAL ANIMATION --- */
+/* --- REVEAL ANIMATION AMÉLIORÉE --- */
 const reveals = document.querySelectorAll(".reveal");
+
 const obs = new IntersectionObserver(
   (entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) e.target.classList.add("visible");
+    entries.forEach((e, index) => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      el.style.setProperty(
+        "--reveal-delay",
+        `${index * 60}ms`
+      );
+      el.classList.add("visible");
+      obs.unobserve(el);
     });
   },
   { threshold: 0.2 }
 );
+
 reveals.forEach((r) => obs.observe(r));
+
 // --- BARRE DE PROGRESSION SCROLL + HEADER COMPACT ---
 const scrollBar = document.createElement("div");
 scrollBar.className = "scroll-progress";
