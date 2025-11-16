@@ -9,6 +9,33 @@ const obs = new IntersectionObserver(
   { threshold: 0.2 }
 );
 reveals.forEach((r) => obs.observe(r));
+// --- BARRE DE PROGRESSION SCROLL + HEADER COMPACT ---
+const scrollBar = document.createElement("div");
+scrollBar.className = "scroll-progress";
+document.body.appendChild(scrollBar);
+
+const header = document.querySelector(".header");
+
+function updateScrollUI() {
+  const max =
+    document.body.scrollHeight - window.innerHeight || 1;
+  const ratio = window.scrollY / max;
+
+  // fond qui s’éclaircit (remplace ton ancien listener "SCROLL THEME SWITCH")
+  const brightness = 8 + ratio * 70;
+  document.body.style.background = `hsl(240, 15%, ${brightness}%)`;
+
+  // barre de progression
+  scrollBar.style.transform = `scaleX(${ratio})`;
+
+  // header compact
+  if (header) {
+    header.classList.toggle("header-scrolled", window.scrollY > 40);
+  }
+}
+
+window.addEventListener("scroll", updateScrollUI);
+updateScrollUI();
 
 /* --- SMOOTH SCROLL & NAV ACTIVE --- */
 const navLinks = document.querySelectorAll(".nav-link");
