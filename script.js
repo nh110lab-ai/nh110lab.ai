@@ -333,3 +333,149 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+// ======================
+// 🔥 ANIMATIONS PREMIUM CUSTOM NH110LAB.AI
+// ======================
+
+// ============ PARALLAX 3D ============
+const initParallax = () => {
+  const parallaxItems = document.querySelectorAll("[data-parallax]");
+  if (!parallaxItems.length) return;
+
+  window.addEventListener("mousemove", throttle((e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 8;
+    const y = (e.clientY / window.innerHeight - 0.5) * 8;
+
+    parallaxItems.forEach((el) => {
+      const speed = parseFloat(el.dataset.parallax) || 1;
+      el.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+    });
+  }, 20));
+};
+
+// ============ FADE + SLIDE + BLUR REVEAL ============
+const initPremiumReveal = () => {
+  const els = document.querySelectorAll(".premium-reveal");
+  if (!els.length) return;
+
+  const obs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("premium-reveal-visible");
+          obs.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.25 }
+  );
+
+  els.forEach((el) => obs.observe(el));
+};
+
+// ============ LOGO GLOW DYNAMIQUE ============
+const initLogoGlow = () => {
+  const logo = document.querySelector(".logo");
+
+  if (!logo) return;
+
+  window.addEventListener("mousemove", throttle((e) => {
+    const rect = logo.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    logo.style.setProperty("--glow-x", `${x}px`);
+    logo.style.setProperty("--glow-y", `${y}px`);
+  }, 25));
+};
+
+// ============ CARDS MAGNÉTIQUES ============
+const initMagneticCards = () => {
+  const cards = document.querySelectorAll(".card");
+
+  cards.forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+      card.style.transform = `
+        perspective(800px)
+        rotateX(${y * 8}deg)
+        rotateY(${x * 8}deg)
+        scale(1.03)
+      `;
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "perspective(800px) rotateX(0) rotateY(0) scale(1)";
+    });
+  });
+};
+
+// ============ CONTENU PREMIUM AUTO-GÉNÉRÉ ============
+const injectPremiumContent = () => {
+  const hero = document.querySelector("#hero .hero-text");
+  if (hero && !hero.dataset.enriched) {
+    hero.dataset.enriched = "true";
+    hero.innerHTML += `
+      <p class="premium-reveal">
+        NH110LAB.ai — l'excellence technologique mêlée à l'élégance minimaliste. 
+        Chaque interaction, chaque détail, chaque animation est conçue 
+        pour délivrer une expérience digitale haut de gamme.
+      </p>
+    `;
+  }
+
+  const about = document.querySelector("#about .about-text");
+  if (about && !about.dataset.enriched) {
+    about.dataset.enriched = "true";
+    about.innerHTML = `
+      <h2 class="premium-reveal">Une vision. Une technologie. Une identité.</h2>
+      <p class="premium-reveal">
+        NH110LAB.ai est un laboratoire digital où performance, design et intelligence 
+        artificielle fusionnent pour créer des expériences uniques. 
+        Minimalisme, finesse et puissance — inspiré des codes du luxe moderne.
+      </p>
+    `;
+  }
+
+  const services = document.querySelector("#services .services-list");
+  if (services && !services.dataset.enriched) {
+    services.dataset.enriched = "true";
+    services.innerHTML += `
+      <div class="service-item premium-reveal">
+        <h3>🧠 Agents IA Sur-Mesure</h3>
+        <p>
+          Création d’agents intelligents capables d’automatiser vos processus, 
+          d’analyser vos données, et de décupler votre productivité.
+        </p>
+      </div>
+
+      <div class="service-item premium-reveal">
+        <h3>⚡ Optimisation Web Ultra-Rapide</h3>
+        <p>
+          Performances maximales, animations fluides, design haut de gamme — 
+          pour un site digne des plus grandes marques.
+        </p>
+      </div>
+
+      <div class="service-item premium-reveal">
+        <h3>✨ Identité Digitale Premium</h3>
+        <p>
+          Branding, interface, animations et expérience utilisateur conçus 
+          pour impressionner dès la première seconde.
+        </p>
+      </div>
+    `;
+  }
+};
+
+// ============ INITIALISATION ============
+document.addEventListener("DOMContentLoaded", () => {
+  initParallax();
+  initPremiumReveal();
+  initLogoGlow();
+  initMagneticCards();
+  injectPremiumContent();
+});
