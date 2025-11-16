@@ -1,261 +1,74 @@
-/* ======================================================
-   RESET + BASE
-====================================================== */
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Inter",sans-serif;overflow-x:hidden}
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html, body {
-    width: 100%;
-    height: 100%;
-    font-family: "Inter", "SF Pro Display", "Segoe UI", sans-serif;
-    overflow-x: hidden;
-    transition: background 0.6s ease, color 0.6s ease;
-}
-
-/* Mode clair / sombre auto */
+/* LIGHT/DARK DYNAMIC */
 :root {
     --bg: #0b0b0d;
-    --text: #ffffff;
-    --glass-bg: rgba(255,255,255,0.06);
-    --glass-border: rgba(255,255,255,0.12);
+    --text: #fff;
+    --glass: rgba(255,255,255,0.05);
 }
 
 .light {
-    --bg: #f9f9fb;
+    --bg: #f7f7f8;
     --text: #111;
-    --glass-bg: rgba(255,255,255,0.8);
-    --glass-border: rgba(0,0,0,0.1);
+    --glass: rgba(0,0,0,0.05);
 }
 
-body {
-    background: var(--bg);
-    color: var(--text);
+#theme-wrapper{
+    background:var(--bg);
+    color:var(--text);
+    transition:background 0.6s ease, color 0.6s ease;
 }
 
-/* ======================================================
-   GLASS EFFECT
-====================================================== */
+/* HEADER */
+.header{
+    position:fixed;top:0;width:100%;
+    padding:20px 40px;display:flex;justify-content:space-between;
+    z-index:100;
+}
+.header a{color:var(--text);opacity:0.7;margin-left:20px;text-decoration:none}
+.header a:hover{opacity:1}
 
-.glass {
-    background: var(--glass-bg);
-    backdrop-filter: blur(22px);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    padding: 25px;
-    transition: 0.4s ease;
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:140px 20px;text-align:center}
+.hero-content{max-width:800px}
+.hero h1{font-size:3.4rem;margin-bottom:20px}
+
+/* CTA */
+.cta{
+    display:inline-block;padding:14px 28px;border-radius:30px;
+    background:#fff;color:#000;text-decoration:none;font-weight:600;
+}
+.cta:hover{transform:scale(1.05)}
+
+/* SECTIONS */
+.section{padding:120px 40px;max-width:1200px;margin:auto;text-align:center}
+
+/* GLASS */
+.glass{
+    background:var(--glass);
+    backdrop-filter:blur(18px);
+    border-radius:20px;
+    padding:30px;
 }
 
-/* ======================================================
-   HEADER
-====================================================== */
+/* CARDS */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;margin-top:40px}
+.card{transition:0.3s}
+.card:hover{transform:translateY(-6px);box-shadow:0 0 20px rgba(255,255,255,0.15)}
 
-.header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 18px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 50;
-}
+/* TECH GRID */
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;margin-top:40px}
 
-.logo {
-    font-size: 22px;
-    font-weight: 700;
-    opacity: 0.9;
-}
+/* USECASE GRID */
+.usecase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;margin-top:40px}
 
-.header nav a {
-    margin-left: 22px;
-    color: var(--text);
-    opacity: 0.8;
-    text-decoration: none;
-    font-size: 15px;
-    transition: 0.25s ease;
-}
+/* FAQ */
+.faq-list{display:grid;gap:20px}
 
-.header nav a:hover {
-    opacity: 1;
-    text-shadow: 0 0 12px;
-}
+/* FOOTER */
+.footer{text-align:center;padding:40px 0;opacity:0.6}
 
-/* ======================================================
-   HERO
-====================================================== */
-
-.hero {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 160px 40px 80px;
-}
-
-.hero-content {
-    max-width: 850px;
-    text-align: center;
-    animation: fadeIn 1.4s ease forwards;
-}
-
-.hero h1 {
-    font-size: 3.4rem;
-    margin-bottom: 20px;
-}
-
-.hero p {
-    font-size: 1.25rem;
-    margin-bottom: 30px;
-    opacity: 0.85;
-}
-
-.cta {
-    display: inline-block;
-    padding: 14px 30px;
-    border-radius: 30px;
-    background: linear-gradient(135deg, #ffffff, #d8d8d8);
-    color: #000;
-    font-weight: 600;
-    text-decoration: none;
-    transition: 0.35s ease;
-}
-
-.cta:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(255,255,255,0.5);
-}
-
-/* ======================================================
-   SECTIONS
-====================================================== */
-
-.section {
-    padding: 120px 50px;
-    max-width: 1200px;
-    margin: auto;
-}
-
-.section h2 {
-    font-size: 2.4rem;
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.text-large {
-    font-size: 1.25rem;
-    text-align: center;
-    max-width: 850px;
-    margin: auto;
-    opacity: 0.85;
-    line-height: 1.7;
-}
-
-.dark-block {
-    background: rgba(255,255,255,0.03);
-    border-radius: 25px;
-    padding: 80px 40px;
-}
-
-/* ======================================================
-   GRID CARDS
-====================================================== */
-
-.cards,
-.tech-grid,
-.usecase-grid {
-    margin-top: 40px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-}
-
-.card,
-.tech-item,
-.usecase {
-    padding: 30px;
-    border-radius: 18px;
-    transition: 0.35s ease;
-    min-height: 200px;
-}
-
-.card:hover,
-.tech-item:hover,
-.usecase:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 0 25px rgba(255,255,255,0.12);
-}
-
-/* ======================================================
-   PRICING
-====================================================== */
-
-.price {
-    font-size: 2rem;
-    margin: 15px 0;
-    font-weight: 700;
-}
-
-/* ======================================================
-   FAQ
-====================================================== */
-
-.faq-item {
-    margin-bottom: 25px;
-}
-
-.faq-item h3 {
-    font-size: 1.4rem;
-}
-
-.faq-item p {
-    opacity: 0.8;
-}
-
-/* ======================================================
-   CONTACT
-====================================================== */
-
-#contact {
-    text-align: center;
-    padding: 100px 30px;
-}
-
-/* ======================================================
-   FOOTER
-====================================================== */
-
-.footer {
-    text-align: center;
-    padding: 40px 0;
-    opacity: 0.7;
-    margin-top: 60px;
-}
-
-/* ======================================================
-   ANIMATIONS
-====================================================== */
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ======================================================
-   CANVAS (fond interactif Apple Intelligence)
-====================================================== */
-
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: -10;
-}
-
+/* BACKGROUND CANVAS */
+#orb,#particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-10}
