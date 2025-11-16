@@ -1,88 +1,174 @@
-// NH110LAB.ai front : scroll, nav, theme, pricing, FAQ, contact toast,
-// canvases, and AI agent widget.
+// NH110LAB.ai — Script optimisé + widgets devis & témoignages
+(function () {
+  "use strict";
 
-document.addEventListener("DOMContentLoaded", () => {
-  /* -------- YEAR -------- */
-  const yearEl = document.getElementById("year");
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
-  }
-
-  /* -------- THEME TOGGLE -------- */
-  const root = document.documentElement;
-  const themeToggle = document.querySelector(".theme-toggle");
-  const themeIcon = document.querySelector(".theme-toggle-icon");
-
-  const applyTheme = (theme) => {
-    root.setAttribute("data-theme", theme);
-    if (themeIcon) themeIcon.textContent = theme === "dark" ? "☾" : "☀︎";
+  // ============ UTILITAIRES ============
+  const debounce = (fn, delay) => {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => fn(...args), delay);
+    };
   };
 
-  const storedTheme = localStorage.getItem("nh110-theme");
-  if (storedTheme === "light" || storedTheme === "dark") {
-    applyTheme(storedTheme);
-  } else {
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    applyTheme(prefersDark ? "dark" : "light");
-  }
+  const throttle = (fn, limit) => {
+    let inThrottle;
+    return (...args) => {
+      if (!inThrottle) {
+        fn(...args);
+        inThrottle = true;
+        setTimeout(() => (inThrottle = false), limit);
+      }
+    };
+  };
 
-  if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
-      const current = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
-      const next = current === "dark" ? "light" : "dark";
-      applyTheme(next);
-      localStorage.setItem("nh110-theme", next);
-    });
-  }
+  const DOM = {
+    root: document.documentElement,
+    yearEl: null,
+    themeToggle: null,
+    themeIcon: null,
+    navToggle: null,
+    navLinks: null,
+    sections: null,
+    form: null,
+    toast: null,
+    aiToggle: null,
+    aiPanel: null,
+    aiClose: null,
+    aiForm: null,
+    aiInput: null,
+    aiMessages: null,
+    quote: {
+      form: null,
+      type: null,
+      budget: null,
+      budgetValue: null,
+      deadlineRadios: null,
+      withAI: null,
+      result: null,
+      tagline: null,
+      ideal: null,
+      badge: null,
+    },
+    testimonials: {
+      tabs: null,
+      panels: null,
+    },
+    canvases: {
+      particles: null,
+      orb: null,
+      halo: null,
+    },
+  };
 
-  /* -------- SMOOTH SCROLL ANCHORS -------- */
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const targetId = link.getAttribute("href");
-      if (!targetId || targetId === "#") return;
-      const target = document.querySelector(targetId);
-      if (!target) return;
-      e.preventDefault();
+  const state = {
+    isCanvasActive: true,
+    isNavOpen: false,
+    currentTheme: "dark",
+    animationFrame: null,
+  };
 
-      const top = target.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({
-        top,
-        behavior: "smooth",
-      });
+  // ============ INIT DOM CACHE ============
+  const initDOMCache = () => {
+    DOM.yearEl = document.getElementById("year");
+    DOM.themeToggle = document.querySelector(".theme-toggle");
+    DOM.themeIcon = document.querySelector(".theme-toggle-icon");
+    DOM.navToggle = document.querySelector(".nav-toggle");
+    DOM.navLinks = document.querySelectorAll(".nav-link");
+    DOM.sections = document.querySelectorAll("section[id]");
+    DOM.form = document.getElementById("contact-form");
+    DOM.toast = document.getElementById("toast");
 
-      // close mobile nav
-      document.documentElement.classList.remove("nav-open");
-    });
-  });
+    DOM.aiToggle = document.getElementById("ai-toggle");
+    DOM.aiPanel = document.getElementById("ai-panel");
+    DOM.aiClose = document.getElementById("ai-close");
+    DOM.aiForm = document.getElementById("ai-form");
+    DOM.aiInput = document.getElementById("ai-input");
+    DOM.aiMessages = document.getElementById("ai-messages");
 
-  /* -------- REVEAL ON SCROLL -------- */
-  const revealElements = document.querySelectorAll(".reveal");
-  if ("IntersectionObserver" in window && revealElements.length) {
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
+    DOM.canvases.particles = document.getElementById("particles");
+    DOM.canvases.orb = document.getElementById("orb");
+    DOM.canvases.halo = document.getElementById("halo");
+
+    // Devis
+    DOM.quote.form = document.getElementById("quote-form");
+    DOM.quote.type = document.getElementById("quote-type");
+    DOM.quote.budget = document.getElementById("quote-budget");
+    DOM.quote.budgetValue = document.getElementById("quote-budget-value");
+    DOM.quote.deadlineRadios = document.querySelectorAll(
+      'input[name="quote-deadline"]'
     );
-    revealElements.forEach((el) => revealObserver.observe(el));
-  } else {
-    revealElements.forEach((el) => el.classList.add("visible"));
-  }
+    DOM.quote.withAI = document.getElementById("quote-ai");
+    DOM.quote.result = document.getElementById("quote-result");
+    DOM.quote.tagline = document.getElementById("quote-tagline");
+    DOM.quote.ideal = document.getElementById("quote-ideal");
+    DOM.quote.badge = document.getElementById("quote-badge");
 
-  /* -------- ACTIVE NAV ON SCROLL -------- */
-  const sections = document.querySelectorAll("section[id]");
-  const navLinks = document.querySelectorAll(".nav-link");
+    // Témoignages
+    DOM.testimonials.tabs = document.querySelectorAll(".testimonial-tab");
+    DOM.testimonials.panels = document.querySelectorAll(".testimonial-panel");
+  };
+
+  // ============ ANNÉE ============
+  const updateYear = () => {
+    if (DOM.yearEl) {
+      DOM.yearEl.textContent = new Date().getFullYear();
+    }
+  };
+
+  // ============ THÈME ============
+  const applyTheme = (theme) => {
+    state.currentTheme = theme;
+    DOM.root.setAttribute("data-theme", theme);
+    if (DOM.themeIcon) {
+      DOM.themeIcon.textContent = theme === "dark" ? "☾" : "☀︎";
+    }
+  };
+
+  const initTheme = () => {
+    const storedTheme = localStorage.getItem("nh110-theme");
+    if (storedTheme === "light" || storedTheme === "dark") {
+      applyTheme(storedTheme);
+    } else {
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      applyTheme(prefersDark ? "dark" : "light");
+    }
+
+    if (DOM.themeToggle) {
+      DOM.themeToggle.addEventListener("click", () => {
+        const next = state.currentTheme === "dark" ? "light" : "dark";
+        applyTheme(next);
+        localStorage.setItem("nh110-theme", next);
+      });
+    }
+  };
+
+  // ============ NAVIGATION ============
+  const initSmoothScroll = () => {
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const targetId = link.getAttribute("href");
+        if (!targetId || targetId === "#") return;
+        const target = document.querySelector(targetId);
+        if (!target) return;
+
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top, behavior: "smooth" });
+
+        DOM.root.classList.remove("nav-open");
+        state.isNavOpen = false;
+      });
+    });
+  };
 
   const setActiveNav = () => {
     const scrollPos = window.scrollY + 120;
     let currentId = "hero";
 
-    sections.forEach((section) => {
+    DOM.sections.forEach((section) => {
       const rect = section.getBoundingClientRect();
       const offsetTop = rect.top + window.scrollY;
       if (scrollPos >= offsetTop) {
@@ -90,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    navLinks.forEach((link) => {
+    DOM.navLinks.forEach((link) => {
       const href = link.getAttribute("href");
       if (!href || !href.startsWith("#")) return;
       const id = href.slice(1);
@@ -98,111 +184,176 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  setActiveNav();
-  window.addEventListener("scroll", setActiveNav);
+  const initNavigation = () => {
+    const throttledSetActiveNav = throttle(setActiveNav, 100);
+    setActiveNav();
+    window.addEventListener("scroll", throttledSetActiveNav, { passive: true });
 
-  /* -------- MOBILE NAV TOGGLE -------- */
-  const navToggle = document.querySelector(".nav-toggle");
-  if (navToggle) {
-    navToggle.addEventListener("click", () => {
-      document.documentElement.classList.toggle("nav-open");
-    });
-  }
+    if (DOM.navToggle) {
+      DOM.navToggle.addEventListener("click", () => {
+        state.isNavOpen = !state.isNavOpen;
+        DOM.root.classList.toggle("nav-open", state.isNavOpen);
+      });
+    }
+  };
 
-  /* -------- PRICING TOGGLE -------- */
-  const toggleButtons = document.querySelectorAll(".toggle-btn");
-  const pilotCard = document.querySelector(".pricing-pilot");
-  const runCard = document.querySelector(".pricing-run");
-
-  toggleButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const mode = btn.dataset.mode;
-      toggleButtons.forEach((b) =>
-        b.classList.toggle("toggle-btn-active", b === btn)
+  // ============ REVEAL ============
+  const initReveal = () => {
+    const revealElements = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window && revealElements.length) {
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15, rootMargin: "50px" }
       );
+      revealElements.forEach((el) => revealObserver.observe(el));
+    } else {
+      revealElements.forEach((el) => el.classList.add("visible"));
+    }
+  };
 
-      if (mode === "pilot") {
-        pilotCard && pilotCard.classList.remove("hidden");
-        runCard && runCard.classList.add("hidden");
-      } else {
-        pilotCard && pilotCard.classList.add("hidden");
-        runCard && runCard.classList.remove("hidden");
-      }
+  // Premium reveal
+  const initPremiumReveal = () => {
+    const els = document.querySelectorAll(".premium-reveal");
+    if (!els.length) return;
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("premium-reveal-visible");
+            obs.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.25 }
+    );
+
+    els.forEach((el) => obs.observe(el));
+  };
+
+  // ============ PRICING ============
+  const initPricing = () => {
+    const toggleButtons = document.querySelectorAll(".toggle-btn");
+    const pilotCard = document.querySelector(".pricing-pilot");
+    const runCard = document.querySelector(".pricing-run");
+
+    toggleButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const mode = btn.dataset.mode;
+
+        toggleButtons.forEach((b) =>
+          b.classList.toggle("toggle-btn-active", b === btn)
+        );
+
+        if (mode === "pilot") {
+          pilotCard?.classList.remove("hidden");
+          runCard?.classList.add("hidden");
+        } else {
+          pilotCard?.classList.add("hidden");
+          runCard?.classList.remove("hidden");
+        }
+      });
     });
-  });
+  };
 
-  /* -------- FAQ ACCORDION -------- */
-  document.querySelectorAll(".faq-item").forEach((item) => {
-    const question = item.querySelector(".faq-question");
-    if (!question) return;
-    question.addEventListener("click", () => {
-      const isOpen = item.classList.contains("open");
-      document
-        .querySelectorAll(".faq-item")
-        .forEach((i) => i.classList.remove("open"));
-      if (!isOpen) item.classList.add("open");
+  // ============ FAQ ============
+  const initFAQ = () => {
+    document.querySelectorAll(".faq-item").forEach((item) => {
+      const question = item.querySelector(".faq-question");
+      if (!question) return;
+
+      question.addEventListener("click", () => {
+        const isOpen = item.classList.contains("open");
+        document.querySelectorAll(".faq-item").forEach((i) => {
+          if (i !== item) i.classList.remove("open");
+        });
+        item.classList.toggle("open", !isOpen);
+      });
     });
-  });
+  };
 
-  /* -------- CONTACT FORM TOAST -------- */
-  const form = document.getElementById("contact-form");
-  const toast = document.getElementById("toast");
-
-  if (form && toast) {
-    form.addEventListener("submit", (e) => {
+  // ============ FORMULAIRE CONTACT ============
+  const initContactForm = () => {
+    if (!DOM.form || !DOM.toast) return;
+    DOM.form.addEventListener("submit", (e) => {
       e.preventDefault();
-      toast.classList.add("visible");
-      setTimeout(() => toast.classList.remove("visible"), 3200);
-      form.reset();
+      DOM.toast.classList.add("visible");
+      setTimeout(() => DOM.toast.classList.remove("visible"), 3200);
+      DOM.form.reset();
     });
-  }
+  };
 
-  /* -------- CANVAS ANIMATIONS -------- */
+  // ============ CANVAS ANIMATIONS ============
+  let particles = [];
+  let canvasContext = {};
 
-  const particleCanvas = document.getElementById("particles");
-  const orbCanvas = document.getElementById("orb");
-  const haloCanvas = document.getElementById("halo");
+  const initCanvas = () => {
+    const { particles: pCanvas, orb: oCanvas, halo: hCanvas } = DOM.canvases;
+    if (!pCanvas || !oCanvas || !hCanvas) return;
+
+    canvasContext = {
+      particles: pCanvas.getContext("2d", { alpha: true }),
+      orb: oCanvas.getContext("2d", { alpha: true }),
+      halo: hCanvas.getContext("2d", { alpha: true }),
+    };
+
+    resizeCanvas();
+    initParticles();
+  };
 
   const resizeCanvas = () => {
-    [particleCanvas, orbCanvas, haloCanvas].forEach((c) => {
+    const { particles, orb, halo } = DOM.canvases;
+    const canvases = [particles, orb, halo];
+
+    canvases.forEach((c) => {
       if (!c) return;
-      const dpr = window.devicePixelRatio || 1;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       c.width = window.innerWidth * dpr;
       c.height = window.innerHeight * dpr;
       const ctx = c.getContext("2d");
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     });
   };
-  resizeCanvas();
-  window.addEventListener("resize", resizeCanvas);
 
-  // Particles
-  const particles = [];
-  const PARTICLE_COUNT = 80;
-  for (let i = 0; i < PARTICLE_COUNT; i++) {
-    particles.push({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      vx: (Math.random() - 0.5) * 0.12,
-      vy: (Math.random() - 0.5) * 0.12,
-      r: 1 + Math.random() * 1.6,
-      alpha: 0.2 + Math.random() * 0.5,
-    });
-  }
+  const initParticles = () => {
+    particles = [];
+    const PARTICLE_COUNT = window.innerWidth < 768 ? 40 : 80;
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: (Math.random() - 0.5) * 0.12,
+        vy: (Math.random() - 0.5) * 0.12,
+        r: 1 + Math.random() * 1.6,
+        alpha: 0.2 + Math.random() * 0.5,
+      });
+    }
+  };
 
   const drawParticles = () => {
-    if (!particleCanvas) return;
-    const ctx = particleCanvas.getContext("2d");
-    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    if (!DOM.canvases.particles || !canvasContext.particles) return;
+
+    const ctx = canvasContext.particles;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
+    ctx.clearRect(0, 0, w, h);
 
     particles.forEach((p) => {
       p.x += p.vx;
       p.y += p.vy;
 
-      if (p.x < 0) p.x = window.innerWidth;
-      if (p.x > window.innerWidth) p.x = 0;
-      if (p.y < 0) p.y = window.innerHeight;
-      if (p.y > window.innerHeight) p.y = 0;
+      if (p.x < 0) p.x = w;
+      else if (p.x > w) p.x = 0;
+      if (p.y < 0) p.y = h;
+      else if (p.y > h) p.y = 0;
 
       ctx.globalAlpha = p.alpha;
       ctx.beginPath();
@@ -212,12 +363,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // Orb + halo
   const drawOrb = (time) => {
-    if (!orbCanvas || !haloCanvas) return;
+    if (!DOM.canvases.orb || !DOM.canvases.halo) return;
+    if (!canvasContext.orb || !canvasContext.halo) return;
 
-    const orbCtx = orbCanvas.getContext("2d");
-    const haloCtx = haloCanvas.getContext("2d");
+    const orbCtx = canvasContext.orb;
+    const haloCtx = canvasContext.halo;
     const w = window.innerWidth;
     const h = window.innerHeight;
 
@@ -229,14 +380,7 @@ document.addEventListener("DOMContentLoaded", () => {
     haloCtx.clearRect(0, 0, w, h);
 
     const radius = Math.max(w, h) * 0.35;
-    const gradient = orbCtx.createRadialGradient(
-      cx,
-      cy,
-      0,
-      cx,
-      cy,
-      radius
-    );
+    const gradient = orbCtx.createRadialGradient(cx, cy, 0, cx, cy, radius);
     gradient.addColorStop(0, "rgba(129, 140, 248, 0.85)");
     gradient.addColorStop(0.3, "rgba(79, 70, 229, 0.65)");
     gradient.addColorStop(1, "rgba(15, 23, 42, 0)");
@@ -260,222 +404,234 @@ document.addEventListener("DOMContentLoaded", () => {
     haloCtx.fillRect(0, 0, w, h);
   };
 
-  const loop = (time) => {
+  const animationLoop = (time) => {
+    if (!state.isCanvasActive) return;
     drawParticles();
     drawOrb(time);
-    requestAnimationFrame(loop);
+    state.animationFrame = requestAnimationFrame(animationLoop);
   };
-  requestAnimationFrame(loop);
 
-  /* -------- AI AGENT WIDGET -------- */
+  const startAnimation = () => {
+    state.isCanvasActive = true;
+    state.animationFrame = requestAnimationFrame(animationLoop);
+  };
 
-  const aiToggle = document.getElementById("ai-toggle");
-  const aiPanel = document.getElementById("ai-panel");
-  const aiClose = document.getElementById("ai-close");
-  const aiForm = document.getElementById("ai-form");
-  const aiInput = document.getElementById("ai-input");
-  const aiMessages = document.getElementById("ai-messages");
+  const stopAnimation = () => {
+    state.isCanvasActive = false;
+    if (state.animationFrame) cancelAnimationFrame(state.animationFrame);
+  };
 
+  const handleVisibilityChange = () => {
+    if (document.hidden) stopAnimation();
+    else startAnimation();
+  };
+
+  // ============ WIDGET IA ============
   const appendMessage = (text, from = "bot") => {
-    if (!aiMessages) return;
+    if (!DOM.aiMessages) return;
     const div = document.createElement("div");
-    div.className =
-      "ai-message " +
-      (from === "user" ? "ai-message-user" : "ai-message-bot");
+    div.className = `ai-message ai-message-${from}`;
     div.textContent = text;
-    aiMessages.appendChild(div);
-    aiMessages.scrollTop = aiMessages.scrollHeight;
-  };
-
-  const openPanel = () => {
-    aiPanel && aiPanel.classList.add("open");
-  };
-
-  const closePanel = () => {
-    aiPanel && aiPanel.classList.remove("open");
-  };
-
-  if (aiToggle) {
-    aiToggle.addEventListener("click", openPanel);
-  }
-  if (aiClose) {
-    aiClose.addEventListener("click", closePanel);
-  }
-
-  if (aiForm && aiInput) {
-    aiForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const value = aiInput.value.trim();
-      if (!value) return;
-
-      appendMessage(value, "user");
-      aiInput.value = "";
-
-      // Réponse immédiate côté front pour la démo.
-      appendMessage(
-        "Je réfléchis à 2–3 idées d’agent pour ce flux… (connectez-moi à votre backend IA pour une vraie réponse 😉)"
-      );
-
-      // Exemple de hook pour votre backend / API IA :
-      /*
-      try {
-        const response = await fetch("https://votre-backend/agent", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: value }),
-        });
-        const data = await response.json();
-        appendMessage(data.reply || "Agent : réponse vide.");
-      } catch (err) {
-        appendMessage("Impossible de joindre l’agent pour le moment.");
-      }
-      */
+    DOM.aiMessages.appendChild(div);
+    requestAnimationFrame(() => {
+      DOM.aiMessages.scrollTop = DOM.aiMessages.scrollHeight;
     });
-  }
-});
-// ======================
-// 🔥 ANIMATIONS PREMIUM CUSTOM NH110LAB.AI
-// ======================
+  };
 
-// ============ PARALLAX 3D ============
-const initParallax = () => {
-  const parallaxItems = document.querySelectorAll("[data-parallax]");
-  if (!parallaxItems.length) return;
+  const openAIPanel = () => {
+    DOM.aiPanel?.classList.add("open");
+    DOM.aiInput?.focus();
+  };
 
-  window.addEventListener("mousemove", throttle((e) => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 8;
-    const y = (e.clientY / window.innerHeight - 0.5) * 8;
+  const closeAIPanel = () => {
+    DOM.aiPanel?.classList.remove("open");
+  };
 
-    parallaxItems.forEach((el) => {
-      const speed = parseFloat(el.dataset.parallax) || 1;
-      el.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
-    });
-  }, 20));
-};
+  const initAIWidget = () => {
+    DOM.aiToggle?.addEventListener("click", openAIPanel);
+    DOM.aiClose?.addEventListener("click", closeAIPanel);
 
-// ============ FADE + SLIDE + BLUR REVEAL ============
-const initPremiumReveal = () => {
-  const els = document.querySelectorAll(".premium-reveal");
-  if (!els.length) return;
+    if (DOM.aiForm && DOM.aiInput) {
+      DOM.aiForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const value = DOM.aiInput.value.trim();
+        if (!value) return;
+        appendMessage(value, "user");
+        DOM.aiInput.value = "";
 
-  const obs = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add("premium-reveal-visible");
-          obs.unobserve(e.target);
-        }
+        appendMessage(
+          "Je vois les grandes lignes de ton idée. Prochaine étape : on la transforme en système clair (agent, flux ou interface)."
+        );
       });
-    },
-    { threshold: 0.25 }
-  );
+    }
+  };
 
-  els.forEach((el) => obs.observe(el));
-};
+  // ============ DEVIS INTERACTIF ============
+  const formatEuro = (n) =>
+    n.toLocaleString("fr-FR", { maximumFractionDigits: 0 });
 
-// ============ LOGO GLOW DYNAMIQUE ============
-const initLogoGlow = () => {
-  const logo = document.querySelector(".logo");
+  const computeQuote = () => {
+    if (!DOM.quote.budget || !DOM.quote.type) return;
 
-  if (!logo) return;
+    const budget = Number(DOM.quote.budget.value || 1500);
+    const type = DOM.quote.type.value;
+    let deadline = "2 à 3 semaines";
+    let intensity = "projet équilibré à mettre en place rapidement";
 
-  window.addEventListener("mousemove", throttle((e) => {
-    const rect = logo.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const deadlineValue =
+      Array.from(DOM.quote.deadlineRadios || []).find((r) => r.checked)
+        ?.value || "standard";
 
-    logo.style.setProperty("--glow-x", `${x}px`);
-    logo.style.setProperty("--glow-y", `${y}px`);
-  }, 25));
-};
+    if (deadlineValue === "rapide") {
+      deadline = "7 à 10 jours";
+      intensity = "rythme soutenu, focus total sur votre périmètre";
+    } else if (deadlineValue === "cool") {
+      deadline = "3 à 5 semaines";
+      intensity = "rythme confortable, avec plus d’allers-retours possibles";
+    }
 
-// ============ CARDS MAGNÉTIQUES ============
-const initMagneticCards = () => {
-  const cards = document.querySelectorAll(".card");
+    const withAI = DOM.quote.withAI?.checked ?? true;
 
-  cards.forEach((card) => {
-    card.addEventListener("mousemove", (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
+    let labelType = "";
+    if (type === "site") labelType = "site ou landing page premium";
+    else if (type === "agent") labelType = "agent IA ou automatisation ciblée";
+    else labelType = "mix site + agent IA";
 
-      card.style.transform = `
-        perspective(800px)
-        rotateX(${y * 8}deg)
-        rotateY(${x * 8}deg)
-        scale(1.03)
+    const min = Math.max(500, budget * 0.8);
+    const max = Math.max(min + 200, budget * 1.2);
+
+    if (DOM.quote.budgetValue) {
+      DOM.quote.budgetValue.textContent = formatEuro(budget);
+    }
+
+    if (DOM.quote.result) {
+      DOM.quote.result.innerHTML = `
+        ${withAI ? "Projet " : "Projet "}${labelType} ·
+        enveloppe autour de <strong>${formatEuro(
+          min
+        )}–${formatEuro(max)} € HT</strong> ·
+        mise en place en <strong>${deadline}</strong>.
       `;
+    }
+
+    if (DOM.quote.tagline) {
+      DOM.quote.tagline.textContent = withAI
+        ? "Vous décrivez le cas d’usage, l’IA et l’automatisation font le reste."
+        : "On reste focalisés sur une expérience front ultra propre, sans surcouche IA.";
+    }
+
+    if (DOM.quote.ideal) {
+      DOM.quote.ideal.textContent =
+        "L’estimation est ajustée après un échange rapide (15–20 min) pour tenir compte de votre réalité.";
+    }
+
+    if (DOM.quote.badge) {
+      DOM.quote.badge.textContent =
+        "🔐 Aucun engagement — c’est une base pour voir si on s’aligne, pas une facture.";
+    }
+  };
+
+  const initQuoteWidget = () => {
+    if (!DOM.quote.form) return;
+
+    computeQuote();
+
+    DOM.quote.budget?.addEventListener("input", computeQuote);
+    DOM.quote.type?.addEventListener("change", computeQuote);
+    DOM.quote.withAI?.addEventListener("change", computeQuote);
+    DOM.quote.deadlineRadios?.forEach((r) =>
+      r.addEventListener("change", computeQuote)
+    );
+
+    DOM.quote.form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      computeQuote();
     });
+  };
 
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = "perspective(800px) rotateX(0) rotateY(0) scale(1)";
+  // ============ TÉMOIGNAGES ============
+  const initTestimonials = () => {
+    const tabs = DOM.testimonials.tabs;
+    const panels = DOM.testimonials.panels;
+    if (!tabs || !tabs.length || !panels || !panels.length) return;
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.testimonial;
+        tabs.forEach((t) => t.classList.toggle("active", t === tab));
+        panels.forEach((panel) => {
+          const id = panel.dataset.testimonialPanel;
+          panel.classList.toggle("active", id === target);
+        });
+      });
     });
-  });
-};
+  };
 
-// ============ CONTENU PREMIUM AUTO-GÉNÉRÉ ============
-const injectPremiumContent = () => {
-  const hero = document.querySelector("#hero .hero-text");
-  if (hero && !hero.dataset.enriched) {
-    hero.dataset.enriched = "true";
-    hero.innerHTML += `
-      <p class="premium-reveal">
-        NH110LAB.ai — l'excellence technologique mêlée à l'élégance minimaliste. 
-        Chaque interaction, chaque détail, chaque animation est conçue 
-        pour délivrer une expérience digitale haut de gamme.
-      </p>
-    `;
+  // ============ PARALLAX (logo / éléments) ============
+  const initParallax = () => {
+    const parallaxItems = document.querySelectorAll("[data-parallax]");
+    if (!parallaxItems.length) return;
+
+    window.addEventListener(
+      "mousemove",
+      throttle((e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 8;
+        const y = (e.clientY / window.innerHeight - 0.5) * 8;
+        parallaxItems.forEach((el) => {
+          const speed = parseFloat(el.dataset.parallax) || 1;
+          el.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+        });
+      }, 20)
+    );
+  };
+
+  // ============ RESIZE & CLEANUP ============
+  const handleResize = debounce(() => {
+    resizeCanvas();
+    initParticles();
+  }, 250);
+
+  const cleanup = () => {
+    stopAnimation();
+    window.removeEventListener("resize", handleResize);
+    document.removeEventListener("visibilitychange", handleVisibilityChange);
+  };
+
+  // ============ INIT PRINCIPALE ============
+  const init = () => {
+    initDOMCache();
+    updateYear();
+    initTheme();
+    initSmoothScroll();
+    initNavigation();
+    initReveal();
+    initPremiumReveal();
+    initPricing();
+    initFAQ();
+    initContactForm();
+    initCanvas();
+    initAIWidget();
+    initQuoteWidget();
+    initTestimonials();
+    initParallax();
+
+    window.addEventListener("resize", handleResize);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    startAnimation();
+    window.addEventListener("beforeunload", cleanup);
+
+    // Exposition légère pour debug dans la console si besoin
+    window.NH110LAB = {
+      state: () => ({ ...state, particles: particles.length }),
+      resetAnimations: () => {
+        initParticles();
+      },
+    };
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
   }
-
-  const about = document.querySelector("#about .about-text");
-  if (about && !about.dataset.enriched) {
-    about.dataset.enriched = "true";
-    about.innerHTML = `
-      <h2 class="premium-reveal">Une vision. Une technologie. Une identité.</h2>
-      <p class="premium-reveal">
-        NH110LAB.ai est un laboratoire digital où performance, design et intelligence 
-        artificielle fusionnent pour créer des expériences uniques. 
-        Minimalisme, finesse et puissance — inspiré des codes du luxe moderne.
-      </p>
-    `;
-  }
-
-  const services = document.querySelector("#services .services-list");
-  if (services && !services.dataset.enriched) {
-    services.dataset.enriched = "true";
-    services.innerHTML += `
-      <div class="service-item premium-reveal">
-        <h3>🧠 Agents IA Sur-Mesure</h3>
-        <p>
-          Création d’agents intelligents capables d’automatiser vos processus, 
-          d’analyser vos données, et de décupler votre productivité.
-        </p>
-      </div>
-
-      <div class="service-item premium-reveal">
-        <h3>⚡ Optimisation Web Ultra-Rapide</h3>
-        <p>
-          Performances maximales, animations fluides, design haut de gamme — 
-          pour un site digne des plus grandes marques.
-        </p>
-      </div>
-
-      <div class="service-item premium-reveal">
-        <h3>✨ Identité Digitale Premium</h3>
-        <p>
-          Branding, interface, animations et expérience utilisateur conçus 
-          pour impressionner dès la première seconde.
-        </p>
-      </div>
-    `;
-  }
-};
-
-// ============ INITIALISATION ============
-document.addEventListener("DOMContentLoaded", () => {
-  initParallax();
-  initPremiumReveal();
-  initLogoGlow();
-  initMagneticCards();
-  injectPremiumContent();
-});
+})();
