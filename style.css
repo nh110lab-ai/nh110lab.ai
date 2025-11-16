@@ -1,0 +1,173 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: #fff;
+  background: linear-gradient(180deg, #f7f7f7 0%, #0f0f17 40%, #000000 55%, #f7f7f7 100%);
+  background-attachment: fixed;
+  transition: background 1s ease;
+}
+
+/* NAVIGATION */
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  backdrop-filter: blur(20px);
+  z-index: 999;
+}
+
+.nav-logo {
+  width: 55px;
+  filter: drop-shadow(0 0 12px rgba(0, 140, 255, 0.6));
+}
+
+.nav-links a {
+  margin-left: 25px;
+  color: white;
+  font-weight: 500;
+  opacity: 0.9;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.nav-links a:hover {
+  opacity: 1;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hero-logo {
+  width: 180px;
+  margin-bottom: 20px;
+  animation: glow 4s infinite ease-in-out;
+}
+
+@keyframes glow {
+  0% { filter: drop-shadow(0 0 5px #0af); }
+  50% { filter: drop-shadow(0 0 30px #8f00ff); }
+  100% { filter: drop-shadow(0 0 5px #0af); }
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+.hero-subtitle {
+  margin: 20px auto 40px;
+  max-width: 600px;
+  opacity: 0.8;
+  font-size: 1.2rem;
+}
+
+.cta {
+  padding: 15px 35px;
+  background: linear-gradient(90deg, #007aff, #8f00ff);
+  color: white;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.cta:hover {
+  transform: scale(1.05);
+}
+
+/* SECTIONS */
+.section {
+  padding: 120px 40px;
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.85;
+  margin-bottom: 60px;
+}
+
+/* CARDS */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 35px;
+}
+
+.card {
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* TARIFS */
+.pricing {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 35px;
+}
+
+.price-card {
+  padding: 40px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: 0.3s;
+}
+
+.price-card.best {
+  background: linear-gradient(180deg, #1a1a1a, #000000);
+  border: 1px solid #8f00ff;
+}
+
+.price {
+  font-size: 2.5rem;
+  margin: 20px 0;
+}
+
+.price-card ul {
+  list-style: none;
+  opacity: 0.8;
+  line-height: 2rem;
+}
+
+/* ANIMATIONS ON SCROLL */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-out;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
