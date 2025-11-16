@@ -1,125 +1,199 @@
-/* RESET */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NH110LAB.ai — Intelligence Autonome</title>
+<link rel="stylesheet" href="style.css">
+</head>
 
-/* BODY */
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro", sans-serif;
-    background: #000;
-    color: #fff;
-    overflow-x: hidden;
-}
+<body>
 
-/************* FOND ANIMÉ **************/
-#bgCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-    filter: blur(40px) brightness(1.5);
-}
+<canvas id="background"></canvas>
 
-/************* HEADER **************/
-.header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
-    background: rgba(0,0,0,0.4);
-    backdrop-filter: blur(15px);
-    z-index: 99;
-}
+<header class="header glass">
+    <div class="logo">NH110LAB.ai</div>
+    <nav>
+        <a href="#hero">Accueil</a>
+        <a href="#about">À propos</a>
+        <a href="#agents">Agents IA</a>
+        <a href="#services">Services</a>
+        <a href="#tech">Technologie</a>
+        <a href="#usecases">Cas d’usage</a>
+        <a href="#pricing">Tarifs</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
 
-.logo {
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
+<section id="hero" class="hero">
+    <div class="hero-content glass">
+        <h1>Une Intelligence Autonome au Service de Votre Croissance</h1>
+        <p>Agents IA sur mesure, automatisations avancées et stratégies intelligentes pour PME, indépendants et entreprises visionnaires.</p>
+        <a href="#contact" class="cta">Créer mon agent IA</a>
+    </div>
+</section>
 
-nav a {
-    color: #ffffff;
-    margin-left: 20px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: 0.3s;
-}
-nav a:hover { opacity: 0.5; }
+<section id="about" class="section">
+    <h2>NH110LAB.ai — L’IA au Niveau Supérieur</h2>
+    <p class="text-large">
+        Nous créons des systèmes intelligents capables d’analyser, décider et agir.  
+        Notre mission : offrir aux entreprises une puissance opérationnelle 24/7 grâce à une IA
+        réellement autonome, précise, et complètement personnalisée selon votre activité.
+    </p>
+</section>
 
-/************* HERO **************/
-.hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+<section id="agents" class="section dark-block">
+    <h2>Agents IA Autonomes</h2>
+    <div class="cards">
+        <div class="card glass">
+            <h3>Agent Commercial</h3>
+            <p>Prospection intelligente, segmentation automatique, messages personnalisés.</p>
+        </div>
+        <div class="card glass">
+            <h3>Agent CRM</h3>
+            <p>Réponses WhatsApp, emails, suivis clients, relances automatisées.</p>
+        </div>
+        <div class="card glass">
+            <h3>Agent Analyste</h3>
+            <p>Analyse data, rapports automatiques, visualisation et décisions.</p>
+        </div>
+        <div class="card glass">
+            <h3>Agent Opérations</h3>
+            <p>Automations internes, organisation, exécution de tâches complexes.</p>
+        </div>
+    </div>
+</section>
 
-.hero-box {
-    padding: 60px;
-    border-radius: 30px;
-    text-align: center;
-    animation: fadeIn 1.5s ease;
-}
+<section id="services" class="section">
+    <h2>Services Premium</h2>
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(40px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
+    <div class="cards">
+        <div class="card glass">
+            <h3>Création d’agents IA sur mesure</h3>
+            <p>Un agent unique, construit pour votre activité, vos données et vos objectifs.</p>
+        </div>
 
-/************* GLASS **************/
-.glass {
-    background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(25px);
-    border: 1px solid rgba(255,255,255,0.15);
-    box-shadow: 0 0 30px rgba(255,255,255,0.05);
-}
+        <div class="card glass">
+            <h3>Automations WhatsApp / CRM</h3>
+            <p>Réponses instantanées, suivi client, enregistrement CRM automatique.</p>
+        </div>
 
-/************* CTA **************/
-.cta {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 15px 32px;
-    background: white;
-    color: black;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: 0.3s;
-}
-.cta:hover { opacity: 0.7; }
+        <div class="card glass">
+            <h3>Prospection automatique</h3>
+            <p>Acquisition 24/7 : recherche, qualification, contact, relance.</p>
+        </div>
 
-/************* SECTIONS **************/
-.section {
-    padding: 140px 60px;
-    text-align: center;
-}
+        <div class="card glass">
+            <h3>Analyse Data intelligente</h3>
+            <p>Extraction, dashboards, prédiction, recommandation, rapports.</p>
+        </div>
 
-.cards {
-    margin-top: 50px;
-    display: grid;
-    gap: 35px;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-}
+        <div class="card glass">
+            <h3>Développement workflows n8n</h3>
+            <p>Automatisations complexes, pipelines intelligents, intégrations API.</p>
+        </div>
 
-.card {
-    padding: 40px;
-    border-radius: 25px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 40px rgba(255,255,255,0.15);
-}
+        <div class="card glass">
+            <h3>Stratégie IA complète</h3>
+            <p>Audit, optimisation, transformation digitale, accompagnement.</p>
+        </div>
+    </div>
+</section>
 
-/************* FOOTER **************/
-.footer {
-    padding: 40px;
-    text-align: center;
-    opacity: 0.5;
-}
+<section id="tech" class="section dark-block">
+    <h2>Aurora Intelligence — Notre Technologie</h2>
+    <p class="text-large">
+        Notre moteur IA est basé sur 5 piliers :  
+        <br><br>
+        • **Perception** : analyse des données, messages, documents  
+        • **Mémoire** : stockage intelligent pour un contexte permanent  
+        • **Décision** : raisonnement autonome selon vos règles métier  
+        • **Action** : exécution automatisée dans vos outils  
+        • **Optimisation** : apprentissage continu basé sur les résultats  
+    </p>
+</section>
+
+<section id="usecases" class="section">
+    <h2>Cas d’usage</h2>
+    <ul class="usecases-list">
+        <li>🔍 Prospection 100% automatique (LinkedIn, email, WhatsApp)</li>
+        <li>📨 Réponses client immédiates avec contexte et intelligence</li>
+        <li>📊 Analyse de données et rapports intelligents quotidiens</li>
+        <li>🗂 Gestion CRM entièrement automatisée</li>
+        <li>⚙️ Automatisation de vos opérations internes</li>
+        <li>🤖 Assistants IA spécialisés pour chaque département</li>
+    </ul>
+</section>
+
+<section id="pricing" class="section dark-block">
+    <h2>Tarifs</h2>
+
+    <div class="cards pricing-cards">
+        <div class="card glass">
+            <h3>Starter</h3>
+            <p class="price">49€/mois</p>
+            <ul>
+                <li>1 agent IA</li>
+                <li>Automations simples</li>
+                <li>Support standard</li>
+            </ul>
+        </div>
+
+        <div class="card glass">
+            <h3>Business</h3>
+            <p class="price">149€/mois</p>
+            <ul>
+                <li>3 agents IA</li>
+                <li>Automations avancées</li>
+                <li>Support prioritaire</li>
+            </ul>
+        </div>
+
+        <div class="card glass">
+            <h3>Entreprise</h3>
+            <p class="price">Sur devis</p>
+            <ul>
+                <li>Agents illimités</li>
+                <li>Solutions personnalisées</li>
+                <li>Infrastructure dédiée</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="faq" class="section">
+    <h2>FAQ</h2>
+
+    <div class="faq">
+        <div class="faq-item">
+            <h3>Qu’est-ce qu’un agent IA ?</h3>
+            <p>Un système autonome capable d'agir, de décider et d’exécuter des tâches pour vous.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Pour qui est NH110LAB ?</h3>
+            <p>Pour les indépendants, PME et entreprises souhaitant automatiser et accélérer leur activité.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Comment se fait l’intégration ?</h3>
+            <p>Analyse de vos besoins, création, connexion API, tests, déploiement.</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="section glass">
+    <h2>Contact</h2>
+    <p>Discutons de votre projet IA.</p>
+    <a href="mailto:contact@nh110lab.ai" class="cta">Envoyer un message</a>
+</section>
+
+<footer class="footer">
+    © 2025 — NH110LAB.ai
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
+
