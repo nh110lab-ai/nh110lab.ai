@@ -1,128 +1,110 @@
-/* --- REVEAL ANIMATION AMÉLIORÉE --- */
+/* --- REVEAL ANIMATION --- */
 const reveals = document.querySelectorAll(".reveal");
 
-const obs = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((e, index) => {
-      if (!e.isIntersecting) return;
-      const el = e.target;
-      el.style.setProperty(
-        "--reveal-delay",
-        `${index * 60}ms`
-      );
-      el.classList.add("visible");
-      obs.unobserve(el);
-    });
-  },
-  { threshold: 0.2 }
-);
-
-reveals.forEach((r) => obs.observe(r));
-
-// --- BARRE DE PROGRESSION SCROLL + HEADER COMPACT ---
-const scrollBar = document.createElement("div");
-scrollBar.className = "scroll-progress";
-document.body.appendChild(scrollBar);
-
-const header = document.querySelector(".header");
-
-function updateScrollUI() {
-  const max =
-    document.body.scrollHeight - window.innerHeight || 1;
-  const ratio = window.scrollY / max;
-
-  // fond qui s’éclaircit (remplace ton ancien listener "SCROLL THEME SWITCH")
-  const brightness = 8 + ratio * 70;
-  document.body.style.background = `hsl(240, 15%, ${brightness}%)`;
-
-  // barre de progression
-  scrollBar.style.transform = `scaleX(${ratio})`;
-
-  // header compact
-  if (header) {
-    header.classList.toggle("header-scrolled", window.scrollY > 40);
-  }
+if (reveals.length) {
+  const obs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) e.target.classList.add("visible");
+      });
+    },
+    { threshold: 0.2 }
+  );
+  reveals.forEach((r) => obs.observe(r));
 }
-
-window.addEventListener("scroll", updateScrollUI);
-updateScrollUI();
 
 /* --- SMOOTH SCROLL & NAV ACTIVE --- */
 const navLinks = document.querySelectorAll(".nav-link");
 const sections = document.querySelectorAll("section");
 
-navLinks.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    const href = link.getAttribute("href");
-    if (href && href.startsWith("#")) {
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) {
-        window.scrollTo({
-          top: target.offsetTop - 80,
-          behavior: "smooth",
-        });
+if (navLinks.length && sections.length) {
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href");
+      if (href && href.startsWith("#")) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 80,
+            behavior: "smooth",
+          });
+        }
       }
-    }
-  });
-});
-
-const navObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      const id = entry.target.getAttribute("id");
-      if (!id) return;
-      navLinks.forEach((l) =>
-        l.classList.toggle("active", l.getAttribute("href") === `#${id}`)
-      );
     });
-  },
-  { threshold: 0.4 }
-);
-sections.forEach((s) => navObserver.observe(s));
+  });
 
-/* --- SCROLL THEME SWITCH (légère variation) --- */
+  const navObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.getAttribute("id");
+        if (!id) return;
+        navLinks.forEach((l) =>
+          l.classList.toggle("active", l.getAttribute("href") === `#${id}`)
+        );
+      });
+    },
+    { threshold: 0.4 }
+  );
+  sections.forEach((s) => navObserver.observe(s));
+}
+
+/* --- SCROLL THEME SWITCH (fond clair) --- */
 window.addEventListener("scroll", () => {
   const ratio =
     window.scrollY /
-    (document.body.scrollHeight - window.innerHeight || 1);
-  const brightness = 8 + ratio * 70;
-  document.body.style.background = `hsl(240, 15%, ${brightness}%)`;
+      (document.body.scrollHeight - window.innerHeight || 1) || 0;
+  // luminosité de 96% (haut de page) vers 76% en bas, fond clair
+  const brightness = 96 - ratio * 20;
+  document.body.style.background = `hsl(210, 40%, ${brightness}%)`;
 });
 
-/* --- PARTICLES + ORB + HALO (fond animé) --- */
+/* --- PARTICLES / ORB / HALO (sécurisé si canvas absent) --- */
 const p = document.getElementById("particles");
 const orb = document.getElementById("orb");
 const halo = document.getElementById("halo");
 
-if (p && orb && halo) {
-  const ctxP = p.getContext("2d");
-  const ctxO = orb.getContext("2d");
-  const ctxH = halo.getContext("2d");
+let ctxP = null;
+let ctxO = null;
+let ctxH = null;
 
-  function resizeCanvas() {
-    p.width = innerWidth;
-    p.height = innerHeight;
-    orb.width = innerWidth;
-    orb.height = innerHeight;
-    halo.width = innerWidth;
-    halo.height = innerHeight;
-  }
+if (p && p.getContext) ctxP = p.getContext("2d");
+if (orb && orb.getContext) ctxO = orb.getContext("2d");
+if (halo && halo.getContext) ctxH = halo.getContext("2d");
+
+function resizeCanvas() {
+  if (!p || !orb || !halo) return;
+
+  p.width = innerWidth;
+  p.height = innerHeight;
+  orb.width = innerWidth;
+  orb.height = innerHeight;
+  halo.width = innerWidth;
+  halo.height = innerHeight;
+}
+
+if (ctxP && ctxO && ctxH) {
   resizeCanvas();
   window.addEventListener("resize", resizeCanvas);
+}
 
-  let particles = Array.from({ length: 120 }, () => ({
+/* Particules */
+let particles = [];
+if (ctxP && p) {
+  particles = Array.from({ length: 120 }, () => ({
     x: Math.random() * p.width,
     y: Math.random() * p.height,
     s: Math.random() * 2 + 0.5,
-    vx: (Math.random() - 0.5) * 0.5,
-    vy: (Math.random() - 0.5) * 0.5,
+    vx: (Math.random() - 0.5) * 0.4,
+    vy: (Math.random() - 0.5) * 0.4,
   }));
 
-  function animateParticles() {
+  (function animateParticles() {
+    if (!ctxP || !p) return;
+
     ctxP.clearRect(0, 0, p.width, p.height);
-    ctxP.fillStyle = "rgba(255,255,255,0.7)";
+    ctxP.fillStyle = "rgba(15, 23, 42, 0.25)";
     particles.forEach((pt) => {
       pt.x += pt.vx;
       pt.y += pt.vy;
@@ -134,19 +116,23 @@ if (p && orb && halo) {
       ctxP.fill();
     });
     requestAnimationFrame(animateParticles);
-  }
-  animateParticles();
+  })();
+}
 
-  let t = 0;
-  function animateOrb() {
+/* Orb animé */
+let t = 0;
+if (ctxO && orb) {
+  (function animateOrb() {
+    if (!ctxO || !orb) return;
+
     ctxO.clearRect(0, 0, orb.width, orb.height);
     const x = orb.width / 2;
     const y = orb.height / 2;
     const r = 180 + Math.sin(t) * 40;
 
-    const grad = ctxO.createRadialGradient(x, y, r * 0.3, x, y, r);
-    grad.addColorStop(0, "rgba(180,100,255,0.6)");
-    grad.addColorStop(1, "rgba(20,10,30,0.05)");
+    const grad = ctxO.createRadialGradient(x, y, r * 0.25, x, y, r);
+    grad.addColorStop(0, "rgba(255,255,255,0.9)");
+    grad.addColorStop(1, "rgba(59,130,246,0.08)");
 
     ctxO.fillStyle = grad;
     ctxO.beginPath();
@@ -155,13 +141,17 @@ if (p && orb && halo) {
 
     t += 0.01;
     requestAnimationFrame(animateOrb);
-  }
-  animateOrb();
+  })();
+}
 
-  let h = 0;
-  function animateHalo() {
+/* Halo */
+let h = 0;
+if (ctxH && halo) {
+  (function animateHalo() {
+    if (!ctxH || !halo) return;
+
     ctxH.clearRect(0, 0, halo.width, halo.height);
-    ctxH.strokeStyle = `rgba(255,255,255,${0.15 + Math.sin(h) * 0.1})`;
+    ctxH.strokeStyle = `rgba(15, 23, 42, ${0.08 + Math.sin(h) * 0.04})`;
     ctxH.lineWidth = 2;
 
     ctxH.beginPath();
@@ -176,8 +166,7 @@ if (p && orb && halo) {
 
     h += 0.01;
     requestAnimationFrame(animateHalo);
-  }
-  animateHalo();
+  })();
 }
 
 /* --- PRICING TOGGLE --- */
@@ -185,116 +174,51 @@ const toggleButtons = document.querySelectorAll(".toggle-btn");
 const pilotCard = document.querySelector(".pricing-pilot");
 const runCard = document.querySelector(".pricing-run");
 
-toggleButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    toggleButtons.forEach((b) => b.classList.remove("toggle-btn-active"));
-    btn.classList.add("toggle-btn-active");
-    const mode = btn.dataset.mode;
-    if (mode === "pilot") {
-      pilotCard.classList.remove("hidden");
-      runCard.classList.add("hidden");
-    } else {
-      pilotCard.classList.add("hidden");
-      runCard.classList.remove("hidden");
-    }
+if (toggleButtons.length && pilotCard && runCard) {
+  toggleButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      toggleButtons.forEach((b) => b.classList.remove("toggle-btn-active"));
+      btn.classList.add("toggle-btn-active");
+      const mode = btn.dataset.mode;
+      if (mode === "pilot") {
+        pilotCard.classList.remove("hidden");
+        runCard.classList.add("hidden");
+      } else {
+        pilotCard.classList.add("hidden");
+        runCard.classList.remove("hidden");
+      }
+    });
   });
-});
+}
 
 /* --- FAQ ACCORDION --- */
 const faqItems = document.querySelectorAll(".faq-item");
-faqItems.forEach((item) => {
-  const q = item.querySelector(".faq-question");
-  q.addEventListener("click", () => {
-    const open = item.classList.contains("open");
-    faqItems.forEach((i) => i.classList.remove("open"));
-    if (!open) item.classList.add("open");
+if (faqItems.length) {
+  faqItems.forEach((item) => {
+    const q = item.querySelector(".faq-question");
+    if (!q) return;
+    q.addEventListener("click", () => {
+      const open = item.classList.contains("open");
+      faqItems.forEach((i) => i.classList.remove("open"));
+      if (!open) item.classList.add("open");
+    });
   });
-});
+}
 
-/* --- FAKE FORM HANDLER (juste feedback visuel) --- */
+/* --- FORM HANDLER (maquette) --- */
 const contactForm = document.querySelector(".contact-form");
 if (contactForm) {
   contactForm.addEventListener("submit", (e) => {
     e.preventDefault();
     contactForm.reset();
     alert(
-      "Merci ! Le formulaire est une maquette. Branchez-le à votre backend ou outil de formulaire pour le rendre réellement fonctionnel."
+      "Merci ! Pour rendre ce formulaire réellement fonctionnel, branchez-le à votre backend ou à votre outil de formulaires."
     );
   });
 }
-/* --- PRICING ESTIMATOR --- */
-const agentsRange = document.getElementById("agentsRange");
-const agentsValue = document.getElementById("agentsValue");
-const pricingHint = document.getElementById("pricingHint");
 
-if (agentsRange && agentsValue && pricingHint) {
-  const updateEstimate = () => {
-    const v = parseInt(agentsRange.value, 10);
-    agentsValue.textContent = v + (v > 1 ? " agents" : " agent");
-
-    let hint;
-    if (v <= 2) {
-      hint = "Budget indicatif : 4–8 k€ / mois";
-    } else if (v <= 4) {
-      hint = "Budget indicatif : 8–15 k€ / mois";
-    } else {
-      hint = "Budget indicatif : 15 k€+ / mois";
-    }
-    pricingHint.textContent = hint;
-  };
-
-  agentsRange.addEventListener("input", updateEstimate);
-  updateEstimate();
-}
-/* --- HOVER 3D LÉGER SUR LES CARTES --- */
-const threeDCards = document.querySelectorAll(".card-3d");
-
-threeDCards.forEach((card) => {
-  card.addEventListener("mousemove", (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const rotateX = ((y - rect.height / 2) / rect.height) * 10;
-    const rotateY = ((x - rect.width / 2) / rect.width) * -10;
-
-    card.style.transform = `translateY(-6px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-  });
-
-  card.addEventListener("mouseleave", () => {
-    card.style.transform = "";
-  });
-});
-/* --- COMPTEURS ANIMÉS POUR LES STATS --- */
-const statNumbers = document.querySelectorAll(".stat-number");
-
-if (statNumbers.length) {
-  const statsObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        const target = parseFloat(el.dataset.target || el.textContent) || 0;
-        const duration = 1200;
-        const start = performance.now();
-
-        function tick(now) {
-          const progress = Math.min(1, (now - start) / duration);
-          const value = Math.floor(target * progress);
-          el.textContent = value.toLocaleString("fr-FR");
-          if (progress < 1) {
-            requestAnimationFrame(tick);
-          } else {
-            el.classList.add("bump");
-            setTimeout(() => el.classList.remove("bump"), 220);
-          }
-        }
-
-        requestAnimationFrame(tick);
-        statsObserver.unobserve(el);
-      });
-    },
-    { threshold: 0.4 }
-  );
-
-  statNumbers.forEach((n) => statsObserver.observe(n));
+/* --- YEAR IN FOOTER --- */
+const yearSpan = document.getElementById("year");
+if (yearSpan) {
+  yearSpan.textContent = new Date().getFullYear().toString();
 }
