@@ -2,198 +2,72 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NH110LAB.ai — Intelligence Autonome & Automations Premium</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NH110LAB.ai — Intelligence Autonome</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- BACKGROUNDS -->
-<canvas id="bg-orb"></canvas>
-<canvas id="bg-halo"></canvas>
-<canvas id="bg-particles"></canvas>
+<canvas id="orb"></canvas>
 
 <header class="header glass">
     <div class="logo">NH110LAB.ai</div>
     <nav>
         <a href="#hero">Accueil</a>
-        <a href="#about">Agence</a>
         <a href="#agents">Agents IA</a>
         <a href="#services">Services</a>
-        <a href="#tech">Technologie</a>
-        <a href="#cases">Cas Clients</a>
         <a href="#pricing">Tarifs</a>
-        <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
     </nav>
 </header>
 
-<!-- HERO -->
-<section id="hero" class="hero reveal">
-    <h1>Les Agents IA les plus avancés d’Europe.</h1>
-    <p>Automations, intelligence autonome, optimisation, exécution. Une agence IA nouvelle génération.</p>
+<section id="hero" class="hero">
+    <h1 class="title">Une Intelligence Autonome<br> conçue pour votre entreprise</h1>
+    <p class="subtitle">
+        Agents IA personnalisés. Automations avancées. Une nouvelle ère d’efficacité.
+    </p>
     <a href="#contact" class="cta">Créer mon agent IA</a>
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="section reveal">
-    <h2>L’Agence IA qui dépasse les standards</h2>
-    <p class="large-text">
-        NH110LAB.ai construit des systèmes autonomes capables d’agir pour votre entreprise :
-        prospection, CRM, support, analyse, opérations…  
-        Nous créons l’équivalent d’un employé ultra qualifié, disponible 24/7, qui travaille sans erreur.
-    </p>
-
-    <div class="bullet-grid">
-        <div class="bullet">🎯 Automations complètes</div>
-        <div class="bullet">⚡ Exécution instantanée</div>
-        <div class="bullet">📊 Analyse continue</div>
-        <div class="bullet">🤖 IA sur mesure</div>
-        <div class="bullet">🔗 Intégrations API / CRM / WhatsApp</div>
-        <div class="bullet">🔥 Optimisation permanente</div>
+<section id="agents" class="section">
+    <h2>Agents Autonomes</h2>
+    <div class="grid">
+        <div class="card"><h3>Prospection</h3><p>Acquisition 24/7.</p></div>
+        <div class="card"><h3>CRM</h3><p>WhatsApp + Emails automatiques.</p></div>
+        <div class="card"><h3>Analyste</h3><p>Data, insights, décisions.</p></div>
+        <div class="card"><h3>Opérations</h3><p>Automatisation interne.</p></div>
     </div>
 </section>
 
-<!-- AGENTS -->
-<section id="agents" class="section reveal dark-block">
-    <h2>Nos Agents IA autonomes</h2>
-
-    <div class="cards">
-        <div class="card glass"><h3>Agent Commercial</h3><p>Prospection, messages, relances, segmentation.</p></div>
-        <div class="card glass"><h3>Agent CRM</h3><p>WhatsApp, mails, relances, statuts, pipelines.</p></div>
-        <div class="card glass"><h3>Agent Analyste</h3><p>Dashboards, extraction, rapports automatiques.</p></div>
-        <div class="card glass"><h3>Agent Opérations</h3><p>Tâches, automatisations, coordination interne.</p></div>
-        <div class="card glass"><h3>Agent Support</h3><p>Réponses instantanées & self-service intelligent.</p></div>
-        <div class="card glass"><h3>Agent Acquisition</h3><p>Pub, tracking, ciblage, optimisation.</p></div>
+<section id="services" class="section">
+    <h2>Services</h2>
+    <div class="grid">
+        <div class="card"><h3>Agent IA sur mesure</h3><p>Pour votre activité.</p></div>
+        <div class="card"><h3>Automations API</h3><p>WhatsApp, CRM, sites…</p></div>
+        <div class="card"><h3>Prospection IA</h3><p>LinkedIn + Email.</p></div>
+        <div class="card"><h3>Analyse Data</h3><p>Tableaux + prédiction.</p></div>
     </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services" class="section reveal">
-    <h2>Services Premium</h2>
-
-    <div class="cards">
-        <div class="card glass"><h3>Agents IA sur mesure</h3><p>Créés pour votre activité.</p></div>
-        <div class="card glass"><h3>Automations CRM / WhatsApp</h3><p>API, triggers, campagnes, tri auto.</p></div>
-        <div class="card glass"><h3>Workflows n8n</h3><p>Pipelines automatisés.</p></div>
-        <div class="card glass"><h3>Stratégie IA complète</h3><p>Audit, optimisation, transformation.</p></div>
-        <div class="card glass"><h3>Développement API</h3><p>Architecture & exécution autonome.</p></div>
-        <div class="card glass"><h3>Optimisation continue</h3><p>Votre IA devient chaque jour plus performante.</p></div>
-    </div>
-</section>
-
-<!-- TECHNOLOGY -->
-<section id="tech" class="section reveal dark-block">
-    <h2>Aurora Intelligence — Notre moteur IA propriétaire</h2>
-
-    <p class="large-text">Une architecture inspirée des principes Apple Intelligence.</p>
-
-    <div class="tech-grid">
-        <div class="tech-item glass"><h3>Perception</h3><p>Analyse contextuelle de données.</p></div>
-        <div class="tech-item glass"><h3>Mémoire</h3><p>Long terme & précision métier.</p></div>
-        <div class="tech-item glass"><h3>Décision</h3><p>Raisonnement logique avancé.</p></div>
-        <div class="tech-item glass"><h3>Action</h3><p>Exécution autonome via API.</p></div>
-        <div class="tech-item glass"><h3>Optimisation</h3><p>Apprentissage continu réel.</p></div>
-    </div>
-</section>
-
-<!-- CASE STUDIES -->
-<section id="cases" class="section reveal">
-    <h2>Cas Clients & Résultats</h2>
-
-    <div class="cases-grid">
-        <div class="case glass">
-            <h3>PME Transport</h3>
-            <p>+310% contacts traités automatiquement • 0 erreur • 40h gagnées / semaine</p>
-        </div>
-
-        <div class="case glass">
-            <h3>Agence Marketing</h3>
-            <p>Prospection 100% automatisée. 3 nouveaux clients / semaine.</p>
-        </div>
-
-        <div class="case glass">
-            <h3>Indépendant</h3>
-            <p>Support automatisé → 95% réponses en 3 secondes.</p>
-        </div>
-    </div>
-</section>
-
-<!-- PRICING -->
-<section id="pricing" class="section dark-block reveal">
+<section id="pricing" class="section">
     <h2>Tarifs</h2>
-
-    <div class="pricing-cards">
-        <div class="price-card glass">
-            <h3>Starter</h3>
-            <p class="price">49€/mois</p>
-            <ul>
-                <li>1 agent IA</li>
-                <li>Automations simples</li>
-                <li>Support standard</li>
-            </ul>
-        </div>
-
-        <div class="price-card glass">
-            <h3>Business</h3>
-            <p class="price">149€/mois</p>
-            <ul>
-                <li>3 agents IA</li>
-                <li>Intégrations avancées</li>
-                <li>Support premium</li>
-            </ul>
-        </div>
-
-        <div class="price-card glass">
-            <h3>Entreprise</h3>
-            <p class="price">Sur devis</p>
-            <ul>
-                <li>Agents illimités</li>
-                <li>Architecture dédiée</li>
-                <li>IA sur mesure totale</li>
-            </ul>
-        </div>
+    <div class="pricing">
+        <div class="card"><h3>Starter</h3><p class="price">49€/mois</p></div>
+        <div class="card featured"><h3>Business</h3><p class="price">149€/mois</p></div>
+        <div class="card"><h3>Entreprise</h3><p class="price">Sur devis</p></div>
     </div>
 </section>
 
-<!-- FAQ -->
-<section id="faq" class="section reveal">
-    <h2>FAQ</h2>
-
-    <div class="faq-grid">
-        <div class="faq-item">
-            <h3>Combien de temps pour livrer un agent IA ?</h3>
-            <p>Entre 3 et 7 jours selon complexité.</p>
-        </div>
-        <div class="faq-item">
-            <h3>Peut-on connecter WhatsApp, CRM, API ?</h3>
-            <p>Oui. Toutes les intégrations sont possibles.</p>
-        </div>
-        <div class="faq-item">
-            <h3>L’IA apprend-elle vraiment ?</h3>
-            <p>Oui. Aurora Intelligence optimise en continu.</p>
-        </div>
-    </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="section reveal glass">
+<section id="contact" class="section">
     <h2>Contact</h2>
     <p>Discutons de votre projet IA.</p>
-    <a href="mailto:contact@nh110lab.ai" class="cta">Envoyer un message</a>
+    <a class="cta" href="mailto:contact@nh110lab.ai">Envoyer un message</a>
 </section>
 
-<!-- AGENT IA -->
-<div id="ai-agent" class="ai-agent">
-    <div class="ai-avatar"></div>
-    <div class="ai-chat">
-        <p class="ai-text">Bonjour 👋 Je suis l’agent Aurora. Besoin d’aide ?</p>
-    </div>
-</div>
-
-<footer class="footer">© 2025 — NH110LAB.ai</footer>
+<footer>© 2025 — NH110LAB.ai</footer>
 
 <script src="script.js"></script>
+
 </body>
 </html>
