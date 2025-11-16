@@ -1,110 +1,305 @@
-/* HEADER FX */
-const header = document.querySelector(".header");
-window.addEventListener("scroll", () => {
-  header.classList.toggle("scrolled", window.scrollY > 60);
-});
-
-/* THEME */
-const themeBtn = document.querySelector(".theme-toggle");
-
-function applyTheme(t) {
-  document.documentElement.setAttribute("data-theme", t);
-  localStorage.setItem("theme", t);
+/* =======================================
+   ROOT — Variables VisionOS / Apple Style
+======================================= */
+:root {
+    --bg: #f6f7fb;
+    --bg-dark: #0c0c0f;
+    --text: #0d0d0f;
+    --text-dark: #f5f5f7;
+    --accent: #6a4dfd;
+    --accent-light: #a48bff;
+    --glass: rgba(255, 255, 255, 0.45);
+    --glass-dark: rgba(20, 20, 25, 0.45);
+    --radius: 20px;
+    --shadow: 0 20px 60px rgba(0,0,0,0.08);
+    --shadow-strong: 0 30px 80px rgba(0,0,0,0.20);
+    --transition: 0.5s cubic-bezier(.25,.6,.3,1);
 }
 
-const saved = localStorage.getItem("theme");
-applyTheme(saved || (window.matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light"));
-
-themeBtn?.addEventListener("click", () => {
-  const current = document.documentElement.getAttribute("data-theme");
-  applyTheme(current === "dark" ? "light" : "dark");
-});
-
-/* REVEAL */
-const reveals = document.querySelectorAll(".reveal");
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach((e) => {
-    if (e.isIntersecting) {
-      e.target.classList.add("reveal-visible");
-      obs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.15 });
-
-reveals.forEach((el) => obs.observe(el));
-
-/* MOBILE NAV */
-const navToggle = document.querySelector(".nav-toggle");
-const nav = document.querySelector(".nav");
-
-navToggle?.addEventListener("click", () => {
-  nav.classList.toggle("open");
-  navToggle.classList.toggle("open");
-  document.body.classList.toggle("no-scroll");
-});
-
-/* FAQ */
-document.querySelectorAll(".faq-item").forEach((item) => {
-  item.querySelector(".faq-question").addEventListener("click", () => {
-    item.classList.toggle("open");
-  });
-});
-
-/* PARALLAX */
-document.addEventListener("mousemove", (e) => {
-  document.querySelectorAll(".orb, .hero-orb").forEach((orb) => {
-    const speed = orb.dataset.speed || 20;
-    const x = (window.innerWidth / 2 - e.clientX) / speed;
-    const y = (window.innerHeight / 2 - e.clientY) / speed;
-    orb.style.transform = `translate(${x}px, ${y}px)`;
-  });
-});
-
-/* SMOOTH SCROLL */
-document.querySelectorAll('a[href^="#"]').forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    const t = document.querySelector(link.getAttribute("href"));
-    if (!t) return;
-    window.scrollTo({ top: t.offsetTop - 60, behavior: "smooth" });
-  });
-});
-
-/* COUNTERS */
-function animateCounter(el) {
-  const t = +el.dataset.value;
-  let c = 0;
-  const inc = t / 80;
-
-  function update() {
-    c += inc;
-    el.textContent = c < t ? Math.floor(c) : t;
-    if (c < t) requestAnimationFrame(update);
-  }
-  update();
+body.dark {
+    --bg: var(--bg-dark);
+    --text: var(--text-dark);
+    --glass: var(--glass-dark);
 }
 
-const statObs = new IntersectionObserver((entries) => {
-  entries.forEach((e) => {
-    if (e.isIntersecting) {
-      e.target.querySelectorAll("[data-value]").forEach(animateCounter);
-      statObs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.3 });
 
-document.querySelectorAll(".stats-grid").forEach((el) => statObs.observe(el));
+/* =======================================
+   GLOBAL
+======================================= */
+* { margin:0; padding:0; box-sizing:border-box; }
 
-/* FLOATING ORBS */
-function floatElement(el, intensity = 10) {
-  let y = 0, dir = 1;
-  function loop() {
-    y += dir * 0.1;
-    if (Math.abs(y) > intensity) dir *= -1;
-    el.style.transform = `translateY(${y}px)`;
-    requestAnimationFrame(loop);
-  }
-  loop();
+body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    transition: background var(--transition), color var(--transition);
 }
 
-document.querySelectorAll(".orb, .hero-orb").forEach((el) => floatElement(el));
+section {
+    padding: 120px 24px;
+}
+
+.section {
+    max-width: 1150px;
+    margin: auto;
+}
+
+.section-title {
+    font-size: 48px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: var(--transition);
+}
+
+.section-desc {
+    max-width: 650px;
+    color: #666;
+    font-size: 20px;
+    margin-bottom: 60px;
+}
+
+.section-title.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =======================================
+   HEADER
+======================================= */
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    padding: 26px 40px;
+    backdrop-filter: blur(20px) saturate(1.4);
+    background: var(--glass);
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+header.scrolled {
+    padding: 14px 40px;
+    box-shadow: var(--shadow);
+}
+
+.nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    height: 42px;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+}
+
+nav a {
+    margin-left: 30px;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+
+/* =======================================
+   HERO — VisionOS Orb + Glass Floating
+======================================= */
+.hero {
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.orb-bg {
+    position: absolute;
+    width: 900px;
+    opacity: 0.7;
+    filter: blur(40px);
+    animation: orbMove 12s infinite alternate ease-in-out;
+}
+
+@keyframes orbMove {
+    0% { transform: translate(-80px, -40px) scale(1); }
+    100% { transform: translate(80px, 40px) scale(1.15); }
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 72px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1.05;
+    animation: fadeUp 1.2s ease-out forwards;
+    opacity: 0;
+}
+
+.hero-sub {
+    font-size: 22px;
+    margin-top: 18px;
+    opacity: 0;
+    animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.btn-main {
+    padding: 16px 40px;
+    border-radius: 18px;
+    margin-top: 40px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 12px 35px rgba(106,77,253,0.35);
+    transition: 0.3s;
+}
+
+.btn-main:hover {
+    transform: scale(1.05);
+}
+
+/* =======================================
+   AGENTS — Gallery VisionOS
+======================================= */
+.agents-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+}
+
+.agent-img {
+    width: 330px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(22px);
+    background: var(--glass);
+    transition: 0.35s;
+}
+
+.agent-img:hover {
+    transform: scale(1.04);
+    box-shadow: var(--shadow-strong);
+}
+
+/* =======================================
+   CARDS
+======================================= */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: var(--glass);
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(20px);
+    transition: 0.4s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-strong);
+}
+
+/* =======================================
+   PRICE
+======================================= */
+.pricing-grid {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    flex-wrap: wrap;
+}
+
+.price-card {
+    width: 330px;
+    background: var(--glass);
+    padding: 40px;
+    border-radius: var(--radius);
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.price-card .price {
+    font-size: 46px;
+    margin: 15px 0;
+    font-weight: 900;
+}
+
+/* =======================================
+   FAQ
+======================================= */
+.faq-item {
+    background: var(--glass);
+    padding: 22px;
+    border-radius: var(--radius);
+    margin-bottom: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.faq-item:hover {
+    box-shadow: var(--shadow);
+}
+
+.faq-a {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.5s ease;
+    margin-top: 8px;
+}
+
+.faq-item.active .faq-a {
+    max-height: 200px;
+    opacity: 1;
+}
+
+/* =======================================
+   CONTACT
+======================================= */
+.contact-box {
+    background: var(--glass);
+    padding: 50px;
+    border-radius: var(--radius);
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+
+/* =======================================
+   RESPONSIVE
+======================================= */
+@media(max-width: 850px){
+    .hero-title { font-size: 48px; }
+    .hero-sub { font-size: 18px; }
+    nav a { margin-left: 15px; }
+}
