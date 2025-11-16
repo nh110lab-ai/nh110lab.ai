@@ -4,17 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NH110LAB.ai — Intelligence & Automations</title>
+
+  <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
   <!-- NAVIGATION -->
-  <nav class="nav">
-    <img src="logo.png" alt="NH110LAB Logo" class="nav-logo">
+  <nav class="nav glass-nav">
+    <img src="logo.png" alt="NH110LAB Logo" class="nav-logo" />
     <div class="nav-links">
       <a href="#hero">Accueil</a>
+      <a href="#vision">Vision</a>
       <a href="#agents">Agents IA</a>
       <a href="#services">Services</a>
       <a href="#tarifs">Tarifs</a>
@@ -22,63 +25,88 @@
     </div>
   </nav>
 
-  <!-- HERO -->
-  <header id="hero" class="section hero">
+  <!-- HERO 3D IMMERSIF -->
+  <header id="hero" class="hero">
+    <div class="hero-orb"></div>
+
     <div class="hero-content">
-      <img src="logo.png" class="hero-logo" alt="NH110LAB Logo">
+      <img src="logo.png" class="hero-logo-3d" alt="NH110LAB Logo">
       <h1 class="hero-title">NH110LAB.ai</h1>
       <p class="hero-subtitle">
-        L’excellence de l’intelligence artificielle appliquée à votre activité.
-        Une agence premium spécialisée en agents autonomes & automatisation sur-mesure.
+        L’agence d’intelligence artificielle nouvelle génération.<br>
+        Agents autonomes, automatisations intelligentes, architectures IA immersives et solutions visionOS.
       </p>
       <a href="#contact" class="cta">Créer mon agent IA</a>
     </div>
   </header>
 
+  <!-- SECTION VISION PRO -->
+  <section id="vision" class="section fade-up glass-panel">
+    <h2>Une vision nouvelle de l’IA</h2>
+    <p class="section-long">
+      NH110LAB.ai propose une approche entièrement immersive de l’intelligence artificielle : 
+      des agents autonomes capables de comprendre, analyser et décider, des workflows intelligents qui 
+      orchestrent vos opérations, et une architecture inspirée de visionOS, alliant fluidité, précision 
+      et élégance. Notre mission : transformer vos processus en systèmes autonomes capables d'agir en permanence.
+    </p>
+  </section>
+
   <!-- AGENTS IA -->
   <section id="agents" class="section fade-up">
-    <h2>Agents IA Premium</h2>
+    <h2>Agents IA Autonomes</h2>
     <p class="section-subtitle">
-      Des agents autonomes capables d’agir, d’analyser et d’exécuter vos tâches à votre place.
+      Des systèmes intelligents capables d’agir seuls, 24/7, selon vos objectifs.
     </p>
 
     <div class="cards">
-      <div class="card">
-        <h3>Prospection Automatique</h3>
-        <p>Un agent autonome qui recherche, analyse et contacte vos prospects selon vos règles.</p>
+      <div class="card glass-card">
+        <h3>Agent de Prospection</h3>
+        <p>
+          Analyse de cibles, segmentation, envoi automatique, relances, adaptation au contexte, scoring 
+          intelligent et reporting temps réel.
+        </p>
       </div>
 
-      <div class="card">
-        <h3>Gestion & Opérations</h3>
-        <p>Agents capables de gérer vos emails, CRM, tâches répétitives et process internes.</p>
+      <div class="card glass-card">
+        <h3>Agent d’Opérations</h3>
+        <p>
+          Gestion emails, CRM, WhatsApp, documents, tâches administratives, 
+          automatisation multi-API, exécution autonome.
+        </p>
       </div>
 
-      <div class="card">
-        <h3>Analyse & Décision</h3>
-        <p>Des modèles intelligents capables de comparer, choisir et exécuter la meilleure stratégie.</p>
+      <div class="card glass-card">
+        <h3>Agent Analyste</h3>
+        <p>
+          Extraction de données, comparaison, calculs, interprétation, choix autonome de la meilleure décision.
+        </p>
       </div>
     </div>
   </section>
 
   <!-- SERVICES -->
-  <section id="services" class="section fade-up">
+  <section id="services" class="section fade-up glass-panel">
     <h2>Services Premium</h2>
-    <p class="section-subtitle">Des solutions complètes pour élever votre business avec l’IA.</p>
+    <p class="section-long">
+      Nous concevons des écosystèmes IA complets : agents autonomes, solutions API, pipelines avancés, 
+      intégrations professionnelles et automatisations sur-mesure. Notre équipe développe des systèmes 
+      capables de s'adapter, de s'améliorer et d’optimiser vos performances en continu.
+    </p>
 
     <div class="cards">
-      <div class="card">
+      <div class="card glass-card">
         <h3>Automations API</h3>
-        <p>Workflows professionnels : CRM, WhatsApp, emails, sites web, pipelines IA.</p>
+        <p>Workflows intelligents : CRM, WhatsApp, emails, sites web, bases de données.</p>
       </div>
 
-      <div class="card">
-        <h3>Développement IA Sur-Mesure</h3>
-        <p>Des intégrations complètes adaptées exactement à votre activité.</p>
+      <div class="card glass-card">
+        <h3>Développement IA</h3>
+        <p>Agents autonomes, modèles IA, intégrations complexes, architectures hybrides.</p>
       </div>
 
-      <div class="card">
-        <h3>Audit IA Complet</h3>
-        <p>Analyse approfondie de vos processus + plan d’optimisation intelligent.</p>
+      <div class="card glass-card">
+        <h3>Audit IA</h3>
+        <p>Analyse profonde de vos processus + création d’un plan de transformation intelligent.</p>
       </div>
     </div>
   </section>
@@ -88,7 +116,7 @@
     <h2>Tarifs</h2>
 
     <div class="pricing">
-      <div class="price-card">
+      <div class="price-card glass-card">
         <h3>Starter</h3>
         <p class="price">49€/mois</p>
         <ul>
@@ -98,7 +126,7 @@
         </ul>
       </div>
 
-      <div class="price-card best">
+      <div class="price-card best glass-card">
         <h3>Business</h3>
         <p class="price">149€/mois</p>
         <ul>
@@ -108,7 +136,7 @@
         </ul>
       </div>
 
-      <div class="price-card">
+      <div class="price-card glass-card">
         <h3>Entreprise</h3>
         <p class="price">Sur devis</p>
         <ul>
@@ -121,7 +149,7 @@
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="section fade-up">
+  <section id="contact" class="section fade-up glass-panel">
     <h2>Contact</h2>
     <p class="section-subtitle">Discutons de votre projet 👋</p>
     <a href="mailto:contact@nh110lab.ai" class="cta">Envoyer un message</a>
