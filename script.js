@@ -48,15 +48,17 @@ if (sections.length && navLinks.length) {
   );
   sections.forEach((s) => navObserver.observe(s));
 }
+/* --- HAO INTERACTIF TYPE APPLE INTELLIGENCE --- */
+window.addEventListener("mousemove", (e) => {
+  const x = e.clientX / window.innerWidth;
+  const y = e.clientY / window.innerHeight;
 
-/* --- SCROLL THEME SWITCH (légère variation) --- */
-window.addEventListener("scroll", () => {
-  const ratio =
-    window.scrollY /
-      (document.body.scrollHeight - window.innerHeight || 1);
-  const brightness = 8 + ratio * 70;
-  document.body.style.background = `hsl(240, 15%, ${brightness}%)`;
+  // On écrit dans des CSS custom properties utilisées par body::before
+  document.documentElement.style.setProperty("--cursor-x", x.toString());
+  document.documentElement.style.setProperty("--cursor-y", y.toString());
 });
+
+
 
 /* --- CANVAS ELEMENTS (peuvent être absents sur certaines pages) --- */
 const p = document.getElementById("particles");
