@@ -1,9 +1,9 @@
 /* =========================================================
    🌙 NH110LAB.ai — VERSION LUXE MAX
-   PARTIE 1/3 : RESET + VARIABLES + GLOBAL + HEADER + HERO
+   RESET + VARIABLES + GLOBAL + HEADER + HERO
    ========================================================= */
 
-/* ---------- RESET ---------- */
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -15,40 +15,39 @@ html {
 }
 
 body {
-  font-family: Inter, system-ui, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
 }
 
-/* ---------- THEMES ---------- */
+/* THEMES */
 :root {
-  --bg: #0a0a0a;
-  --bg-alt: #111;
-  --text: #eaeaea;
-  --text-dim: #a0a0a0;
+  --bg: #050509;
+  --bg-alt: #0c0c12;
+  --text: #f5f5ff;
+  --text-dim: #a0a0bb;
   --accent: #6d59ff;
   --accent2: #8b7aff;
-  --border: rgba(255,255,255,0.1);
-  --card-bg: rgba(255,255,255,0.04);
+  --border: rgba(255, 255, 255, 0.12);
+  --card-bg: rgba(255, 255, 255, 0.04);
 
-  /* ORB premium glow */
-  --orb-strong: rgba(128, 90, 255, 0.65);
-  --orb-soft: rgba(128, 90, 255, 0.25);
+  --orb-strong: rgba(128, 90, 255, 0.7);
+  --orb-soft: rgba(128, 90, 255, 0.23);
 }
 
 [data-theme="light"] {
-  --bg: #f8f8f8;
-  --bg-alt: #fff;
-  --text: #111;
-  --text-dim: #555;
+  --bg: #f8f8ff;
+  --bg-alt: #ffffff;
+  --text: #111122;
+  --text-dim: #555579;
   --accent: #6044ff;
   --accent2: #836aff;
-  --border: rgba(0,0,0,0.1);
-  --card-bg: rgba(0,0,0,0.04);
+  --border: rgba(0, 0, 0, 0.08);
+  --card-bg: rgba(0, 0, 0, 0.03);
 }
 
-/* ---------- GLOBAL ELEMENTS ---------- */
+/* GLOBAL SECTIONS */
 section {
   padding: 6rem 2rem;
   max-width: 1200px;
@@ -75,31 +74,48 @@ section {
   color: var(--text-dim);
 }
 
-/* ---------- BACKGROUND CANVAS (ORB + HALO + PARTICLES) ---------- */
+/* BACKGROUND ORB + HALO + PARTICLES */
 #orb,
 #halo,
 #particles {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100vw;
   height: 100vh;
   z-index: 0;
   pointer-events: none;
 }
 
-/* HALO LUXE GLOW */
+/* orb : glow violet principal */
+#orb {
+  background:
+    radial-gradient(circle at 20% 20%, var(--orb-strong), transparent 60%),
+    radial-gradient(circle at 80% 70%, rgba(94, 234, 212, 0.6), transparent 65%);
+  mix-blend-mode: screen;
+  opacity: 0.9;
+  animation: orbMove 18s infinite alternate ease-in-out;
+}
+
+/* halo : flou large */
 #halo {
-  filter: blur(120px) brightness(1.4);
+  background:
+    radial-gradient(circle at 50% 10%, var(--orb-soft), transparent 70%),
+    radial-gradient(circle at 10% 80%, rgba(255, 255, 255, 0.2), transparent 75%);
+  filter: blur(120px) brightness(1.3);
   opacity: 0.6;
+  animation: haloPulse 12s infinite ease-in-out;
 }
 
-/* PARTICLES */
+/* pseudo particules avec dégradé bruité */
 #particles {
-  opacity: 0.4;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.09) 0, transparent 55%),
+    radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.06) 0, transparent 50%),
+    radial-gradient(circle at 30% 80%, rgba(255, 255, 255, 0.05) 0, transparent 55%);
+  opacity: 0.35;
 }
 
-/* ---------- HEADER ---------- */
+/* HEADER */
 .header {
   position: fixed;
   top: 0;
@@ -109,15 +125,14 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(14px);
+  background: rgba(5, 5, 15, 0.76);
+  backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
   z-index: 10;
 }
 
 [data-theme="light"] .header {
-  background: rgba(255,255,255,0.55);
-  backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.76);
 }
 
 .header .logo {
@@ -127,6 +142,7 @@ section {
   color: var(--text);
 }
 
+/* NAV */
 .nav {
   display: flex;
   gap: 1.5rem;
@@ -136,7 +152,7 @@ section {
   text-decoration: none;
   color: var(--text-dim);
   font-size: 0.95rem;
-  transition: 0.2s;
+  transition: color 0.2s;
 }
 
 .nav a:hover {
@@ -147,7 +163,7 @@ section {
   color: var(--accent) !important;
 }
 
-/* ---------- THEME SWITCH ---------- */
+/* THEME SWITCH */
 #theme-toggle {
   margin-left: 1rem;
   font-size: 1.1rem;
@@ -165,13 +181,14 @@ section {
   color: white;
 }
 
-/* ---------- MOBILE NAV TOGGLE ---------- */
+/* MOBILE NAV TOGGLE */
 .nav-toggle {
   display: none;
   flex-direction: column;
   gap: 5px;
   background: none;
   border: none;
+  cursor: pointer;
 }
 
 .nav-toggle span {
@@ -180,7 +197,7 @@ section {
   background: var(--text);
 }
 
-/* ---------- HERO ---------- */
+/* HERO */
 .hero {
   padding-top: 10rem;
   display: flex;
@@ -195,6 +212,7 @@ section {
 .hero-eyebrow {
   text-transform: uppercase;
   font-size: 0.9rem;
+  letter-spacing: 0.08em;
   color: var(--accent);
   margin-bottom: 1rem;
 }
@@ -230,7 +248,12 @@ section {
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
+  border: none;
+  cursor: pointer;
   transition: 0.25s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-primary:hover {
@@ -243,6 +266,9 @@ section {
   border-radius: 8px;
   border: 1px solid var(--border);
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-tags {
@@ -258,7 +284,7 @@ section {
   font-size: 0.85rem;
 }
 
-/* Sidebar Hero */
+/* HERO ASIDE */
 .hero-aside {
   flex: 1;
   display: flex;
@@ -269,19 +295,20 @@ section {
 .card-info {
   background: var(--card-bg);
   border: 1px solid var(--border);
-  padding: 1.2rem;
+  padding: 1.2rem 1.4rem;
   border-radius: 12px;
 }
 
 .card-info h3 {
   margin-bottom: 0.6rem;
 }
-/* =========================================================
-   🌙 VERSION LUXE MAX
-   PARTIE 2/3 : SERVICES + DEVIS + TESTIMONIAL + USECASES + TECH + PRICING
-   ========================================================= */
 
-/* ---------- SERVICES ---------- */
+.card-info ol {
+  padding-left: 1.1rem;
+  color: var(--text-dim);
+}
+
+/* SERVICES */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -315,7 +342,7 @@ section {
   line-height: 1.7;
 }
 
-/* ---------- DEVIS EXPRESS ---------- */
+/* DEVIS EXPRESS */
 .devis-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -329,7 +356,8 @@ section {
   gap: 1rem;
 }
 
-.devis-form label {
+.devis-form label,
+.devis-form legend {
   font-weight: 600;
 }
 
@@ -351,6 +379,9 @@ section {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+  border: none;
+  padding: 0;
+  margin: 0;
 }
 
 .devis-result {
@@ -359,9 +390,10 @@ section {
   border-radius: 14px;
   border: 1px solid var(--border);
   min-height: 180px;
+  color: var(--text-dim);
 }
 
-/* ---------- TESTIMONIALS ---------- */
+/* TESTIMONIALS */
 .testimonial-tabs {
   display: flex;
   gap: 1rem;
@@ -376,6 +408,7 @@ section {
   border: 1px solid var(--border);
   cursor: pointer;
   transition: 0.25s;
+  color: var(--text);
 }
 
 .tab.active,
@@ -391,13 +424,12 @@ section {
 }
 
 .panel {
-  display: none;
   text-align: center;
   color: var(--text-dim);
 }
 
-.panel.active {
-  display: block;
+.panel[hidden] {
+  display: none;
 }
 
 .panel .quote {
@@ -411,7 +443,7 @@ section {
   color: var(--text-dim);
 }
 
-/* ---------- USECASES ---------- */
+/* USECASES */
 .usecases-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -441,7 +473,7 @@ section {
   color: var(--text-dim);
 }
 
-/* ---------- TECH ---------- */
+/* TECH */
 .tech-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -465,7 +497,7 @@ section {
   color: var(--text-dim);
 }
 
-/* ---------- PRICING ---------- */
+/* PRICING */
 .pricing-toggle {
   display: flex;
   justify-content: center;
@@ -480,6 +512,7 @@ section {
   border-radius: 8px;
   cursor: pointer;
   transition: 0.25s;
+  color: var(--text);
 }
 
 .pricing-btn.active,
@@ -535,12 +568,8 @@ section {
   text-align: center;
   margin-top: 1.5rem;
 }
-/* =========================================================
-   🌙 VERSION LUXE MAX
-   PARTIE 3/3 : FAQ + CONTACT + AI WIDGET + FOOTER + RESPONSIVE
-   ========================================================= */
 
-/* ---------- FAQ ---------- */
+/* FAQ */
 .faq-list {
   max-width: 800px;
   margin: auto;
@@ -556,11 +585,12 @@ section {
   background: none;
   border: none;
   color: var(--text);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   padding: 0.8rem 0;
   display: flex;
   justify-content: space-between;
   cursor: pointer;
+  text-align: left;
 }
 
 .faq-answer {
@@ -574,7 +604,7 @@ section {
   display: block;
 }
 
-/* ---------- CONTACT ---------- */
+/* CONTACT */
 .contact-form {
   max-width: 650px;
   margin: auto;
@@ -595,10 +625,10 @@ section {
 .contact-note {
   text-align: center;
   color: var(--text-dim);
-  margin-top: 1rem;
+  margin-top: 0.4rem;
 }
 
-/* ---------- AI WIDGET (Assistant IA) ---------- */
+/* AI WIDGET */
 .ai-widget {
   position: fixed;
   bottom: 30px;
@@ -617,7 +647,7 @@ section {
   border-radius: 12px;
   cursor: pointer;
   font-weight: 600;
-  box-shadow: 0px 0px 14px rgba(120, 90, 255, 0.5);
+  box-shadow: 0 0 14px rgba(120, 90, 255, 0.5);
   transition: 0.25s;
 }
 
@@ -635,7 +665,7 @@ section {
   display: none;
   flex-direction: column;
   height: 430px;
-  box-shadow: 0px 0px 25px rgba(120, 90, 255, 0.35);
+  box-shadow: 0 0 25px rgba(120, 90, 255, 0.35);
   backdrop-filter: blur(16px);
 }
 
@@ -674,6 +704,7 @@ section {
   border-radius: 10px;
   max-width: 85%;
   line-height: 1.4;
+  font-size: 0.92rem;
 }
 
 .ai-message.bot {
@@ -708,7 +739,7 @@ section {
   border-radius: 10px;
 }
 
-/* ---------- FOOTER ---------- */
+/* FOOTER */
 .footer {
   padding: 4rem 2rem;
   text-align: center;
@@ -744,7 +775,20 @@ section {
   font-size: 0.85rem;
 }
 
-/* ---------- RESPONSIVE MOBILE ---------- */
+/* ACCESSIBILITÉ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* RESPONSIVE */
 @media (max-width: 900px) {
   .hero {
     flex-direction: column;
@@ -756,6 +800,18 @@ section {
 
   .nav {
     display: none;
+    position: absolute;
+    top: 60px;
+    right: 1.5rem;
+    flex-direction: column;
+    padding: 1rem;
+    background: var(--bg-alt);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+
+  .nav.open {
+    display: flex;
   }
 
   .nav-toggle {
@@ -779,23 +835,27 @@ section {
   }
 }
 
-/* ---------- ORB ANIMATION PREMIUM ---------- */
-#orb {
-  animation: orbMove 18s infinite alternate ease-in-out;
-}
-
+/* ANIMATIONS ORB + HALO */
 @keyframes orbMove {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(60px, -40px) scale(1.15); }
-  100% { transform: translate(-30px, 20px) scale(1.05); }
-}
-
-#halo {
-  animation: haloPulse 10s infinite ease-in-out;
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(60px, -40px) scale(1.12);
+  }
+  100% {
+    transform: translate(-30px, 20px) scale(1.04);
+  }
 }
 
 @keyframes haloPulse {
-  0% { opacity: 0.4; }
-  50% { opacity: 0.85; }
-  100% { opacity: 0.5; }
+  0% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.45;
+  }
 }
