@@ -645,3 +645,52 @@
     init();
   }
 })();
+/* --- EXTENSION ESTIMATION : Influenceur / E-commerce --- */
+
+const projectType = document.getElementById("project-type");
+const quoteResult = document.getElementById("quote-result");
+const quoteTagline = document.getElementById("quote-tagline");
+const quoteIdeal = document.getElementById("quote-ideal");
+
+function updateCreatorEcomEstimate() {
+  const type = projectType?.value;
+
+  if (!type) return;
+
+  // Influenceur / Créateur
+  if (type === "creator") {
+    quoteTagline.textContent =
+      "Systèmes IA pour influenceurs, UGC, créateurs — automatisation du bruit et image claire.";
+
+    quoteResult.innerHTML = `
+      Pack Influenceur · <strong>900–1 400 € HT</strong> ·
+      système IA + mini page d’accueil ·
+      mise en place en <strong>5 à 8 jours</strong>.
+    `;
+
+    quoteIdeal.textContent =
+      "Inclut : agent DM + gestion collab + scripts + automatisations simples.";
+    return;
+  }
+
+  // E-commerce / Micro-boutique
+  if (type === "ecom") {
+    quoteTagline.textContent =
+      "Support client IA, scénarios e-mail, suivi colis, automatisations clés.";
+
+    quoteResult.innerHTML = `
+      Pack E-commerce · <strong>1 200–1 800 € HT</strong> ·
+      support IA + flux commandes + mini landing ·
+      en <strong>7 à 12 jours</strong>.
+    `;
+
+    quoteIdeal.textContent =
+      "Inclut : FAQ automatisée, suivi colis, réponses SAV, page produit optimisée.";
+    return;
+  }
+}
+
+// On écoute les changements du select
+if (projectType) {
+  projectType.addEventListener("change", updateCreatorEcomEstimate);
+}
