@@ -2,6 +2,10 @@
 const $ = (sel, scope = document) => scope.querySelector(sel);
 const $$ = (sel, scope = document) => Array.from(scope.querySelectorAll(sel));
 
+// Validation utils
+const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+const validateMinLength = (text, min = 10) => text.trim().length >= min;
+
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.documentElement;
 
@@ -12,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ---------- THEME TOGGLE ---------- */
-  const savedTheme = window.localStorage.getItem("nh110-theme");
+  const savedTheme = window.localStorage?.getItem("nh110-theme") || "dark";
   if (savedTheme === "light" || savedTheme === "dark") {
     root.setAttribute("data-theme", savedTheme);
   }
@@ -31,7 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const current = root.getAttribute("data-theme") || "dark";
       const next = current === "dark" ? "light" : "dark";
       root.setAttribute("data-theme", next);
-      window.localStorage.setItem("nh110-theme", next);
+      try {
+        window.localStorage?.setItem("nh110-theme", next);
+      } catch (e) {
+        console.warn("localStorage unavailable");
+      }
       applyIcon();
     });
   }
@@ -44,7 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.classList.toggle("nav-open");
     });
 
-    // Fermer au clic sur un lien
     $$(".nav-link", nav).forEach((link) => {
       link.addEventListener("click", () => {
         document.body.classList.remove("nav-open");
@@ -71,6 +78,29 @@ document.addEventListener("DOMContentLoaded", () => {
     revealEls.forEach((el) => el.classList.add("premium-visible"));
   }
 
+  /* ---------- LAZY LOAD IMAGES ---------- */
+  if ("IntersectionObserver" in window) {
+    const imageObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src) {
+              img.src = img.dataset.src;
+              img.removeAttribute("data-src");
+            }
+            imageObserver.unobserve(img);
+          }
+        });
+      },
+      { rootMargin: "50px" }
+    );
+
+    $$("img[loading='lazy']").forEach((img) => {
+      imageObserver.observe(img);
+    });
+  }
+
   /* ---------- PRICING TOGGLE ---------- */
   const pricingToggle = $(".pricing-toggle");
   if (pricingToggle) {
@@ -86,16 +116,20 @@ document.addEventListener("DOMContentLoaded", () => {
         runCard.classList.add("hidden");
         pilotBtn.classList.add("toggle-btn-active");
         runBtn.classList.remove("toggle-btn-active");
+        pilotBtn.setAttribute("aria-selected", "true");
+        runBtn.setAttribute("aria-selected", "false");
       } else {
         runCard.classList.remove("hidden");
         pilotCard.classList.add("hidden");
         runBtn.classList.add("toggle-btn-active");
         pilotBtn.classList.remove("toggle-btn-active");
+        runBtn.setAttribute("aria-selected", "true");
+        pilotBtn.setAttribute("aria-selected", "false");
       }
     };
 
-    pilotBtn.addEventListener("click", () => setMode("pilot"));
-    runBtn.addEventListener("click", () => setMode("run"));
+    pilotBtn?.addEventListener("click", () => setMode("pilot"));
+    runBtn?.addEventListener("click", () => setMode("run"));
   }
 
   /* ---------- FAQ ACCORDION ---------- */
@@ -103,29 +137,58 @@ document.addEventListener("DOMContentLoaded", () => {
     const btn = $(".faq-question", item);
     const answer = $(".faq-answer", item);
     if (!btn || !answer) return;
+
     btn.addEventListener("click", () => {
       const isOpen = item.classList.contains("open");
-      // on ferme les autres
       $$(".faq-item").forEach((i) => i.classList.remove("open"));
-      if (!isOpen) item.classList.add("open");
+      if (!isOpen) {
+        item.classList.add("open");
+        btn.setAttribute("aria-expanded", "true");
+      } else {
+        btn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // Clavier: Enter/Space
+    btn.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        btn.click();
+      }
     });
   });
 
   /* ---------- TABS TÉMOIGNAGES ---------- */
   const testimonialTabs = $$(".testimonial-tab");
   if (testimonialTabs.length) {
-    testimonialTabs.forEach((tab) => {
+    testimonialTabs.forEach((tab, idx) => {
+      tab.setAttribute("aria-label", `Témoignage ${idx + 1}`);
+
       tab.addEventListener("click", () => {
         const target = tab.getAttribute("data-testimonial");
-        testimonialTabs.forEach((t) =>
-          t.classList.toggle("active", t === tab)
-        );
+        testimonialTabs.forEach((t) => {
+          const isActive = t === tab;
+          t.classList.toggle("active", isActive);
+          t.setAttribute("aria-selected", isActive);
+        });
         $$(".testimonial-panel").forEach((panel) => {
           const id = panel.getAttribute("data-testimonial-panel");
           const isActive = id === target;
           panel.classList.toggle("active", isActive);
           panel.setAttribute("aria-hidden", !isActive);
         });
+      });
+
+      // Clavier: flèches
+      tab.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+          e.preventDefault();
+          const nextIdx = e.key === "ArrowRight" 
+            ? (idx + 1) % testimonialTabs.length 
+            : (idx - 1 + testimonialTabs.length) % testimonialTabs.length;
+          testimonialTabs[nextIdx].click();
+          testimonialTabs[nextIdx].focus();
+        }
       });
     });
   }
@@ -136,6 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const budgetRange = $("#quote-budget");
     const budgetValue = $("#quote-budget-value");
     const quoteType = $("#quote-type");
+    const quoteSector = $("#quote-sector");
     const quoteAi = $("#quote-ai");
     const quoteDeadlineRadios = $$('input[name="quote-deadline"]', quoteForm);
 
@@ -143,27 +207,35 @@ document.addEventListener("DOMContentLoaded", () => {
     const taglineEl = $("#quote-tagline");
     const idealEl = $("#quote-ideal");
     const badgeEl = $("#quote-badge");
+    const bulletsEl = $("#quote-bullets");
+
+    const format = (val) =>
+      Number(val).toLocaleString("fr-FR", { maximumFractionDigits: 0 });
 
     if (budgetRange && budgetValue) {
-      const format = (val) =>
-        Number(val).toLocaleString("fr-FR", { maximumFractionDigits: 0 });
       budgetValue.textContent = format(budgetRange.value);
       budgetRange.addEventListener("input", () => {
         budgetValue.textContent = format(budgetRange.value);
+        // Mise à jour en temps réel
+        updateQuoteEstimate();
       });
     }
 
-    quoteForm.addEventListener("submit", (e) => {
-      e.preventDefault();
+    // Mise à jour au changement
+    quoteType?.addEventListener("change", updateQuoteEstimate);
+    quoteSector?.addEventListener("change", updateQuoteEstimate);
+    quoteAi?.addEventListener("change", updateQuoteEstimate);
+    quoteDeadlineRadios.forEach((r) => r.addEventListener("change", updateQuoteEstimate));
+
+    function updateQuoteEstimate() {
       if (!resultEl || !taglineEl || !idealEl || !badgeEl) return;
 
-      const type = quoteType.value;
-      const budget = Number(budgetRange.value || 1500);
-      const hasAi = quoteAi.checked;
+      const type = quoteType?.value || "site";
+      const budget = Number(budgetRange?.value || 1500);
+      const hasAi = quoteAi?.checked || false;
       const deadline =
         quoteDeadlineRadios.find((r) => r.checked)?.value || "standard";
 
-      // logiques simples
       let envelope, tempo, labelType;
 
       if (budget < 1000) envelope = "900–1 500 € HT";
@@ -176,41 +248,116 @@ document.addEventListener("DOMContentLoaded", () => {
       else tempo = "3 à 5 semaines, selon votre rythme";
 
       if (type === "site") labelType = "site vitrine / landing page";
-      else if (type === "agent") labelType = "système d’agent IA / automatisation";
+      else if (type === "agent") labelType = "système d'agent IA / automatisation";
       else labelType = "mix site + agents IA";
 
       taglineEl.textContent =
         "À partir de vos réponses, on prépare un cadrage rapide. Le vrai devis se fait ensuite en direct.";
 
-      resultEl.innerHTML = `
-        Projet <strong>${labelType}</strong>${
+      resultEl.innerHTML = `Projet <strong>${labelType}</strong>${
         hasAi ? " avec composante IA intégrée" : ""
-      } · enveloppe indicative autour de <strong>${envelope}</strong> · mise en ligne en <strong>${tempo}</strong>.
-      `;
+      } · enveloppe indicative autour de <strong>${envelope}</strong> · mise en ligne en <strong>${tempo}</strong>.`;
 
       idealEl.textContent =
         "Cette estimation sert de boussole. On affine ensuite en fonction de votre contexte, sans engagement.";
 
       badgeEl.textContent =
         "🔍 Estimation indicatrice — le but est de voir si on parle le même langage en termes de budget et de complexité.";
+
+      // Mettre à jour les bullets aussi
+      if (bulletsEl) {
+        const bullets = [
+          hasAi ? "1 page forte + 1 espace d'automatisation concret" : "1 page forte ou agent focus",
+          "Intégration à vos outils existants lorsque c'est pertinent",
+          "Mini tutoriel vidéo + documentation simple"
+        ];
+        bulletsEl.innerHTML = bullets
+          .map((b) => `<li>${b}</li>`)
+          .join("");
+      }
+    }
+
+    quoteForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      updateQuoteEstimate();
     });
   }
 
-  /* ---------- CONTACT FORM + TOAST ---------- */
+  /* ---------- CONTACT FORM + VALIDATION ---------- */
   const contactForm = $("#contact-form");
   const toast = $("#toast");
 
-  const showToast = () => {
+  const showToast = (message = "✅ Message envoyé. Vous recevrez une réponse personnalisée sous peu.") => {
     if (!toast) return;
+    toast.textContent = message;
     toast.classList.add("show");
-    setTimeout(() => toast.classList.remove("show"), 2600);
+    setTimeout(() => toast.classList.remove("show"), 3000);
   };
 
   if (contactForm) {
+    const nameInput = $("#name");
+    const emailInput = $("#email");
+    const projectInput = $("#project");
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+
+    const validateForm = () => {
+      let isValid = true;
+
+      if (!nameInput?.value.trim()) {
+        nameInput?.setAttribute("aria-invalid", "true");
+        isValid = false;
+      } else {
+        nameInput?.removeAttribute("aria-invalid");
+      }
+
+      if (!validateEmail(emailInput?.value || "")) {
+        emailInput?.setAttribute("aria-invalid", "true");
+        isValid = false;
+      } else {
+        emailInput?.removeAttribute("aria-invalid");
+      }
+
+      if (!validateMinLength(projectInput?.value || "", 10)) {
+        projectInput?.setAttribute("aria-invalid", "true");
+        isValid = false;
+      } else {
+        projectInput?.removeAttribute("aria-invalid");
+      }
+
+      return isValid;
+    };
+
     contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      contactForm.reset();
-      showToast();
+
+      if (!validateForm()) {
+        showToast("❌ Veuillez remplir tous les champs correctement.");
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Envoi en cours...";
+      }
+
+      // Simule envoi (remplacer par API réelle)
+      setTimeout(() => {
+        contactForm.reset();
+        showToast("✅ Message envoyé. Vous recevrez une réponse personnalisée sous peu.");
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Envoyer mon message";
+        }
+      }, 800);
+    });
+
+    // Validation en temps réel
+    emailInput?.addEventListener("blur", () => {
+      if (emailInput.value && !validateEmail(emailInput.value)) {
+        emailInput.setAttribute("aria-invalid", "true");
+      } else {
+        emailInput.removeAttribute("aria-invalid");
+      }
     });
   }
 
@@ -225,14 +372,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const openAi = () => {
     if (!aiPanel) return;
     aiPanel.classList.add("open");
+    aiInput?.focus();
   };
+
   const closeAi = () => {
     if (!aiPanel) return;
     aiPanel.classList.remove("open");
   };
 
-  if (aiToggle) aiToggle.addEventListener("click", openAi);
-  if (aiClose) aiClose.addEventListener("click", closeAi);
+  aiToggle?.addEventListener("click", openAi);
+  aiClose?.addEventListener("click", closeAi);
+
+  // Fermer au clic en dehors (optionnel)
+  document.addEventListener("click", (e) => {
+    if (aiPanel?.classList.contains("open") && 
+        !aiPanel?.contains(e.target) && 
+        !aiToggle?.contains(e.target)) {
+      closeAi();
+    }
+  });
 
   const appendMessage = (text, from = "bot") => {
     if (!aiMessages) return;
@@ -241,6 +399,7 @@ document.addEventListener("DOMContentLoaded", () => {
       from === "bot" ? "ai-message-bot" : "ai-message-user"
     }`;
     div.textContent = text;
+    div.setAttribute("role", "article");
     aiMessages.appendChild(div);
     aiMessages.scrollTop = aiMessages.scrollHeight;
   };
@@ -250,15 +409,26 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       const value = aiInput.value.trim();
       if (!value) return;
+
       appendMessage(value, "user");
       aiInput.value = "";
 
-      // réponse front-only très simple
+      // Afficher loader
+      const loaderDiv = document.createElement("div");
+      loaderDiv.className = "ai-message ai-message-bot";
+      loaderDiv.textContent = "Réflexion en cours...";
+      loaderDiv.id = "ai-loader";
+      aiMessages.appendChild(loaderDiv);
+      aiMessages.scrollTop = aiMessages.scrollHeight;
+
+      // Réponse front-only (remplacer par appel API)
       setTimeout(() => {
+        loaderDiv.remove();
         const suggestion = `Je vois un besoin autour de « ${value.slice(
           0,
           120
         )} ». 
+
 Je proposerais :
 1) Clarifier en 3 blocs : acquisition / traitement / suivi.
 2) Définir un ou deux points où un agent IA peut filtrer, classer ou pré-rédiger.
@@ -266,7 +436,15 @@ Je proposerais :
 
 Décrivez-moi maintenant les outils que vous utilisez déjà (e-mail, CRM, boutique, etc.).`;
         appendMessage(suggestion, "bot");
-      }, 250);
+      }, 1200);
+    });
+
+    // Enter pour envoyer
+    aiInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        aiForm.dispatchEvent(new Event("submit"));
+      }
     });
   }
 
@@ -281,18 +459,21 @@ Décrivez-moi maintenant les outils que vous utilisez déjà (e-mail, CRM, bouti
     canvas.width = w * window.devicePixelRatio;
     canvas.height = h * window.devicePixelRatio;
     const ctx = canvas.getContext("2d");
-    ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
+    if (ctx) ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
   };
 
   const canvases = [particlesCanvas, orbCanvas, haloCanvas].filter(Boolean);
   canvases.forEach(resizeCanvas);
   window.addEventListener("resize", () => canvases.forEach(resizeCanvas));
 
-  // Particules simples
+  // Particules simples avec pause hors-viewport
+  let particlesAnimationId = null;
   if (particlesCanvas) {
     const ctx = particlesCanvas.getContext("2d");
+    if (!ctx) return;
+
     const particles = [];
-    const COUNT = 80;
+    const COUNT = window.innerWidth < 768 ? 50 : 80;
 
     const makeParticle = () => ({
       x: Math.random() * window.innerWidth,
@@ -326,15 +507,20 @@ Décrivez-moi maintenant les outils que vous utilisez déjà (e-mail, CRM, bouti
     };
 
     const loopParticles = () => {
-      drawParticles();
-      requestAnimationFrame(loopParticles);
+      if (!document.hidden) {
+        drawParticles();
+      }
+      particlesAnimationId = requestAnimationFrame(loopParticles);
     };
     loopParticles();
   }
 
-  // Orb lumineux
+  // Orb lumineux avec pause hors-viewport
+  let orbAnimationId = null;
   if (orbCanvas) {
     const ctx = orbCanvas.getContext("2d");
+    if (!ctx) return;
+
     let t = 0;
 
     const drawOrb = () => {
@@ -357,7 +543,11 @@ Décrivez-moi maintenant les outils que vous utilisez déjà (e-mail, CRM, bouti
       ctx.fill();
 
       t++;
-      requestAnimationFrame(drawOrb);
+      if (!document.hidden) {
+        orbAnimationId = requestAnimationFrame(drawOrb);
+      } else {
+        orbAnimationId = null;
+      }
     };
     drawOrb();
   }
@@ -365,6 +555,7 @@ Décrivez-moi maintenant les outils que vous utilisez déjà (e-mail, CRM, bouti
   // Halo doux au centre
   if (haloCanvas) {
     const ctx = haloCanvas.getContext("2d");
+    if (!ctx) return;
 
     const drawHalo = () => {
       const w = window.innerWidth;
@@ -389,4 +580,12 @@ Décrivez-moi maintenant les outils que vous utilisez déjà (e-mail, CRM, bouti
     };
     drawHalo();
   }
+
+  // Pause animations au changement d'onglet
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      if (particlesAnimationId) cancelAnimationFrame(particlesAnimationId);
+      if (orbAnimationId) cancelAnimationFrame(orbAnimationId);
+    }
+  });
 });
