@@ -1,16 +1,101 @@
+<!-- faq.html -->
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8">
-<title>FAQ — NH110LAB.ai</title>
-<link rel="stylesheet" href="style.css"></head>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>FAQ — NH110LAB.ai</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
-
-<header class="header"><div class="logo">NH110LAB.ai</div></header>
+<header class="header" role="banner">
+  <div class="header-left">
+    <a href="index.html#hero" class="logo">NH110LAB.ai</a>
+    <div class="hero-mini">
+      <span class="eyebrow">Studio IA &amp; Automatisation</span>
+    </div>
+  </div>
+  <nav class="nav" role="navigation" aria-label="Navigation principale">
+    <a class="nav-link" href="index.html#hero">Accueil</a>
+    <a class="nav-link" href="services.html">Services</a>
+    <a class="nav-link" href="agents.html">Agents IA</a>
+    <a class="nav-link" href="usecases.html">Cas d'usage</a>
+    <a class="nav-link" href="tech.html">Tech</a>
+    <a class="nav-link" href="pricing.html">Offres</a>
+    <a class="nav-link" href="faq.html">FAQ</a>
+    <a class="nav-link nav-link-cta" href="contact.html">Contact</a>
+  </nav>
+  <button class="theme-toggle" type="button" aria-label="Basculer le thème">
+    <span class="theme-toggle-icon" data-theme-icon>☾</span>
+  </button>
+  <button class="nav-toggle" type="button" aria-label="Ouvrir le menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
 
 <section class="page">
-    <h1>FAQ</h1>
-    <p><b>Qu’est-ce qu’un agent IA ?</b><br>Un système autonome qui comprend, décide et agit.</p>
-    <p><b>Pour qui ?</b><br>PME, indépendants, entreprises modernes.</p>
+  <h1>FAQ NH110LAB.ai</h1>
+  <p class="page-intro">
+    Vous vous posez peut-être ces questions avant de nous écrire. Voici des réponses directes.
+  </p>
+
+  <div class="faq-list">
+    <article class="faq-item">
+      <button class="faq-question" type="button" aria-expanded="false">
+        <span>Travaillez-vous uniquement avec des créateurs et petites structures&nbsp;?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>
+          Le cœur de NH110LAB.ai est justement là : créateurs, freelances, petites équipes, studios,
+          boutiques en ligne. Si votre organisation est compacte et déjà digitale, on est alignés.
+        </p>
+      </div>
+    </article>
+
+    <article class="faq-item">
+      <button class="faq-question" type="button" aria-expanded="false">
+        <span>Est-ce que je garde la main sur mon système&nbsp;?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>
+          Oui. Vous recevez la structure du système, la documentation de base et les accès nécessaires.
+          L'objectif est que vous puissiez, à terme, faire évoluer certaines briques par vous-même
+          ou avec vos prestataires habituels.
+        </p>
+      </div>
+    </article>
+
+    <article class="faq-item">
+      <button class="faq-question" type="button" aria-expanded="false">
+        <span>Comment se passent les échanges pendant le projet&nbsp;?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>
+          On fonctionne beaucoup en asynchrone : messages, loom, documents partagés.
+          Quelques points synchrones peuvent être planifiés pour les décisions importantes
+          ou les démos clés.
+        </p>
+      </div>
+    </article>
+
+    <article class="faq-item">
+      <button class="faq-question" type="button" aria-expanded="false">
+        <span>Est-ce que vous proposez un accompagnement après la mise en ligne&nbsp;?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>
+          Oui, c'est précisément le rôle du mode <em>run</em>.
+          Après un pilote concluant, on définit ensemble un niveau d'accompagnement adapté :
+          corrections, nouvelles idées, suivi des métriques, etc.
+        </p>
+      </div>
+    </article>
+  </div>
 </section>
 
-<script src="script.js"></script>
-</body></html>
+<script src="script.js" defer></script>
+</body>
+</html>
