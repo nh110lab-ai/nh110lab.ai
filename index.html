@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NH110LAB.ai — Studio IA & Expériences Digitales</title>
+  <title>NH110LAB.ai — Studio IA &amp; Expériences Digitales</title>
+  <meta name="description" content="NH110LAB.ai : studio IA & automatisation. Sites haut de gamme, agents IA, workflows automatisés pour créateurs, marques digitales et petites structures." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Arrière-plan animé -->
+  <!-- ARRIÈRE-PLAN ANIMÉ -->
   <canvas id="particles" class="bg-canvas"></canvas>
   <canvas id="orb" class="bg-canvas"></canvas>
   <canvas id="halo" class="bg-canvas"></canvas>
@@ -15,11 +16,11 @@
   <!-- HEADER -->
   <header class="header">
     <div class="header-left">
-      <div class="logo" data-parallax="0.4">
+      <a href="#hero" class="logo" data-parallax="0.4">
         NH110LAB.ai
-      </div>
+      </a>
       <div class="hero-mini">
-        <span class="eyebrow">Studio IA & Automatisation</span>
+        <span class="eyebrow">Studio IA &amp; Automatisation</span>
       </div>
     </div>
 
@@ -28,17 +29,18 @@
       <a class="nav-link" href="#services">Services</a>
       <a class="nav-link" href="#devis">Devis</a>
       <a class="nav-link" href="#temoignages">Témoignages</a>
+      <a class="nav-link" href="#digital-creators">Pour qui</a>
       <a class="nav-link" href="#tech">Tech</a>
       <a class="nav-link" href="#pricing">Offres</a>
       <a class="nav-link" href="#faq">FAQ</a>
       <a class="nav-link nav-link-cta" href="#contact">Contact</a>
     </nav>
 
-    <button class="theme-toggle" type="button">
-      <span class="theme-toggle-icon">☾</span>
+    <button class="theme-toggle" type="button" aria-label="Basculer le thème">
+      <span class="theme-toggle-icon" data-theme-icon>☾</span>
     </button>
 
-    <button class="nav-toggle" type="button" aria-label="Menu">
+    <button class="nav-toggle" type="button" aria-label="Ouvrir le menu">
       <span></span><span></span><span></span>
     </button>
   </header>
@@ -49,12 +51,14 @@
       <div class="hero-text premium-reveal">
         <p class="eyebrow">NH110LAB.ai</p>
         <h1>
-          Des expériences digitales <span class="underline">ultra-premium</span><br />
+          Des expériences digitales
+          <span class="underline">ultra-premium</span><br />
           propulsées par l’IA.
         </h1>
         <p class="hero-subtitle">
-          Studio hybride entre design de luxe et ingénierie IA.  
-          Sites, agents intelligents, automatisations — pensés pour la performance et la simplicité d’usage.
+          Studio hybride entre design de luxe et ingénierie IA.<br />
+          Nous construisons des systèmes concrets : sites, agents intelligents, automatisations.
+          Moins de frictions, plus de temps là où vous créez de la valeur.
         </p>
 
         <div class="hero-actions">
@@ -62,33 +66,54 @@
             Obtenir un devis express
           </a>
           <a href="#temoignages" class="btn btn-ghost">
-            Voir les résultats clients
+            Voir les cas clients
           </a>
         </div>
 
         <div class="hero-highlights">
           <span class="pill">⚡ Prototypes en quelques jours</span>
-          <span class="pill">🤖 Agents IA personnalisés</span>
-          <span class="pill">🎯 Stratégie & exécution end-to-end</span>
+          <span class="pill">🤖 Agents IA sur-mesure</span>
+          <span class="pill">🎯 Accompagnement de A à Z</span>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <p class="stat-number" data-count="60">0</p>
+            <p class="stat-label">tâches / mois automatisées en moyenne</p>
+          </div>
+          <div class="stat">
+            <p class="stat-number" data-count="3">0</p>
+            <p class="stat-label">semaines pour un pilote utilisable</p>
+          </div>
+          <div class="stat">
+            <p class="stat-number" data-count="2">0</p>
+            <p class="stat-label">canaux centralisés (en moyenne) par projet</p>
+          </div>
+        </div>
+
+        <div class="scroll-hint">
+          <span>Faire défiler</span>
+          <span class="scroll-line"></span>
         </div>
       </div>
 
       <aside class="hero-aside premium-reveal">
         <article class="metric-card">
           <p class="metric-label">Focus</p>
-          <p class="metric-value">Automatisation & Agents IA</p>
+          <p class="metric-value">Automatisation &amp; Agents IA</p>
           <p class="metric-footnote">
-            Réduction de tâches répétitives, amélioration des flux, vision long terme.
+            Nous commençons toujours par votre réalité : outils existants, contraintes, temps disponible.
+            Pas de “gros projet” abstrait, seulement des briques utiles.
           </p>
         </article>
 
         <article class="timeline-card">
           <p class="metric-label">Process</p>
-          <p class="metric-footnote">
-            1. Audit rapide de votre besoin<br />
-            2. Prototype IA ou interface web<br />
-            3. Intégration dans vos outils existants
-          </p>
+          <ol class="timeline-list">
+            <li><strong>Diagnostic express</strong> · 30 min pour comprendre votre flux actuel.</li>
+            <li><strong>Prototype</strong> · agent ou interface front livré très vite pour tester.</li>
+            <li><strong>Intégration</strong> · connexion à vos outils, mise en production, ajustements.</li>
+          </ol>
         </article>
       </aside>
     </section>
@@ -98,48 +123,57 @@
       <div class="section-header premium-reveal">
         <h2>Ce que NH110LAB.ai construit pour vous</h2>
         <p>
-          Des briques IA concrètes, adaptées à vos opérations, pas des promesses vagues.  
-          Chaque service est pensé pour simplifier votre quotidien et dégager du temps.
+          Des briques IA concrètes, adaptées à vos opérations, pas des promesses vagues.
+          Chaque service est pensé pour simplifier votre quotidien et réduire la charge mentale.
         </p>
       </div>
 
       <div class="grid-3">
         <article class="card premium-reveal">
           <h3>Agents IA pour votre business</h3>
-          <p>Agents opérationnels pour la prospection, le support, la génération de contenu ou le suivi client.</p>
+          <p>
+            Assistants opérationnels qui travaillent avec vos règles, votre ton et vos outils :
+            support, qualification de leads, suivi clients, génération de contenu.
+          </p>
           <ul class="card-list">
-            <li>Connexion e-mail, CRM, WhatsApp, etc.</li>
-            <li>Scripts adaptés à votre ton de marque</li>
-            <li>Monitoring et amélioration continue</li>
+            <li>Connexion e-mail, CRM, WhatsApp, Slack…</li>
+            <li>Scripts et scénarios alignés à votre voix de marque</li>
+            <li>Tableau de bord simple pour piloter l’agent</li>
           </ul>
           <p class="card-footnote">
-            Idéal pour les indépendants, petites structures et projets en phase test.
+            Idéal pour les indépendants, studios et petites structures qui veulent s’alléger sans embaucher.
           </p>
         </article>
 
         <article class="card premium-reveal">
-          <h3>Sites & Interfaces “Luxe Minimaliste”</h3>
-          <p>Pages ultra propres inspirées du luxe et de la tech haut de gamme.</p>
+          <h3>Sites &amp; Interfaces “luxe minimaliste”</h3>
+          <p>
+            Pages ultra propres inspirées du luxe, de la mode et de la tech haut de gamme.
+            Votre image reste claire même avec peu de contenu.
+          </p>
           <ul class="card-list">
-            <li>Pages d’accueil ultra soignées</li>
-            <li>Animations fluides, sans chichi</li>
-            <li>Adapté mobile, tablette, desktop</li>
+            <li>Landing pages orientées conversion</li>
+            <li>Animations fluides, micro-interactions discrètes</li>
+            <li>Responsive par défaut, performance soignée</li>
           </ul>
           <p class="card-footnote">
-            Parfait pour poser une identité forte, même avec peu de contenu au départ.
+            Parfait pour poser une identité forte, lancer une offre ou redonner cohérence à un site existant.
           </p>
         </article>
 
         <article class="card premium-reveal">
-          <h3>Automatisations & Connecteurs</h3>
-          <p>N8N, API, intégrations : on relie vos outils pour supprimer le travail inutile.</p>
+          <h3>Automatisations &amp; Connecteurs</h3>
+          <p>
+            N8N, API, webhooks : vos applications commencent enfin à travailler ensemble.
+            Moins de copier-coller, moins d’onglets, plus de calme.
+          </p>
           <ul class="card-list">
-            <li>Synchronisation entre apps</li>
-            <li>Scénarios récurrents automatisés</li>
-            <li>Alertes intelligentes uniquement quand c’est utile</li>
+            <li>Synchronisation entre vos outils (CRM, Notion, Drive…)</li>
+            <li>Workflows récurrents automatisés</li>
+            <li>Alertes intelligentes seulement quand c’est utile</li>
           </ul>
           <p class="card-footnote">
-            Objectif : moins de clics, plus de temps là où vous avez de la valeur.
+            Objectif : réduire les clics, clarifier la journée et sécuriser vos données.
           </p>
         </article>
       </div>
@@ -148,10 +182,11 @@
     <!-- DEVIS EXPRESS -->
     <section id="devis" class="section section-alt">
       <div class="section-header premium-reveal">
-        <h2>Devis express & simulation en temps réel</h2>
+        <h2>Devis express &amp; simulation en temps réel</h2>
         <p>
-          Répondez à quelques questions et obtenez une estimation instantanée  
-          du budget et de la complexité de votre projet.
+          Répondez à quelques questions et obtenez une estimation instantanée
+          de l’enveloppe budgétaire et du niveau de complexité.
+          Ensuite, on affine ensemble en direct.
         </p>
       </div>
 
@@ -160,7 +195,7 @@
         <form id="quote-form" class="quote-form premium-reveal">
           <div class="field-group">
             <label for="quote-type">Type de projet</label>
-            <select id="quote-type">
+            <select id="quote-type" name="type">
               <option value="site">Site / Landing page</option>
               <option value="agent">Agent IA / Automatisation</option>
               <option value="mix">Mix Site + IA</option>
@@ -168,8 +203,27 @@
           </div>
 
           <div class="field-group">
+            <label for="quote-sector">Contexte / secteur</label>
+            <select id="quote-sector" name="sector">
+              <option value="creator">Créateur / Influenceur / UGC</option>
+              <option value="service">Prestation de service / Freelance</option>
+              <option value="ecom">E-commerce / Boutique en ligne</option>
+              <option value="resto">Restauration / Lieu physique</option>
+              <option value="other">Autre / hybride</option>
+            </select>
+          </div>
+
+          <div class="field-group">
             <label for="quote-budget">Budget cible (approx.)</label>
-            <input type="range" id="quote-budget" min="500" max="6000" step="250" value="1500" />
+            <input
+              type="range"
+              id="quote-budget"
+              name="budget"
+              min="600"
+              max="8000"
+              step="200"
+              value="1500"
+            />
             <div class="quote-budget-display">
               ~ <span id="quote-budget-value">1 500</span> € HT
             </div>
@@ -195,9 +249,19 @@
 
           <div class="field-group">
             <label>
-              <input type="checkbox" id="quote-ai" checked />
+              <input type="checkbox" id="quote-ai" name="includeAi" checked />
               Je veux intégrer au moins un agent IA ou une automatisation
             </label>
+          </div>
+
+          <div class="field-group">
+            <label for="quote-notes">Quelques mots sur votre situation actuelle</label>
+            <textarea
+              id="quote-notes"
+              name="notes"
+              rows="3"
+              placeholder="Ex : beaucoup de DM, je perds du temps dans les mails, je n’ai pas encore de site clair…"
+            ></textarea>
           </div>
 
           <button type="submit" class="btn btn-primary btn-full">
@@ -205,24 +269,31 @@
           </button>
 
           <p class="form-note">
-            Pas un devis contractuel, mais un ordre d’idée réaliste pour voir si on s’aligne.
+            Ce n’est pas un devis contractuel, mais un ordre d’idée réaliste pour voir si on s’aligne.
           </p>
         </form>
 
         <!-- RÉSULTAT -->
         <aside class="quote-summary premium-reveal">
           <p class="quote-tagline" id="quote-tagline">
-            Dites-en plus à l’IA, elle prépare le terrain. Ensuite, on échange en direct.
+            Dites-en un peu plus à l’IA et au formulaire, ils cadrent la zone de jeu.
+            Ensuite, on ajuste en direct.
           </p>
           <div class="quote-result-card">
             <p class="metric-label">Estimation indicative</p>
             <p class="quote-result" id="quote-result">
-              Projet “site vitrine” + 1 agent IA léger ·  
-              enveloppe autour de <strong>1 500–2 000 € HT</strong> ·  
+              Projet “site vitrine” + 1 agent IA léger ·
+              enveloppe autour de <strong>1 500–2 000 € HT</strong> ·
               mise en ligne en <strong>2 à 3 semaines</strong>.
             </p>
+            <ul class="quote-bullets" id="quote-bullets">
+              <li>1 page forte + 1 espace d’automatisation concret</li>
+              <li>Intégration à vos outils existants lorsque c’est pertinent</li>
+              <li>Mini tutoriel vidéo + documentation simple</li>
+            </ul>
             <p class="quote-ideal" id="quote-ideal">
-              Le détail précis est affiné après un rapide échange (15–20 min) par visio ou messages.
+              Le détail précis est affiné après un rapide échange (15–20 min)
+              par visio ou messages asynchrones.
             </p>
           </div>
           <div class="quote-badge" id="quote-badge">
@@ -240,8 +311,8 @@
       <div class="section-header premium-reveal">
         <h2>Ils avaient besoin de clarté. Ils ont obtenu un système.</h2>
         <p>
-          Quelques exemples de transformations concrètes : moins de surcharge mentale,  
-          plus de structure, plus de temps disponible.
+          Quelques exemples de transformations concrètes : moins de surcharge mentale,
+          plus de structure, plus de temps disponible pour le cœur de leur activité.
         </p>
       </div>
 
@@ -255,7 +326,7 @@
             </p>
           </div>
           <div class="testimonials-meta-badge">
-            ⚙️ Agents & automatisations en production
+            ⚙️ Agents &amp; automatisations en production
           </div>
         </header>
 
@@ -293,13 +364,17 @@
             role="tabpanel"
           >
             <p class="testimonial-quote">
-              « Avant, je passais mon temps à répondre aux mêmes demandes.
-              Maintenant, un agent IA filtre, classe, et prépare les réponses.
-              Je ne m’occupe que des cas vraiment importants. »
+              « Avant, je passais mes matinées à répondre aux mêmes demandes.
+              Maintenant, un agent IA filtre, classe et prépare les réponses.
+              Je ne garde que les échanges qui demandent vraiment mon cerveau. »
             </p>
             <p class="testimonial-meta">
               — Consultant solo · Agent IA + automatisations N8N
             </p>
+            <ul class="testimonial-metrics">
+              <li>−40&nbsp;% de temps passé dans la boîte mail</li>
+              <li>+2 demi-journées créatives récupérées par semaine</li>
+            </ul>
           </article>
 
           <article
@@ -309,13 +384,17 @@
             aria-hidden="true"
           >
             <p class="testimonial-quote">
-              « Les commandes, les questions, les réservations étaient partout.
-              On a centralisé via un agent IA connecté à nos canaux.
-              Résultat : moins de stress et une meilleure expérience client. »
+              « Les réservations, questions, commandes à emporter arrivaient partout.
+              On a tout centralisé via un agent IA connecté à nos canaux.
+              Résultat : moins de stress en service, meilleure expérience pour les clients. »
             </p>
             <p class="testimonial-meta">
               — Responsable de restaurant · Agent WhatsApp + back-office léger
             </p>
+            <ul class="testimonial-metrics">
+              <li>Temps de réponse moyen divisé par 3</li>
+              <li>Moins de réservations perdues “entre deux messages”</li>
+            </ul>
           </article>
 
           <article
@@ -326,12 +405,88 @@
           >
             <p class="testimonial-quote">
               « L’IA s’occupe de la FAQ, des retours simples et des mails courants.
-              Je peux enfin me concentrer sur le produit et les campagnes. »
+              Je peux enfin me concentrer sur le produit, les campagnes et la communauté. »
             </p>
             <p class="testimonial-meta">
               — Boutique en ligne · Automatisation support + scénarios e-mail
             </p>
+            <ul class="testimonial-metrics">
+              <li>Support niveau 1 pris en charge à 80&nbsp;%</li>
+              <li>Ouvertures e-mail en hausse grâce aux scénarios personnalisés</li>
+            </ul>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- POUR QUI / DIGITAL CREATORS -->
+    <section id="digital-creators" class="section">
+      <div class="container digital-creators-wrapper">
+        <div class="digital-creators-header premium-reveal">
+          <p class="eyebrow">Pour qui</p>
+          <h2>Créateurs, marques digitales &amp; petits e-commerçants</h2>
+          <p class="subtitle">
+            Écosystèmes IA sur-mesure pour celles et ceux qui vivent déjà en ligne :
+            influenceurs, créateurs UGC, freelances, micro-boutiques.
+            Niveau “luxe”, sans complexité technique.
+          </p>
+        </div>
+
+        <div class="digital-grid">
+          <article class="digital-card premium-reveal">
+            <h3>Influenceurs &amp; Créateurs</h3>
+            <p>
+              Agents IA qui absorbent le bruit : DM répétitifs, demandes de collab’, tri des opportunités.
+              Vous gardez l’image, l’intention, la décision finale.
+            </p>
+            <ul>
+              <li>Tri &amp; pré-réponse aux DM et e-mails</li>
+              <li>Préparation des réponses aux marques + contrats</li>
+              <li>Idées de contenus &amp; scripts courts</li>
+              <li>Automatisation factures &amp; relances simples</li>
+            </ul>
+            <span class="tag">Focus : temps &amp; image</span>
+          </article>
+
+          <article class="digital-card premium-reveal">
+            <h3>Petits e-commerçants</h3>
+            <p>
+              Un back-office invisible qui gère le support simple, les suivis de commandes
+              et les scénarios e-mails. Vous retrouvez de l’énergie pour le produit.
+            </p>
+            <ul>
+              <li>Support client IA &amp; suivi colis</li>
+              <li>FAQ et retours simples automatisés</li>
+              <li>Descriptions produits optimisées par IA</li>
+              <li>Scénarios e-mail (panier abandonné, post-achat…)</li>
+            </ul>
+            <span class="tag">Focus : conversion &amp; sérénité</span>
+          </article>
+
+          <article class="digital-card premium-reveal">
+            <h3>Freelances du digital</h3>
+            <p>
+              Un système discret qui organise vos leads, vos rendez-vous et vos
+              tâches répétitives, sans casser votre façon de travailler.
+            </p>
+            <ul>
+              <li>Prospection &amp; tri des leads entrants</li>
+              <li>Organisation e-mail &amp; rendez-vous</li>
+              <li>Suivi des projets &amp; relances clients</li>
+              <li>Vue claire sur la charge &amp; les priorités</li>
+            </ul>
+            <span class="tag">Focus : structure &amp; clarté</span>
+          </article>
+        </div>
+
+        <div class="digital-cta premium-reveal">
+          <p>
+            Vous vivez déjà dans le digital.<br />
+            NH110LAB.ai s’occupe de l’infrastructure IA, vous gardez la scène.
+          </p>
+          <a href="#contact" class="cta-button">
+            Créer mon système IA
+          </a>
         </div>
       </div>
     </section>
@@ -342,38 +497,38 @@
         <h2>Stack technique moderne, sans sur-complexité</h2>
         <p>
           L’objectif n’est pas de tout réinventer, mais d’utiliser les bons outils au bon endroit :
-          IA, automatisation, intégration et un front clair.
+          intelligence artificielle, automatisation, intégration, et un front clair.
         </p>
       </div>
 
       <div class="tech-grid">
         <article class="card premium-reveal">
-          <h3>IA & LLM</h3>
-          <p>Modèles modernes & API pour construire des agents utiles et fiables.</p>
+          <h3>IA &amp; LLM</h3>
+          <p>Modèles modernes &amp; API pour construire des agents utiles et fiables.</p>
           <ul class="bullet-grid">
-            <li>OpenAI, outils conversationnels</li>
+            <li>OpenAI &amp; outils conversationnels</li>
             <li>Routage intelligent des demandes</li>
-            <li>Contexte métier sur mesure</li>
+            <li>Contexte métier sur mesure &amp; sécurisé</li>
           </ul>
         </article>
 
         <article class="card premium-reveal">
           <h3>Automatisation</h3>
-          <p>N8N, webhooks, intégrations : vos apps commencent à travailler ensemble.</p>
+          <p>N8N, webhooks, intégrations : vos apps commencent à se parler.</p>
           <ul class="bullet-grid">
             <li>Flux automatisés e-mail / CRM</li>
-            <li>Connexion à vos bases de données</li>
+            <li>Connexion à vos bases de données &amp; feuilles de calcul</li>
             <li>Notifications pertinentes uniquement</li>
           </ul>
         </article>
 
         <article class="card premium-reveal">
-          <h3>Front & UX</h3>
+          <h3>Front &amp; UX</h3>
           <p>Interfaces minimalistes inspirées des codes du luxe et de la tech.</p>
           <ul class="bullet-grid">
             <li>Animations douces, focus sur le contenu</li>
             <li>Responsive par défaut</li>
-            <li>Performance au centre</li>
+            <li>Performance &amp; accessibilité au centre</li>
           </ul>
         </article>
       </div>
@@ -403,7 +558,7 @@
           role="tab"
           aria-selected="false"
         >
-          Run & amélioration
+          Run &amp; amélioration
         </button>
       </div>
 
@@ -418,8 +573,12 @@
             Pour tester une idée, un agent, un flux ou une landing sans refaire tout votre système.
           </p>
           <ul class="pricing-features">
-            <li>Pack <strong>Essentiel</strong> · 900–1 500 € HT — 1 périmètre simple (site ou agent).</li>
-            <li>Pack <strong>Étendu</strong> · 1 500–2 500 € HT — mix site + agent ou flux plus complexe.</li>
+            <li>
+              Pack <strong>Essentiel</strong> · 900–1 500 € HT — 1 périmètre simple (site ou agent).
+            </li>
+            <li>
+              Pack <strong>Étendu</strong> · 1 500–2 500 € HT — mix site + agent ou flux plus complexe.
+            </li>
             <li>Prototype utilisable en production, documentation rapide.</li>
             <li>Mini support après livraison (ajustements légers).</li>
           </ul>
@@ -431,107 +590,28 @@
         <!-- RUN -->
         <article class="pricing-card pricing-run hidden premium-reveal">
           <header class="pricing-card-header">
-            <h3>Run & amélioration — Mensuel</h3>
+            <h3>Run &amp; amélioration — Mensuel</h3>
             <p class="pricing-price">À partir de 600 € HT / mois</p>
           </header>
           <p class="pricing-caption">
             Quand le pilote fonctionne et que vous voulez un système vivant, entretenu et optimisé.
           </p>
           <ul class="pricing-features">
-            <li>Pack <strong>Light</strong> · 600–900 € HT / mois — suivi d’un périmètre unique.</li>
-            <li>Pack <strong>Studio</strong> · 900–1 500 € HT / mois — plusieurs agents / flux + front.</li>
+            <li>
+              Pack <strong>Light</strong> · 600–900 € HT / mois — suivi d’un périmètre unique.
+            </li>
+            <li>
+              Pack <strong>Studio</strong> · 900–1 500 € HT / mois — plusieurs agents / flux + front.
+            </li>
             <li>Mises à jour régulières (prompts, scénarios, UX).</li>
-            <li>Revue périodique des usages & recommandations.</li>
+            <li>Revue périodique des usages &amp; recommandations.</li>
           </ul>
           <p class="pricing-ideal">
-            Idéal si vous voulez un système stable, sans devoir gérer la partie technique au quotidien.
+            Idéal si vous voulez un système stable sans vous occuper du technique au quotidien.
           </p>
         </article>
       </div>
     </section>
-<section id="digital-creators" class="section">
-  <div class="container digital-creators-wrapper">
-    <div class="digital-creators-header">
-      <p class="eyebrow">Pour qui</p>
-      <h2>Créateurs, marques digitales &amp; petits e-commerçants</h2>
-      <p class="subtitle">
-        Écosystèmes IA sur-mesure pour celles et ceux qui vivent déjà en ligne :
-        influenceurs, UGC, freelances, micro-boutiques. Un niveau “luxe”,
-        sans complexité technique.
-      </p>
-    </div>
-
-    <div class="digital-grid">
-      <article class="digital-card">
-        <h3>Influenceurs &amp; Créateurs</h3>
-        <p>
-          Agents IA qui prennent en charge le bruit : DM répétitifs, demandes
-          de collab’, briefs et premiers échanges. Vous gardez uniquement les
-          décisions importantes.
-        </p>
-        <ul>
-          <li>Tri &amp; pré-réponse aux DM et e-mails</li>
-          <li>Préparation des réponses aux marques</li>
-          <li>Idées de contenus &amp; scripts courts</li>
-          <li>Automatisation factures &amp; relances</li>
-        </ul>
-        <span class="tag">Focus : temps &amp; image</span>
-      </article>
-
-      <article class="digital-card">
-        <h3>Petits e-commerçants</h3>
-        <p>
-          Un back-office invisible qui gère le support simple, les suivis
-          de commandes et les scénarios e-mails. Votre énergie revient sur le
-          produit et les ventes.
-        </p>
-        <ul>
-          <li>Support client IA &amp; suivi colis</li>
-          <li>FAQ &amp; retours simples automatisés</li>
-          <li>Descriptions produits optimisées</li>
-          <li>Scénarios e-mail (panier abandonné…)</li>
-        </ul>
-        <span class="tag">Focus : conversion &amp; sérénité</span>
-      </article>
-
-      <article class="digital-card">
-        <h3>Freelances du digital</h3>
-        <p>
-          Un système discret qui organise vos leads, vos rendez-vous et vos
-          tâches répétitives, sans transformer votre manière de travailler.
-        </p>
-        <ul>
-          <li>Prospection &amp; tri des leads</li>
-          <li>Organisation e-mail &amp; rendez-vous</li>
-          <li>Suivi des projets &amp; relances</li>
-          <li>Vue claire sur la charge &amp; les priorités</li>
-        </ul>
-        <span class="tag">Focus : structure &amp; clarté</span>
-      </article>
-    </div>
-
-    <div class="digital-cta">
-      <p>
-        Vous vivez déjà dans le digital.<br />
-        NH110LAB.ai s’occupe de l’infrastructure IA, vous gardez la scène.
-      </p>
-      <a href="#contact" class="cta-button">
-        Créer mon système IA
-      </a>
-    </div>
-  </div>
-</section>
-<select id="project-type">
-  <option value="site">Site / Landing page</option>
-  <option value="agent">Agent IA / Automatisation</option>
-  <option value="mix" selected>Mix Site + IA</option>
-
-  <!-- 🤖 NOUVEAUX TYPES PREMIUM -->
-  <option value="creator">Influenceur / Créateur</option>
-  <option value="ecom">E-commerce / Micro-boutique</option>
-  <option value="personalbrand">Marque personnelle</option>
-  <option value="digitalfreelance">Freelance digital / Coach</option>
-</select>
 
     <!-- FAQ -->
     <section id="faq" class="section">
@@ -550,8 +630,9 @@
           </button>
           <div class="faq-answer">
             <p>
-              Non. Votre job est de connaître votre activité. Le nôtre est de traduire 
-              vos besoins en système IA + automatisation qui fait sens.
+              Non. Votre métier, c’est de connaître votre activité.
+              Le nôtre, c’est de traduire vos besoins en système IA + automatisation compréhensible
+              et maintenable. On vulgarise, on cadre, on ne vous noie pas dans le jargon.
             </p>
           </div>
         </div>
@@ -563,8 +644,8 @@
           </button>
           <div class="faq-answer">
             <p>
-              Sur un périmètre raisonnable, un premier prototype peut sortir en quelques jours  
-              à deux semaines, selon votre réactivité pour les retours.
+              Sur un périmètre raisonnable, un premier prototype peut sortir entre quelques jours
+              et deux semaines, selon votre réactivité pour les retours et la complexité de vos outils.
             </p>
           </div>
         </div>
@@ -576,8 +657,23 @@
           </button>
           <div class="faq-answer">
             <p>
-              Oui. Un pilote est justement là pour tester une idée sur un périmètre limité,  
-              sans tout bouleverser d’un coup.
+              Oui. C’est même recommandé. Un pilote concentre l’effort sur une zone très
+              précise (un canal, un processus, une page) et permet de mesurer l’impact
+              avant d’étendre le système.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>Comment se passe la collaboration au quotidien ?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              On privilégie les échanges asynchrones (messages, Loom, Notion) complétés
+              par des points courts en visio lorsqu’il y a un arbitrage à faire.
+              Vous avez toujours une vue claire sur ce qui est en cours.
             </p>
           </div>
         </div>
@@ -589,7 +685,7 @@
       <div class="section-header premium-reveal">
         <h2>Parlons de votre projet</h2>
         <p>
-          Quelques lignes suffisent pour démarrer. L’objectif : clarifier votre besoin  
+          Quelques lignes suffisent pour démarrer. L’objectif : clarifier votre besoin
           et vous proposer un chemin simple, sans blabla inutile.
         </p>
       </div>
@@ -598,17 +694,42 @@
         <form id="contact-form" class="contact-form premium-reveal">
           <div class="field-group">
             <label for="name">Nom / Structure</label>
-            <input id="name" name="name" type="text" placeholder="Votre nom ou celui de votre projet" />
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Votre nom ou celui de votre projet"
+              required
+            />
           </div>
 
           <div class="field-group">
             <label for="email">E-mail</label>
-            <input id="email" name="email" type="email" placeholder="vous@exemple.fr" />
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="vous@exemple.fr"
+              required
+            />
           </div>
 
           <div class="field-group">
             <label for="project">Décrivez en quelques mots votre idée</label>
-            <textarea id="project" name="project" rows="4" placeholder="Ex : agent IA qui répond aux demandes clients + page d’accueil propre..."></textarea>
+            <textarea
+              id="project"
+              name="project"
+              rows="4"
+              placeholder="Ex : agent IA qui répond aux demandes clients + page d’accueil propre..."
+              required
+            ></textarea>
+          </div>
+
+          <div class="field-group-inline">
+            <label class="checkbox-inline">
+              <input type="checkbox" id="contact-news" />
+              Recevoir quelques ressources pédagogiques sur l’IA (rare, pas de spam)
+            </label>
           </div>
 
           <button type="submit" class="btn btn-primary btn-full">
@@ -624,15 +745,15 @@
           <article class="mini-card">
             <h3>Ce que vous pouvez attendre</h3>
             <p>
-              Un retour honnête sur ce qui est réaliste,  
-              un ordre d’idée de budget, et une proposition de prochaine étape.
+              Un retour honnête sur ce qui est réaliste, un ordre d’idée de budget,
+              et une proposition de prochaine étape claire (pilote, atelier, ou simple conseil).
             </p>
           </article>
           <article class="mini-card">
             <h3>Pas de pression</h3>
             <p>
-              Vous décidez si vous voulez avancer.  
-              L’échange initial sert à clarifier, pas à vous forcer la main.
+              Vous décidez si vous voulez avancer.
+              L’échange initial sert à clarifier, pas à “vendre à tout prix”.
             </p>
           </article>
         </aside>
@@ -664,20 +785,24 @@
 
       <div id="ai-messages" class="ai-messages">
         <div class="ai-message ai-message-bot">
-          Décrivez en 2–3 phrases ce que vous voudriez automatiser ou simplifier.  
+          Décrivez en 2–3 phrases ce que vous voudriez automatiser ou simplifier.
           Je vous propose une première structure d’agent ou de système.
         </div>
       </div>
 
       <form id="ai-form" class="ai-form">
-        <textarea id="ai-input" rows="2" placeholder="Ex : Je voudrais que l’IA gère la première réponse aux demandes reçues par e-mail…"></textarea>
+        <textarea
+          id="ai-input"
+          rows="2"
+          placeholder="Ex : Je voudrais que l’IA gère la première réponse aux demandes reçues par e-mail…"
+        ></textarea>
         <button type="submit" class="btn btn-primary ai-send">
           Envoyer
         </button>
       </form>
 
       <div class="ai-hint">
-        Prototype côté front uniquement. Connectez ensuite ce widget à votre propre backend ou à vos API IA.
+        Prototype côté front uniquement. Connectez ensuite ce widget à votre backend ou à vos API IA.
       </div>
     </div>
   </div>
@@ -687,7 +812,7 @@
     <div class="footer-main">
       <div>
         <strong>NH110LAB.ai</strong><br />
-        Studio IA & expériences digitales minimalistes.
+        Studio IA &amp; expériences digitales minimalistes.
       </div>
       <div class="footer-links">
         <a href="#hero">Accueil</a>
@@ -702,8 +827,6 @@
     </div>
   </footer>
 
-
-  
   <script src="script.js" defer></script>
 </body>
 </html>
