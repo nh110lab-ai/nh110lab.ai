@@ -1,591 +1,298 @@
-// Util: selecteurs rapides
-const $ = (sel, scope = document) => scope.querySelector(sel);
-const $$ = (sel, scope = document) => Array.from(scope.querySelectorAll(sel));
+/* =========================================================
+   NH110LAB.ai — SCRIPT LUXE MAX
+   PARTIE 1/3 : ORB + HALO + PARTICLES + THEME AUTO + SWITCH
+========================================================= */
 
-// Validation utils
-const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-const validateMinLength = (text, min = 10) => text.trim().length >= min;
+/* -----------------------------
+   🎨 THEME AUTO + SWITCH
+----------------------------- */
+function applyTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  localStorage.setItem("theme", theme);
+  document.getElementById("theme-toggle").textContent =
+    theme === "dark" ? "☾" : "☀";
+}
 
-document.addEventListener("DOMContentLoaded", () => {
-  const root = document.documentElement;
+// Détection auto du système
+const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+const savedTheme = localStorage.getItem("theme");
 
-  /* ---------- YEAR ---------- */
-  const yearSpan = $("#year");
-  if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
-  }
+applyTheme(savedTheme || (prefersDark ? "dark" : "light"));
 
-  /* ---------- THEME TOGGLE ---------- */
-  const savedTheme = window.localStorage?.getItem("nh110-theme") || "dark";
-  if (savedTheme === "light" || savedTheme === "dark") {
-    root.setAttribute("data-theme", savedTheme);
-  }
+// Bouton toggle
+document.getElementById("theme-toggle").addEventListener("click", () => {
+  const current = document.documentElement.getAttribute("data-theme");
+  applyTheme(current === "dark" ? "light" : "dark");
+});
 
-  const themeBtn = $(".theme-toggle");
-  if (themeBtn) {
-    const iconSpan = $(".theme-toggle-icon", themeBtn);
+/* -----------------------------
+   🔮 ORB PREMIUM (Canvas)
+----------------------------- */
+const orbCanvas = document.getElementById("orb");
+const orbCtx = orbCanvas.getContext("2d");
 
-    const applyIcon = () => {
-      const isLight = root.getAttribute("data-theme") === "light";
-      iconSpan.textContent = isLight ? "☀︎" : "☾";
-    };
-    applyIcon();
+function resizeOrb() {
+  orbCanvas.width = window.innerWidth;
+  orbCanvas.height = window.innerHeight;
+}
+resizeOrb();
+window.addEventListener("resize", resizeOrb);
 
-    themeBtn.addEventListener("click", () => {
-      const current = root.getAttribute("data-theme") || "dark";
-      const next = current === "dark" ? "light" : "dark";
-      root.setAttribute("data-theme", next);
-      try {
-        window.localStorage?.setItem("nh110-theme", next);
-      } catch (e) {
-        console.warn("localStorage unavailable");
-      }
-      applyIcon();
-    });
-  }
+let orbX = 0;
+let orbY = 0;
+let orbSpeedX = 0.15;
+let orbSpeedY = 0.08;
 
-  /* ---------- NAV MOBILE ---------- */
-  const navToggle = $(".nav-toggle");
-  const nav = $(".nav");
-  if (navToggle && nav) {
-    navToggle.addEventListener("click", () => {
-      document.body.classList.toggle("nav-open");
-    });
+function drawOrb() {
+  orbCtx.clearRect(0, 0, orbCanvas.width, orbCanvas.height);
 
-    $$(".nav-link", nav).forEach((link) => {
-      link.addEventListener("click", () => {
-        document.body.classList.remove("nav-open");
-      });
-    });
-  }
+  const gradient = orbCtx.createRadialGradient(
+    orbX + orbCanvas.width / 2,
+    orbY + orbCanvas.height / 2,
+    40,
+    orbX + orbCanvas.width / 2,
+    orbY + orbCanvas.height / 2,
+    280
+  );
 
-  /* ---------- SCROLL REVEAL ---------- */
-  const revealEls = $$(".premium-reveal");
-  if ("IntersectionObserver" in window && revealEls.length) {
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("premium-visible");
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-    revealEls.forEach((el) => io.observe(el));
-  } else {
-    revealEls.forEach((el) => el.classList.add("premium-visible"));
-  }
+  gradient.addColorStop(0, getComputedStyle(document.documentElement).getPropertyValue("--orb-strong"));
+  gradient.addColorStop(1, getComputedStyle(document.documentElement).getPropertyValue("--orb-soft"));
 
-  /* ---------- LAZY LOAD IMAGES ---------- */
-  if ("IntersectionObserver" in window) {
-    const imageObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const img = entry.target;
-            if (img.dataset.src) {
-              img.src = img.dataset.src;
-              img.removeAttribute("data-src");
-            }
-            imageObserver.unobserve(img);
-          }
-        });
-      },
-      { rootMargin: "50px" }
-    );
+  orbCtx.fillStyle = gradient;
+  orbCtx.beginPath();
+  orbCtx.arc(
+    orbCanvas.width / 2 + orbX,
+    orbCanvas.height / 2 + orbY,
+    260,
+    0,
+    Math.PI * 2
+  );
+  orbCtx.fill();
 
-    $$("img[loading='lazy']").forEach((img) => {
-      imageObserver.observe(img);
-    });
-  }
+  // mouvement subtil premium
+  orbX += orbSpeedX;
+  orbY += orbSpeedY;
 
-  /* ---------- PRICING TOGGLE ---------- */
-  const pricingToggle = $(".pricing-toggle");
-  if (pricingToggle) {
-    const pilotBtn = pricingToggle.querySelector('[data-mode="pilot"]');
-    const runBtn = pricingToggle.querySelector('[data-mode="run"]');
-    const pilotCard = $(".pricing-pilot");
-    const runCard = $(".pricing-run");
+  if (Math.abs(orbX) > 80) orbSpeedX *= -1;
+  if (Math.abs(orbY) > 50) orbSpeedY *= -1;
 
-    const setMode = (mode) => {
-      if (!pilotCard || !runCard) return;
-      if (mode === "pilot") {
-        pilotCard.classList.remove("hidden");
-        runCard.classList.add("hidden");
-        pilotBtn.classList.add("toggle-btn-active");
-        runBtn.classList.remove("toggle-btn-active");
-        pilotBtn.setAttribute("aria-selected", "true");
-        runBtn.setAttribute("aria-selected", "false");
-      } else {
-        runCard.classList.remove("hidden");
-        pilotCard.classList.add("hidden");
-        runBtn.classList.add("toggle-btn-active");
-        pilotBtn.classList.remove("toggle-btn-active");
-        runBtn.setAttribute("aria-selected", "true");
-        pilotBtn.setAttribute("aria-selected", "false");
-      }
-    };
+  requestAnimationFrame(drawOrb);
+}
+drawOrb();
 
-    pilotBtn?.addEventListener("click", () => setMode("pilot"));
-    runBtn?.addEventListener("click", () => setMode("run"));
-  }
+/* -----------------------------
+   🌕 HALO GLOW
+----------------------------- */
+const haloCanvas = document.getElementById("halo");
+const haloCtx = haloCanvas.getContext("2d");
 
-  /* ---------- FAQ ACCORDION ---------- */
-  $$(".faq-item").forEach((item) => {
-    const btn = $(".faq-question", item);
-    const answer = $(".faq-answer", item);
-    if (!btn || !answer) return;
+function resizeHalo() {
+  haloCanvas.width = window.innerWidth;
+  haloCanvas.height = window.innerHeight;
+}
+resizeHalo();
+window.addEventListener("resize", resizeHalo);
 
-    btn.addEventListener("click", () => {
-      const isOpen = item.classList.contains("open");
-      $$(".faq-item").forEach((i) => i.classList.remove("open"));
-      if (!isOpen) {
-        item.classList.add("open");
-        btn.setAttribute("aria-expanded", "true");
-      } else {
-        btn.setAttribute("aria-expanded", "false");
-      }
-    });
+function drawHalo() {
+  haloCtx.clearRect(0, 0, haloCanvas.width, haloCanvas.height);
 
-    // Clavier: Enter/Space
-    btn.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        btn.click();
-      }
-    });
-  });
+  const haloGradient = haloCtx.createRadialGradient(
+    haloCanvas.width / 2,
+    haloCanvas.height / 2,
+    50,
+    haloCanvas.width / 2,
+    haloCanvas.height / 2,
+    600
+  );
 
-  /* ---------- TABS TÉMOIGNAGES ---------- */
-  const testimonialTabs = $$(".testimonial-tab");
-  if (testimonialTabs.length) {
-    testimonialTabs.forEach((tab, idx) => {
-      tab.setAttribute("aria-label", `Témoignage ${idx + 1}`);
+  haloGradient.addColorStop(0, "rgba(120,90,255,0.25)");
+  haloGradient.addColorStop(1, "rgba(120,90,255,0)");
 
-      tab.addEventListener("click", () => {
-        const target = tab.getAttribute("data-testimonial");
-        testimonialTabs.forEach((t) => {
-          const isActive = t === tab;
-          t.classList.toggle("active", isActive);
-          t.setAttribute("aria-selected", isActive);
-        });
-        $$(".testimonial-panel").forEach((panel) => {
-          const id = panel.getAttribute("data-testimonial-panel");
-          const isActive = id === target;
-          panel.classList.toggle("active", isActive);
-          panel.setAttribute("aria-hidden", !isActive);
-        });
-      });
+  haloCtx.fillStyle = haloGradient;
+  haloCtx.fillRect(0, 0, haloCanvas.width, haloCanvas.height);
 
-      // Clavier: flèches
-      tab.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
-          e.preventDefault();
-          const nextIdx = e.key === "ArrowRight" 
-            ? (idx + 1) % testimonialTabs.length 
-            : (idx - 1 + testimonialTabs.length) % testimonialTabs.length;
-          testimonialTabs[nextIdx].click();
-          testimonialTabs[nextIdx].focus();
-        }
-      });
-    });
-  }
+  requestAnimationFrame(drawHalo);
+}
+drawHalo();
 
-  /* ---------- DEVIS EXPRESS ---------- */
-  const quoteForm = $("#quote-form");
-  if (quoteForm) {
-    const budgetRange = $("#quote-budget");
-    const budgetValue = $("#quote-budget-value");
-    const quoteType = $("#quote-type");
-    const quoteSector = $("#quote-sector");
-    const quoteAi = $("#quote-ai");
-    const quoteDeadlineRadios = $$('input[name="quote-deadline"]', quoteForm);
+/* -----------------------------
+   ✨ PARTICULES D’AMBIANCE
+----------------------------- */
+const particlesCanvas = document.getElementById("particles");
+const pCtx = particlesCanvas.getContext("2d");
 
-    const resultEl = $("#quote-result");
-    const taglineEl = $("#quote-tagline");
-    const idealEl = $("#quote-ideal");
-    const badgeEl = $("#quote-badge");
-    const bulletsEl = $("#quote-bullets");
+function resizeParticles() {
+  particlesCanvas.width = window.innerWidth;
+  particlesCanvas.height = window.innerHeight;
+}
+resizeParticles();
+window.addEventListener("resize", resizeParticles);
 
-    const format = (val) =>
-      Number(val).toLocaleString("fr-FR", { maximumFractionDigits: 0 });
+const particles = Array.from({ length: 60 }).map(() => ({
+  x: Math.random() * window.innerWidth,
+  y: Math.random() * window.innerHeight,
+  size: Math.random() * 2 + 1,
+  speed: Math.random() * 0.4 + 0.1
+}));
 
-    if (budgetRange && budgetValue) {
-      budgetValue.textContent = format(budgetRange.value);
-      budgetRange.addEventListener("input", () => {
-        budgetValue.textContent = format(budgetRange.value);
-        // Mise à jour en temps réel
-        updateQuoteEstimate();
-      });
-    }
+function drawParticles() {
+  pCtx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
+  pCtx.fillStyle = "rgba(255,255,255,0.45)";
 
-    // Mise à jour au changement
-    quoteType?.addEventListener("change", updateQuoteEstimate);
-    quoteSector?.addEventListener("change", updateQuoteEstimate);
-    quoteAi?.addEventListener("change", updateQuoteEstimate);
-    quoteDeadlineRadios.forEach((r) => r.addEventListener("change", updateQuoteEstimate));
+  particles.forEach(p => {
+    pCtx.beginPath();
+    pCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    pCtx.fill();
 
-    function updateQuoteEstimate() {
-      if (!resultEl || !taglineEl || !idealEl || !badgeEl) return;
-
-      const type = quoteType?.value || "site";
-      const budget = Number(budgetRange?.value || 1500);
-      const hasAi = quoteAi?.checked || false;
-      const deadline =
-        quoteDeadlineRadios.find((r) => r.checked)?.value || "standard";
-
-      let envelope, tempo, labelType;
-
-      if (budget < 1000) envelope = "900–1 500 € HT";
-      else if (budget < 2500) envelope = "1 500–2 500 € HT";
-      else if (budget < 4000) envelope = "2 500–3 500 € HT";
-      else envelope = "3 500+ € HT";
-
-      if (deadline === "rapide") tempo = "1 à 2 semaines";
-      else if (deadline === "standard") tempo = "2 à 4 semaines";
-      else tempo = "3 à 5 semaines, selon votre rythme";
-
-      if (type === "site") labelType = "site vitrine / landing page";
-      else if (type === "agent") labelType = "système d'agent IA / automatisation";
-      else labelType = "mix site + agents IA";
-
-      taglineEl.textContent =
-        "À partir de vos réponses, on prépare un cadrage rapide. Le vrai devis se fait ensuite en direct.";
-
-      resultEl.innerHTML = `Projet <strong>${labelType}</strong>${
-        hasAi ? " avec composante IA intégrée" : ""
-      } · enveloppe indicative autour de <strong>${envelope}</strong> · mise en ligne en <strong>${tempo}</strong>.`;
-
-      idealEl.textContent =
-        "Cette estimation sert de boussole. On affine ensuite en fonction de votre contexte, sans engagement.";
-
-      badgeEl.textContent =
-        "🔍 Estimation indicatrice — le but est de voir si on parle le même langage en termes de budget et de complexité.";
-
-      // Mettre à jour les bullets aussi
-      if (bulletsEl) {
-        const bullets = [
-          hasAi ? "1 page forte + 1 espace d'automatisation concret" : "1 page forte ou agent focus",
-          "Intégration à vos outils existants lorsque c'est pertinent",
-          "Mini tutoriel vidéo + documentation simple"
-        ];
-        bulletsEl.innerHTML = bullets
-          .map((b) => `<li>${b}</li>`)
-          .join("");
-      }
-    }
-
-    quoteForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      updateQuoteEstimate();
-    });
-  }
-
-  /* ---------- CONTACT FORM + VALIDATION ---------- */
-  const contactForm = $("#contact-form");
-  const toast = $("#toast");
-
-  const showToast = (message = "✅ Message envoyé. Vous recevrez une réponse personnalisée sous peu.") => {
-    if (!toast) return;
-    toast.textContent = message;
-    toast.classList.add("show");
-    setTimeout(() => toast.classList.remove("show"), 3000);
-  };
-
-  if (contactForm) {
-    const nameInput = $("#name");
-    const emailInput = $("#email");
-    const projectInput = $("#project");
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-
-    const validateForm = () => {
-      let isValid = true;
-
-      if (!nameInput?.value.trim()) {
-        nameInput?.setAttribute("aria-invalid", "true");
-        isValid = false;
-      } else {
-        nameInput?.removeAttribute("aria-invalid");
-      }
-
-      if (!validateEmail(emailInput?.value || "")) {
-        emailInput?.setAttribute("aria-invalid", "true");
-        isValid = false;
-      } else {
-        emailInput?.removeAttribute("aria-invalid");
-      }
-
-      if (!validateMinLength(projectInput?.value || "", 10)) {
-        projectInput?.setAttribute("aria-invalid", "true");
-        isValid = false;
-      } else {
-        projectInput?.removeAttribute("aria-invalid");
-      }
-
-      return isValid;
-    };
-
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      if (!validateForm()) {
-        showToast("❌ Veuillez remplir tous les champs correctement.");
-        return;
-      }
-
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.textContent = "Envoi en cours...";
-      }
-
-      // Simule envoi (remplacer par API réelle)
-      setTimeout(() => {
-        contactForm.reset();
-        showToast("✅ Message envoyé. Vous recevrez une réponse personnalisée sous peu.");
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.textContent = "Envoyer mon message";
-        }
-      }, 800);
-    });
-
-    // Validation en temps réel
-    emailInput?.addEventListener("blur", () => {
-      if (emailInput.value && !validateEmail(emailInput.value)) {
-        emailInput.setAttribute("aria-invalid", "true");
-      } else {
-        emailInput.removeAttribute("aria-invalid");
-      }
-    });
-  }
-
-  /* ---------- AI WIDGET ---------- */
-  const aiToggle = $("#ai-toggle");
-  const aiPanel = $("#ai-panel");
-  const aiClose = $("#ai-close");
-  const aiForm = $("#ai-form");
-  const aiInput = $("#ai-input");
-  const aiMessages = $("#ai-messages");
-
-  const openAi = () => {
-    if (!aiPanel) return;
-    aiPanel.classList.add("open");
-    aiInput?.focus();
-  };
-
-  const closeAi = () => {
-    if (!aiPanel) return;
-    aiPanel.classList.remove("open");
-  };
-
-  aiToggle?.addEventListener("click", openAi);
-  aiClose?.addEventListener("click", closeAi);
-
-  // Fermer au clic en dehors (optionnel)
-  document.addEventListener("click", (e) => {
-    if (aiPanel?.classList.contains("open") && 
-        !aiPanel?.contains(e.target) && 
-        !aiToggle?.contains(e.target)) {
-      closeAi();
+    p.y -= p.speed;
+    if (p.y < -5) {
+      p.y = particlesCanvas.height + 5;
+      p.x = Math.random() * particlesCanvas.width;
     }
   });
 
-  const appendMessage = (text, from = "bot") => {
-    if (!aiMessages) return;
-    const div = document.createElement("div");
-    div.className = `ai-message ${
-      from === "bot" ? "ai-message-bot" : "ai-message-user"
-    }`;
-    div.textContent = text;
-    div.setAttribute("role", "article");
-    aiMessages.appendChild(div);
-    aiMessages.scrollTop = aiMessages.scrollHeight;
-  };
+  requestAnimationFrame(drawParticles);
+}
 
-  if (aiForm && aiInput) {
-    aiForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const value = aiInput.value.trim();
-      if (!value) return;
+drawParticles();
+/* -----------------------------------------
+🌙 NAVIGATION MOBILE
+----------------------------------------- */
+const nav = document.querySelector(".nav");
+const navToggle = document.querySelector(".nav-toggle");
 
-      appendMessage(value, "user");
-      aiInput.value = "";
+navToggle.addEventListener("click", () => {
+  nav.classList.toggle("active");
+  navToggle.classList.toggle("open");
+});
 
-      // Afficher loader
-      const loaderDiv = document.createElement("div");
-      loaderDiv.className = "ai-message ai-message-bot";
-      loaderDiv.textContent = "Réflexion en cours...";
-      loaderDiv.id = "ai-loader";
-      aiMessages.appendChild(loaderDiv);
-      aiMessages.scrollTop = aiMessages.scrollHeight;
+/* -----------------------------------------
+🌙 DEVIS EXPRESS (ESTIMATION)
+----------------------------------------- */
+const quoteForm = document.getElementById("quote-form");
+const quoteBudget = document.getElementById("quote-budget");
+const quoteBudgetValue = document.getElementById("quote-budget-value");
+const quoteResult = document.getElementById("quote-result");
 
-      // Réponse front-only (remplacer par appel API)
-      setTimeout(() => {
-        loaderDiv.remove();
-        const suggestion = `Je vois un besoin autour de « ${value.slice(
-          0,
-          120
-        )} ». 
+quoteBudget.addEventListener("input", () => {
+  quoteBudgetValue.textContent = quoteBudget.value;
+});
 
-Je proposerais :
-1) Clarifier en 3 blocs : acquisition / traitement / suivi.
-2) Définir un ou deux points où un agent IA peut filtrer, classer ou pré-rédiger.
-3) Choisir le premier périmètre test (max 1–2 semaines de mise en place).
+quoteForm.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-Décrivez-moi maintenant les outils que vous utilisez déjà (e-mail, CRM, boutique, etc.).`;
-        appendMessage(suggestion, "bot");
-      }, 1200);
+  const type = document.getElementById("quote-type").value;
+  const budget = Number(quoteBudget.value);
+  const delay = document.querySelector("input[name='delay']:checked").value;
+
+  let multiplier = 1;
+
+  if (type === "agent") multiplier = 1.3;
+  if (type === "workflow") multiplier = 1.1;
+  if (type === "mix") multiplier = 1.6;
+
+  if (delay === "fast") multiplier += 0.25;
+
+  const estimation = Math.round(budget * multiplier);
+
+  quoteResult.textContent = `Estimation : ~ ${estimation} €`;
+});
+
+/* -----------------------------------------
+🌙 TABS — Témoignages
+----------------------------------------- */
+const tabButtons = document.querySelectorAll(".tab");
+const panels = document.querySelectorAll(".panel");
+
+tabButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const target = btn.dataset.tab;
+
+    tabButtons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    panels.forEach(panel => {
+      panel.classList.toggle("active", panel.dataset.panel === target);
     });
+  });
+});
 
-    // Enter pour envoyer
-    aiInput.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" && !e.shiftKey) {
-        e.preventDefault();
-        aiForm.dispatchEvent(new Event("submit"));
-      }
-    });
-  }
+/* -----------------------------------------
+🌙 PRICING (Pilote / Run)
+----------------------------------------- */
+const pricingButtons = document.querySelectorAll(".pricing-btn");
+const pricingPilot = document.getElementById("pricing-pilot");
+const pricingRun = document.getElementById("pricing-run");
 
-  /* ---------- BACKGROUND CANVAS ---------- */
-  const particlesCanvas = document.getElementById("particles");
-  const orbCanvas = document.getElementById("orb");
-  const haloCanvas = document.getElementById("halo");
+pricingButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    pricingButtons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
 
-  const resizeCanvas = (canvas) => {
-    if (!canvas) return;
-    const { innerWidth: w, innerHeight: h } = window;
-    canvas.width = w * window.devicePixelRatio;
-    canvas.height = h * window.devicePixelRatio;
-    const ctx = canvas.getContext("2d");
-    if (ctx) ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
-  };
-
-  const canvases = [particlesCanvas, orbCanvas, haloCanvas].filter(Boolean);
-  canvases.forEach(resizeCanvas);
-  window.addEventListener("resize", () => canvases.forEach(resizeCanvas));
-
-  // Particules simples avec pause hors-viewport
-  let particlesAnimationId = null;
-  if (particlesCanvas) {
-    const ctx = particlesCanvas.getContext("2d");
-    if (!ctx) return;
-
-    const particles = [];
-    const COUNT = window.innerWidth < 768 ? 50 : 80;
-
-    const makeParticle = () => ({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      vx: (Math.random() - 0.5) * 0.2,
-      vy: (Math.random() - 0.5) * 0.2,
-      r: Math.random() * 1.6 + 0.4,
-      alpha: Math.random() * 0.9 + 0.1,
-    });
-
-    for (let i = 0; i < COUNT; i++) particles.push(makeParticle());
-
-    const drawParticles = () => {
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-      ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = "rgba(148,163,184,0.5)";
-      particles.forEach((p) => {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0) p.x = w;
-        if (p.x > w) p.x = 0;
-        if (p.y < 0) p.y = h;
-        if (p.y > h) p.y = 0;
-        ctx.globalAlpha = p.alpha;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fill();
-      });
-      ctx.globalAlpha = 1;
-    };
-
-    const loopParticles = () => {
-      if (!document.hidden) {
-        drawParticles();
-      }
-      particlesAnimationId = requestAnimationFrame(loopParticles);
-    };
-    loopParticles();
-  }
-
-  // Orb lumineux avec pause hors-viewport
-  let orbAnimationId = null;
-  if (orbCanvas) {
-    const ctx = orbCanvas.getContext("2d");
-    if (!ctx) return;
-
-    let t = 0;
-
-    const drawOrb = () => {
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-      ctx.clearRect(0, 0, w, h);
-
-      const cx = w * 0.75;
-      const cy = h * 0.22 + Math.sin(t / 80) * 10;
-      const r = Math.min(w, h) * 0.22;
-
-      const grad = ctx.createRadialGradient(cx, cy, r * 0.1, cx, cy, r);
-      grad.addColorStop(0, "rgba(129,140,248,0.9)");
-      grad.addColorStop(0.4, "rgba(79,70,229,0.5)");
-      grad.addColorStop(1, "rgba(15,23,42,0)");
-
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      ctx.arc(cx, cy, r, 0, Math.PI * 2);
-      ctx.fill();
-
-      t++;
-      if (!document.hidden) {
-        orbAnimationId = requestAnimationFrame(drawOrb);
-      } else {
-        orbAnimationId = null;
-      }
-    };
-    drawOrb();
-  }
-
-  // Halo doux au centre
-  if (haloCanvas) {
-    const ctx = haloCanvas.getContext("2d");
-    if (!ctx) return;
-
-    const drawHalo = () => {
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-      ctx.clearRect(0, 0, w, h);
-
-      const grad = ctx.createRadialGradient(
-        w * 0.5,
-        h * 0.0,
-        0,
-        w * 0.5,
-        h * 0.0,
-        h * 0.9
-      );
-      grad.addColorStop(0, "rgba(15,23,42,0.6)");
-      grad.addColorStop(1, "rgba(0,0,0,1)");
-
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, w, h);
-
-      requestAnimationFrame(drawHalo);
-    };
-    drawHalo();
-  }
-
-  // Pause animations au changement d'onglet
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      if (particlesAnimationId) cancelAnimationFrame(particlesAnimationId);
-      if (orbAnimationId) cancelAnimationFrame(orbAnimationId);
+    if (btn.dataset.mode === "pilot") {
+      pricingPilot.classList.remove("hidden");
+      pricingRun.classList.add("hidden");
+    } else {
+      pricingPilot.classList.add("hidden");
+      pricingRun.classList.remove("hidden");
     }
   });
+});
+
+/* -----------------------------------------
+🌙 FAQ
+----------------------------------------- */
+const faqItems = document.querySelectorAll(".faq-item");
+
+faqItems.forEach(item => {
+  item.querySelector(".faq-question").addEventListener("click", () => {
+    item.classList.toggle("active");
+  });
+});
+/* -----------------------------------------
+🌙 ASSISTANT IA — Widget flottant
+----------------------------------------- */
+
+const aiToggle = document.getElementById("ai-toggle");
+const aiPanel = document.getElementById("ai-panel");
+const aiClose = document.getElementById("ai-close");
+const aiForm = document.getElementById("ai-form");
+const aiInput = document.getElementById("ai-input");
+const aiMessages = document.getElementById("ai-messages");
+
+// Ouvrir / fermer le widget
+aiToggle.addEventListener("click", () => {
+  aiPanel.classList.toggle("active");
+});
+
+aiClose.addEventListener("click", () => {
+  aiPanel.classList.remove("active");
+});
+
+// Ajouter un message dans l'UI
+function addMessage(text, role = "bot") {
+  const div = document.createElement("div");
+  div.classList.add("ai-message", role);
+  div.textContent = text;
+  aiMessages.appendChild(div);
+
+  // Auto scroll
+  aiMessages.scrollTop = aiMessages.scrollHeight;
+}
+
+// Envoi du message utilisateur
+aiForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const message = aiInput.value.trim();
+  if (!message) return;
+
+  // UI user
+  addMessage(message, "user");
+  aiInput.value = "";
+
+  // Réponse simple (placeholder)
+  setTimeout(() => {
+    addMessage("Je prépare une proposition d’automatisation…", "bot");
+  }, 500);
 });
