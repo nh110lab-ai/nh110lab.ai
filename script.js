@@ -1,298 +1,209 @@
-/* =========================================================
-   NH110LAB.ai — SCRIPT LUXE MAX
-   PARTIE 1/3 : ORB + HALO + PARTICLES + THEME AUTO + SWITCH
-========================================================= */
+// =========================================================
+// NH110LAB.ai — Interactions front
+// Thème, menu mobile, devis, tabs, pricing, FAQ, contact, widget IA
+// =========================================================
 
-/* -----------------------------
-   🎨 THEME AUTO + SWITCH
------------------------------ */
-function applyTheme(theme) {
-  document.documentElement.setAttribute("data-theme", theme);
-  localStorage.setItem("theme", theme);
-  document.getElementById("theme-toggle").textContent =
-    theme === "dark" ? "☾" : "☀";
-}
+document.addEventListener("DOMContentLoaded", () => {
+  // -------- THEME TOGGLE --------
+  const root = document.documentElement;
+  const themeToggle = document.getElementById("theme-toggle");
 
-// Détection auto du système
-const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-const savedTheme = localStorage.getItem("theme");
+  const applyTheme = (theme) => {
+    root.setAttribute("data-theme", theme);
+    localStorage.setItem("nh110lab-theme", theme);
+    themeToggle.textContent = theme === "dark" ? "☾" : "☀︎";
+  };
 
-applyTheme(savedTheme || (prefersDark ? "dark" : "light"));
+  const savedTheme = localStorage.getItem("nh110lab-theme");
+  if (savedTheme === "light" || savedTheme === "dark") {
+    applyTheme(savedTheme);
+  }
 
-// Bouton toggle
-document.getElementById("theme-toggle").addEventListener("click", () => {
-  const current = document.documentElement.getAttribute("data-theme");
-  applyTheme(current === "dark" ? "light" : "dark");
-});
-
-/* -----------------------------
-   🔮 ORB PREMIUM (Canvas)
------------------------------ */
-const orbCanvas = document.getElementById("orb");
-const orbCtx = orbCanvas.getContext("2d");
-
-function resizeOrb() {
-  orbCanvas.width = window.innerWidth;
-  orbCanvas.height = window.innerHeight;
-}
-resizeOrb();
-window.addEventListener("resize", resizeOrb);
-
-let orbX = 0;
-let orbY = 0;
-let orbSpeedX = 0.15;
-let orbSpeedY = 0.08;
-
-function drawOrb() {
-  orbCtx.clearRect(0, 0, orbCanvas.width, orbCanvas.height);
-
-  const gradient = orbCtx.createRadialGradient(
-    orbX + orbCanvas.width / 2,
-    orbY + orbCanvas.height / 2,
-    40,
-    orbX + orbCanvas.width / 2,
-    orbY + orbCanvas.height / 2,
-    280
-  );
-
-  gradient.addColorStop(0, getComputedStyle(document.documentElement).getPropertyValue("--orb-strong"));
-  gradient.addColorStop(1, getComputedStyle(document.documentElement).getPropertyValue("--orb-soft"));
-
-  orbCtx.fillStyle = gradient;
-  orbCtx.beginPath();
-  orbCtx.arc(
-    orbCanvas.width / 2 + orbX,
-    orbCanvas.height / 2 + orbY,
-    260,
-    0,
-    Math.PI * 2
-  );
-  orbCtx.fill();
-
-  // mouvement subtil premium
-  orbX += orbSpeedX;
-  orbY += orbSpeedY;
-
-  if (Math.abs(orbX) > 80) orbSpeedX *= -1;
-  if (Math.abs(orbY) > 50) orbSpeedY *= -1;
-
-  requestAnimationFrame(drawOrb);
-}
-drawOrb();
-
-/* -----------------------------
-   🌕 HALO GLOW
------------------------------ */
-const haloCanvas = document.getElementById("halo");
-const haloCtx = haloCanvas.getContext("2d");
-
-function resizeHalo() {
-  haloCanvas.width = window.innerWidth;
-  haloCanvas.height = window.innerHeight;
-}
-resizeHalo();
-window.addEventListener("resize", resizeHalo);
-
-function drawHalo() {
-  haloCtx.clearRect(0, 0, haloCanvas.width, haloCanvas.height);
-
-  const haloGradient = haloCtx.createRadialGradient(
-    haloCanvas.width / 2,
-    haloCanvas.height / 2,
-    50,
-    haloCanvas.width / 2,
-    haloCanvas.height / 2,
-    600
-  );
-
-  haloGradient.addColorStop(0, "rgba(120,90,255,0.25)");
-  haloGradient.addColorStop(1, "rgba(120,90,255,0)");
-
-  haloCtx.fillStyle = haloGradient;
-  haloCtx.fillRect(0, 0, haloCanvas.width, haloCanvas.height);
-
-  requestAnimationFrame(drawHalo);
-}
-drawHalo();
-
-/* -----------------------------
-   ✨ PARTICULES D’AMBIANCE
------------------------------ */
-const particlesCanvas = document.getElementById("particles");
-const pCtx = particlesCanvas.getContext("2d");
-
-function resizeParticles() {
-  particlesCanvas.width = window.innerWidth;
-  particlesCanvas.height = window.innerHeight;
-}
-resizeParticles();
-window.addEventListener("resize", resizeParticles);
-
-const particles = Array.from({ length: 60 }).map(() => ({
-  x: Math.random() * window.innerWidth,
-  y: Math.random() * window.innerHeight,
-  size: Math.random() * 2 + 1,
-  speed: Math.random() * 0.4 + 0.1
-}));
-
-function drawParticles() {
-  pCtx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
-  pCtx.fillStyle = "rgba(255,255,255,0.45)";
-
-  particles.forEach(p => {
-    pCtx.beginPath();
-    pCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-    pCtx.fill();
-
-    p.y -= p.speed;
-    if (p.y < -5) {
-      p.y = particlesCanvas.height + 5;
-      p.x = Math.random() * particlesCanvas.width;
-    }
+  themeToggle?.addEventListener("click", () => {
+    const current = root.getAttribute("data-theme") || "dark";
+    applyTheme(current === "dark" ? "light" : "dark");
   });
 
-  requestAnimationFrame(drawParticles);
-}
+  // -------- NAV MOBILE --------
+  const nav = document.querySelector(".nav");
+  const navToggle = document.querySelector(".nav-toggle");
 
-drawParticles();
-/* -----------------------------------------
-🌙 NAVIGATION MOBILE
------------------------------------------ */
-const nav = document.querySelector(".nav");
-const navToggle = document.querySelector(".nav-toggle");
+  navToggle?.addEventListener("click", () => {
+    nav?.classList.toggle("open");
+  });
 
-navToggle.addEventListener("click", () => {
-  nav.classList.toggle("active");
-  navToggle.classList.toggle("open");
-});
-
-/* -----------------------------------------
-🌙 DEVIS EXPRESS (ESTIMATION)
------------------------------------------ */
-const quoteForm = document.getElementById("quote-form");
-const quoteBudget = document.getElementById("quote-budget");
-const quoteBudgetValue = document.getElementById("quote-budget-value");
-const quoteResult = document.getElementById("quote-result");
-
-quoteBudget.addEventListener("input", () => {
-  quoteBudgetValue.textContent = quoteBudget.value;
-});
-
-quoteForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const type = document.getElementById("quote-type").value;
-  const budget = Number(quoteBudget.value);
-  const delay = document.querySelector("input[name='delay']:checked").value;
-
-  let multiplier = 1;
-
-  if (type === "agent") multiplier = 1.3;
-  if (type === "workflow") multiplier = 1.1;
-  if (type === "mix") multiplier = 1.6;
-
-  if (delay === "fast") multiplier += 0.25;
-
-  const estimation = Math.round(budget * multiplier);
-
-  quoteResult.textContent = `Estimation : ~ ${estimation} €`;
-});
-
-/* -----------------------------------------
-🌙 TABS — Témoignages
------------------------------------------ */
-const tabButtons = document.querySelectorAll(".tab");
-const panels = document.querySelectorAll(".panel");
-
-tabButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const target = btn.dataset.tab;
-
-    tabButtons.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-
-    panels.forEach(panel => {
-      panel.classList.toggle("active", panel.dataset.panel === target);
+  nav?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("open");
     });
   });
-});
 
-/* -----------------------------------------
-🌙 PRICING (Pilote / Run)
------------------------------------------ */
-const pricingButtons = document.querySelectorAll(".pricing-btn");
-const pricingPilot = document.getElementById("pricing-pilot");
-const pricingRun = document.getElementById("pricing-run");
+  // -------- DEVIS EXPRESS --------
+  const quoteForm = document.getElementById("quote-form");
+  const quoteBudget = document.getElementById("quote-budget");
+  const quoteBudgetValue = document.getElementById("quote-budget-value");
+  const quoteType = document.getElementById("quote-type");
+  const quoteResult = document.getElementById("quote-result");
 
-pricingButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    pricingButtons.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
+  if (quoteBudget && quoteBudgetValue) {
+    quoteBudget.addEventListener("input", () => {
+      quoteBudgetValue.textContent = quoteBudget.value;
+    });
+  }
 
-    if (btn.dataset.mode === "pilot") {
-      pricingPilot.classList.remove("hidden");
-      pricingRun.classList.add("hidden");
-    } else {
-      pricingPilot.classList.add("hidden");
-      pricingRun.classList.remove("hidden");
+  quoteForm?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const budget = Number(quoteBudget?.value || 0);
+    const type = quoteType?.value || "site";
+    const delay = (
+      document.querySelector('input[name="delay"]:checked') || {}
+    ).value;
+
+    let multiplier = 1;
+
+    switch (type) {
+      case "agent":
+        multiplier = 1.25;
+        break;
+      case "workflow":
+        multiplier = 1.1;
+        break;
+      case "mix":
+        multiplier = 1.4;
+        break;
+      default:
+        multiplier = 1;
+    }
+
+    if (delay === "fast") multiplier += 0.15;
+    if (delay === "flex") multiplier -= 0.05;
+
+    const estimation = Math.round(budget * multiplier);
+
+    if (quoteResult) {
+      quoteResult.textContent = `Estimation : ~ ${estimation.toLocaleString(
+        "fr-FR"
+      )} € (indicatif, à préciser après échange).`;
     }
   });
-});
 
-/* -----------------------------------------
-🌙 FAQ
------------------------------------------ */
-const faqItems = document.querySelectorAll(".faq-item");
+  // -------- TÉMOIGNAGES (TABS) --------
+  const tabButtons = document.querySelectorAll(".tab");
+  const panels = document.querySelectorAll(".panel");
 
-faqItems.forEach(item => {
-  item.querySelector(".faq-question").addEventListener("click", () => {
-    item.classList.toggle("active");
+  tabButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const target = btn.dataset.tab;
+      tabButtons.forEach((b) => {
+        b.classList.remove("active");
+        b.setAttribute("aria-selected", "false");
+      });
+      btn.classList.add("active");
+      btn.setAttribute("aria-selected", "true");
+
+      panels.forEach((panel) => {
+        const match = panel.dataset.panel === target;
+        panel.toggleAttribute("hidden", !match);
+      });
+    });
   });
-});
-/* -----------------------------------------
-🌙 ASSISTANT IA — Widget flottant
------------------------------------------ */
 
-const aiToggle = document.getElementById("ai-toggle");
-const aiPanel = document.getElementById("ai-panel");
-const aiClose = document.getElementById("ai-close");
-const aiForm = document.getElementById("ai-form");
-const aiInput = document.getElementById("ai-input");
-const aiMessages = document.getElementById("ai-messages");
+  // -------- PRICING (PILOTE / RUN) --------
+  const pricingButtons = document.querySelectorAll(".pricing-btn");
+  const pricingPilot = document.getElementById("pricing-pilot");
+  const pricingRun = document.getElementById("pricing-run");
 
-// Ouvrir / fermer le widget
-aiToggle.addEventListener("click", () => {
-  aiPanel.classList.toggle("active");
-});
+  pricingButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      pricingButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
 
-aiClose.addEventListener("click", () => {
-  aiPanel.classList.remove("active");
-});
+      if (btn.dataset.mode === "pilot") {
+        pricingPilot?.classList.remove("hidden");
+        pricingRun?.classList.add("hidden");
+      } else {
+        pricingPilot?.classList.add("hidden");
+        pricingRun?.classList.remove("hidden");
+      }
+    });
+  });
 
-// Ajouter un message dans l'UI
-function addMessage(text, role = "bot") {
-  const div = document.createElement("div");
-  div.classList.add("ai-message", role);
-  div.textContent = text;
-  aiMessages.appendChild(div);
+  // -------- FAQ ACCORDION --------
+  const faqItems = document.querySelectorAll(".faq-item");
+  faqItems.forEach((item) => {
+    const question = item.querySelector(".faq-question");
+    question?.addEventListener("click", () => {
+      item.classList.toggle("active");
+    });
+  });
 
-  // Auto scroll
-  aiMessages.scrollTop = aiMessages.scrollHeight;
-}
+  // -------- CONTACT FORM (fake submit) --------
+  const contactForm = document.getElementById("contact-form");
+  const feedback = document.getElementById("contact-feedback");
 
-// Envoi du message utilisateur
-aiForm.addEventListener("submit", (e) => {
-  e.preventDefault();
+  contactForm?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    contactForm.reset();
+    if (feedback) {
+      feedback.textContent = "Merci ! Votre message a bien été envoyé (simulation).";
+    }
+    setTimeout(() => {
+      if (feedback) feedback.textContent = "";
+    }, 5000);
+  });
 
-  const message = aiInput.value.trim();
-  if (!message) return;
+  // -------- WIDGET IA (Assistant Front) --------
+  const aiToggle = document.getElementById("ai-toggle");
+  const aiPanel = document.getElementById("ai-panel");
+  const aiClose = document.getElementById("ai-close");
+  const aiForm = document.getElementById("ai-form");
+  const aiInput = document.getElementById("ai-input");
+  const aiMessages = document.getElementById("ai-messages");
 
-  // UI user
-  addMessage(message, "user");
-  aiInput.value = "";
+  const openAI = () => {
+    aiPanel?.classList.add("active");
+    aiPanel?.setAttribute("aria-hidden", "false");
+  };
 
-  // Réponse simple (placeholder)
-  setTimeout(() => {
-    addMessage("Je prépare une proposition d’automatisation…", "bot");
-  }, 500);
+  const closeAI = () => {
+    aiPanel?.classList.remove("active");
+    aiPanel?.setAttribute("aria-hidden", "true");
+  };
+
+  aiToggle?.addEventListener("click", () => {
+    if (aiPanel?.classList.contains("active")) {
+      closeAI();
+    } else {
+      openAI();
+    }
+  });
+
+  aiClose?.addEventListener("click", closeAI);
+
+  const addMessage = (text, type = "bot") => {
+    if (!aiMessages) return;
+    const div = document.createElement("div");
+    div.className = `ai-message ${type}`;
+    div.textContent = text;
+    aiMessages.appendChild(div);
+    aiMessages.scrollTop = aiMessages.scrollHeight;
+  };
+
+  aiForm?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const value = aiInput.value.trim();
+    if (!value) return;
+    addMessage(value, "user");
+    aiInput.value = "";
+
+    // Mini "logique" IA côté front (pas de call externe)
+    setTimeout(() => {
+      const suggestion =
+        "Proposition :\n" +
+        "- Agent principal pour filtrer et résumer les demandes.\n" +
+        "- Workflow d'automatisation (notifications + tâches).\n" +
+        "- Petit front clair pour déclencher / suivre les actions.";
+      addMessage(suggestion, "bot");
+    }, 400);
+  });
 });
