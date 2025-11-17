@@ -1,7 +1,8 @@
 // NH110LAB.ai — Script optimisé (devis, témoignages, pricing, FAQ, IA, canvas)
 (function () {
   "use strict";
- 
+
+  
   // ===== UTILITAIRES =====
   const debounce = (fn, delay) => {
     let timer;
