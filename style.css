@@ -2504,3 +2504,50 @@ textarea {
     flex-direction: column;
   }
 }
+/* À AJOUTER À LA FIN DE style.css POUR EMBELLIR LES PAGES INTERNES */
+
+.page {
+  min-height: calc(100vh - 72px);
+  padding: 96px 6vw 72px;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.page h1 {
+  font-size: clamp(28px, 3vw, 34px);
+  margin-bottom: 16px;
+}
+
+.page h2 {
+  font-size: 20px;
+  margin-top: 32px;
+  margin-bottom: 10px;
+}
+
+.page p {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.page ul {
+  margin: 12px 0 0 18px;
+  padding: 0;
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.page li + li {
+  margin-top: 4px;
+}
+
+.page-intro {
+  font-size: 15px;
+  color: var(--text-muted);
+  max-width: 640px;
+  margin-bottom: 24px;
+}
