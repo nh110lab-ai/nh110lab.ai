@@ -1,16 +1,95 @@
+<!-- contact.html -->
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8">
-<title>Contact — NH110LAB.ai</title>
-<link rel="stylesheet" href="style.css"></head>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact — NH110LAB.ai</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
-
-<header class="header"><div class="logo">NH110LAB.ai</div></header>
+<header class="header" role="banner">
+  <div class="header-left">
+    <a href="index.html#hero" class="logo">NH110LAB.ai</a>
+    <div class="hero-mini">
+      <span class="eyebrow">Studio IA &amp; Automatisation</span>
+    </div>
+  </div>
+  <nav class="nav" role="navigation" aria-label="Navigation principale">
+    <a class="nav-link" href="index.html#hero">Accueil</a>
+    <a class="nav-link" href="services.html">Services</a>
+    <a class="nav-link" href="agents.html">Agents IA</a>
+    <a class="nav-link" href="usecases.html">Cas d'usage</a>
+    <a class="nav-link" href="tech.html">Tech</a>
+    <a class="nav-link" href="pricing.html">Offres</a>
+    <a class="nav-link" href="faq.html">FAQ</a>
+    <a class="nav-link nav-link-cta" href="contact.html">Contact</a>
+  </nav>
+  <button class="theme-toggle" type="button" aria-label="Basculer le thème">
+    <span class="theme-toggle-icon" data-theme-icon>☾</span>
+  </button>
+  <button class="nav-toggle" type="button" aria-label="Ouvrir le menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
 
 <section class="page">
-    <h1>Contact</h1>
-    <p>Envoyez-nous un message : </p>
-    <a href="mailto:contact@nh110lab.ai" class="cta">contact@nh110lab.ai</a>
+  <h1>Contact &amp; prise de brief</h1>
+  <p class="page-intro">
+    Décrivez simplement votre situation actuelle et ce que vous aimeriez déléguer à un système IA.
+    Vous recevez en retour un premier cadrage clair, sans engagement.
+  </p>
+
+  <form id="contact-form" class="contact-form">
+    <div class="field-group">
+      <label for="name">Votre nom / structure</label>
+      <input
+        id="name"
+        name="name"
+        type="text"
+        placeholder="Ex : Studio X, Boutique Y, @handle"
+        required
+      />
+    </div>
+
+    <div class="field-group">
+      <label for="email">E-mail</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        placeholder="vous@exemple.com"
+        required
+      />
+    </div>
+
+    <div class="field-group">
+      <label for="project">Parlez-nous de votre projet</label>
+      <textarea
+        id="project"
+        name="project"
+        rows="4"
+        placeholder="Où perdez-vous du temps ? Qu'est-ce qui pourrait être automatisé ?"
+        required
+      ></textarea>
+    </div>
+
+    <div class="field-group">
+      <label>
+        <input type="checkbox" id="contact-news" name="newsletter" />
+        Je souhaite recevoir parfois des cas concrets &amp; idées d'automatisation.
+      </label>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-full">
+      Envoyer mon brief
+    </button>
+    <p class="form-note">
+      Réponse en général sous 24–48h ouvrées avec un retour structuré sur la faisabilité,
+      les leviers possibles et un ordre de grandeur budgétaire.
+    </p>
+  </form>
 </section>
 
-<script src="script.js"></script>
-</body></html>
+<script src="script.js" defer></script>
+</body>
+</html>
