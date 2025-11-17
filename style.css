@@ -1283,3 +1283,169 @@ h1 {
     pointer-events: all;
   }
 }
+/* --- Section Créateurs & E-commerce --- */
+
+#digital-creators {
+  position: relative;
+  padding-block: 96px;
+}
+
+#digital-creators::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at top left, rgba(161, 106, 255, 0.16), transparent 55%),
+              radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.14), transparent 60%);
+  opacity: 0.9;
+  mix-blend-mode: screen;
+}
+
+#digital-creators .digital-creators-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+#digital-creators .digital-creators-header {
+  max-width: 720px;
+  margin: 0 auto 48px auto;
+  text-align: center;
+}
+
+#digital-creators .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 12px;
+}
+
+#digital-creators h2 {
+  font-size: clamp(1.9rem, 2.4vw, 2.3rem);
+  margin-bottom: 12px;
+}
+
+#digital-creators .subtitle {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.95rem;
+}
+
+#digital-creators .digital-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+#digital-creators .digital-card {
+  position: relative;
+  border-radius: 24px;
+  padding: 24px 22px 26px;
+  background: radial-gradient(circle at top left, rgba(167, 139, 250, 0.15), transparent 55%),
+              rgba(15, 23, 42, 0.96);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+#digital-creators .digital-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+}
+
+#digital-creators .digital-card p {
+  font-size: 0.92rem;
+  color: rgba(248, 250, 252, 0.88);
+  margin-bottom: 14px;
+}
+
+#digital-creators .digital-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 14px 0;
+  font-size: 0.9rem;
+  color: rgba(226, 232, 240, 0.9);
+}
+
+#digital-creators .digital-card li {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+#digital-creators .digital-card li::before {
+  content: "•";
+  font-size: 0.8rem;
+  margin-top: 3px;
+  opacity: 0.7;
+}
+
+#digital-creators .digital-card .tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  color: rgba(226, 232, 240, 0.9);
+  background: linear-gradient(120deg, rgba(129, 140, 248, 0.25), rgba(236, 72, 153, 0.16));
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+#digital-creators .digital-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 22px;
+  border-radius: 999px;
+  background: radial-gradient(circle at left, rgba(129, 140, 248, 0.26), transparent 60%),
+              rgba(15, 23, 42, 0.96);
+  border: 1px solid rgba(129, 140, 248, 0.55);
+}
+
+#digital-creators .digital-cta p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(226, 232, 240, 0.96);
+}
+
+#digital-creators .digital-cta .cta-button {
+  padding-inline: 22px;
+}
+
+/* Responsive */
+
+@media (max-width: 1024px) {
+  #digital-creators .digital-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #digital-creators .digital-cta {
+    border-radius: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  #digital-creators {
+    padding-block: 72px;
+  }
+
+  #digital-creators .digital-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #digital-creators .digital-creators-header {
+    text-align: left;
+  }
+}
