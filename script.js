@@ -694,3 +694,48 @@ function updateCreatorEcomEstimate() {
 if (projectType) {
   projectType.addEventListener("change", updateCreatorEcomEstimate);
 }
+/* --- ESTIMATIONS PREMIUM : Influenceurs, E-commerçants, Freelance, Personal Brand --- */
+
+const projectType = document.getElementById("project-type");
+
+function updatePremiumEstimate() {
+  const type = projectType?.value;
+  if (!type) return;
+
+  const tagline = document.getElementById("quote-tagline");
+  const result = document.getElementById("quote-result");
+  const ideal  = document.getElementById("quote-ideal");
+
+  switch (type) {
+    case "creator":
+      tagline.textContent = "Automatisation premium pour créateurs : DM, collabs, contenu, filtres IA.";
+      result.innerHTML = `Pack Influenceur / Créateur · <strong>900–1 400 € HT</strong> · système IA + mini landing · <strong>5–8 jours</strong>.`;
+      ideal.textContent = "DM IA, filtrage collabs, agent commentaires, réponses automatiques mais naturelles.";
+      break;
+
+    case "ecom":
+      tagline.textContent = "Support client IA, suivi colis, gestion demandes, scénarios e-mails automatisés.";
+      result.innerHTML = `Pack E-commerce · <strong>1 200–1 800 € HT</strong> · support IA + automatisations · <strong>7–12 jours</strong>.`;
+      ideal.textContent = "FAQ IA, gestion SAV, tracking commandes, réponses personnalisées, optimisation funnels.";
+      break;
+
+    case "personalbrand":
+      tagline.textContent = "Construisez une présence digitale haut de gamme, propulsée par l’IA.";
+      result.innerHTML = `Pack Marque personnelle · <strong>1 000–1 600 € HT</strong> · identité + site + IA · <strong>6–10 jours</strong>.`;
+      ideal.textContent = "Landing pro, storytelling IA, assistant personnel pour interactions + contenus.";
+      break;
+
+    case "digitalfreelance":
+      tagline.textContent = "Simplifiez votre activité : devis, messages, CRM et follow-up automatisés.";
+      result.innerHTML = `Pack Freelance Digital · <strong>950–1 500 € HT</strong> · automatisations + mini CRM · <strong>5–9 jours</strong>.`;
+      ideal.textContent = "Agent messages, relances auto, mini pipeline CRM, réponses personnalisées.";
+      break;
+
+    default:
+      return; // les types déjà existants gardent ton script actuel
+  }
+}
+
+if (projectType) {
+  projectType.addEventListener("change", updatePremiumEstimate);
+}
