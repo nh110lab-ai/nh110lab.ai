@@ -1,15 +1,81 @@
+<!-- tech.html -->
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8">
-<title>Technologie — NH110LAB.ai</title>
-<link rel="stylesheet" href="style.css"></head>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Tech &amp; Méthode — NH110LAB.ai</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
-
-<header class="header"><div class="logo">NH110LAB.ai</div></header>
+<header class="header" role="banner">
+  <div class="header-left">
+    <a href="index.html#hero" class="logo">NH110LAB.ai</a>
+    <div class="hero-mini">
+      <span class="eyebrow">Studio IA &amp; Automatisation</span>
+    </div>
+  </div>
+  <nav class="nav" role="navigation" aria-label="Navigation principale">
+    <a class="nav-link" href="index.html#hero">Accueil</a>
+    <a class="nav-link" href="services.html">Services</a>
+    <a class="nav-link" href="agents.html">Agents IA</a>
+    <a class="nav-link" href="usecases.html">Cas d'usage</a>
+    <a class="nav-link" href="tech.html">Tech</a>
+    <a class="nav-link" href="pricing.html">Offres</a>
+    <a class="nav-link" href="faq.html">FAQ</a>
+    <a class="nav-link nav-link-cta" href="contact.html">Contact</a>
+  </nav>
+  <button class="theme-toggle" type="button" aria-label="Basculer le thème">
+    <span class="theme-toggle-icon" data-theme-icon>☾</span>
+  </button>
+  <button class="nav-toggle" type="button" aria-label="Ouvrir le menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
 
 <section class="page">
-    <h1>Aurora Intelligence</h1>
-    <p>Notre moteur propriétaire combine perception avancée, mémoire longue, prise de décision dynamique, automatisation et optimisation continue.</p>
+  <h1>Tech &amp; méthode de travail</h1>
+  <p class="page-intro">
+    L'objectif n'est pas d'empiler des technologies, mais de construire une
+    architecture nette, lisible, et simple à reprendre.
+  </p>
+
+  <h2>Principes techniques</h2>
+  <ul>
+    <li>Stack volontairement courte et documentée</li>
+    <li>Priorité à la robustesse et à la lisibilité du code</li>
+    <li>Pas de dépendances exotiques sans raison claire</li>
+  </ul>
+
+  <h2>Intégration des modèles IA</h2>
+  <p>
+    Les modèles de langage sont intégrés via API avec des prompts structurés,
+    des règles métiers explicites et, si besoin, des garde-fous supplémentaires
+    (filtrage, validation humaine, logs).
+  </p>
+
+  <h2>Automatisation &amp; orchestrateurs</h2>
+  <p>
+    Nous utilisons des orchestrateurs modernes (comme n8n, Make ou Zapier) pour
+    connecter vos outils sans recréer une usine à gaz.
+  </p>
+  <ul>
+    <li>Workflows nommés, commentés, versionnés</li>
+    <li>Gestion des erreurs (retries, alertes ciblées)</li>
+    <li>Monitoring simple de la charge et des coûts</li>
+  </ul>
+
+  <h2>Front &amp; UX</h2>
+  <p>
+    Le front reste minimaliste, performant et centré sur ce que l'utilisateur doit comprendre
+    et faire en quelques secondes.
+  </p>
+  <ul>
+    <li>Composants réutilisables et accessibles</li>
+    <li>Design responsive et micro-animations discrètes</li>
+    <li>Intégration propre aux outils (formulaires, paiement, réservation…)</li>
+  </ul>
 </section>
 
-<script src="script.js"></script>
-</body></html>
+<script src="script.js" defer></script>
+</body>
+</html>
