@@ -4,31 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <title>NH110LAB.ai — IA & Automatisation Premium</title>
+  <title>NH110LAB.ai — IA &amp; Automatisation Premium</title>
   <link rel="stylesheet" href="style.css" />
 
-  <!-- SEO + OG -->
-  <meta name="description" content="NH110LAB.ai — Studio IA, automatisation, agents intelligents et sites premium." />
-  <meta property="og:title" content="NH110LAB.ai — IA & Automatisation Premium" />
+  <!-- SEO de base -->
+  <meta name="description"
+        content="NH110LAB.ai — Studio IA, automatisation, agents intelligents et expériences digitales premium pour créateurs, petites structures et marques." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="NH110LAB.ai — IA &amp; Automatisation Premium" />
   <meta property="og:description" content="Création d'expériences digitales haut de gamme propulsées par IA." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://nh110lab-ai.github.io/nh110lab.ai/" />
 </head>
 
 <body>
+  <!-- FOND ORB / HALO / PARTICLES -->
+  <div id="orb" aria-hidden="true"></div>
+  <div id="halo" aria-hidden="true"></div>
+  <div id="particles" aria-hidden="true"></div>
 
-  <!-- ⭐ BACKGROUNDS : ORB + HALO + PARTICLES (VERSION LUXE MAX) -->
-  <canvas id="orb"></canvas>
-  <canvas id="halo"></canvas>
-  <canvas id="particles"></canvas>
-
-  <!-- ⭐ HEADER -->
+  <!-- HEADER -->
   <header class="header">
     <div class="header-left">
       <a href="#hero" class="logo">NH110LAB.ai</a>
     </div>
 
-    <nav class="nav">
+    <nav class="nav" aria-label="Navigation principale">
       <a href="#services">Services</a>
       <a href="#devis">Devis</a>
       <a href="#temoignages">Témoignages</a>
@@ -39,465 +41,425 @@
       <a href="#contact" class="nav-cta">Contact</a>
     </nav>
 
-    <!-- SWITCH THÈME -->
     <button id="theme-toggle" aria-label="Changer le thème">☾</button>
 
-    <!-- MENU MOBILE -->
-    <button class="nav-toggle" aria-label="Menu">
+    <button class="nav-toggle" aria-label="Ouvrir le menu principal">
       <span></span><span></span><span></span>
     </button>
   </header>
 
-  <!-- ⭐ HERO -->
-  <section id="hero" class="section hero">
-    <div class="hero-content">
-      <p class="hero-eyebrow">Studio IA & Automatisation</p>
+  <!-- HERO -->
+  <main>
+    <section id="hero" class="section hero">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Studio IA &amp; Automatisation</p>
 
-      <h1 class="hero-title">
-        Des expériences digitales<br />
-        <span class="gradient">ultra-premium</span><br />
-        propulsées par l’IA.
-      </h1>
+        <h1 class="hero-title">
+          Des expériences digitales<br />
+          <span class="gradient">ultra-premium</span><br />
+          propulsées par l’IA.
+        </h1>
 
-      <p class="hero-subtitle">
-        Votre système complet : agents IA, automatisations, sites rapides et front minimaliste.
-        Optimisé pour créateurs, petites structures et marques digitales.
-      </p>
-
-      <div class="hero-buttons">
-        <a href="#devis" class="btn-primary">Devis express</a>
-        <a href="#temoignages" class="btn-ghost">Voir les cas clients</a>
-      </div>
-
-      <div class="hero-tags">
-        <span>⚡ Prototypes rapides</span>
-        <span>🤖 Agents IA dédiés</span>
-        <span>🎯 Automatisation concrète</span>
-      </div>
-    </div>
-
-    <!-- SIDEBAR HERO -->
-    <aside class="hero-aside">
-      <article class="card-info">
-        <h3>Focus</h3>
-        <p>
-          Agents IA + automatisations + front.
-          Construits sur mesure selon vos outils et votre rythme.
+        <p class="hero-subtitle">
+          Votre système complet : agents IA, automatisations, sites rapides et front minimaliste.
+          Optimisé pour créateurs, petites structures et marques digitales.
         </p>
-      </article>
 
-      <article class="card-info">
-        <h3>Process</h3>
-        <ol>
-          <li>Diagnostic express (30 min)</li>
-          <li>Prototype IA front</li>
-          <li>Mise en production</li>
-        </ol>
-      </article>
-    </aside>
-  </section>
-<!-- ⭐ SERVICES -->
-<section id="services" class="section services">
-  <div class="section-header">
-    <h2>Ce que je construis pour vous</h2>
-    <p>Des briques IA concrètes, utiles, et prêtes à l'emploi.</p>
-  </div>
+        <div class="hero-buttons">
+          <a href="#devis" class="btn-primary">Devis express</a>
+          <a href="#temoignages" class="btn-ghost">Voir les cas clients</a>
+        </div>
 
-  <div class="services-grid">
-    <article class="service-card">
-      <h3>Sites & expériences front</h3>
-      <p>
-        Sites ultra rapides, élégants, minimalistes, optimisés pour la conversion et vos outils.
-      </p>
-      <ul>
-        <li>Design premium</li>
-        <li>Mobile-first</li>
-        <li>Connexion CRM / Notion / Calendrier</li>
-      </ul>
-    </article>
-
-    <article class="service-card">
-      <h3>Agents IA intelligents</h3>
-      <p>
-        Agents spécialisés pour filtrer, répondre, trier, préparer.  
-        Toujours alignés avec votre ton et vos règles.
-      </p>
-      <ul>
-        <li>Agent commercial</li>
-        <li>Support client</li>
-        <li>Qualification des leads</li>
-      </ul>
-    </article>
-
-    <article class="service-card">
-      <h3>Automatisation & workflows</h3>
-      <p>
-        Connexions entre tous vos outils pour éliminer le répétitif.
-      </p>
-      <ul>
-        <li>n8n / Make / Zapier</li>
-        <li>Relances automatiques</li>
-        <li>Alertes intelligentes</li>
-      </ul>
-    </article>
-  </div>
-</section>
-
-<!-- ⭐ DEVIS EXPRESS -->
-<section id="devis" class="section section-alt">
-  <div class="section-header">
-    <h2>Devis express</h2>
-    <p>Obtenez une estimation réaliste en quelques secondes.</p>
-  </div>
-
-  <div class="devis-layout">
-    <form id="quote-form" class="devis-form">
-      <label>Type de projet</label>
-      <select id="quote-type">
-        <option value="site">Site + IA légère</option>
-        <option value="agent">Agent IA dédié</option>
-        <option value="workflow">Automatisation</option>
-        <option value="mix">Mix complet</option>
-      </select>
-
-      <label>Budget estimé</label>
-      <input type="range" id="quote-budget" min="800" max="8000" value="2000" />
-      <p class="budget-value">~ <span id="quote-budget-value">2000</span>€</p>
-
-      <label>Délai souhaité</label>
-      <div class="radio-group">
-        <label><input type="radio" name="delay" value="fast" />Le plus vite possible</label>
-        <label><input type="radio" name="delay" value="normal" checked />2–4 semaines</label>
-        <label><input type="radio" name="delay" value="flex" />Flexible</label>
+        <div class="hero-tags">
+          <span>⚡ Prototypes rapides</span>
+          <span>🤖 Agents IA dédiés</span>
+          <span>🎯 Automatisation concrète</span>
+        </div>
       </div>
 
-      <button type="submit" class="btn-primary btn-full">
-        Calculer
-      </button>
-    </form>
+      <aside class="hero-aside">
+        <article class="card-info">
+          <h3>Focus</h3>
+          <p>
+            Agents IA + automatisations + front —
+            construits sur mesure selon vos outils et votre rythme.
+          </p>
+        </article>
 
-    <aside class="devis-result">
-      <p id="quote-result">
-        Choisissez vos paramètres -> estimation affichée ici.
-      </p>
-    </aside>
-  </div>
-</section>
+        <article class="card-info">
+          <h3>Process</h3>
+          <ol>
+            <li>Diagnostic express (30 min)</li>
+            <li>Prototype IA + front</li>
+            <li>Mise en production</li>
+          </ol>
+        </article>
+      </aside>
+    </section>
 
-<!-- ⭐ TÉMOIGNAGES -->
-<section id="temoignages" class="section">
-  <div class="section-header">
-    <h2>Cas clients</h2>
-    <p>3 contextes différents, même logique : clarté + IA utile.</p>
-  </div>
-
-  <div class="testimonial-tabs">
-    <button class="tab active" data-tab="indep">Indépendant</button>
-    <button class="tab" data-tab="resto">Restauration</button>
-    <button class="tab" data-tab="ecom">E-commerce</button>
-  </div>
-
-  <div class="testimonial-panels">
-    <article class="panel active" data-panel="indep">
-      <p class="quote">
-        « Avant : 3h/jour dans les mails. Maintenant : un agent IA filtre et prépare
-        les réponses. Je ne garde que l'essentiel. »
-      </p>
-      <p class="meta">— Consultant solo</p>
-    </article>
-
-    <article class="panel" data-panel="resto">
-      <p class="quote">
-        « Les réservations arrivent partout. L’IA centralise, répond aux questions simples
-        et nous prévient seulement quand c’est important. »
-      </p>
-      <p class="meta">— Gérant restaurant</p>
-    </article>
-
-    <article class="panel" data-panel="ecom">
-      <p class="quote">
-        « Support client transformé : l’IA traite le simple, on prend le sensible.
-        Notre taux de réponse a doublé. »
-      </p>
-      <p class="meta">— Boutique en ligne</p>
-    </article>
-  </div>
-</section>
-<!-- ⭐ USECASES -->
-<section id="usecases" class="section">
-  <div class="section-header">
-    <h2>Cas d’usage</h2>
-    <p>Des exemples concrets d’automatisations qui transforment le quotidien.</p>
-  </div>
-
-  <div class="usecases-grid">
-    <article class="usecase-card">
-      <h3>Créateur / Influenceur</h3>
-      <ul>
-        <li>Tri automatique des DM (fans / pro / spam)</li>
-        <li>Préparation des réponses aux marques</li>
-        <li>Tableau centralisé des opportunités</li>
-      </ul>
-    </article>
-
-    <article class="usecase-card">
-      <h3>Freelance</h3>
-      <ul>
-        <li>Agent qualification leads</li>
-        <li>Relances automatisées</li>
-        <li>Résumé automatique des demandes</li>
-      </ul>
-    </article>
-
-    <article class="usecase-card">
-      <h3>E-commerce</h3>
-      <ul>
-        <li>Support IA + suivi colis</li>
-        <li>Emails post-achat optimisés</li>
-        <li>Retour client automatisé</li>
-      </ul>
-    </article>
-
-    <article class="usecase-card">
-      <h3>Restauration / Local</h3>
-      <ul>
-        <li>Agent réservation</li>
-        <li>Réponses FAQ instantanées</li>
-        <li>Centralisation des demandes</li>
-      </ul>
-    </article>
-  </div>
-</section>
-
-<!-- ⭐ TECH -->
-<section id="tech" class="section section-alt">
-  <div class="section-header">
-    <h2>Stack & Méthode</h2>
-    <p>Tech minimaliste, robuste, documentée et simple à maintenir.</p>
-  </div>
-<!-- ⭐ USECASES – VERSION PREMIUM ANIMÉE -->
-<section id="usecases" class="section">
-  <div class="section-header">
-    <h2>Cas d’usage</h2>
-    <p>Des gains immédiats, adaptés à votre activité.</p>
-  </div>
-
-  <div class="usecases-grid">
-
-    <article class="usecase-card uc-animate">
-      <h3>Créateur / Influenceur</h3>
-      <ul>
-        <li>Tri automatique des DM (fans / pro / spam)</li>
-        <li>Préparation des réponses aux marques</li>
-        <li>Tableau centralisé des opportunités</li>
-      </ul>
-    </article>
-
-    <article class="usecase-card uc-animate">
-      <h3>E-commerce</h3>
-      <ul>
-        <li>Support IA + suivi colis automatisé</li>
-        <li>Emails post-achat optimisés</li>
-        <li>Gestion simplifiée des retours clients</li>
-      </ul>
-    </article>
-
-    <article class="usecase-card uc-animate">
-      <h3>Freelance / Consultant</h3>
-      <ul>
-        <li>Qualification automatique des leads</li>
-        <li>Relances intelligentes planifiées</li>
-        <li>Résumé instantané des demandes</li>
-      </ul>
-    </article>
-
-    <article class="usecase-card uc-animate">
-      <h3>Restauration / Commerces locaux</h3>
-      <ul>
-        <li>Agent réservation & réponses FAQ</li>
-        <li>Centralisation Messenger / Insta / Google</li>
-        <li>Alertes intelligentes seulement quand utile</li>
-      </ul>
-    </article>
-
-  </div>
-</section>
-
-  <div class="tech-grid">
-    <article class="tech-card">
-      <h3>IA & Language</h3>
-      <ul>
-        <li>Prompts structurés & versionnés</li>
-        <li>Règles métier explicites</li>
-        <li>Logs sécurisés</li>
-      </ul>
-    </article>
-
-    <article class="tech-card">
-      <h3>Automatisation</h3>
-      <ul>
-        <li>n8n, Make, Zapier</li>
-        <li>Scénarios intelligents</li>
-        <li>Alertes & monitoring</li>
-      </ul>
-    </article>
-
-    <article class="tech-card">
-      <h3>Front & UI</h3>
-      <ul>
-        <li>Responsive premium</li>
-        <li>Animations luxe max</li>
-        <li>Interfaces légères & propres</li>
-      </ul>
-    </article>
-  </div>
-</section>
-
-<!-- ⭐ PRICING -->
-<section id="pricing" class="section">
-  <div class="section-header">
-    <h2>Offres</h2>
-    <p>Pilote pour démarrer. Run pour évoluer.</p>
-  </div>
-
-  <div class="pricing-toggle">
-    <button class="pricing-btn active" data-mode="pilot">Pilote</button>
-    <button class="pricing-btn" data-mode="run">Run & évolutions</button>
-  </div>
-
-  <div class="pricing-grid">
-    <!-- PILOTE -->
-    <article class="pricing-card" id="pricing-pilot">
-      <h3>Pilote IA concret</h3>
-      <p class="price">1 500 – 3 500 €</p>
-      <ul>
-        <li>1–2 usecases ciblés</li>
-        <li>Prototype IA rapide</li>
-        <li>Documentation simple</li>
-        <li>Session de prise en main</li>
-      </ul>
-      <a href="#contact" class="btn-primary btn-full">Démarrer un pilote</a>
-    </article>
-
-    <!-- RUN -->
-    <article class="pricing-card hidden" id="pricing-run">
-      <h3>Run & évolutions</h3>
-      <p class="price">Sur mesure</p>
-      <ul>
-        <li>Amélioration continue</li>
-        <li>Nouveaux agents & features</li>
-        <li>Monitoring & métriques</li>
-        <li>Support prioritaire</li>
-      </ul>
-      <a href="#contact" class="btn-primary btn-full">Parler du mode run</a>
-    </article>
-  </div>
-</section>
-
-<!-- ⭐ FAQ -->
-<section id="faq" class="section section-alt">
-  <div class="section-header">
-    <h2>FAQ</h2>
-    <p>Quelques réponses rapides aux questions fréquentes.</p>
-  </div>
-
-  <div class="faq-list">
-    <article class="faq-item">
-      <button class="faq-question"><span>Combien de temps prend un projet ?</span><span>+</span></button>
-      <div class="faq-answer">
-        Généralement 2–4 semaines pour un pilote complet.
+    <!-- SERVICES -->
+    <section id="services" class="section services">
+      <div class="section-header">
+        <h2>Ce que je construis pour vous</h2>
+        <p>Des briques IA concrètes, utiles, et prêtes à l'emploi.</p>
       </div>
-    </article>
 
-    <article class="faq-item">
-      <button class="faq-question"><span>Travaillez-vous avec les petites structures ?</span><span>+</span></button>
-      <div class="faq-answer">
-        Oui : créateurs, freelances, boutiques digitales, restaurants, TPE.
-      </div>
-    </article>
+      <div class="services-grid">
+        <article class="service-card">
+          <h3>Sites &amp; expériences front</h3>
+          <p>
+            Sites ultra rapides, élégants, minimalistes, optimisés pour la conversion et vos outils.
+          </p>
+          <ul>
+            <li>Design premium</li>
+            <li>Mobile-first</li>
+            <li>Connexion CRM / Notion / Calendrier</li>
+          </ul>
+        </article>
 
-    <article class="faq-item">
-      <button class="faq-question"><span>Garderai-je la main sur le système ?</span><span>+</span></button>
-      <div class="faq-answer">
-        Toujours. Documentation fournie + accès complet.
-      </div>
-    </article>
+        <article class="service-card">
+          <h3>Agents IA intelligents</h3>
+          <p>
+            Agents spécialisés pour filtrer, répondre, trier, préparer.
+            Toujours alignés avec votre ton et vos règles.
+          </p>
+          <ul>
+            <li>Agent commercial</li>
+            <li>Support client</li>
+            <li>Qualification des leads</li>
+          </ul>
+        </article>
 
-    <article class="faq-item">
-      <button class="faq-question"><span>Proposez-vous un suivi après ?</span><span>+</span></button>
-      <div class="faq-answer">
-        Oui : c’est le rôle du mode Run.
+        <article class="service-card">
+          <h3>Automatisation &amp; workflows</h3>
+          <p>Connexions entre tous vos outils pour éliminer le répétitif.</p>
+          <ul>
+            <li>n8n / Make / Zapier</li>
+            <li>Relances automatiques</li>
+            <li>Alertes intelligentes</li>
+          </ul>
+        </article>
       </div>
-    </article>
+    </section>
+
+    <!-- DEVIS EXPRESS -->
+    <section id="devis" class="section section-alt">
+      <div class="section-header">
+        <h2>Devis express</h2>
+        <p>Obtenez une estimation réaliste en quelques secondes.</p>
+      </div>
+
+      <div class="devis-layout">
+        <form id="quote-form" class="devis-form">
+          <label for="quote-type">Type de projet</label>
+          <select id="quote-type">
+            <option value="site">Site + IA légère</option>
+            <option value="agent">Agent IA dédié</option>
+            <option value="workflow">Automatisation</option>
+            <option value="mix">Mix complet</option>
+          </select>
+
+          <label for="quote-budget">Budget estimé</label>
+          <input type="range" id="quote-budget" min="800" max="8000" value="2000" />
+          <p class="budget-value">
+            ~ <span id="quote-budget-value">2000</span> €
+          </p>
+
+          <fieldset class="radio-group">
+            <legend>Délai souhaité</legend>
+            <label><input type="radio" name="delay" value="fast" /> Le plus vite possible</label>
+            <label><input type="radio" name="delay" value="normal" checked /> 2–4 semaines</label>
+            <label><input type="radio" name="delay" value="flex" /> Flexible</label>
+          </fieldset>
+
+          <button type="submit" class="btn-primary btn-full">Calculer</button>
+        </form>
+
+        <aside class="devis-result" aria-live="polite">
+          <p id="quote-result">
+            Choisissez vos paramètres → estimation affichée ici.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- TÉMOIGNAGES -->
+    <section id="temoignages" class="section">
+      <div class="section-header">
+        <h2>Cas clients</h2>
+        <p>3 contextes différents, même logique : clarté + IA utile.</p>
+      </div>
+
+      <div class="testimonial-tabs" role="tablist" aria-label="Cas clients">
+        <button class="tab active" data-tab="indep" role="tab" aria-selected="true">Indépendant</button>
+        <button class="tab" data-tab="resto" role="tab" aria-selected="false">Restauration</button>
+        <button class="tab" data-tab="ecom" role="tab" aria-selected="false">E-commerce</button>
+      </div>
+
+      <div class="testimonial-panels">
+        <article class="panel active" data-panel="indep" role="tabpanel">
+          <p class="quote">
+            « Avant : 3h/jour dans les mails. Maintenant : un agent IA filtre et prépare
+            les réponses. Je ne garde que l'essentiel. »
+          </p>
+          <p class="meta">— Consultant solo</p>
+        </article>
+
+        <article class="panel" data-panel="resto" role="tabpanel" hidden>
+          <p class="quote">
+            « Les réservations arrivent partout. L’IA centralise, répond aux questions simples
+            et nous prévient seulement quand c’est important. »
+          </p>
+          <p class="meta">— Gérant restaurant</p>
+        </article>
+
+        <article class="panel" data-panel="ecom" role="tabpanel" hidden>
+          <p class="quote">
+            « Support client transformé : l’IA traite le simple, on prend le sensible.
+            Notre taux de réponse a doublé. »
+          </p>
+          <p class="meta">— Boutique en ligne</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- USECASES -->
+    <section id="usecases" class="section">
+      <div class="section-header">
+        <h2>Cas d’usage</h2>
+        <p>Des exemples concrets d’automatisations qui transforment le quotidien.</p>
+      </div>
+
+      <div class="usecases-grid">
+        <article class="usecase-card">
+          <h3>Créateur / Influenceur</h3>
+          <ul>
+            <li>Tri automatique des DM (fans / pro / spam)</li>
+            <li>Préparation des réponses aux marques</li>
+            <li>Tableau centralisé des opportunités</li>
+          </ul>
+        </article>
+
+        <article class="usecase-card">
+          <h3>Freelance</h3>
+          <ul>
+            <li>Agent qualification leads</li>
+            <li>Relances automatisées</li>
+            <li>Résumé automatique des demandes</li>
+          </ul>
+        </article>
+
+        <article class="usecase-card">
+          <h3>E-commerce</h3>
+          <ul>
+            <li>Support IA + suivi colis</li>
+            <li>Emails post-achat optimisés</li>
+            <li>Retour client automatisé</li>
+          </ul>
+        </article>
+
+        <article class="usecase-card">
+          <h3>Restauration / Local</h3>
+          <ul>
+            <li>Agent réservation</li>
+            <li>Réponses FAQ instantanées</li>
+            <li>Centralisation des demandes</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- TECH -->
+    <section id="tech" class="section section-alt">
+      <div class="section-header">
+        <h2>Stack &amp; Méthode</h2>
+        <p>Tech minimaliste, robuste, documentée et simple à maintenir.</p>
+      </div>
+
+      <div class="tech-grid">
+        <article class="tech-card">
+          <h3>IA &amp; Language</h3>
+          <ul>
+            <li>Prompts structurés &amp; versionnés</li>
+            <li>Règles métier explicites</li>
+            <li>Logs sécurisés</li>
+          </ul>
+        </article>
+
+        <article class="tech-card">
+          <h3>Automatisation</h3>
+          <ul>
+            <li>n8n, Make, Zapier</li>
+            <li>Scénarios intelligents</li>
+            <li>Alertes &amp; monitoring</li>
+          </ul>
+        </article>
+
+        <article class="tech-card">
+          <h3>Front &amp; UI</h3>
+          <ul>
+            <li>Responsive premium</li>
+            <li>Animations luxe max</li>
+            <li>Interfaces légères &amp; propres</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="section">
+      <div class="section-header">
+        <h2>Offres</h2>
+        <p>Pilote pour démarrer. Run pour évoluer.</p>
+      </div>
+
+      <div class="pricing-toggle">
+        <button class="pricing-btn active" data-mode="pilot">Pilote</button>
+        <button class="pricing-btn" data-mode="run">Run &amp; évolutions</button>
+      </div>
+
+      <div class="pricing-grid">
+        <article class="pricing-card" id="pricing-pilot">
+          <h3>Pilote IA concret</h3>
+          <p class="price">1 500 – 3 500 €</p>
+          <ul>
+            <li>1–2 usecases ciblés</li>
+            <li>Prototype IA rapide</li>
+            <li>Documentation simple</li>
+            <li>Session de prise en main</li>
+          </ul>
+          <a href="#contact" class="btn-primary btn-full">Démarrer un pilote</a>
+        </article>
+
+        <article class="pricing-card hidden" id="pricing-run">
+          <h3>Run &amp; évolutions</h3>
+          <p class="price">Sur mesure</p>
+          <ul>
+            <li>Amélioration continue</li>
+            <li>Nouveaux agents &amp; features</li>
+            <li>Monitoring &amp; métriques</li>
+            <li>Support prioritaire</li>
+          </ul>
+          <a href="#contact" class="btn-primary btn-full">Parler du mode run</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section section-alt">
+      <div class="section-header">
+        <h2>FAQ</h2>
+        <p>Quelques réponses rapides aux questions fréquentes.</p>
+      </div>
+
+      <div class="faq-list">
+        <article class="faq-item">
+          <button class="faq-question">
+            <span>Combien de temps prend un projet ?</span><span>+</span>
+          </button>
+          <div class="faq-answer">
+            Généralement 2–4 semaines pour un pilote complet.
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <button class="faq-question">
+            <span>Travaillez-vous avec les petites structures ?</span><span>+</span>
+          </button>
+          <div class="faq-answer">
+            Oui : créateurs, freelances, boutiques digitales, restaurants, TPE.
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <button class="faq-question">
+            <span>Garderai-je la main sur le système ?</span><span>+</span>
+          </button>
+          <div class="faq-answer">
+            Toujours. Documentation fournie + accès complet.
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <button class="faq-question">
+            <span>Proposez-vous un suivi après ?</span><span>+</span>
+          </button>
+          <div class="faq-answer">
+            Oui : c’est le rôle du mode Run.
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="section-header">
+        <h2>Contact &amp; Brief</h2>
+        <p>Décrivez votre besoin. Je reviens avec une proposition claire.</p>
+      </div>
+
+      <form id="contact-form" class="contact-form">
+        <label for="c-name">Nom / Structure</label>
+        <input type="text" id="c-name" required />
+
+        <label for="c-email">Email</label>
+        <input type="email" id="c-email" required />
+
+        <label for="c-message">Votre projet</label>
+        <textarea id="c-message" rows="4" required></textarea>
+
+        <button type="submit" class="btn-primary btn-full">Envoyer</button>
+
+        <p class="contact-note">Réponse sous 24–48h.</p>
+        <p id="contact-feedback" class="contact-note" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <!-- WIDGET IA -->
+  <div class="ai-widget" aria-label="Assistant IA" aria-live="polite">
+    <button id="ai-toggle" class="ai-toggle">Assistant IA</button>
+
+    <div id="ai-panel" class="ai-panel" aria-hidden="true">
+      <div class="ai-header">
+        <h3>NH110LAB.ai · Assistant</h3>
+        <button id="ai-close" aria-label="Fermer l’assistant">✕</button>
+      </div>
+
+      <div id="ai-messages" class="ai-messages">
+        <div class="ai-message bot">
+          Décrivez ce que vous voulez automatiser.<br />
+          Je propose une structure d’agent ou de workflow.
+        </div>
+      </div>
+
+      <form id="ai-form" class="ai-form">
+        <label for="ai-input" class="sr-only">Votre idée</label>
+        <textarea id="ai-input" placeholder="Votre idée…" rows="2"></textarea>
+        <button class="btn-primary" type="submit">Envoyer</button>
+      </form>
+    </div>
   </div>
-</section>
 
-<!-- ⭐ CONTACT -->
-<section id="contact" class="section">
-  <div class="section-header">
-    <h2>Contact & Brief</h2>
-    <p>Décrivez votre besoin. Je reviens avec une proposition claire.</p>
-  </div>
-
-  <form id="contact-form" class="contact-form">
-    <label>Nom / Structure</label>
-    <input type="text" id="c-name" required />
-
-    <label>Email</label>
-    <input type="email" id="c-email" required />
-
-    <label>Votre projet</label>
-    <textarea id="c-message" rows="4" required></textarea>
-
-    <button type="submit" class="btn-primary btn-full">Envoyer</button>
-
-    <p class="contact-note">Réponse sous 24–48h.</p>
-  </form>
-</section>
-
-<!-- ⭐ WIDGET IA (Assistant Front) -->
-<div class="ai-widget">
-  <button id="ai-toggle" class="ai-toggle">Assistant IA</button>
-
-  <div id="ai-panel" class="ai-panel">
-    <div class="ai-header">
-      <h3>NH110LAB.ai · Assistant</h3>
-      <button id="ai-close">✕</button>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-main">
+      <strong>NH110LAB.ai</strong><br />
+      Studio IA &amp; automatisation premium.
     </div>
 
-    <div id="ai-messages" class="ai-messages">
-      <div class="ai-message bot">
-        Décrivez ce que vous voulez automatiser.  
-        Je propose une structure d’agent ou de workflow.
-      </div>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#devis">Devis</a>
+      <a href="#temoignages">Témoignages</a>
+      <a href="#contact">Contact</a>
     </div>
 
-    <form id="ai-form" class="ai-form">
-      <textarea id="ai-input" placeholder="Votre idée…" rows="2"></textarea>
-      <button class="btn-primary">Envoyer</button>
-    </form>
-  </div>
-</div>
+    <p class="footer-copy">
+      © 2025 NH110LAB.ai — Tous droits réservés.
+    </p>
+  </footer>
 
-<!-- ⭐ FOOTER -->
-<footer class="footer">
-  <div class="footer-main">
-    <strong>NH110LAB.ai</strong><br />
-    Studio IA & automatisation premium.
-  </div>
-
-  <div class="footer-links">
-    <a href="#services">Services</a>
-    <a href="#devis">Devis</a>
-    <a href="#temoignages">Témoignages</a>
-    <a href="#contact">Contact</a>
-  </div>
-
-  <p class="footer-copy">© 2025 NH110LAB.ai — Tous droits réservés.</p>
-</footer>
-
-<!-- JS -->
-<script src="script.js"></script>
-
+  <script src="script.js" defer></script>
 </body>
 </html>
